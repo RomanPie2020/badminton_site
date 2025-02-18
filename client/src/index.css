@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+	margin: 0;
+	padding: 0;
+	font-size: 16px;
+	box-sizing: border-box;
+}
+
+/* @layer components {
+  .log-button {
+    @apply inline-block w-20 h-10 text-white bg-[#282828] border-white border-2;
+  }
+  .reg-button {
+    @apply inline-block w-20 h-10 text-black bg-white border-black border-2 mt-5;
+  }
+} */
