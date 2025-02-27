@@ -4,10 +4,12 @@ services:
     # image: postgres:14.16-alpine3.20
     image: postgres:latest
     container_name: badminton_db
+    # env_file:
+    #   - ./server/.env
     environment:
-      POSTGRES_DB: badminton_db
-      POSTGRES_USER: romankaras2004
-      POSTGRES_PASSWORD: roman2004
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
     ports:
       - '5432:5432'
 
@@ -16,24 +18,26 @@ services:
     networks:
       - app-network
 
-  pgadmin:
-    image: dpage/pgadmin4
-    container_name: badminton_pgadmin
-    environment:
-      PGADMIN_DEFAULT_EMAIL: romankaras2004@gmail.com
-      PGADMIN_DEFAULT_PASSWORD: roman2004
-    ports:
-      - '5050:80'
-    depends_on:
-      - postgres
-    networks:
-      - app-network
+  # pgadmin:
+  #   image: dpage/pgadmin4
+  #   container_name: badminton_pgadmin
+
+  #   environment:
+  #     PGADMIN_DEFAULT_EMAIL: romankaras2004@gmail.com
+  #     PGADMIN_DEFAULT_PASSWORD: ${DB_PASSWORD}
+  #   ports:
+  #     - '5050:80'
+  #   depends_on:
+  #     - postgres
+  #   networks:
+  #     - app-network
 
   backend:
     build:
       context: ./server
       dockerfile: Dockerfile
     container_name: badminton_backend
+
     environment:
       - NODE_ENV=development
       - PORT=3000
@@ -54,19 +58,19 @@ services:
       - app-network
     command: npm run dev
 
-  frontend:
-    build:
-      context: ./client
-      dockerfile: Dockerfile
-    container_name: badminton_frontend
-    ports:
-      - '5173:5173'
-    volumes:
-      - ./client:/app
-      - /app/node_modules
-    networks:
-      - app-network
-    command: npm run dev
+  # frontend:
+  #   build:
+  #     context: ./client
+  #     dockerfile: Dockerfile
+  #   container_name: badminton_frontend
+  #   ports:
+  #     - '5173:5173'
+  #   volumes:
+  #     - ./client:/app
+  #     - /app/node_modules
+  #   networks:
+  #     - app-network
+  #   command: npm run dev
 
 networks:
   app-network:

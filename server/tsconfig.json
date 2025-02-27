@@ -1,18 +1,20 @@
 {
 	"compilerOptions": {
-		"target": "es2017",
+		"target": "es2020",
 		"module": "commonjs",
-		"lib": ["es6"],
-		"allowJs": true,
-		"outDir": "build",
-		"rootDir": "app",
+		"lib": ["es2020"],
 		"strict": true,
 		"noImplicitAny": true,
 		"esModuleInterop": true,
 		"resolveJsonModule": true,
+		"outDir": "./build",
+		"rootDir": "./app",
+		"baseUrl": "./",
 		"typeRoots": ["./node_modules/@types"],
-		"skipLibCheck": true
+		"paths": {
+			"@/*": ["app/*"]
+		}
 	},
-	"include": ["app/**/*"],
+	"include": ["app/**/*", "index.ts"],
 	"exclude": ["node_modules", "build"]
 }
