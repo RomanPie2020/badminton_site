@@ -1,3 +1,4 @@
+import { logger } from '@/utils/logger/log'
 import { Router } from 'express'
 import { AuthService } from './auth.service'
 
@@ -7,7 +8,7 @@ const authService = new AuthService()
 
 router.post('/', (req, res) => {
 	const user = authService.createUser(req.body)
-	console.log(user)
+	logger.info(user)
 
 	res.status(201).json(user)
 })
