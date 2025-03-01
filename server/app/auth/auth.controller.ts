@@ -1,16 +1,19 @@
-import { logger } from '@/utils/logger/log'
-import { Router } from 'express'
-import { AuthService } from './auth.service'
+import { authService } from './auth.service'
 
-const router = Router()
+// authController.js
+export class AuthController {
+	async register(req, res) {
+		try {
+			const { username, password } = req.body
+			// Виклик сервісу для реєстрації користувача
+			const newUser = await authService.registerUser(username, password)
+			res.status(201).json(newUser)
+		} catch (error) {
+			res
+				.status(500)
+				.json({ message: 'Error registering user', error: error.message })
+		}
+	}
+}
 
-const authService = new AuthService()
-
-router.post('/', (req, res) => {
-	const user = authService.createUser(req.body)
-	logger.info(user)
-
-	res.status(201).json(user)
-})
-
-export const userRouter = router
+export const authController = new AuthController()

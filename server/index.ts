@@ -1,16 +1,15 @@
 import { logger } from '@/utils/logger/log'
 import cors from 'cors'
-import express from 'express'
+import express, { urlencoded } from 'express'
 
+import { authRouter } from '@/auth/auth.routes'
 import compression from 'compression'
 import helmet from 'helmet'
-import { userRouter } from './app/auth/auth.controller'
 import sequelize from './app/config/database'
 
 const app = express()
 
 // Middleware
-app.use(express.json())
 app.use(
 	cors({
 		origin: 'http://localhost:5173',
@@ -18,9 +17,12 @@ app.use(
 	})
 )
 
+app.use(express.json())
+app.use(urlencoded({ extended: false }))
 app.use(helmet())
 app.use(compression())
-// Перевірка підключення до бази даних
+
+//  Перевірка підключення до бази даних
 const testDbConnection = async () => {
 	try {
 		await sequelize.authenticate()
@@ -40,7 +42,7 @@ const testDbConnection = async () => {
 // 	logger.info('Health check endpoint was called')
 // })
 
-app.use('/api/user', userRouter)
+app.use(authRouter)
 
 const PORT = process.env.PORT || 3000
 

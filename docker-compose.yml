@@ -18,19 +18,21 @@ services:
     networks:
       - app-network
 
-  # pgadmin:
-  #   image: dpage/pgadmin4
-  #   container_name: badminton_pgadmin
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: badminton_pgadmin
 
-  #   environment:
-  #     PGADMIN_DEFAULT_EMAIL: romankaras2004@gmail.com
-  #     PGADMIN_DEFAULT_PASSWORD: ${DB_PASSWORD}
-  #   ports:
-  #     - '5050:80'
-  #   depends_on:
-  #     - postgres
-  #   networks:
-  #     - app-network
+    environment:
+      PGADMIN_DEFAULT_EMAIL: romankaras2004@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - '5050:80'
+    volumes:
+      - ./pgadmin-data:/var/lib/pgadmin
+    depends_on:
+      - postgres
+    networks:
+      - app-network
 
   backend:
     build:
