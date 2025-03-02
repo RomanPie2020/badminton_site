@@ -1,0 +1,9 @@
+{
+	"watch": ["index.ts", "app/**/*.ts"],
+	"ignore": ["node_modules/**", "**/*.spec.ts"],
+	"verbose": true,
+	"respawn": true,
+	"clear": true,
+	"files": true,
+	"poll": true
+}
