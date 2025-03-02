@@ -1,8 +1,8 @@
-import { authService } from './auth.service'
+import { authService } from './auth.authService'
+import { tokenService } from './auth.tokenService'
 
-// authController.js
 export class AuthController {
-	async registerUser(req, res) {
+	async register(req, res) {
 		try {
 			const { email, username, password } = req.body
 			// Виклик сервісу для реєстрації користувача
@@ -14,7 +14,7 @@ export class AuthController {
 				.json({ message: 'Error registering user', error: error.message })
 		}
 	}
-	async confirmUser(req, res) {
+	async confirmRegister(req, res) {
 		try {
 			const { token } = req.query
 			if (!token || typeof token !== 'string') {
@@ -27,6 +27,59 @@ export class AuthController {
 			res.status(200).json(result)
 		} catch (error) {
 			res.status(500).json({ success: false, message: error.message })
+		}
+	}
+	async login(req, res) {
+		try {
+			const { email, password } = req.body
+			if (!email || !password) {
+				return res.status(400).json({
+					success: false,
+					message: 'Username and password are required',
+				})
+			}
+			const { accessToken, refreshToken, user } = await authService.loginUser(
+				email,
+				password
+			)
+			res.status(200).json({ success: true, accessToken, refreshToken, user })
+		} catch (error) {
+			res.status(401).json({ success: false, message: error.message })
+		}
+	}
+
+	async refreshToken(req, res) {
+		try {
+			const { refreshToken } = req.body
+			if (!refreshToken || typeof refreshToken !== 'string') {
+				return res
+					.status(400)
+					.json({ success: false, message: 'Refresh token is required' })
+			}
+			const { accessToken, newRefreshToken } =
+				await tokenService.refreshAccessToken(refreshToken)
+			res
+				.status(200)
+				.json({ success: true, accessToken, refreshToken: newRefreshToken })
+		} catch (error) {
+			res.status(401).json({ success: false, message: error.message })
+		}
+	}
+
+	async logout(req, res) {
+		try {
+			const { refreshToken } = req.body
+			if (!refreshToken || typeof refreshToken !== 'string') {
+				return res
+					.status(400)
+					.json({ success: false, message: 'Refresh token is required' })
+			}
+			await tokenService.logout(refreshToken)
+			res
+				.status(200)
+				.json({ success: true, message: 'Logged out successfully' })
+		} catch (error) {
+			res.status(401).json({ success: false, message: error.message })
 		}
 	}
 }

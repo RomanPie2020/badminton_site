@@ -31,7 +31,7 @@ const testDbConnection = async () => {
 		logger.error('Unable to connect to the database:', error)
 	}
 }
-logger.info(92222) // Новий унікальний лог
+logger.info(922) // Новий унікальний лог
 logger.info('Change test: ' + new Date().toISOString())
 // Тестовий роут
 // app.get('/api/health', (req, res) => {

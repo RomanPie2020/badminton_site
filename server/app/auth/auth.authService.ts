@@ -3,6 +3,7 @@ import { logger } from '@/utils/logger/log'
 import bcrypt from 'bcrypt'
 import crypto from 'crypto'
 import nodemailer from 'nodemailer'
+import { tokenService } from './auth.tokenService'
 import User from './models/user'
 
 class AuthService {
@@ -28,7 +29,7 @@ class AuthService {
 			}
 
 			// Надсилання листа із посиланням для підтвердження
-			const confirmationLink = `${BASE_URL}/confirm?token=${token}`
+			const confirmationLink = `${BASE_URL}/api/auth/confirm?token=${token}`
 			await this.sendEmail(
 				newUser.email,
 				'Підтвердження реєстрації',
@@ -97,6 +98,36 @@ class AuthService {
 			}
 		} catch (error) {
 			logger.error('Помилка при підтвердженні користувача:', {
+				message: error.message,
+				stack: error.stack,
+			})
+			throw error
+		}
+	}
+
+	async loginUser(email: string, password: string) {
+		try {
+			const user = await User.findOne({ where: { email } })
+			if (!user || !(await bcrypt.compare(password, user.password))) {
+				throw new Error('Invalid username or password')
+			}
+
+			if (!user.isActive) {
+				throw new Error('User is not activated')
+			}
+
+			const accessToken = tokenService.generateAccessToken(user.id)
+			const refreshToken = tokenService.generateRefreshToken()
+			await tokenService.saveRefreshToken(user.id, refreshToken)
+
+			logger.info(`Користувач ${email} успішно увійшов`)
+			return {
+				accessToken,
+				refreshToken,
+				user: { id: user.id, username: user.username, email: user.email },
+			}
+		} catch (error) {
+			logger.error('Помилка при логіні:', {
 				message: error.message,
 				stack: error.stack,
 			})

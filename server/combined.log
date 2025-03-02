@@ -402,3 +402,206 @@
 {"level":"info","message":"Change test: 2025-03-02T19:42:56.199Z","timestamp":"2025-03-02T19:42:56.199Z"}
 {"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-03-02T19:42:56.202Z"}
 {"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-03-02T19:42:56.294Z"}
+{"level":"info","message":92222,"timestamp":"2025-03-02T20:05:09.959Z"}
+{"level":"info","message":"Change test: 2025-03-02T20:05:09.964Z","timestamp":"2025-03-02T20:05:09.964Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-03-02T20:05:09.967Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-03-02T20:05:10.154Z"}
+{"level":"info","message":92222,"timestamp":"2025-03-02T20:08:04.022Z"}
+{"level":"info","message":"Change test: 2025-03-02T20:08:04.025Z","timestamp":"2025-03-02T20:08:04.025Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-03-02T20:08:04.029Z"}
+{"level":"error","message":"Unable to connect to the database:","name":"SequelizeConnectionRefusedError","original":{"code":"ECONNREFUSED"},"parent":{"code":"ECONNREFUSED"},"stack":"SequelizeConnectionRefusedError: \n    at Client._connectionCallback (C:\\Users\\1\\Desktop\\Badminton_site\\badminton_app\\server\\node_modules\\sequelize\\src\\dialects\\postgres\\connection-manager.js:184:24)\n    at Client._handleErrorWhileConnecting (C:\\Users\\1\\Desktop\\Badminton_site\\badminton_app\\server\\node_modules\\pg\\lib\\client.js:326:19)\n    at Client._handleErrorEvent (C:\\Users\\1\\Desktop\\Badminton_site\\badminton_app\\server\\node_modules\\pg\\lib\\client.js:336:19)\n    at Connection.emit (node:events:518:28)\n    at Socket.reportStreamError (C:\\Users\\1\\Desktop\\Badminton_site\\badminton_app\\server\\node_modules\\pg\\lib\\connection.js:57:12)\n    at Socket.emit (node:events:518:28)\n    at emitErrorNT (node:internal/streams/destroy:170:8)\n    at emitErrorCloseNT (node:internal/streams/destroy:129:3)\n    at processTicksAndRejections (node:internal/process/task_queues:90:21)","timestamp":"2025-03-02T20:08:04.070Z"}
+{"level":"info","message":9222,"timestamp":"2025-03-02T20:08:12.904Z"}
+{"level":"info","message":"Change test: 2025-03-02T20:08:12.908Z","timestamp":"2025-03-02T20:08:12.908Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-03-02T20:08:12.912Z"}
+{"level":"error","message":"Unable to connect to the database:","name":"SequelizeConnectionRefusedError","original":{"code":"ECONNREFUSED"},"parent":{"code":"ECONNREFUSED"},"stack":"SequelizeConnectionRefusedError: \n    at Client._connectionCallback (C:\\Users\\1\\Desktop\\Badminton_site\\badminton_app\\server\\node_modules\\sequelize\\src\\dialects\\postgres\\connection-manager.js:184:24)\n    at Client._handleErrorWhileConnecting (C:\\Users\\1\\Desktop\\Badminton_site\\badminton_app\\server\\node_modules\\pg\\lib\\client.js:326:19)\n    at Client._handleErrorEvent (C:\\Users\\1\\Desktop\\Badminton_site\\badminton_app\\server\\node_modules\\pg\\lib\\client.js:336:19)\n    at Connection.emit (node:events:518:28)\n    at Socket.reportStreamError (C:\\Users\\1\\Desktop\\Badminton_site\\badminton_app\\server\\node_modules\\pg\\lib\\connection.js:57:12)\n    at Socket.emit (node:events:518:28)\n    at emitErrorNT (node:internal/streams/destroy:170:8)\n    at emitErrorCloseNT (node:internal/streams/destroy:129:3)\n    at processTicksAndRejections (node:internal/process/task_queues:90:21)","timestamp":"2025-03-02T20:08:12.938Z"}
+{"level":"info","message":922,"timestamp":"2025-03-02T20:18:11.807Z"}
+{"level":"info","message":"Change test: 2025-03-02T20:18:11.809Z","timestamp":"2025-03-02T20:18:11.809Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-03-02T20:18:11.811Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-03-02T20:18:11.937Z"}
+{"level":"info","message":922,"timestamp":"2025-03-02T20:19:48.595Z"}
+{"level":"info","message":"Change test: 2025-03-02T20:19:48.598Z","timestamp":"2025-03-02T20:19:48.598Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-03-02T20:19:48.601Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-03-02T20:19:48.654Z"}
+{"level":"info","message":922,"timestamp":"2025-03-02T20:25:45.173Z"}
+{"level":"info","message":"Change test: 2025-03-02T20:25:45.176Z","timestamp":"2025-03-02T20:25:45.176Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-03-02T20:25:45.178Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-03-02T20:25:45.224Z"}
+{"level":"info","message":922,"timestamp":"2025-03-02T20:25:56.974Z"}
+{"level":"info","message":"Change test: 2025-03-02T20:25:56.977Z","timestamp":"2025-03-02T20:25:56.977Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-03-02T20:25:56.979Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-03-02T20:25:57.026Z"}
+{"level":"info","message":922,"timestamp":"2025-03-02T20:26:05.251Z"}
+{"level":"info","message":"Change test: 2025-03-02T20:26:05.254Z","timestamp":"2025-03-02T20:26:05.254Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-03-02T20:26:05.257Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-03-02T20:26:05.301Z"}
+{"level":"info","message":922,"timestamp":"2025-03-02T21:02:49.152Z"}
+{"level":"info","message":"Change test: 2025-03-02T21:02:49.156Z","timestamp":"2025-03-02T21:02:49.156Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-03-02T21:02:49.160Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-03-02T21:02:49.236Z"}
+{"level":"info","message":922,"timestamp":"2025-03-02T21:03:15.983Z"}
+{"level":"info","message":"Change test: 2025-03-02T21:03:15.985Z","timestamp":"2025-03-02T21:03:15.985Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-03-02T21:03:15.988Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-03-02T21:03:16.030Z"}
+{"level":"info","message":922,"timestamp":"2025-03-02T21:03:30.769Z"}
+{"level":"info","message":"Change test: 2025-03-02T21:03:30.771Z","timestamp":"2025-03-02T21:03:30.771Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-03-02T21:03:30.773Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-03-02T21:03:30.816Z"}
+{"level":"info","message":922,"timestamp":"2025-03-02T21:04:11.957Z"}
+{"level":"info","message":"Change test: 2025-03-02T21:04:11.960Z","timestamp":"2025-03-02T21:04:11.960Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-03-02T21:04:11.963Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-03-02T21:04:12.010Z"}
+{"level":"info","message":922,"timestamp":"2025-03-02T21:04:22.784Z"}
+{"level":"info","message":"Change test: 2025-03-02T21:04:22.787Z","timestamp":"2025-03-02T21:04:22.787Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-03-02T21:04:22.790Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-03-02T21:04:22.837Z"}
+{"level":"info","message":922,"timestamp":"2025-03-02T21:05:16.461Z"}
+{"level":"info","message":"Change test: 2025-03-02T21:05:16.463Z","timestamp":"2025-03-02T21:05:16.463Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-03-02T21:05:16.466Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-03-02T21:05:16.511Z"}
+{"level":"info","message":922,"timestamp":"2025-03-02T21:06:07.946Z"}
+{"level":"info","message":"Change test: 2025-03-02T21:06:07.949Z","timestamp":"2025-03-02T21:06:07.949Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-03-02T21:06:07.951Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-03-02T21:06:07.997Z"}
+{"level":"info","message":922,"timestamp":"2025-03-02T21:06:12.437Z"}
+{"level":"info","message":"Change test: 2025-03-02T21:06:12.439Z","timestamp":"2025-03-02T21:06:12.439Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-03-02T21:06:12.442Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-03-02T21:06:12.486Z"}
+{"level":"info","message":922,"timestamp":"2025-03-02T21:09:46.213Z"}
+{"level":"info","message":"Change test: 2025-03-02T21:09:46.216Z","timestamp":"2025-03-02T21:09:46.216Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-03-02T21:09:46.219Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-03-02T21:09:46.264Z"}
+{"level":"info","message":922,"timestamp":"2025-03-02T21:10:23.488Z"}
+{"level":"info","message":"Change test: 2025-03-02T21:10:23.491Z","timestamp":"2025-03-02T21:10:23.491Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-03-02T21:10:23.494Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-03-02T21:10:23.542Z"}
+{"level":"info","message":922,"timestamp":"2025-03-02T21:13:15.071Z"}
+{"level":"info","message":"Change test: 2025-03-02T21:13:15.074Z","timestamp":"2025-03-02T21:13:15.074Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-03-02T21:13:15.077Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-03-02T21:13:15.121Z"}
+{"level":"info","message":922,"timestamp":"2025-03-02T21:14:12.069Z"}
+{"level":"info","message":"Change test: 2025-03-02T21:14:12.071Z","timestamp":"2025-03-02T21:14:12.071Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-03-02T21:14:12.074Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-03-02T21:14:12.115Z"}
+{"level":"info","message":"Refresh token saved for user 18","timestamp":"2025-03-02T21:14:24.142Z"}
+{"level":"info","message":"Користувач romankaras2004@gmail.com успішно увійшов","timestamp":"2025-03-02T21:14:24.142Z"}
+{"level":"info","message":922,"timestamp":"2025-03-02T21:14:44.715Z"}
+{"level":"info","message":"Change test: 2025-03-02T21:14:44.718Z","timestamp":"2025-03-02T21:14:44.718Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-03-02T21:14:44.720Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-03-02T21:14:44.767Z"}
+{"level":"info","message":922,"timestamp":"2025-03-02T21:17:35.646Z"}
+{"level":"info","message":"Change test: 2025-03-02T21:17:35.649Z","timestamp":"2025-03-02T21:17:35.649Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-03-02T21:17:35.651Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-03-02T21:17:35.696Z"}
+{"level":"info","message":21,"timestamp":"2025-03-02T21:18:14.407Z"}
+{"level":"info","message":"Користувача fad успішно зареєстровано","timestamp":"2025-03-02T21:18:14.435Z"}
+{"level":"info","message":"romankaras2004@gmail.com","timestamp":"2025-03-02T21:18:14.443Z"}
+{"level":"info","message":"Лист надіслано до romankaras2004@gmail.com","timestamp":"2025-03-02T21:18:16.280Z"}
+{"level":"info","message":21,"timestamp":"2025-03-02T21:19:00.669Z"}
+{"level":"info","message":"Користувача fad успішно зареєстровано","timestamp":"2025-03-02T21:19:00.687Z"}
+{"level":"info","message":"romankaras2004@gmail.com","timestamp":"2025-03-02T21:19:00.691Z"}
+{"level":"info","message":"Лист надіслано до romankaras2004@gmail.com","timestamp":"2025-03-02T21:19:02.246Z"}
+{"level":"info","message":"Користувач з email romankaras2004@gmail.com успішно підтверджений","timestamp":"2025-03-02T21:21:35.268Z"}
+{"level":"info","message":"Refresh token saved for user 20","timestamp":"2025-03-02T21:21:53.038Z"}
+{"level":"info","message":"Користувач romankaras2004@gmail.com успішно увійшов","timestamp":"2025-03-02T21:21:53.038Z"}
+{"level":"info","message":922,"timestamp":"2025-03-02T21:23:12.735Z"}
+{"level":"info","message":"Change test: 2025-03-02T21:23:12.738Z","timestamp":"2025-03-02T21:23:12.738Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-03-02T21:23:12.741Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-03-02T21:23:12.789Z"}
+{"level":"info","message":922,"timestamp":"2025-03-02T21:23:25.646Z"}
+{"level":"info","message":"Change test: 2025-03-02T21:23:25.648Z","timestamp":"2025-03-02T21:23:25.648Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-03-02T21:23:25.651Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-03-02T21:23:25.697Z"}
+{"level":"info","message":922,"timestamp":"2025-03-02T21:23:53.997Z"}
+{"level":"info","message":"Change test: 2025-03-02T21:23:54.000Z","timestamp":"2025-03-02T21:23:54.000Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-03-02T21:23:54.003Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-03-02T21:23:54.050Z"}
+{"level":"info","message":922,"timestamp":"2025-03-02T21:24:31.859Z"}
+{"level":"info","message":"Change test: 2025-03-02T21:24:31.862Z","timestamp":"2025-03-02T21:24:31.862Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-03-02T21:24:31.865Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-03-02T21:24:31.910Z"}
+{"level":"info","message":922,"timestamp":"2025-03-02T21:24:38.330Z"}
+{"level":"info","message":"Change test: 2025-03-02T21:24:38.333Z","timestamp":"2025-03-02T21:24:38.333Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-03-02T21:24:38.335Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-03-02T21:24:38.380Z"}
+{"level":"info","message":922,"timestamp":"2025-03-02T21:24:41.033Z"}
+{"level":"info","message":"Change test: 2025-03-02T21:24:41.036Z","timestamp":"2025-03-02T21:24:41.036Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-03-02T21:24:41.039Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-03-02T21:24:41.085Z"}
+{"level":"info","message":922,"timestamp":"2025-03-02T21:25:06.934Z"}
+{"level":"info","message":"Change test: 2025-03-02T21:25:06.937Z","timestamp":"2025-03-02T21:25:06.937Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-03-02T21:25:06.942Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-03-02T21:25:06.993Z"}
+{"level":"info","message":922,"timestamp":"2025-03-02T21:25:15.456Z"}
+{"level":"info","message":"Change test: 2025-03-02T21:25:15.459Z","timestamp":"2025-03-02T21:25:15.459Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-03-02T21:25:15.461Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-03-02T21:25:15.504Z"}
+{"level":"info","message":922,"timestamp":"2025-03-02T21:28:36.454Z"}
+{"level":"info","message":"Change test: 2025-03-02T21:28:36.456Z","timestamp":"2025-03-02T21:28:36.456Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-03-02T21:28:36.460Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-03-02T21:28:36.505Z"}
+{"level":"info","message":922,"timestamp":"2025-03-02T21:29:00.725Z"}
+{"level":"info","message":"Change test: 2025-03-02T21:29:00.727Z","timestamp":"2025-03-02T21:29:00.727Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-03-02T21:29:00.730Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-03-02T21:29:00.773Z"}
+{"level":"info","message":922,"timestamp":"2025-03-02T21:29:30.074Z"}
+{"level":"info","message":"Change test: 2025-03-02T21:29:30.076Z","timestamp":"2025-03-02T21:29:30.076Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-03-02T21:29:30.079Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-03-02T21:29:30.121Z"}
+{"level":"info","message":922,"timestamp":"2025-03-02T21:29:36.525Z"}
+{"level":"info","message":"Change test: 2025-03-02T21:29:36.527Z","timestamp":"2025-03-02T21:29:36.528Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-03-02T21:29:36.530Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-03-02T21:29:36.574Z"}
+{"level":"info","message":922,"timestamp":"2025-03-02T21:29:42.408Z"}
+{"level":"info","message":"Change test: 2025-03-02T21:29:42.411Z","timestamp":"2025-03-02T21:29:42.411Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-03-02T21:29:42.414Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-03-02T21:29:42.470Z"}
+{"level":"info","message":922,"timestamp":"2025-03-02T21:32:26.124Z"}
+{"level":"info","message":"Change test: 2025-03-02T21:32:26.127Z","timestamp":"2025-03-02T21:32:26.127Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-03-02T21:32:26.129Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-03-02T21:32:26.171Z"}
+{"level":"info","message":922,"timestamp":"2025-03-02T21:35:16.251Z"}
+{"level":"info","message":"Change test: 2025-03-02T21:35:16.254Z","timestamp":"2025-03-02T21:35:16.254Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-03-02T21:35:16.257Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-03-02T21:35:16.300Z"}
+{"level":"info","message":922,"timestamp":"2025-03-02T21:37:38.967Z"}
+{"level":"info","message":"Change test: 2025-03-02T21:37:38.970Z","timestamp":"2025-03-02T21:37:38.970Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-03-02T21:37:38.973Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-03-02T21:37:39.017Z"}
+{"level":"info","message":"Refresh token saved for user 20","timestamp":"2025-03-02T21:37:47.105Z"}
+{"level":"info","message":922,"timestamp":"2025-03-02T21:39:18.805Z"}
+{"level":"info","message":"Change test: 2025-03-02T21:39:18.810Z","timestamp":"2025-03-02T21:39:18.810Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-03-02T21:39:18.814Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-03-02T21:39:18.934Z"}
+{"level":"info","message":922,"timestamp":"2025-03-02T21:40:16.350Z"}
+{"level":"info","message":"Change test: 2025-03-02T21:40:16.352Z","timestamp":"2025-03-02T21:40:16.352Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-03-02T21:40:16.354Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-03-02T21:40:16.407Z"}
+{"level":"info","message":922,"timestamp":"2025-03-02T21:40:18.365Z"}
+{"level":"info","message":"Change test: 2025-03-02T21:40:18.368Z","timestamp":"2025-03-02T21:40:18.368Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-03-02T21:40:18.370Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-03-02T21:40:18.411Z"}
+{"level":"info","message":922,"timestamp":"2025-03-02T21:40:34.899Z"}
+{"level":"info","message":"Change test: 2025-03-02T21:40:34.901Z","timestamp":"2025-03-02T21:40:34.901Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-03-02T21:40:34.903Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-03-02T21:40:34.952Z"}
+{"level":"info","message":922,"timestamp":"2025-03-02T21:40:52.468Z"}
+{"level":"info","message":"Change test: 2025-03-02T21:40:52.470Z","timestamp":"2025-03-02T21:40:52.470Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-03-02T21:40:52.472Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-03-02T21:40:52.519Z"}
+{"level":"info","message":922,"timestamp":"2025-03-02T21:41:21.173Z"}
+{"level":"info","message":"Change test: 2025-03-02T21:41:21.176Z","timestamp":"2025-03-02T21:41:21.176Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-03-02T21:41:21.179Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-03-02T21:41:21.220Z"}
+{"level":"info","message":922,"timestamp":"2025-03-02T21:41:27.988Z"}
+{"level":"info","message":"Change test: 2025-03-02T21:41:27.990Z","timestamp":"2025-03-02T21:41:27.990Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-03-02T21:41:27.993Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-03-02T21:41:28.038Z"}
+{"level":"info","message":922,"timestamp":"2025-03-02T21:45:51.310Z"}
+{"level":"info","message":"Change test: 2025-03-02T21:45:51.312Z","timestamp":"2025-03-02T21:45:51.312Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-03-02T21:45:51.315Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-03-02T21:45:51.365Z"}
+{"level":"info","message":922,"timestamp":"2025-03-02T21:46:11.545Z"}
+{"level":"info","message":"Change test: 2025-03-02T21:46:11.548Z","timestamp":"2025-03-02T21:46:11.548Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-03-02T21:46:11.554Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-03-02T21:46:11.630Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-03-02T21:46:13.110Z"}
