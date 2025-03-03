@@ -134,6 +134,17 @@ class AuthService {
 			throw error
 		}
 	}
+	async getUsers() {
+		try {
+			const users = await User.findAll({
+				attributes: ['id', 'username', 'email', 'isActive'], // Виключаємо пароль
+			})
+			return users
+		} catch (error) {
+			logger.error('Error fetching users:', error.message)
+			throw error
+		}
+	}
 }
 
 export const authService = new AuthService()
