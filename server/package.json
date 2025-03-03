@@ -9,6 +9,8 @@
 		"dev2": "ts-node-dev --respawn --transpile-only --exit-child -r --poll tsconfig-paths/register index.ts",
 		"devlocal": "ts-node-dev --respawn --transpile-only --exit-child -r tsconfig-paths/register index.ts",
 		"devmon": "nodemon --exec node -r tsconfig-paths/register -r ts-node/register index.ts",
+		"minin": "npx nodemon tsconfig-paths/register",
+		"florian": "npx nodemon index.ts",
 		"build": "tsc"
 	},
 	"keywords": [],
