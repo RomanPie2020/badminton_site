@@ -1,30 +1,31 @@
-import { logger } from '@/utils/logger/log'
-import { NextFunction, Request, RequestHandler, Response } from 'express'
-import { tokenService } from './auth.tokenService'
-import User from './models/user'
+import { NextFunction, RequestHandler, Response } from 'express'
+import ApiError from '../../exceptions/apiError'
+import { UserRequest } from '../auth.types'
+import User from '../models/user'
+import { tokenService } from '../services/auth.tokenService'
 
 class AuthMiddleware {
 	isAuthorized: RequestHandler = async (
-		req: Request,
+		req: UserRequest,
 		res: Response,
 		next: NextFunction
 	) => {
 		try {
 			const authHeader = req.headers.authorization
 			if (!authHeader || !authHeader.startsWith('Bearer ')) {
-				return next(new Error('No token provided or invalid format'))
+				return next(ApiError.UnauthorizedError())
 			}
 
 			const token = authHeader.split(' ')[1]
 			const payload = tokenService.verifyAccessToken(token)
 
 			if (!payload) {
-				return next(new Error('Invalid or expired token'))
+				return next(ApiError.UnauthorizedError())
 			}
 
 			const user = await User.findByPk(payload.id)
 			if (!user || !user.isActive) {
-				return next(new Error('User is not registered or not activated'))
+				return next(ApiError.UnauthorizedError())
 			}
 
 			// Додаємо користувача до запиту для подальшого використання
@@ -35,8 +36,7 @@ class AuthMiddleware {
 			}
 			next()
 		} catch (error) {
-			logger.error('Authentication error:', error.message)
-			next(error) // Передаємо помилку далі
+			next(ApiError.UnauthorizedError())
 		}
 	}
 }

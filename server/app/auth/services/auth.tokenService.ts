@@ -1,7 +1,8 @@
+import ApiError from '@/exceptions/apiError'
 import { logger } from '@/utils/logger/log'
 import crypto from 'crypto'
 import jwt from 'jsonwebtoken'
-import User from './models/user'
+import User from '../models/user'
 
 class TokenService {
 	private readonly jwtSecret = process.env.JWT_SECRET || 'abar'
@@ -20,7 +21,10 @@ class TokenService {
 
 	async saveRefreshToken(userId: number, refreshToken: string): Promise<void> {
 		const user = await User.findByPk(userId)
-		if (!user) throw new Error('User not found')
+		if (!user) {
+			throw ApiError.BadRequest('User not found')
+		}
+
 		await user.update({ refreshToken })
 		logger.info(`Refresh token saved for user ${userId}`)
 	}
@@ -29,8 +33,7 @@ class TokenService {
 		try {
 			return jwt.verify(token, this.jwtSecret) as { id: number }
 		} catch (error) {
-			logger.error('Invalid access token:', error.message)
-			return null
+			throw ApiError.BadRequest('Invalid access token:')
 		}
 	}
 
@@ -38,7 +41,9 @@ class TokenService {
 		refreshToken: string
 	): Promise<{ accessToken: string; newRefreshToken?: string }> {
 		const user = await User.findOne({ where: { refreshToken } })
-		if (!user) throw new Error('Invalid refresh token')
+		if (!user) {
+			throw ApiError.BadRequest('Invalid refresh token')
+		}
 
 		const accessToken = this.generateAccessToken(user.id)
 		const newRefreshToken = this.generateRefreshToken()
@@ -49,7 +54,9 @@ class TokenService {
 
 	async logout(refreshToken: string): Promise<void> {
 		const user = await User.findOne({ where: { refreshToken } })
-		if (!user) throw new Error('Invalid refresh token')
+		if (!user) {
+			throw ApiError.BadRequest('Invalid refresh token')
+		}
 		await user.update({ refreshToken: null })
 		logger.info('User logged out')
 	}

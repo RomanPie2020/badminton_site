@@ -1,39 +1,39 @@
-import { authService } from './auth.authService'
-import { tokenService } from './auth.tokenService'
+import { Request, Response } from 'express'
+import ApiError from '../exceptions/apiError'
+import { confirmRegisterRequest } from './auth.types'
+import { authService } from './services/auth.authService'
+import { tokenService } from './services/auth.tokenService'
 
 export class AuthController {
-	async register(req, res) {
+	async register(req: Request, res: Response) {
 		try {
 			const { email, username, password } = req.body
 			// Виклик сервісу для реєстрації користувача
 			const newUser = await authService.registerUser(email, username, password)
 			res.status(201).json(newUser)
 		} catch (error) {
-			res
-				.status(500)
-				.json({ message: 'Error registering user', error: error.message })
+			throw ApiError.BadRequest('Error registering user')
 		}
 	}
-	async confirmRegister(req, res) {
+	async confirmRegister(req: confirmRegisterRequest, res: Response) {
 		try {
 			const { token } = req.query
 			if (!token || typeof token !== 'string') {
-				return res
-					.status(400)
-					.json({ success: false, message: 'Token is required' })
+				// res.status(400).json({ success: false, message: 'Token is required' })
+				ApiError.BadRequest('Not confirm')
 			}
 
-			const result = await authService.confirmUser(token)
+			const result = await authService.confirmRegister(token)
 			res.status(200).json(result)
 		} catch (error) {
-			res.status(500).json({ success: false, message: error.message })
+			throw ApiError.BadRequest('Not confirm')
 		}
 	}
-	async login(req, res) {
+	async login(req: Request, res: Response) {
 		try {
 			const { email, password } = req.body
 			if (!email || !password) {
-				return res.status(400).json({
+				res.status(400).json({
 					success: false,
 					message: 'Username and password are required',
 				})
@@ -43,16 +43,16 @@ export class AuthController {
 				password
 			)
 			res.status(200).json({ success: true, accessToken, refreshToken, user })
-		} catch (error) {
-			res.status(401).json({ success: false, message: error.message })
+		} catch (err) {
+			throw ApiError.UnauthorizedError()
 		}
 	}
 
-	async refreshToken(req, res) {
+	async refreshToken(req: Request, res: Response) {
 		try {
 			const { refreshToken } = req.body
 			if (!refreshToken || typeof refreshToken !== 'string') {
-				return res
+				res
 					.status(400)
 					.json({ success: false, message: 'Refresh token is required' })
 			}
@@ -62,15 +62,15 @@ export class AuthController {
 				.status(200)
 				.json({ success: true, accessToken, refreshToken: newRefreshToken })
 		} catch (error) {
-			res.status(401).json({ success: false, message: error.message })
+			throw ApiError.UnauthorizedError()
 		}
 	}
 
-	async logout(req, res) {
+	async logout(req: Request, res: Response) {
 		try {
 			const { refreshToken } = req.body
 			if (!refreshToken || typeof refreshToken !== 'string') {
-				return res
+				res
 					.status(400)
 					.json({ success: false, message: 'Refresh token is required' })
 			}
@@ -79,16 +79,16 @@ export class AuthController {
 				.status(200)
 				.json({ success: true, message: 'Logged out successfully' })
 		} catch (error) {
-			res.status(401).json({ success: false, message: error.message })
+			throw ApiError.UnauthorizedError()
 		}
 	}
 
-	async getUsers(req, res) {
+	async getUsers(req: Request, res: Response) {
 		try {
 			const users = await authService.getUsers()
 			res.status(200).json({ success: true, users })
 		} catch (error) {
-			res.status(500).json({ success: false, message: 'Internal server error' })
+			throw ApiError.BadRequest('Error getting users')
 		}
 	}
 }

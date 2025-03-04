@@ -11,7 +11,7 @@
 		"devmon": "nodemon --exec node -r tsconfig-paths/register -r ts-node/register index.ts",
 		"minin": "npx nodemon tsconfig-paths/register",
 		"florian": "npx nodemon index.ts",
-		"build": "tsc"
+		"build": "tsc --noEmit"
 	},
 	"keywords": [],
 	"author": "",
@@ -38,7 +38,7 @@
 		"@types/cors": "^2.8.17",
 		"@types/express": "^5.0.0",
 		"@types/jsonwebtoken": "^9.0.9",
-		"@types/node": "^22.13.1",
+		"@types/node": "^22.13.9",
 		"@types/nodemailer": "^6.4.17",
 		"@types/sequelize": "^4.28.20",
 		"install": "^0.13.0",

@@ -2,8 +2,8 @@ import { logger } from '@/utils/logger/log'
 import cors from 'cors'
 import express, { urlencoded } from 'express'
 
-import { errorHandler } from '@/auth/auth.errorMiddleware'
 import { authRouter } from '@/auth/auth.routes'
+import { errorHandler } from '@/middleware/auth.errorMiddleware'
 import compression from 'compression'
 import helmet from 'helmet'
 import sequelize from './app/config/database'
@@ -41,7 +41,8 @@ logger.info('Change test: ' + new Date().toISOString())
 // })
 
 app.use(authRouter)
-app.use(errorHandler as ErrorRequestHandler)
+
+app.use(errorHandler)
 app.all('*', (req, res) => {
 	res.status(404).json({ message: 'Not found' })
 })
