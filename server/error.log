@@ -27,3 +27,42 @@
 {"level":"error","message":"Unable to connect to the database: password authentication failed for user \"romankaras2004\"","name":"SequelizeConnectionError","original":{"code":"28P01","file":"auth.c","length":110,"line":"321","name":"error","routine":"auth_failed","severity":"FATAL"},"parent":{"code":"28P01","file":"auth.c","length":110,"line":"321","name":"error","routine":"auth_failed","severity":"FATAL"},"stack":"SequelizeConnectionError: password authentication failed for user \"romankaras2004\"\n    at Client._connectionCallback (/app/node_modules/sequelize/src/dialects/postgres/connection-manager.js:196:24)\n    at Client._handleErrorWhileConnecting (/app/node_modules/pg/lib/client.js:326:19)\n    at Client._handleErrorMessage (/app/node_modules/pg/lib/client.js:346:19)\n    at Connection.emit (node:events:507:28)\n    at /app/node_modules/pg/lib/connection.js:116:12\n    at Parser.parse (/app/node_modules/pg-protocol/src/parser.ts:103:9)\n    at Socket.<anonymous> (/app/node_modules/pg-protocol/src/index.ts:7:48)\n    at Socket.emit (node:events:507:28)\n    at addChunk (node:internal/streams/readable:559:12)\n    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)","timestamp":"2025-03-03T13:54:27.633Z"}
 {"level":"error","message":"Unable to connect to the database: password authentication failed for user \"romankaras2004\"","name":"SequelizeConnectionError","original":{"code":"28P01","file":"auth.c","length":110,"line":"321","name":"error","routine":"auth_failed","severity":"FATAL"},"parent":{"code":"28P01","file":"auth.c","length":110,"line":"321","name":"error","routine":"auth_failed","severity":"FATAL"},"stack":"SequelizeConnectionError: password authentication failed for user \"romankaras2004\"\n    at Client._connectionCallback (/app/node_modules/sequelize/src/dialects/postgres/connection-manager.js:196:24)\n    at Client._handleErrorWhileConnecting (/app/node_modules/pg/lib/client.js:326:19)\n    at Client._handleErrorMessage (/app/node_modules/pg/lib/client.js:346:19)\n    at Connection.emit (node:events:507:28)\n    at /app/node_modules/pg/lib/connection.js:116:12\n    at Parser.parse (/app/node_modules/pg-protocol/src/parser.ts:103:9)\n    at Socket.<anonymous> (/app/node_modules/pg-protocol/src/index.ts:7:48)\n    at Socket.emit (node:events:507:28)\n    at addChunk (node:internal/streams/readable:559:12)\n    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)","timestamp":"2025-03-03T13:59:07.644Z"}
 {"level":"error","message":"Invalid access token:","timestamp":"2025-03-03T21:41:08.006Z"}
+{"level":"error","message":"Error:","timestamp":"2025-03-11T17:57:10.790Z"}
+{"level":"error","message":"Error:","timestamp":"2025-03-11T17:57:26.138Z"}
+{"level":"error","message":"Error:","timestamp":"2025-03-11T17:58:26.133Z"}
+{"level":"error","message":"Error:","timestamp":"2025-03-18T18:24:48.761Z"}
+{"level":"error","message":"Error:","timestamp":"2025-03-18T18:24:53.423Z"}
+{"level":"error","message":"Error:","timestamp":"2025-03-18T18:25:03.671Z"}
+{"level":"error","message":"Error:","timestamp":"2025-03-18T18:25:52.511Z"}
+{"level":"error","message":"Error:","timestamp":"2025-03-18T18:45:33.956Z"}
+{"level":"error","message":"Error:","timestamp":"2025-03-18T18:47:03.613Z"}
+{"level":"error","message":"Error:","timestamp":"2025-03-18T18:58:07.187Z"}
+{"level":"error","message":"Error:","timestamp":"2025-03-18T18:58:12.269Z"}
+{"level":"error","message":"Error:","timestamp":"2025-03-18T20:47:57.567Z"}
+{"level":"error","message":"Error:","timestamp":"2025-03-18T20:48:18.421Z"}
+{"level":"error","message":"Error:","timestamp":"2025-03-18T20:48:30.262Z"}
+{"level":"error","message":"Error:","timestamp":"2025-03-18T21:05:16.085Z"}
+{"level":"error","message":"Error:","timestamp":"2025-03-18T21:09:03.748Z"}
+{"level":"error","message":"Error:","timestamp":"2025-03-18T21:13:02.632Z"}
+{"level":"error","message":"Error:","timestamp":"2025-03-18T21:13:12.646Z"}
+{"level":"error","message":"Error:","timestamp":"2025-03-18T21:14:07.956Z"}
+{"level":"error","message":"Error:","timestamp":"2025-03-18T21:14:30.865Z"}
+{"level":"error","message":"Error:","timestamp":"2025-03-18T21:14:35.117Z"}
+{"level":"error","message":"Error:","timestamp":"2025-03-18T21:16:17.726Z"}
+{"level":"error","message":"Error:","timestamp":"2025-03-18T21:21:28.518Z"}
+{"level":"error","message":"Error:","timestamp":"2025-03-18T21:32:18.786Z"}
+{"level":"error","message":"Error:","timestamp":"2025-03-18T21:35:38.084Z"}
+{"level":"error","message":"Error:","timestamp":"2025-03-18T21:46:57.489Z"}
+{"level":"error","message":"Error:","timestamp":"2025-03-18T21:52:25.295Z"}
+{"level":"error","message":"Error:","timestamp":"2025-03-18T21:52:36.659Z"}
+{"level":"error","message":"Error:","timestamp":"2025-03-18T21:55:00.099Z"}
+{"level":"error","message":"Error:","timestamp":"2025-03-18T21:55:46.432Z"}
+{"level":"error","message":"Error:","timestamp":"2025-03-18T21:55:50.018Z"}
+{"level":"error","message":"Error:","timestamp":"2025-03-18T22:01:11.892Z"}
+{"level":"error","message":"Error:","timestamp":"2025-03-18T22:05:09.122Z"}
+{"level":"error","message":"Error:","timestamp":"2025-03-18T22:05:23.751Z"}
+{"level":"error","message":"Error:","timestamp":"2025-03-18T22:05:55.451Z"}
+{"level":"error","message":"Error:","timestamp":"2025-03-18T22:09:02.920Z"}
+{"level":"error","message":"Error:","timestamp":"2025-03-18T22:11:16.452Z"}
+{"level":"error","message":"Error:","timestamp":"2025-03-18T22:11:35.430Z"}
+{"level":"error","message":"Error:","timestamp":"2025-03-18T22:15:34.500Z"}

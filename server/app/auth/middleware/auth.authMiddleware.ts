@@ -1,12 +1,12 @@
 import { NextFunction, RequestHandler, Response } from 'express'
 import ApiError from '../../exceptions/apiError'
-import { UserRequest } from '../auth.types'
+import { IUserRequest } from '../auth.types'
 import User from '../models/user'
 import { tokenService } from '../services/auth.tokenService'
 
 class AuthMiddleware {
 	isAuthorized: RequestHandler = async (
-		req: UserRequest,
+		req: IUserRequest,
 		res: Response,
 		next: NextFunction
 	) => {

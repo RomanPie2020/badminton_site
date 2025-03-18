@@ -1,5 +1,5 @@
 import { Request } from 'express'
-export interface UserRequest extends Request {
+export interface IUserRequest extends Request {
 	user?: {
 		id: number
 		username: string
@@ -7,17 +7,28 @@ export interface UserRequest extends Request {
 	}
 }
 
-export interface confirmRegisterRequest extends Request {
+export interface IConfirmRegisterRequest extends Request {
 	query: {
 		token: string
 	}
 }
-export interface confirmRegisterServiceData {
+
+export interface IConfirmRegisterServiceData {
 	token: string
 }
 
-export interface SendEmailParams {
+export interface ISendEmailParams {
 	to: string
 	subject: string
 	text: string
+}
+
+export interface IForgotPasswordServiceData {
+	email: string
+}
+
+// resetPassword
+export interface IResetPasswordServiceData {
+	token: string
+	newPassword: string
 }

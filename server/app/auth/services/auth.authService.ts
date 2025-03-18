@@ -3,8 +3,14 @@ import { logger } from '@/utils/logger/log'
 import bcrypt from 'bcrypt'
 import crypto from 'crypto'
 import nodemailer from 'nodemailer'
+import { Op } from 'sequelize'
 import ApiError from '../../exceptions/apiError'
-import { SendEmailParams } from '../auth.types'
+import {
+	IConfirmRegisterServiceData,
+	IForgotPasswordServiceData,
+	IResetPasswordServiceData,
+	ISendEmailParams,
+} from '../auth.types'
 import User from '../models/user'
 import { tokenService } from './auth.tokenService'
 
@@ -45,7 +51,7 @@ class AuthService {
 		}
 	}
 
-	async sendEmail({ to, subject, text }: SendEmailParams) {
+	async sendEmail({ to, subject, text }: ISendEmailParams) {
 		if (!to || typeof to !== 'string') {
 			throw ApiError.BadRequest('Recipient email is not defined or invalid')
 		}
@@ -70,7 +76,7 @@ class AuthService {
 		await transporter.sendMail(mailOptions)
 	}
 
-	async confirmRegister(token: string) {
+	async confirmRegister({ token }: IConfirmRegisterServiceData) {
 		try {
 			// Знаходимо користувача за confirmationToken
 			const user = await User.findOne({ where: { confirmationToken: token } })
@@ -125,6 +131,7 @@ class AuthService {
 			throw ApiError.BadRequest('Login Error')
 		}
 	}
+
 	async getUsers() {
 		try {
 			const users = await User.findAll({
@@ -133,6 +140,63 @@ class AuthService {
 			return users
 		} catch (error) {
 			throw ApiError.BadRequest('Error fetching users')
+		}
+	}
+
+	async forgotPassword({ email }: IForgotPasswordServiceData) {
+		try {
+			const user = await User.findOne({ where: { email } })
+			if (!user) {
+				logger.error(`Користувача з email ${email} не знайдено`)
+				throw ApiError.BadRequest('User with this email not found')
+			}
+
+			const resetToken = crypto.randomBytes(20).toString('hex')
+			const resetTokenExpires = new Date(Date.now() + 3600000) // 1 година
+
+			await user.update({
+				passwordResetToken: resetToken,
+				passwordResetExpires: resetTokenExpires,
+			})
+
+			const resetLink = `${BASE_URL}/auth/reset-password?token=${resetToken}`
+			await this.sendEmail({
+				to: email,
+				subject: 'Скидання пароля',
+				text: resetLink,
+			})
+
+			logger.info(`Лист для скидання пароля надіслано до ${email}`)
+			return { success: true, message: 'Reset link sent to email' }
+		} catch (error) {
+			throw ApiError.BadRequest('Помилка при запиті на скидання пароля')
+		}
+	}
+
+	async resetPassword({ token, newPassword }: IResetPasswordServiceData) {
+		try {
+			const user = await User.findOne({
+				where: {
+					passwordResetToken: token,
+					passwordResetExpires: { [Op.gt]: new Date() }, // Перевірка, чи токен не прострочений
+				},
+			})
+
+			if (!user) {
+				throw ApiError.BadRequest('Invalid or expired reset token')
+			}
+
+			const hashedPassword = await bcrypt.hash(newPassword, 10)
+			await user.update({
+				password: hashedPassword,
+				passwordResetToken: null,
+				passwordResetExpires: null,
+			})
+
+			logger.info(`Пароль для користувача ${user.email} успішно змінено`)
+			return { success: true, message: 'Password reset successfully' }
+		} catch (error) {
+			throw ApiError.BadRequest('Помилка при скиданні пароля:')
 		}
 	}
 }
