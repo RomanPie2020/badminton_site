@@ -1,4 +1,5 @@
 import { Router } from 'express'
+import passport from 'passport'
 import { authController } from './auth.controller'
 import { authMiddleware } from './middleware/auth.authMiddleware'
 
@@ -24,5 +25,22 @@ router.get(
 )
 router.post('/api/auth/forgot-password', authController.forgotPassword)
 router.patch('/api/auth/reset-password', authController.resetPassword)
+
+router.get(
+	'/auth/google',
+	passport.authenticate('google', { scope: ['profile', 'email'] })
+)
+router.get(
+	'/auth/google/callback',
+	passport.authenticate('google', { session: false, failureRedirect: '/' }),
+	(req, res, next) => {
+		// authController.googleCallback(req, res, next)
+		res.send('Успішно увійшли через Google!')
+	}
+)
+
+router.get('/f', (req, res) => {
+	res.send('<a href="/auth/google">Login with Google</a>')
+})
 
 export const authRouter = router

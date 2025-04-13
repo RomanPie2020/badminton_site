@@ -51,6 +51,10 @@ services:
       - MAILER_USER=${MAILER_USER}
       - MAILER_PASSWORD=${MAILER_PASSWORD}
 
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+      - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
+      - GOOGLE_CALLBACK_URL=${GOOGLE_CALLBACK_URL}
+
     ports:
       - '3000:3000'
     volumes:
@@ -62,19 +66,19 @@ services:
       - app-network
     command: npm run dev
 
-  # frontend:
-  #   build:
-  #     context: ./client
-  #     dockerfile: Dockerfile
-  #   container_name: badminton_frontend
-  #   ports:
-  #     - '5173:5173'
-  #   volumes:
-  #     - ./client:/app
-  #     - /app/node_modules
-  #   networks:
-  #     - app-network
-  #   command: npm run dev
+  frontend:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    container_name: badminton_frontend
+    ports:
+      - '5173:5173'
+    volumes:
+      - ./client:/app
+      - /app/node_modules
+    networks:
+      - app-network
+    command: npm run dev
 
 networks:
   app-network:

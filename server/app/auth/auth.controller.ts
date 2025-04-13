@@ -130,6 +130,24 @@ export class AuthController {
 			next(e)
 		}
 	}
+
+	// async googleLogin(req: Request, res: Response, next: NextFunction) {
+	// 	try {
+	// 		const url = oAuthService.generateGoogleAuthUrl()
+	// 		res.redirect(url)
+	// 	} catch (e) {
+	// 		next(e)
+	// 	}
+	// }
+
+	// async googleCallback(req: Request, res: Response, next: NextFunction) {
+	// 	try {
+	// 		const user = await oAuthService.handleGoogleCallback(req)
+	// 		res.status(200).json({ message: 'Login successful', user })
+	// 	} catch (e) {
+	// 		next(e)
+	// 	}
+	// }
 }
 
 export const authController = new AuthController()

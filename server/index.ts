@@ -6,6 +6,8 @@ import { authRouter } from '@/auth/auth.routes'
 import { errorHandler } from '@/middleware/auth.errorMiddleware'
 import compression from 'compression'
 import helmet from 'helmet'
+import passport from 'passport'
+import { oAuthService } from './app/auth/services/auth.oAuthService'
 import sequelize from './app/config/database'
 
 const app = express()
@@ -32,13 +34,15 @@ const testDbConnection = async () => {
 		logger.error('Unable to connect to the database:', error)
 	}
 }
-logger.info(922) // Новий унікальний лог
-logger.info('Change test: ' + new Date().toISOString())
+
 // Тестовий роут
 // app.get('/api/health', (req, res) => {
 // 	res.json({ message: 'Server is running' })
 // 	logger.info('Health check endpoint was called')
 // })
+
+oAuthService.configureGoogleStrategy(passport)
+app.use(passport.initialize())
 
 app.use(authRouter)
 

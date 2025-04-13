@@ -37,7 +37,7 @@ class AuthService {
 			}
 
 			// Надсилання листа із посиланням для підтвердження
-			const confirmationLink = `${BASE_URL}/api/auth/confirm?token=${token}`
+			const confirmationLink = `${BASE_URL}/auth/confirm?token=${token}`
 			await this.sendEmail({
 				to: newUser.email,
 				subject: 'Підтвердження реєстрації',
