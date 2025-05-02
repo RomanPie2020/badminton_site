@@ -1695,3 +1695,249 @@
 {"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-04-13T22:23:40.413Z"}
 {"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-04-13T22:23:40.474Z"}
 {"level":"error","message":"Error:","timestamp":"2025-04-13T22:23:57.281Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-04-14T09:23:37.427Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-04-14T09:23:37.525Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-04-15T11:54:58.554Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-04-15T11:54:58.666Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-04-17T10:10:50.291Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-04-17T10:10:50.388Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-04-17T12:41:41.245Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-04-17T12:41:41.341Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-04-19T14:38:55.473Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-04-19T14:38:55.567Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-04-22T13:26:40.654Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-04-22T13:26:40.750Z"}
+{"level":"error","message":"Error:","timestamp":"2025-04-22T13:52:44.834Z"}
+{"level":"error","message":"Error:","timestamp":"2025-04-22T13:52:46.346Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-04-22T21:28:39.208Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-04-22T21:28:39.270Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-04-22T21:29:24.586Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-04-22T21:29:24.670Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-04-22T21:29:27.944Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-04-22T21:29:27.991Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-04-22T21:35:22.429Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-04-22T21:35:22.488Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-04-26T18:55:19.392Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-04-26T18:55:19.489Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-04-27T15:34:04.503Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-04-27T15:34:04.595Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-04-29T15:45:00.136Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-04-29T15:45:00.233Z"}
+{"level":"error","message":"Error:","timestamp":"2025-04-29T17:51:16.034Z"}
+{"level":"error","message":"Error:","timestamp":"2025-04-29T17:51:17.739Z"}
+{"level":"error","message":"Error:","timestamp":"2025-04-29T17:51:21.635Z"}
+{"level":"error","message":"Error:","timestamp":"2025-04-29T17:51:46.738Z"}
+{"level":"error","message":"Error:","timestamp":"2025-04-29T18:00:43.559Z"}
+{"level":"error","message":"Error:","timestamp":"2025-04-29T18:01:54.177Z"}
+{"level":"error","message":"Error:","timestamp":"2025-04-29T18:01:59.482Z"}
+{"level":"error","message":"Error:","timestamp":"2025-04-29T18:02:12.219Z"}
+{"level":"error","message":"Error:","timestamp":"2025-04-29T18:02:15.650Z"}
+{"level":"error","message":"Error:","timestamp":"2025-04-29T18:13:13.296Z"}
+{"level":"error","message":"Error:","timestamp":"2025-04-29T20:16:33.994Z"}
+{"level":"info","message":"","timestamp":"2025-04-29T21:54:45.284Z"}
+{"level":"info","message":"","timestamp":"2025-04-29T21:54:51.241Z"}
+{"level":"info","message":"","timestamp":"2025-04-29T21:57:05.022Z"}
+{"level":"info","message":"","timestamp":"2025-04-29T21:57:18.367Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-04-29T21:57:18.371Z"}
+{"level":"error","message":"Unable to connect to the database: sequelize_1.default.authenticate is not a function","stack":"TypeError: sequelize_1.default.authenticate is not a function\n    at testDbConnection (/app/index.ts:29:19)\n    at Server.<anonymous> (/app/index.ts:56:8)\n    at Object.onceWrapper (node:events:621:28)\n    at Server.emit (node:events:519:35)\n    at emitListeningNT (node:net:1982:10)\n    at processTicksAndRejections (node:internal/process/task_queues:89:21)","timestamp":"2025-04-29T21:57:18.483Z"}
+{"level":"info","message":"","timestamp":"2025-04-29T21:57:27.504Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-04-29T21:57:27.508Z"}
+{"level":"error","message":"Unable to connect to the database: sequelize_1.default.authenticate is not a function","stack":"TypeError: sequelize_1.default.authenticate is not a function\n    at testDbConnection (/app/index.ts:29:19)\n    at Server.<anonymous> (/app/index.ts:56:8)\n    at Object.onceWrapper (node:events:621:28)\n    at Server.emit (node:events:519:35)\n    at emitListeningNT (node:net:1982:10)\n    at processTicksAndRejections (node:internal/process/task_queues:89:21)","timestamp":"2025-04-29T21:57:27.514Z"}
+{"level":"info","message":"","timestamp":"2025-04-29T21:59:50.700Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-04-29T21:59:50.708Z"}
+{"level":"error","message":"Unable to connect to the database: sequelize_1.default.authenticate is not a function","stack":"TypeError: sequelize_1.default.authenticate is not a function\n    at testDbConnection (/app/index.ts:29:19)\n    at Server.<anonymous> (/app/index.ts:56:8)\n    at Object.onceWrapper (node:events:621:28)\n    at Server.emit (node:events:519:35)\n    at emitListeningNT (node:net:1982:10)\n    at processTicksAndRejections (node:internal/process/task_queues:89:21)","timestamp":"2025-04-29T21:59:50.715Z"}
+{"level":"info","message":"roman2024","timestamp":"2025-04-29T22:17:15.724Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-04-29T22:17:15.731Z"}
+{"level":"error","message":"Unable to connect to the database: sequelize_1.default.authenticate is not a function","stack":"TypeError: sequelize_1.default.authenticate is not a function\n    at testDbConnection (/app/index.ts:29:19)\n    at Server.<anonymous> (/app/index.ts:56:8)\n    at Object.onceWrapper (node:events:621:28)\n    at Server.emit (node:events:519:35)\n    at emitListeningNT (node:net:1982:10)\n    at processTicksAndRejections (node:internal/process/task_queues:89:21)","timestamp":"2025-04-29T22:17:15.739Z"}
+{"level":"info","message":"roman2024","timestamp":"2025-04-29T22:17:47.099Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-04-29T22:17:47.103Z"}
+{"level":"error","message":"Unable to connect to the database: sequelize_1.default.authenticate is not a function","stack":"TypeError: sequelize_1.default.authenticate is not a function\n    at testDbConnection (/app/index.ts:29:19)\n    at Server.<anonymous> (/app/index.ts:56:8)\n    at Object.onceWrapper (node:events:621:28)\n    at Server.emit (node:events:519:35)\n    at emitListeningNT (node:net:1982:10)\n    at processTicksAndRejections (node:internal/process/task_queues:89:21)","timestamp":"2025-04-29T22:17:47.110Z"}
+{"level":"info","message":"roman2024","timestamp":"2025-04-29T22:22:50.219Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-04-29T22:22:50.224Z"}
+{"level":"error","message":"Unable to connect to the database: sequelize_1.default.authenticate is not a function","stack":"TypeError: sequelize_1.default.authenticate is not a function\n    at testDbConnection (/app/index.ts:29:19)\n    at Server.<anonymous> (/app/index.ts:56:8)\n    at Object.onceWrapper (node:events:621:28)\n    at Server.emit (node:events:519:35)\n    at emitListeningNT (node:net:1982:10)\n    at processTicksAndRejections (node:internal/process/task_queues:89:21)","timestamp":"2025-04-29T22:22:50.232Z"}
+{"level":"info","message":"roman2024","timestamp":"2025-04-29T22:23:32.219Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-04-29T22:23:32.224Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-04-29T22:23:32.322Z"}
+{"level":"info","message":"roman2024","timestamp":"2025-04-30T11:35:46.189Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-04-30T11:35:46.194Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-04-30T11:35:46.289Z"}
+{"level":"error","message":"Error:","timestamp":"2025-04-30T11:56:29.891Z"}
+{"level":"info","message":"roman2024","timestamp":"2025-04-30T11:56:59.334Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-04-30T11:56:59.339Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-04-30T11:56:59.387Z"}
+{"level":"error","message":"Error:","timestamp":"2025-04-30T11:57:53.728Z"}
+{"level":"info","message":"roman2024","timestamp":"2025-04-30T14:53:20.893Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-04-30T14:53:20.898Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-04-30T14:53:20.941Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-04-30T14:54:03.579Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-04-30T14:54:03.623Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-04-30T14:56:52.111Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-04-30T14:56:52.211Z"}
+{"level":"error","message":"Error:","timestamp":"2025-04-30T14:57:04.760Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-04-30T15:43:21.251Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-04-30T15:43:21.315Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-04-30T15:43:24.987Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-04-30T15:43:25.034Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-01T10:15:00.594Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-01T10:15:00.688Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-01T10:23:56.617Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-01T13:58:23.426Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-01T13:58:23.467Z"}
+{"level":"info","message":"Database password is: ${typeof process.env.DB_PASSWORD}","timestamp":"2025-05-01T14:01:55.028Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-01T14:01:55.032Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-01T14:01:55.071Z"}
+{"level":"info","message":"abase password is: string","timestamp":"2025-05-01T14:02:11.566Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-01T14:02:11.570Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-01T14:02:11.607Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-01T14:02:19.850Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-01T14:02:19.854Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-01T14:02:19.892Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-01T20:25:40.858Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-01T20:27:53.532Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-01T20:27:53.537Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-01T20:27:53.581Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-02T10:23:13.730Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-02T10:23:13.734Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-02T10:23:13.821Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-02T10:23:31.923Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-02T10:56:51.567Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-02T10:56:51.572Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-02T10:56:51.617Z"}
+{"level":"info","message":"Refresh token saved for user 21","timestamp":"2025-05-02T10:57:02.697Z"}
+{"level":"info","message":"Користувач romankaras2004@gmail.com успішно увійшов через Google","timestamp":"2025-05-02T10:57:02.697Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-02T11:03:28.839Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-02T11:05:03.752Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-02T11:05:03.757Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-02T11:05:03.796Z"}
+{"level":"info","message":"Refresh token saved for user 21","timestamp":"2025-05-02T11:14:37.830Z"}
+{"level":"info","message":"Користувач romankaras2004@gmail.com успішно увійшов через Google","timestamp":"2025-05-02T11:14:37.831Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-02T11:15:46.853Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-02T11:16:06.058Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-02T11:28:15.189Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-02T11:28:15.194Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-02T11:28:15.246Z"}
+{"level":"info","message":"Refresh token saved for user 21","timestamp":"2025-05-02T11:28:17.206Z"}
+{"level":"info","message":"Користувач romankaras2004@gmail.com успішно увійшов через Google","timestamp":"2025-05-02T11:28:17.206Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-02T11:28:26.849Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-02T11:28:26.853Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-02T11:28:26.892Z"}
+{"level":"info","message":"Refresh token saved for user 21","timestamp":"2025-05-02T11:28:28.030Z"}
+{"level":"info","message":"Користувач romankaras2004@gmail.com успішно увійшов через Google","timestamp":"2025-05-02T11:28:28.030Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-02T11:28:28.033Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-02T11:28:40.528Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-02T11:28:40.534Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-02T11:28:40.582Z"}
+{"level":"info","message":"Refresh token saved for user 21","timestamp":"2025-05-02T11:28:44.313Z"}
+{"level":"info","message":"Користувач romankaras2004@gmail.com успішно увійшов через Google","timestamp":"2025-05-02T11:28:44.314Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-02T11:28:44.316Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-02T11:29:16.308Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-02T11:29:16.312Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-02T11:29:16.351Z"}
+{"level":"info","message":"Refresh token saved for user 21","timestamp":"2025-05-02T11:29:17.644Z"}
+{"level":"info","message":"Користувач romankaras2004@gmail.com успішно увійшов через Google","timestamp":"2025-05-02T11:29:17.645Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-02T11:29:34.656Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-02T11:29:34.659Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-02T11:29:34.699Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-02T11:29:37.406Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-02T11:29:37.409Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-02T11:29:37.446Z"}
+{"level":"info","message":"Refresh token saved for user 21","timestamp":"2025-05-02T11:29:41.270Z"}
+{"level":"info","message":"Користувач romankaras2004@gmail.com успішно увійшов через Google","timestamp":"2025-05-02T11:29:41.270Z"}
+{"authuser":"0","code":"4/0Ab_5qlk3K-VPbHEAVzxeVl6oTVYWu3l3jJHkCGbOSqXLCI5AiVkCojW0z4Xn1ke2rKRKSQ","level":"info","message":"Отримані дані:","prompt":"none","scope":"email profile https://www.googleapis.com/auth/userinfo.profile openid https://www.googleapis.com/auth/userinfo.email","timestamp":"2025-05-02T11:29:41.271Z"}
+{"level":"info","message":"Refresh token saved for user 21","timestamp":"2025-05-02T11:30:44.379Z"}
+{"level":"info","message":"Користувач romankaras2004@gmail.com успішно увійшов через Google","timestamp":"2025-05-02T11:30:44.379Z"}
+{"authuser":"0","code":"4/0Ab_5qlni6Bq7boYNGM2Krm0mgjrOQ_ozFdRkWj-g7ooYiCPFOjm8TXrK1RhuFMCnt7fV_g","level":"info","message":"Отримані дані:","prompt":"none","scope":"email profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid","timestamp":"2025-05-02T11:30:44.380Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-02T11:49:27.321Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-02T11:49:27.325Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-02T11:49:27.364Z"}
+{"level":"info","message":"Refresh token saved for user 21","timestamp":"2025-05-02T11:51:10.336Z"}
+{"level":"info","message":"Користувач romankaras2004@gmail.com успішно увійшов через Google","timestamp":"2025-05-02T11:51:10.336Z"}
+{"accessToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjEsImlhdCI6MTc0NjE4NjY3MCwiZXhwIjoxNzQ2MTg3NTcwfQ.6x1_2IIIH-NHxojCY8RwuQIxI3Gvr26a6HJCfSKhr-k","level":"info","message":"Отримані дані:","refreshToken":"4bfb7b70726f75381e366e79965a789bc5bfa79445ad9375f6bb07ccfe2a40046c8b41c79d47646e","timestamp":"2025-05-02T11:51:10.336Z","user":{"email":"romankaras2004@gmail.com","id":21,"username":"Roman Karas"}}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-02T11:51:45.708Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-02T11:51:45.712Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-02T11:51:45.749Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-02T11:52:06.323Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-02T11:52:06.327Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-02T11:52:06.369Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-02T11:52:52.544Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-02T11:52:52.548Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-02T11:52:52.612Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-02T11:53:15.060Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-02T11:53:15.066Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-02T11:53:15.123Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-02T11:53:30.662Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-02T11:53:30.665Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-02T11:53:30.706Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-02T11:53:57.795Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-02T11:53:57.799Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-02T11:53:57.836Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-02T11:54:24.121Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-02T11:54:24.125Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-02T11:54:24.164Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-02T11:54:49.015Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-02T11:54:49.019Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-02T11:54:49.055Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-02T11:54:58.630Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-02T11:54:58.634Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-02T11:54:58.671Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-02T11:59:40.835Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-02T11:59:40.838Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-02T11:59:40.885Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-02T12:00:02.138Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-02T12:00:02.142Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-02T12:00:02.180Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-02T12:15:36.446Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-02T12:15:36.451Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-02T12:15:36.490Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-02T12:15:42.070Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-02T12:15:42.074Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-02T12:15:42.116Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-02T12:15:44.493Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-02T12:15:44.497Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-02T12:15:44.533Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-02T12:16:20.653Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-02T12:16:20.657Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-02T12:16:20.696Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-02T12:19:01.942Z"}
+{"level":"info","message":"Користувач romankaras2004@gmail.com успішно увійшов через Google","timestamp":"2025-05-02T12:19:08.458Z"}
+{"level":"info","message":"Отримані дані:","timestamp":"2025-05-02T12:19:08.459Z","user":{"email":"romankaras2004@gmail.com","id":21,"username":"Roman Karas"}}
+{"level":"error","message":"Error:","timestamp":"2025-05-02T12:19:08.461Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-02T12:21:42.536Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-02T12:21:42.540Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-02T12:21:42.576Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-02T12:21:51.793Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-02T12:21:51.797Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-02T12:21:51.836Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-02T12:22:13.715Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-02T12:24:14.203Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-02T12:24:14.207Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-02T12:24:14.247Z"}
+{"level":"info","message":"Користувач romankaras2004@gmail.com успішно увійшов через Google","timestamp":"2025-05-02T12:25:09.857Z"}
+{"_changed":{},"_options":{"_schema":null,"_schemaDelimiter":"","attributes":["id","username","email","firstName","lastName","isStaff","isActive","password","lastLogin","dateJoined","createdAt","updatedAt","confirmationToken","passwordResetToken","passwordResetExpires","refreshToken","googleId"],"isNewRecord":false,"raw":true},"_previousDataValues":{"confirmationToken":null,"createdAt":"2025-05-02T10:57:02.681Z","dateJoined":"2025-05-02T10:57:02.681Z","email":"romankaras2004@gmail.com","firstName":null,"googleId":"108167312936722700518","id":21,"isActive":true,"isStaff":false,"lastLogin":null,"lastName":null,"password":null,"passwordResetExpires":null,"passwordResetToken":null,"refreshToken":"4bfb7b70726f75381e366e79965a789bc5bfa79445ad9375f6bb07ccfe2a40046c8b41c79d47646e","updatedAt":"2025-05-02T11:51:10.329Z","username":"Roman Karas"},"dataValues":{"confirmationToken":null,"createdAt":"2025-05-02T10:57:02.681Z","dateJoined":"2025-05-02T10:57:02.681Z","email":"romankaras2004@gmail.com","firstName":null,"googleId":"108167312936722700518","id":21,"isActive":true,"isStaff":false,"lastLogin":null,"lastName":null,"password":null,"passwordResetExpires":null,"passwordResetToken":null,"refreshToken":"4bfb7b70726f75381e366e79965a789bc5bfa79445ad9375f6bb07ccfe2a40046c8b41c79d47646e","updatedAt":"2025-05-02T11:51:10.329Z","username":"Roman Karas"},"isNewRecord":false,"level":"info","message":"Отримані дані:","timestamp":"2025-05-02T12:25:09.858Z","uniqno":1}
+{"level":"info","message":"Refresh token saved for user 21","timestamp":"2025-05-02T12:25:09.869Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-02T12:25:33.235Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-02T12:25:33.240Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-02T12:25:33.278Z"}
+{"level":"info","message":"Користувач romankaras2004@gmail.com успішно увійшов через Google","timestamp":"2025-05-02T12:25:34.733Z"}
+{"level":"info","message":"Отримані дані:","timestamp":"2025-05-02T12:25:34.734Z","user":{"email":"romankaras2004@gmail.com","id":21,"username":"Roman Karas"}}
+{"level":"error","message":"Error:","timestamp":"2025-05-02T12:25:34.736Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-02T12:26:05.041Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-02T12:26:05.045Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-02T12:26:05.085Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-02T12:26:28.061Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-02T12:26:28.064Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-02T12:26:28.105Z"}
+{"level":"info","message":"Користувач romankaras2004@gmail.com успішно увійшов через Google","timestamp":"2025-05-02T12:26:30.203Z"}
+{"email":"romankaras2004@gmail.com","id":21,"level":"info","message":"Отримані дані:","timestamp":"2025-05-02T12:26:30.204Z","username":"Roman Karas"}
+{"level":"info","message":"Refresh token saved for user 21","timestamp":"2025-05-02T12:26:30.214Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-02T12:29:20.142Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-02T12:29:20.146Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-02T12:29:20.185Z"}
+{"level":"info","message":"Користувач romankaras2004@gmail.com успішно увійшов через Google","timestamp":"2025-05-02T12:29:30.578Z"}
+{"level":"info","message":"Refresh token saved for user 21","timestamp":"2025-05-02T12:29:30.591Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-02T12:29:57.196Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-02T12:29:57.200Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-02T12:29:57.242Z"}
+{"level":"info","message":"Користувач romankaras2004@gmail.com успішно увійшов через Google","timestamp":"2025-05-02T12:29:58.588Z"}
+{"level":"info","message":"Отримані дані:","timestamp":"2025-05-02T12:29:58.588Z"}
+{"level":"info","message":"Refresh token saved for user 21","timestamp":"2025-05-02T12:29:58.599Z"}

@@ -10,7 +10,7 @@ interface UserAttributes {
 	lastName?: string
 	isStaff?: boolean
 	isActive?: boolean
-	password: string
+	password?: string
 	lastLogin?: Date
 	dateJoined?: Date
 	createdAt?: Date
@@ -19,6 +19,7 @@ interface UserAttributes {
 	passwordResetToken?: string | null
 	passwordResetExpires?: Date | null
 	refreshToken?: string | null
+	googleId?: string | null
 }
 
 // Інтерфейс для створення (опціональні поля, якщо потрібно)
@@ -42,6 +43,7 @@ class User extends Model<UserAttributes, UserCreationAttributes> {
 	declare passwordResetToken: string | null
 	declare passwordResetExpires: Date | null
 	declare refreshToken: string | null
+	declare googleId: string | null
 }
 
 User.init(
@@ -74,7 +76,7 @@ User.init(
 		},
 		password: {
 			type: DataTypes.STRING,
-			allowNull: false,
+			allowNull: true,
 		},
 		lastLogin: {
 			type: DataTypes.DATE,
@@ -105,6 +107,10 @@ User.init(
 			allowNull: true,
 		},
 		refreshToken: {
+			type: DataTypes.STRING,
+			allowNull: true,
+		},
+		googleId: {
 			type: DataTypes.STRING,
 			allowNull: true,
 		},

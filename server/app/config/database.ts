@@ -1,6 +1,6 @@
 import { Sequelize } from 'sequelize'
 
-const sequelize = new Sequelize({
+const sequelizeConnect = new Sequelize({
 	dialect: 'postgres',
 	host: process.env.DB_HOST,
 	port: Number(process.env.DB_PORT),
@@ -10,4 +10,4 @@ const sequelize = new Sequelize({
 	logging: false, // в продакшені краще вимкнути
 })
 
-export default sequelize
+export default sequelizeConnect

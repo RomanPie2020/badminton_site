@@ -1,10 +1,13 @@
+import ApiError from '@/exceptions/apiError'
+import { logger } from '@/utils/logger/log'
 import passport from 'passport'
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20'
+import User from '../models/user'
 
 class OAuthService {
 	constructor(passport) {
 		this.configureGoogleStrategy(passport)
-		this.configureSerialization(passport)
+		// this.configureSerialization(passport)
 	}
 
 	// Метод для налаштування Google Strategy
@@ -30,65 +33,67 @@ class OAuthService {
 	}
 
 	// Метод для серіалізації користувача
-	configureSerialization(passport) {
-		passport.serializeUser((user, done) => {
-			done(null, user.id)
-		})
+	// configureSerialization(passport) {
+	// 	passport.serializeUser((user, done) => {
+	// 		done(null, user.id)
+	// 	})
 
-		passport.deserializeUser(async (id, done) => {
-			try {
-				const user = await this.findUserById(id) // Замініть на вашу логіку
-				done(null, user)
-			} catch (error) {
-				done(error, null)
-			}
-		})
-	}
+	// 	passport.deserializeUser(async (id, done) => {
+	// 		try {
+	// 			// const user = await this.findUserById(id) // Замініть на вашу логіку
+	// 			done(null, user)
+	// 		} catch (error) {
+	// 			done(error, null)
+	// 		}
+	// 	})
+	// }
 
-	// Місце для вашої логіки пошуку/створення користувача
 	async findOrCreateUser(profile) {
-		// Замініть це на відповідну логіку
-		console.log('Збереження/пошук користувача:', profile)
-		return { id: profile.id, email: profile.emails[0].value } // Приклад
+		try {
+			// Шукаємо користувача за email з профілю Google
+			let user = await User.findOne({
+				where: { email: profile.emails[0].value },
+			})
+
+			// Якщо користувача не знайдено, створюємо нового
+			if (!user) {
+				user = await User.create({
+					email: profile.emails[0].value,
+					username: profile.displayName,
+					googleId: profile.id,
+					isActive: true,
+				})
+			}
+			// Якщо користувач існує, але не має googleId, оновлюємо його
+			else if (!user.googleId) {
+				user.googleId = profile.id
+				await user.save()
+			}
+
+			logger.info(`Користувач ${user.email} успішно увійшов через Google`)
+
+			return {
+				id: user.id,
+				username: user.username,
+				email: user.email,
+			}
+		} catch (error) {
+			throw ApiError.BadRequest('Помилка при вході через Google:')
+		}
 	}
 
-	async findUserById(id) {
-		// Замініть це на відповідну логіку
-		console.log('Пошук користувача за ID:', id)
-		return { id, email: 'example@example.com' } // Приклад
-	}
+	// async findUserById(id) {
+	// 	try {
+	// 		const user = await User.findById(id)
+	// 		if (!user) {
+	// 			throw new Error('Користувача не знайдено')
+	// 		}
+	// 		return user
+	// 	} catch (error) {
+	// 		console.error('Помилка при пошуку користувача:', error)
+	// 		throw error
+	// 	}
+	// }
 }
 
 export const oAuthService = new OAuthService(passport)
-
-// generateAuthUrl(): string {
-// 	const scopes = [
-// 		'https://www.googleapis.com/auth/userinfo.profile',
-// 		'https://www.googleapis.com/auth/userinfo.email',
-// 	]
-// 	return this.oauth2Client.generateAuthUrl({
-// 		access_type: 'offline',
-// 		scope: scopes,
-// 	})
-// }
-
-// async getUserData(token: string): Promise<User> {
-// 	const ticket = await this.oauth2Client.verifyIdToken({
-// 		idToken: token,
-// 		audience: googleOAuthConfig.clientId,
-// 	})
-// 	const payload = ticket.getPayload()
-
-// 	if (!payload) {
-// 		throw new Error('Invalid token')
-// 	}
-
-// 	const user: User = {
-// 		id: payload.sub,
-// 		email: payload.email,
-// 		name: payload.name,
-// 		picture: payload.picture,
-// 	}
-
-// 	return user
-// }

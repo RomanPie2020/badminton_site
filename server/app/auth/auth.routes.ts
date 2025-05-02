@@ -32,11 +32,11 @@ router.get(
 )
 router.get(
 	'/auth/google/callback',
-	passport.authenticate('google', { session: false, failureRedirect: '/' }),
-	(req, res, next) => {
-		// authController.googleCallback(req, res, next)
-		res.send('Успішно увійшли через Google!')
-	}
+	passport.authenticate('google', {
+		session: false,
+		failureRedirect: '/login',
+	}),
+	authController.googleCallback
 )
 
 router.get('/f', (req, res) => {

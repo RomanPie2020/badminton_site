@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from 'express'
 import ApiError from '../exceptions/apiError'
 
+import { logger } from '@/utils/logger/log'
 import { IConfirmRegisterRequest } from './auth.types'
 import { authService } from './services/auth.authService'
 import { tokenService } from './services/auth.tokenService'
@@ -148,6 +149,27 @@ export class AuthController {
 	// 		next(e)
 	// 	}
 	// }
+	async googleCallback(req: Request, res: Response, next: NextFunction) {
+		try {
+			// if (!req.user) {
+			// 	res.status(401).json({ message: 'Автентифікація не вдалася' })
+			// }
+			logger.info('Отримані дані:', req.body)
+			const accessToken = tokenService.generateAccessToken(req.user.id)
+			const refreshToken = tokenService.generateRefreshToken()
+			await tokenService.saveRefreshToken(req.user.id, refreshToken)
+
+			res.status(200).json({
+				message: 'Успішно увійшли через Google!',
+				user: req.user,
+				accessToken,
+				refreshToken,
+			})
+			// res.redirect('/')
+		} catch (e) {
+			next(e)
+		}
+	}
 }
 
 export const authController = new AuthController()
