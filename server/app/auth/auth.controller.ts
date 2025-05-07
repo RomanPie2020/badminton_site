@@ -166,7 +166,9 @@ export class AuthController {
 			// 	refreshToken,
 			// })
 			res.redirect(
-				`http://localhost:5173/google/success?access_token=${accessToken}`
+				`http://localhost:5173/google/success?access_token=${accessToken}&refresh_token=${refreshToken}&user=${JSON.stringify(
+					req.user.id
+				)}`
 			)
 		} catch (e) {
 			next(e)

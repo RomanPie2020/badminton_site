@@ -10,9 +10,14 @@ const GoogleSuccess = () => {
 
 	useEffect(() => {
 		const accessToken = searchParams.get('access_token')
+		const refreshToken = searchParams.get('refresh_token')
+		const userId = searchParams.get('user')
 
-		if (accessToken) {
-			localStorage.setItem('access_token', accessToken) // або sessionStorage
+		if (accessToken && refreshToken && userId) {
+			localStorage.setItem('access_token', accessToken)
+			localStorage.setItem('refresh_token', refreshToken)
+			localStorage.setItem('user_id', userId)
+			localStorage.setItem('is_Auth', 'true')
 			logIn() // оновлення Redux стану
 			navigate('/') // редірект на головну
 		} else {
