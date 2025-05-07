@@ -67,6 +67,9 @@ export const authService = createApi({
 				body,
 			}),
 		}),
+		getGoogleAuth: build.query<any, any>({
+			query: url => `/auth/google`,
+		}),
 	}),
 })
 
@@ -77,4 +80,5 @@ export const {
 	useCodeVerificationMutation,
 	useSendCodeAgainMutation,
 	useDeleteUserMutation,
+	useLazyGetGoogleAuthQuery,
 } = authService

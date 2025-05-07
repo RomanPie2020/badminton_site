@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import TopBar from './components/layout/TopBar/TopBar'
 import CodeVerificationPage from './components/screens/CodeVerificationPage'
 import { ErrorPage } from './components/screens/ErrorPage'
+import GoogleSuccess from './components/screens/GoogleSuccess'
 import Home from './components/screens/Home'
 import LogIn from './components/screens/LogIn'
 import Paste from './components/screens/Paste'
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
 			{
 				path: '/paste/:url',
 				element: <Paste />,
+			},
+			{
+				path: '/google/success',
+				element: <GoogleSuccess />,
 			},
 		],
 	},

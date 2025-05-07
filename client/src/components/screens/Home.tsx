@@ -1,14 +1,8 @@
-import { useEffect } from 'react'
 import { SubmitHandler } from 'react-hook-form'
 import { Link } from 'react-router-dom'
-import {
-	useCreatePasteMutation,
-	useGetUserPastesQuery,
-} from '../../services/PasteService'
+import { useCreatePasteMutation } from '../../services/PasteService'
 import { ILogButton, IRequestCreatePaste } from '../../shared/interfaces/models'
 import { useAppSelector } from '../../store/store'
-import PasteItem from '../ui/PasteItem'
-import PasteForm from '../ui/forms/PasteForm'
 
 const createPasteButtonProps: ILogButton = {
 	title: 'Create',
@@ -22,14 +16,14 @@ function Home() {
 		state => state.authStatus.isAuthenticated
 	)
 	// getting pastes
-	const { data: pastes, error, isLoading, refetch } = useGetUserPastesQuery()
+	// const { data: pastes, error, isLoading, refetch } = useGetUserPastesQuery()
 
-	useEffect(() => {
-		// Додаткові дії після завантаження даних, якщо необхідно
-		if (pastes) {
-			console.log('Pastes loaded:', pastes)
-		}
-	}, [pastes])
+	// useEffect(() => {
+	// 	// Додаткові дії після завантаження даних, якщо необхідно
+	// 	if (pastes) {
+	// 		console.log('Pastes loaded:', pastes)
+	// 	}
+	// }, [pastes])
 
 	// create paste
 
@@ -47,7 +41,7 @@ function Home() {
 		try {
 			const data = await createPaste(filteredReq)
 			console.log('ok', data)
-			refetch()
+			// refetch()
 		} catch (error) {
 			console.log('Failed to create paste:', error)
 		}
@@ -85,18 +79,18 @@ function Home() {
 		)
 	}
 
-	if (isLoading) {
-		return <div className='mt-28'>Loading...</div>
-	}
+	// if (isLoading) {
+	// 	return <div className='mt-28'>Loading...</div>
+	// }
 
-	if (error) {
-		return <div className='mt-28'>Error: {error.message}</div>
-	}
+	// if (error) {
+	// 	return <div className='mt-28'>Error: {error.message}</div>
+	// }
 
 	return (
 		<>
 			<div className='mt-28'>
-				<PasteForm
+				{/* <PasteForm
 					submitFunc={createPasteFunc}
 					submitButton={createPasteButtonProps}
 				/>
@@ -111,7 +105,7 @@ function Home() {
 							No pastes available.
 						</p>
 					)}
-				</ul>
+				</ul> */}
 			</div>
 		</>
 	)

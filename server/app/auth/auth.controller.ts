@@ -159,13 +159,15 @@ export class AuthController {
 			const refreshToken = tokenService.generateRefreshToken()
 			await tokenService.saveRefreshToken(req.user.id, refreshToken)
 
-			res.status(200).json({
-				message: 'Успішно увійшли через Google!',
-				user: req.user,
-				accessToken,
-				refreshToken,
-			})
-			// res.redirect('/')
+			// res.status(200).json({
+			// 	message: 'Успішно увійшли через Google!',
+			// 	user: req.user,
+			// 	accessToken,
+			// 	refreshToken,
+			// })
+			res.redirect(
+				`http://localhost:5173/google/success?access_token=${accessToken}`
+			)
 		} catch (e) {
 			next(e)
 		}
