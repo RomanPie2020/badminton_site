@@ -1,4 +1,4 @@
-import { BASE_URL } from '@/config/url'
+import { BASE_URL, FRONT_URL } from '@/config/url'
 import { logger } from '@/utils/logger/log'
 import bcrypt from 'bcrypt'
 import crypto from 'crypto'
@@ -159,7 +159,7 @@ class AuthService {
 				passwordResetExpires: resetTokenExpires,
 			})
 
-			const resetLink = `${BASE_URL}/auth/reset-password?token=${resetToken}`
+			const resetLink = `${FRONT_URL}/auth/reset-password?token=${resetToken}`
 			await this.sendEmail({
 				to: email,
 				subject: 'Скидання пароля',

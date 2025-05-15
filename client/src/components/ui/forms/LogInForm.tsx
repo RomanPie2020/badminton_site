@@ -1,9 +1,6 @@
 // import React from 'react'
 import { useForm } from 'react-hook-form'
-import { useNavigate, useParams } from 'react-router-dom'
 import googleIcon from '../../../assets/images/google_icon.svg'
-import { useActions } from '../../../hooks/useActions'
-import { useLazyGetGoogleAuthQuery } from '../../../services/AuthService'
 import {
 	ILogButton,
 	ILogInData,
@@ -29,12 +26,13 @@ const signUpButtonProps: ILogButton = {
 	to: '/signup',
 }
 
-const LogInForm = ({ onSubmit }: ILogInFormProps) => {
-	const { logIn } = useActions()
-	const navigate = useNavigate()
-	const { url } = useParams()
-	const [trigger] = useLazyGetGoogleAuthQuery()
+const forgotPasswordButtonProps: ILogButton = {
+	title: 'Forgot password?',
+	styles: '',
+	to: '/enter-email',
+}
 
+const LogInForm = ({ onSubmit }: ILogInFormProps) => {
 	const googleLogin = async () => {
 		// try {
 		window.location.href = 'http://localhost:3000/auth/google'
@@ -80,6 +78,8 @@ const LogInForm = ({ onSubmit }: ILogInFormProps) => {
 				{errors.password && <span>This field is required</span>}
 				<br />
 				<LogButton button={logInButtonProps} />
+				<br />
+				<LogButton button={forgotPasswordButtonProps} />
 				<br />
 				<button
 					onClick={googleLogin}

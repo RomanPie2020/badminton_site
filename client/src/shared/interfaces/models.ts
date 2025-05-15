@@ -91,3 +91,22 @@ export interface IRequestCreatePaste {
 export interface IRequestDeletePasteById {
 	id: string
 }
+
+// Enter email
+export interface IEnterEmailData {
+	email: string
+}
+
+export interface IEnterEmailFormProps {
+	onSubmit: (userData: IEnterEmailData) => void
+}
+
+// Reset password
+export interface IResetPasswordData {
+	newPassword: string
+	confirmPassword: string
+}
+
+export interface IResetPasswordFormProps {
+	onSubmit: (userData: IResetPasswordData) => void
+}

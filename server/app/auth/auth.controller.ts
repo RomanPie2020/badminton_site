@@ -114,8 +114,8 @@ export class AuthController {
 	async resetPassword(req: Request, res: Response, next: NextFunction) {
 		try {
 			const { token } = req.query // #todo type
-			const { password } = req.body
-			if (typeof token !== 'string' || !token.trim() || !password) {
+			const { newPassword } = req.body
+			if (typeof token !== 'string' || !token.trim() || !newPassword) {
 				res
 					.status(400)
 					.json({ success: false, message: 'Token and password are required' })
@@ -123,7 +123,7 @@ export class AuthController {
 			if (typeof token === 'string') {
 				const result = await authService.resetPassword({
 					token,
-					newPassword: password,
+					newPassword: newPassword,
 				})
 				res.status(200).json(result)
 			}

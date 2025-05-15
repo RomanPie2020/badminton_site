@@ -12,7 +12,7 @@ export const authService = createApi({
 	endpoints: build => ({
 		logInUser: build.mutation<any, any>({
 			query: body => ({
-				url: 'api/auth/token/',
+				url: '/api/auth/login',
 				method: 'POST',
 				body,
 			}),
@@ -67,8 +67,19 @@ export const authService = createApi({
 				body,
 			}),
 		}),
-		getGoogleAuth: build.query<any, any>({
-			query: url => `/auth/google`,
+		forgotPassword: build.mutation<any, any>({
+			query: body => ({
+				url: '/api/auth/forgot-password',
+				method: 'POST',
+				body,
+			}),
+		}),
+		resetPassword: build.mutation<any, any>({
+			query: body => ({
+				url: '/api/auth/reset-password',
+				method: 'PATCH',
+				body,
+			}),
 		}),
 	}),
 })
@@ -80,5 +91,6 @@ export const {
 	useCodeVerificationMutation,
 	useSendCodeAgainMutation,
 	useDeleteUserMutation,
-	useLazyGetGoogleAuthQuery,
+	useForgotPasswordMutation,
+	useResetPasswordMutation,
 } = authService
