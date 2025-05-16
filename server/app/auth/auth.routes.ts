@@ -8,11 +8,7 @@ const router = Router()
 router.post('/api/auth/register', authController.register)
 router.get('/api/auth/confirm', authController.confirmRegister)
 router.post('/api/auth/login', authController.login)
-router.post(
-	'/api/auth/refresh',
-	authMiddleware.isAuthorized.bind(authMiddleware),
-	authController.refreshToken
-)
+router.post('/api/auth/refresh', authController.refreshToken)
 router.delete(
 	'/api/auth/logout',
 	authMiddleware.isAuthorized.bind(authMiddleware),

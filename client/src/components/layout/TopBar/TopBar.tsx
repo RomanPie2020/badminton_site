@@ -1,5 +1,6 @@
 import { Link, Outlet, useNavigate } from 'react-router-dom'
 import { useActions } from '../../../hooks/useActions'
+import { useLogOutMutation } from '../../../services/AuthService'
 import { ILogButton } from '../../../shared/interfaces/models'
 import { useAppSelector } from '../../../store/store'
 import LogButton from '../../ui/LogButton/LogButton'
@@ -42,13 +43,24 @@ function TopBar() {
 	const isAuthenticated = useAppSelector(
 		state => state.authStatus.isAuthenticated
 	)
+	const [logOutUser] = useLogOutMutation()
 
 	const logoutUser = async () => {
-		localStorage.removeItem('access_token')
-		localStorage.removeItem('refresh_token')
-		localStorage.setItem('is_Auth', 'false')
-		logOut()
-		navigate('/login')
+		try {
+			const refreshToken = localStorage.getItem('refresh_token')
+
+			const data = await logOutUser({ refreshToken: refreshToken }).unwrap()
+			console.log('logout success, now clearing localStorage')
+			console.log(data)
+			localStorage.removeItem('access_token')
+			localStorage.removeItem('refresh_token')
+			localStorage.setItem('is_Auth', 'false')
+			localStorage.setItem('user_id', '')
+			logOut()
+			navigate('/login')
+		} catch (error) {
+			console.log(error, 'error of logging out')
+		}
 	}
 
 	return (

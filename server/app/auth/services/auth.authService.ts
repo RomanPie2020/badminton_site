@@ -1,4 +1,4 @@
-import { BASE_URL, FRONT_URL } from '@/config/url'
+import { FRONT_URL } from '@/config/url'
 import { logger } from '@/utils/logger/log'
 import bcrypt from 'bcrypt'
 import crypto from 'crypto'
@@ -17,37 +17,39 @@ import { tokenService } from './auth.tokenService'
 class AuthService {
 	async registerUser(email: string, username: string, password: string) {
 		try {
-			const hashedPassword = await bcrypt.hash(password, 10)
+			// Перевірка валідності email
+			if (!email || typeof email !== 'string') {
+				throw ApiError.BadRequest('Invalid or missing email address')
+			}
 
-			// Реєстрація користувача у базі даних
+			// Генерація хешу пароля та токена підтвердження
+			const hashedPassword = await bcrypt.hash(password, 10)
+			const token = crypto.randomBytes(20).toString('hex')
+
+			// Формування лінка для підтвердження
+			const confirmationLink = `${FRONT_URL}/auth/confirm?token=${token}`
+
+			// Спроба надіслати лист
+			await this.sendEmail({
+				to: email,
+				subject: 'Підтвердження реєстрації',
+				text: `Будь ласка, підтвердіть вашу реєстрацію, натиснувши на це посилання: ${confirmationLink}`,
+			})
+			logger.info(`Лист надіслано до ${email}`)
+
+			// Якщо все ок — створюємо користувача
 			const newUser = await User.create({
 				email,
 				username,
 				password: hashedPassword,
+				confirmationToken: token,
 			})
 			logger.info(`Користувача ${username} успішно зареєстровано`)
 
-			// Генерація токена підтвердження
-			const token = crypto.randomBytes(20).toString('hex')
-			newUser.confirmationToken = token
-			await newUser.save()
-
-			if (!newUser.email || typeof newUser.email !== 'string') {
-				throw ApiError.BadRequest('Invalid or missing email address for user')
-			}
-
-			// Надсилання листа із посиланням для підтвердження
-			const confirmationLink = `${BASE_URL}/auth/confirm?token=${token}`
-			await this.sendEmail({
-				to: newUser.email,
-				subject: 'Підтвердження реєстрації',
-				text: `Будь ласка, підтвердіть вашу реєстрацію, натиснувши на це посилання: ${confirmationLink}`,
-			})
-			logger.info(`Лист надіслано до ${newUser.email}`)
-
 			return newUser
 		} catch (error) {
-			throw ApiError.BadRequest('Invalid or missing email address for user')
+			logger.error('Помилка при реєстрації користувача: ' + error.message)
+			throw ApiError.BadRequest('Не вдалося завершити реєстрацію')
 		}
 	}
 
@@ -62,8 +64,8 @@ class AuthService {
 				pass: process.env.MAILER_PASSWORD,
 			},
 			port: 465,
-			secure: true, // Використовуй false для порту 587 з STARTTLS
-			requireTLS: true,
+			secure: true,
+			logger: true,
 		})
 		logger.info(to)
 		const mailOptions = {

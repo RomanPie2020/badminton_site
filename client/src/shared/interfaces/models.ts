@@ -66,7 +66,7 @@ export interface IResponseLogIn {
 }
 
 export interface IRefreshTokenResponse {
-	access: string // Новий access-токен
+	accessToken: string // Новий access-токен
 }
 
 // Auth state

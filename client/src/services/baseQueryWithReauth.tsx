@@ -37,16 +37,18 @@ export const baseQueryWithReauth: BaseQueryFn<
 			// Оновлення токена
 			const refreshResult = await baseQuery(
 				{
-					url: 'api/auth/token/refresh/',
+					url: '/api/auth/refresh',
 					method: 'POST',
-					body: { refresh: refreshToken },
+					body: { refreshToken: refreshToken },
 				},
 				api,
 				extraOptions
 			)
 
 			if (refreshResult.data) {
-				const { access: newAccessToken } =
+				console.log(refreshResult.data)
+
+				const { accessToken: newAccessToken } =
 					refreshResult.data as IRefreshTokenResponse
 
 				// Збереження нового токена
@@ -60,12 +62,16 @@ export const baseQueryWithReauth: BaseQueryFn<
 				// Якщо оновлення не вдалося, очищуємо локальні токени
 				localStorage.removeItem('access_token')
 				localStorage.removeItem('refresh_token')
+				localStorage.setItem('is_Auth', 'false')
+				localStorage.setItem('user_id', '')
 				api.dispatch(authStatusSliceActions.logOut())
 			}
 		} else {
 			// Якщо немає refresh токена, робимо логаут
 			localStorage.removeItem('access_token')
 			localStorage.removeItem('refresh_token')
+			localStorage.setItem('is_Auth', 'false')
+			localStorage.setItem('user_id', '')
 			api.dispatch(authStatusSliceActions.logOut())
 		}
 	}

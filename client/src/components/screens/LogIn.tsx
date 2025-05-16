@@ -2,20 +2,24 @@ import { SubmitHandler } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { formStyles } from '../../configs/styles.config'
 import { useActions } from '../../hooks/useActions'
-import { useLogInUserMutation } from '../../services/AuthService'
+import { useLoginUserMutation } from '../../services/AuthService'
 import { ILogInData } from '../../shared/interfaces/models'
 import LogInForm from '../ui/forms/LogInForm'
 
 const LogIn = () => {
 	const { logIn } = useActions()
 	const navigate = useNavigate()
-	const [logInUser] = useLogInUserMutation()
+	const [logInUser] = useLoginUserMutation()
 
 	const onSubmit: SubmitHandler<ILogInData> = async req => {
-		const data = await logInUser(req).unwrap()
-		console.log(data)
 		try {
+			const data = await logInUser(req).unwrap()
+			console.log(data)
 			if (data) {
+				localStorage.setItem('access_token', data.accessToken)
+				localStorage.setItem('refresh_token', data.refreshToken)
+				localStorage.setItem('user_id', data.user.id)
+				localStorage.setItem('is_Auth', 'true')
 				logIn() // Оновлюємо стан авторизації
 				navigate('/')
 			}

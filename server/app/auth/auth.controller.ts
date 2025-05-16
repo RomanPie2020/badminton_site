@@ -62,11 +62,10 @@ export class AuthController {
 					.status(400)
 					.json({ success: false, message: 'Refresh token is required' })
 			}
-			const { accessToken, newRefreshToken } =
-				await tokenService.refreshAccessToken(refreshToken)
-			res
-				.status(200)
-				.json({ success: true, accessToken, refreshToken: newRefreshToken })
+			const { accessToken } = await tokenService.refreshAccessToken(
+				refreshToken
+			)
+			res.status(200).json({ success: true, accessToken })
 		} catch (e) {
 			next(e)
 		}

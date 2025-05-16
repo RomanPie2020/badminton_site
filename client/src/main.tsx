@@ -2,14 +2,12 @@ import ReactDOM from 'react-dom/client'
 import { Provider } from 'react-redux'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import TopBar from './components/layout/TopBar/TopBar'
-import CodeVerificationPage from './components/screens/CodeVerificationPage'
 import EnterEmail from './components/screens/EnterEmail'
 import { ErrorPage } from './components/screens/ErrorPage'
 import GoogleSuccess from './components/screens/GoogleSuccess'
 import Home from './components/screens/Home'
 import LogIn from './components/screens/LogIn'
-import Paste from './components/screens/Paste'
-import Profile from './components/screens/Profile'
+import { RegisterConfirm } from './components/screens/RegisterConfirm'
 import ResetPassword from './components/screens/ResetPassword'
 import SignUp from './components/screens/SignUp'
 import './index.css'
@@ -35,17 +33,21 @@ const router = createBrowserRouter([
 				element: <SignUp />,
 			},
 			{
-				path: '/codeverification',
-				element: <CodeVerificationPage />,
+				path: '/auth/confirm',
+				element: <RegisterConfirm />,
 			},
-			{
-				path: '/profile',
-				element: <Profile />,
-			},
-			{
-				path: '/paste/:url',
-				element: <Paste />,
-			},
+			// {
+			// 	path: '/codeverification',
+			// 	element: <CodeVerificationPage />,
+			// },
+			// {
+			// 	path: '/profile',
+			// 	element: <Profile />,
+			// },
+			// {
+			// 	path: '/paste/:url',
+			// 	element: <Paste />,
+			// },
 			{
 				path: '/google/success',
 				element: <GoogleSuccess />,

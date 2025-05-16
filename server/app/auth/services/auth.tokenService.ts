@@ -39,17 +39,15 @@ class TokenService {
 
 	async refreshAccessToken(
 		refreshToken: string
-	): Promise<{ accessToken: string; newRefreshToken?: string }> {
+	): Promise<{ accessToken: string }> {
 		const user = await User.findOne({ where: { refreshToken } })
 		if (!user) {
 			throw ApiError.BadRequest('Invalid refresh token')
 		}
 
 		const accessToken = this.generateAccessToken(user.id)
-		const newRefreshToken = this.generateRefreshToken()
-		await this.saveRefreshToken(user.id, newRefreshToken)
 
-		return { accessToken, newRefreshToken }
+		return { accessToken }
 	}
 
 	async logout(refreshToken: string): Promise<void> {
