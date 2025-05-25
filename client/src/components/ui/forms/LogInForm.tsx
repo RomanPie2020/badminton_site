@@ -32,7 +32,7 @@ const forgotPasswordButtonProps: ILogButton = {
 	to: '/enter-email',
 }
 
-const LogInForm = ({ onSubmit }: ILogInFormProps) => {
+const LogInForm = ({ onSubmit, errorMessage }: ILogInFormProps) => {
 	const googleLogin = async () => {
 		// try {
 		window.location.href = 'http://localhost:3000/auth/google'
@@ -77,6 +77,9 @@ const LogInForm = ({ onSubmit }: ILogInFormProps) => {
 				</label>
 				{errors.password && <span>This field is required</span>}
 				<br />
+				{errorMessage && (
+					<div className='text-red-600 mt-2'>{errorMessage}</div>
+				)}
 				<LogButton button={logInButtonProps} />
 				<br />
 				<LogButton button={forgotPasswordButtonProps} />
@@ -87,7 +90,7 @@ const LogInForm = ({ onSubmit }: ILogInFormProps) => {
 					className='flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-md shadow-sm hover:bg-gray-100 transition'
 				>
 					<img src={googleIcon} alt='Google' className='w-5 h-5' />
-					<span className='text-sm text-gray-700'>Sign in with Google</span>
+					<span className='text-sm text-gray-700'>Continue with Google</span>
 				</button>
 				<br />
 			</form>

@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { SubmitHandler } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { formStyles } from '../../configs/styles.config'
@@ -10,6 +11,7 @@ const LogIn = () => {
 	const { logIn } = useActions()
 	const navigate = useNavigate()
 	const [logInUser] = useLoginUserMutation()
+	const [loginError, setLoginError] = useState<string | null>(null)
 
 	const onSubmit: SubmitHandler<ILogInData> = async req => {
 		try {
@@ -25,6 +27,7 @@ const LogIn = () => {
 			}
 		} catch (error) {
 			console.log(error, 'login was failed')
+			setLoginError('Incorrect email or password')
 		}
 	}
 
@@ -32,7 +35,7 @@ const LogIn = () => {
 		<div>
 			<div className={`${formStyles}`}>
 				<h1 className='text-7xl mb-10 sm:text-4xl'>LogIn</h1>
-				<LogInForm onSubmit={onSubmit} />
+				<LogInForm onSubmit={onSubmit} errorMessage={loginError} />
 			</div>
 		</div>
 	)

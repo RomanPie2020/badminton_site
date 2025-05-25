@@ -1,12 +1,12 @@
 // import React from 'react'
 import { useForm } from 'react-hook-form'
+import googleIcon from '../../../assets/images/google_icon.svg'
 import {
 	ILogButton,
 	ISignUpData,
 	ISignUpFormProps,
 } from '../../../shared/interfaces/models'
 import LogButton from '../LogButton/LogButton'
-
 // #todo підключити reduxtoolkit
 
 // type FormData = {
@@ -33,6 +33,9 @@ const LogInButtonProps: ILogButton = {
 }
 
 const SignUpForm = ({ onSubmit }: ISignUpFormProps) => {
+	const googleLogin = async () => {
+		window.location.href = 'http://localhost:3000/auth/google'
+	}
 	const {
 		register,
 		handleSubmit,
@@ -47,25 +50,7 @@ const SignUpForm = ({ onSubmit }: ISignUpFormProps) => {
 			passwordConfirmation: '',
 		},
 	})
-	// const watchAllFields = watch()
-	// const { password, passwordConfirmation } = watch()
-	// const all = watch()
 
-	// const comparePasswords = () => {
-	// const password = getValues('password')
-	// const { password, passwordConfirmation } = watch()
-	// console.log(watchAllFields)
-	// const isPasswordEqual = password === passwordConfirmation
-	// console.log(isPasswordEqual)
-	// }
-	// const { password, passwordConfirmation } = getValues()
-	// const comparePasswords = () => {
-	// 	useEffect(() => {
-	// 		console.log('All Values:', password, passwordConfirmation)
-	// 		const isPasswordEqual = password === passwordConfirmation
-	// 		return !isPasswordEqual && <span>no equal passwords</span>
-	// 	}, [password, passwordConfirmation])
-	// }
 	return (
 		<>
 			<form
@@ -97,7 +82,7 @@ const SignUpForm = ({ onSubmit }: ISignUpFormProps) => {
 				<label>
 					<br /> Password <br />
 					<input
-						type='text'
+						type='password'
 						{...register('password', {
 							required: true,
 							minLength: 1,
@@ -112,24 +97,34 @@ const SignUpForm = ({ onSubmit }: ISignUpFormProps) => {
 				<label>
 					<br /> Confirm Password <br />
 					<input
-						type='text'
+						type='password'
 						{...register('passwordConfirmation', {
 							required: true,
 							minLength: 1,
+							validate: value =>
+								value === getValues('password') || 'Passwords do not match',
 						})}
-						// onChange={comparePasswords}
 					/>
 				</label>
 				{errors.passwordConfirmation && (
 					<div>
-						<span>This field is required</span>
+						<span>{errors.passwordConfirmation.message}</span>
 					</div>
 				)}
-				{/* {comparePasswords()} */}
 				<br />
+
 				<LogButton button={SubmitButtonProps} />
 				<br />
+				<button
+					onClick={googleLogin}
+					type='button'
+					className='flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-md shadow-sm hover:bg-gray-100 transition mb-5'
+				>
+					<img src={googleIcon} alt='Google' className='w-5 h-5 ' />
+					<span className='text-sm text-gray-700'>Continue with Google</span>
+				</button>
 			</form>
+
 			<LogButton button={LogInButtonProps} />
 		</>
 	)

@@ -14,6 +14,7 @@ export interface ILogInData {
 }
 export interface ILogInFormProps {
 	onSubmit: (userData: ILogInData) => void
+	errorMessage?: string | null
 }
 
 // SignUpForm
