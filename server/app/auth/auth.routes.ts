@@ -1,7 +1,7 @@
 import { Router } from 'express'
 import passport from 'passport'
+import { authMiddleware } from '../middleware/auth.authMiddleware'
 import { authController } from './auth.controller'
-import { authMiddleware } from './middleware/auth.authMiddleware'
 import { registerValidate } from './middleware/registerValidate'
 import { registerSchema } from './schemas/register.schema'
 
@@ -41,9 +41,5 @@ router.get(
 	}),
 	authController.googleCallback
 )
-
-router.get('/f', (req, res) => {
-	res.send('<a href="/auth/google">Login with Google</a>')
-})
 
 export const authRouter = router

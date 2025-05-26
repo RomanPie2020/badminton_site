@@ -269,3 +269,33 @@
 {"level":"error","message":"Error:","timestamp":"2025-05-26T16:19:59.504Z"}
 {"level":"error","message":"Error:","timestamp":"2025-05-26T16:20:04.573Z"}
 {"level":"error","message":"Error:","timestamp":"2025-05-26T16:26:10.308Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-26T21:53:42.484Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-26T21:54:42.601Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-26T21:55:06.078Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-26T21:56:36.037Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-26T22:03:48.370Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-26T22:07:04.674Z"}
+{"level":"error","message":"Помилка при реєстрації користувача: Cannot read properties of undefined (reading 'id')","timestamp":"2025-05-26T22:22:32.821Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-26T22:22:32.822Z"}
+{"level":"error","message":"Помилка при реєстрації користувача: Connection timeout","timestamp":"2025-05-26T22:23:34.029Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-26T22:23:34.030Z"}
+{"level":"error","message":"Помилка при реєстрації користувача: Connection timeout","timestamp":"2025-05-26T22:29:01.808Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-26T22:29:01.808Z"}
+{"level":"error","message":"Помилка при реєстрації користувача: Connection timeout","timestamp":"2025-05-26T22:29:31.775Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-26T22:29:31.775Z"}
+{"level":"error","message":"Помилка при реєстрації користувача: column \"userId\" of relation \"user_profiles\" does not exist","timestamp":"2025-05-26T22:30:39.012Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-26T22:30:39.013Z"}
+{"level":"error","message":"Помилка при реєстрації користувача: column \"reviewsCount\" of relation \"user_profiles\" does not exist","timestamp":"2025-05-26T22:34:10.770Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-26T22:34:10.772Z"}
+{"level":"error","message":"Помилка при реєстрації користувача: column \"createdAt\" of relation \"user_profiles\" does not exist","timestamp":"2025-05-26T22:39:55.109Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-26T22:39:55.111Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-26T22:50:31.023Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-26T22:51:25.401Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-26T22:52:29.209Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-26T22:52:42.996Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-26T22:53:02.349Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-26T22:53:21.692Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-26T22:54:49.310Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-26T22:56:23.568Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-26T22:56:34.959Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-26T23:15:31.020Z"}

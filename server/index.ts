@@ -6,6 +6,8 @@ import { authRouter } from '@/auth/auth.routes'
 import { oAuthService } from '@/auth/services/auth.oAuthService'
 import sequelizeConnect from '@/config/database'
 import { errorHandler } from '@/middleware/auth.errorMiddleware'
+
+import { profileRouter } from '@/profile/profile.routes'
 import compression from 'compression'
 import helmet from 'helmet'
 import passport from 'passport'
@@ -44,6 +46,7 @@ oAuthService.configureGoogleStrategy(passport)
 app.use(passport.initialize())
 
 app.use(authRouter)
+app.use(profileRouter)
 
 app.use(errorHandler)
 app.all('*', (req, res) => {

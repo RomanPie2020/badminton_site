@@ -30,6 +30,7 @@ export class AuthController {
 			}
 
 			const result = await authService.confirmRegister({ token })
+
 			res.status(200).json(result)
 		} catch (e) {
 			next(e)
@@ -131,23 +132,6 @@ export class AuthController {
 		}
 	}
 
-	// async googleLogin(req: Request, res: Response, next: NextFunction) {
-	// 	try {
-	// 		const url = oAuthService.generateGoogleAuthUrl()
-	// 		res.redirect(url)
-	// 	} catch (e) {
-	// 		next(e)
-	// 	}
-	// }
-
-	// async googleCallback(req: Request, res: Response, next: NextFunction) {
-	// 	try {
-	// 		const user = await oAuthService.handleGoogleCallback(req)
-	// 		res.status(200).json({ message: 'Login successful', user })
-	// 	} catch (e) {
-	// 		next(e)
-	// 	}
-	// }
 	async googleCallback(req: Request, res: Response, next: NextFunction) {
 		try {
 			// if (!req.user) {

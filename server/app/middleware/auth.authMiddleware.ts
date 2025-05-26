@@ -1,8 +1,8 @@
 import { NextFunction, RequestHandler, Response } from 'express'
-import ApiError from '../../exceptions/apiError'
-import { IUserRequest } from '../auth.types'
-import User from '../models/user'
-import { tokenService } from '../services/auth.tokenService'
+import { IUserRequest } from '../auth/auth.types'
+import User from '../auth/models/user'
+import { tokenService } from '../auth/services/auth.tokenService'
+import ApiError from '../exceptions/apiError'
 
 class AuthMiddleware {
 	isAuthorized: RequestHandler = async (

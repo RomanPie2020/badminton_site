@@ -1,4 +1,5 @@
 import { FRONT_URL } from '@/config/url'
+import UserProfile from '@/profile/models/userProfile'
 import { logger } from '@/utils/logger/log'
 import bcrypt from 'bcrypt'
 import crypto from 'crypto'
@@ -30,12 +31,12 @@ class AuthService {
 			const confirmationLink = `${FRONT_URL}/auth/confirm?token=${token}`
 
 			// Спроба надіслати лист
-			await this.sendEmail({
-				to: email,
-				subject: 'Підтвердження реєстрації',
-				text: `Будь ласка, підтвердіть вашу реєстрацію, натиснувши на це посилання: ${confirmationLink}`,
-			})
-			logger.info(`Лист надіслано до ${email}`)
+			// await this.sendEmail({
+			// 	to: email,
+			// 	subject: 'Підтвердження реєстрації',
+			// 	text: `Будь ласка, підтвердіть вашу реєстрацію, натиснувши на це посилання: ${confirmationLink}`,
+			// })
+			// logger.info(`Лист надіслано до ${email}`)
 
 			// Якщо все ок — створюємо користувача
 			const newUser = await User.create({
@@ -44,8 +45,12 @@ class AuthService {
 				password: hashedPassword,
 				confirmationToken: token,
 			})
-			logger.info(`Користувача ${username} успішно зареєстровано`)
 
+			logger.info(newUser)
+			await UserProfile.create({
+				user_id: newUser.id,
+				nickname: username, // або '' якщо хочеш пусте
+			})
 			return newUser
 		} catch (error) {
 			logger.error('Помилка при реєстрації користувача: ' + error.message)

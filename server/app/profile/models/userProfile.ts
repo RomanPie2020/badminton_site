@@ -4,27 +4,27 @@ import sequelize from '../../config/database'
 
 interface UserProfileAttributes {
 	id?: number
-	userId: number
+	user_id: number
 
 	nickname: string
-	avatarUrl?: string
+	avatar_url?: string
 	city?: string
 	age?: number
 	gender?: string
 
 	level?: string
-	experienceMonths?: number
-	dominantHand?: string
-	preferredFormat?: string
-	playFrequency?: string
-	commonPlaces?: string[]
-	playTime?: string
+	experience_months?: number
+	dominant_hand?: string
+	preferred_format?: string
+	play_frequency?: string
+	common_places?: string[]
+	play_time?: string
 
 	bio?: string
 	contact?: string
 
 	rating?: number
-	reviewsCount?: number
+	reviews_count?: number
 
 	createdAt?: Date
 	updatedAt?: Date
@@ -38,27 +38,27 @@ class UserProfile
 	implements UserProfileAttributes
 {
 	declare id: number
-	declare userId: number
+	declare user_id: number
 
 	declare nickname: string
-	declare avatarUrl: string
+	declare avatar_url: string
 	declare city: string
 	declare age: number
 	declare gender: string
 
 	declare level: string
-	declare experienceMonths: number
-	declare dominantHand: string
-	declare preferredFormat: string
-	declare playFrequency: string
-	declare commonPlaces: string[]
-	declare playTime: string
+	declare experience_months: number
+	declare dominant_hand: string
+	declare preferred_format: string
+	declare play_frequency: string
+	declare common_places: string[]
+	declare play_time: string
 
 	declare bio: string
 	declare contact: string
 
 	declare rating: number
-	declare reviewsCount: number
+	declare reviews_count: number
 
 	declare readonly createdAt: Date
 	declare readonly updatedAt: Date
@@ -71,7 +71,7 @@ UserProfile.init(
 			autoIncrement: true,
 			primaryKey: true,
 		},
-		userId: {
+		user_id: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			references: {
@@ -84,7 +84,7 @@ UserProfile.init(
 			type: DataTypes.STRING,
 			allowNull: false,
 		},
-		avatarUrl: {
+		avatar_url: {
 			type: DataTypes.STRING,
 		},
 		city: {
@@ -99,22 +99,22 @@ UserProfile.init(
 		level: {
 			type: DataTypes.STRING,
 		},
-		experienceMonths: {
+		experience_months: {
 			type: DataTypes.INTEGER,
 		},
-		dominantHand: {
+		dominant_hand: {
 			type: DataTypes.STRING,
 		},
-		preferredFormat: {
+		preferred_format: {
 			type: DataTypes.STRING,
 		},
-		playFrequency: {
+		play_frequency: {
 			type: DataTypes.STRING,
 		},
-		commonPlaces: {
+		common_places: {
 			type: DataTypes.ARRAY(DataTypes.STRING),
 		},
-		playTime: {
+		play_time: {
 			type: DataTypes.STRING,
 		},
 		bio: {
@@ -127,7 +127,7 @@ UserProfile.init(
 			type: DataTypes.DECIMAL(3, 2),
 			defaultValue: 0.0,
 		},
-		reviewsCount: {
+		reviews_count: {
 			type: DataTypes.INTEGER,
 			defaultValue: 0,
 		},
@@ -137,10 +137,11 @@ UserProfile.init(
 		modelName: 'UserProfile',
 		tableName: 'user_profiles',
 		timestamps: true,
+		underscored: true,
 	}
 )
 
-UserProfile.belongsTo(User, { foreignKey: 'userId', as: 'user' })
-User.hasOne(UserProfile, { foreignKey: 'userId', as: 'profile' })
+UserProfile.belongsTo(User, { foreignKey: 'user_id', as: 'user' })
+User.hasOne(UserProfile, { foreignKey: 'user_id', as: 'profile' })
 
 export default UserProfile
