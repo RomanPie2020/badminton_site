@@ -1,3 +1,5 @@
+import { UseFormSetError } from 'react-hook-form'
+
 // topBar
 export interface ILogButton {
 	title: string
@@ -25,7 +27,11 @@ export interface ISignUpData {
 	passwordConfirmation: string
 }
 export interface ISignUpFormProps {
-	onSubmit: (userData: ISignUpData) => void
+	onSubmit: (
+		data: ISignUpData,
+		event?: React.BaseSyntheticEvent,
+		setServerErrors?: UseFormSetError<ISignUpData>
+	) => void
 }
 
 // Code verification

@@ -66,7 +66,11 @@ const LogInForm = ({ onSubmit, errorMessage }: ILogInFormProps) => {
 					Email <br />
 					<input type='email' {...register('email', { required: true })} />
 				</label>
-				{errors.email && <span>This field is required</span>}
+				{errors.email && (
+					<div>
+						<span>This field is required</span>
+					</div>
+				)}
 
 				<label>
 					<br /> Password <br />

@@ -36,7 +36,8 @@
 		"pg-hstore": "^2.3.4",
 		"sequelize": "^6.37.5",
 		"sequelize-cli": "^6.6.2",
-		"winston": "^3.17.0"
+		"winston": "^3.17.0",
+		"zod": "^3.25.28"
 	},
 	"devDependencies": {
 		"@types/bcrypt": "^5.0.2",

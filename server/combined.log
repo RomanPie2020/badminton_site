@@ -2413,3 +2413,50 @@
 {"level":"info","message":"Refresh token saved for user 28","timestamp":"2025-05-25T23:07:57.680Z"}
 {"level":"info","message":"Користувач romankaras2004@gmail.com успішно увійшов","timestamp":"2025-05-25T23:07:57.680Z"}
 {"level":"info","message":"User logged out","timestamp":"2025-05-25T23:08:02.380Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-26T09:35:41.786Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-26T09:35:41.790Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-26T09:35:41.834Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-26T09:52:22.684Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-26T09:52:28.054Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-26T09:52:38.610Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-26T10:01:05.891Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-26T10:01:05.895Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-26T10:01:05.987Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-26T10:01:37.425Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-26T10:01:44.547Z"}
+{"level":"info","message":"Refresh token saved for user 28","timestamp":"2025-05-26T10:01:50.789Z"}
+{"level":"info","message":"Користувач romankaras2004@gmail.com успішно увійшов","timestamp":"2025-05-26T10:01:50.789Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-26T12:36:43.004Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-26T12:36:43.010Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-26T12:36:43.081Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-26T12:37:05.121Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-26T12:37:05.126Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-26T12:37:05.170Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-26T13:05:58.584Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-26T13:05:58.589Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-26T13:05:58.632Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-26T13:11:36.343Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-26T13:11:36.347Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-26T13:11:36.394Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-26T13:13:05.522Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-05-26T13:13:05.583Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-26T13:30:31.320Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-26T13:30:31.327Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-26T13:30:31.374Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-26T13:38:37.098Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-26T13:38:37.102Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-26T13:38:37.224Z"}
+{"level":"info","message":"romankaras2004@gmail.com","timestamp":"2025-05-26T16:10:40.596Z"}
+{"level":"error","message":"Помилка при реєстрації користувача: Connection timeout","timestamp":"2025-05-26T16:12:40.667Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-26T16:12:40.668Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-26T16:18:21.863Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-26T16:18:23.842Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-26T16:19:59.504Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-26T16:20:04.573Z"}
+{"level":"info","message":"romankaras2004@gmail.com","timestamp":"2025-05-26T16:25:50.552Z"}
+{"level":"info","message":"Лист надіслано до romankaras2004@gmail.com","timestamp":"2025-05-26T16:25:52.022Z"}
+{"level":"info","message":"Користувача rrrr успішно зареєстровано","timestamp":"2025-05-26T16:25:52.050Z"}
+{"level":"info","message":"Користувач з email romankaras2004@gmail.com успішно підтверджений","timestamp":"2025-05-26T16:25:58.895Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-26T16:26:10.308Z"}
+{"level":"info","message":"Refresh token saved for user 30","timestamp":"2025-05-26T16:26:11.959Z"}
+{"level":"info","message":"Користувач romankaras2004@gmail.com успішно увійшов","timestamp":"2025-05-26T16:26:11.959Z"}

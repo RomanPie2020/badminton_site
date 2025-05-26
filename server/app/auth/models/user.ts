@@ -48,6 +48,11 @@ class User extends Model<UserAttributes, UserCreationAttributes> {
 
 User.init(
 	{
+		id: {
+			type: DataTypes.INTEGER,
+			autoIncrement: true,
+			primaryKey: true,
+		},
 		username: {
 			type: DataTypes.STRING,
 			unique: true,

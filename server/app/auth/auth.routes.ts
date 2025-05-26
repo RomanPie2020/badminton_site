@@ -2,10 +2,17 @@ import { Router } from 'express'
 import passport from 'passport'
 import { authController } from './auth.controller'
 import { authMiddleware } from './middleware/auth.authMiddleware'
+import { registerValidate } from './middleware/registerValidate'
+import { registerSchema } from './schemas/register.schema'
 
 const router = Router()
 
-router.post('/api/auth/register', authController.register)
+router.post(
+	'/api/auth/register',
+	registerValidate(registerSchema),
+	authController.register
+)
+
 router.get('/api/auth/confirm', authController.confirmRegister)
 router.post('/api/auth/login', authController.login)
 router.post('/api/auth/refresh', authController.refreshToken)

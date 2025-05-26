@@ -15,19 +15,35 @@ const SignUp = () => {
 	const [isSuccess, setIsSuccess] = useState(false)
 	const [errorMessage, setErrorMessage] = useState('')
 
-	const onSubmit: SubmitHandler<ISignUpData> = async formData => {
+	const onSubmit: SubmitHandler<ISignUpData> = async (
+		formData,
+		event,
+		setServerErrors
+	) => {
 		setErrorMessage('')
 		try {
 			const response = await signUp(formData).unwrap()
 			await addUserId(response.id)
-
-			// Успішно — показуємо повідомлення
 			setIsSuccess(true)
 
 			// Якщо хочеш редірект одразу:
 			// navigate('/')
 		} catch (error: any) {
-			console.log(error, 'Signup error')
+			console.error('Signup error', error)
+
+			if (error?.data?.errors) {
+				const fieldErrors = error.data.errors
+				Object.entries(fieldErrors).forEach(([field, messages]) => {
+					if (Array.isArray(messages)) {
+						setServerErrors?.(field as keyof ISignUpData, {
+							type: 'server',
+							message: messages[0],
+						})
+					}
+				})
+				return
+			}
+
 			const message =
 				error?.data?.message ||
 				error?.error ||
@@ -35,7 +51,7 @@ const SignUp = () => {
 			setErrorMessage(message)
 		}
 	}
-
+	// console.log(errors)
 	return (
 		<div>
 			<div className={`${formStyles}`}>
@@ -50,12 +66,12 @@ const SignUp = () => {
 						✔️ Реєстрація успішна. Перевірте пошту для підтвердження.
 					</p>
 				) : (
-					<>
+					<div>
 						<SignUpForm onSubmit={onSubmit} />
 						{errorMessage && (
 							<p className='text-red-600 mt-4 text-lg'>{errorMessage}</p>
 						)}
-					</>
+					</div>
 				)}
 			</div>
 		</div>

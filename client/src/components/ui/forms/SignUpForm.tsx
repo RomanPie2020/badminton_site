@@ -39,6 +39,7 @@ const SignUpForm = ({ onSubmit }: ISignUpFormProps) => {
 	const {
 		register,
 		handleSubmit,
+		setError,
 		getValues,
 		watch,
 		formState: { errors },
@@ -50,33 +51,45 @@ const SignUpForm = ({ onSubmit }: ISignUpFormProps) => {
 			passwordConfirmation: '',
 		},
 	})
+	const handleInternalSubmit = (data: ISignUpData) =>
+		onSubmit(data, undefined, setError)
 
 	return (
 		<>
 			<form
 				className='flex flex-col items-center'
+				noValidate
 				autoComplete='off'
-				onSubmit={handleSubmit(onSubmit)}
+				onSubmit={handleSubmit(handleInternalSubmit)}
 			>
 				<label>
 					Email <br />
-					<input type='email' {...register('email', { required: true })} />
+					<input
+						type='email'
+						{...register('email', {
+							required: true,
+							minLength: 1,
+						})}
+					/>
 				</label>
 				{errors.email && (
 					<div>
-						<span>This field is required</span>
+						<span>{errors.email.message}</span>
 					</div>
 				)}
 				<label>
 					<br /> Username <br />
 					<input
 						type='text'
-						{...register('username', { required: true, minLength: 1 })}
+						{...register('username', {
+							required: true,
+							minLength: { value: 4, message: 'Min 4 characters' },
+						})}
 					/>
 				</label>
 				{errors.username && (
 					<div>
-						<span>This field is required</span>
+						<span>{errors.username.message}</span>
 					</div>
 				)}
 				<label>
@@ -85,13 +98,13 @@ const SignUpForm = ({ onSubmit }: ISignUpFormProps) => {
 						type='password'
 						{...register('password', {
 							required: true,
-							minLength: 1,
+							minLength: { value: 6, message: 'Min 6 characters' },
 						})}
 					/>
 				</label>
 				{errors.password && (
 					<div>
-						<span>This field is required</span>
+						<span>{errors.password.message}</span>
 					</div>
 				)}
 				<label>
@@ -100,7 +113,7 @@ const SignUpForm = ({ onSubmit }: ISignUpFormProps) => {
 						type='password'
 						{...register('passwordConfirmation', {
 							required: true,
-							minLength: 1,
+							minLength: { value: 6, message: 'Min 6 characters' },
 							validate: value =>
 								value === getValues('password') || 'Passwords do not match',
 						})}
