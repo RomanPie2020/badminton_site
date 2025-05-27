@@ -8,6 +8,12 @@ const sequelizeConnect = new Sequelize({
 	password: process.env.DB_PASSWORD,
 	database: process.env.DB_NAME,
 	logging: false, // в продакшені краще вимкнути
+
+	// ← Ось тут додаємо глобальні define-опції
+	// define: {
+	// 	underscored: true, // автоматично ставитиме snake_case для всіх полів
+	// 	timestamps: true, // автоматично додаватиме created_at / updated_at
+	// },
 })
 
 export default sequelizeConnect

@@ -6,7 +6,7 @@ import User from '../models/user'
 
 class TokenService {
 	private readonly jwtSecret = process.env.JWT_SECRET || 'abar'
-	private readonly accessTokenExpiresIn = '15m'
+	private readonly accessTokenExpiresIn = '1d'
 	private readonly refreshTokenExpiresIn = '1d'
 
 	generateAccessToken(userId: number): string {

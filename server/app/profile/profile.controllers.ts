@@ -29,6 +29,19 @@ class ProfileController {
 			next(e)
 		}
 	}
+
+	async getProfileById(req: Request, res: Response, next: NextFunction) {
+		try {
+			const userId = Number(req.params.id)
+			if (isNaN(userId)) {
+				throw ApiError.BadRequest('Невірний ID користувача')
+			}
+			const profile = await profileService.getUserProfileById(userId)
+			res.json(profile)
+		} catch (err) {
+			next(err)
+		}
+	}
 }
 
 export const profileController = new ProfileController()

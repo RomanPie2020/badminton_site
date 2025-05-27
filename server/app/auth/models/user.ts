@@ -1,4 +1,11 @@
-import { DataTypes, Model, Optional } from 'sequelize'
+import {
+	BelongsToManyAddAssociationMixin,
+	BelongsToManyGetAssociationsMixin,
+	BelongsToManyRemoveAssociationMixin,
+	DataTypes,
+	Model,
+	Optional,
+} from 'sequelize'
 import sequelize from '../../config/database'
 
 // Інтерфейс для атрибутів моделі
@@ -44,6 +51,13 @@ class User extends Model<UserAttributes, UserCreationAttributes> {
 	declare passwordResetExpires: Date | null
 	declare refreshToken: string | null
 	declare googleId: string | null
+
+	declare getAttendingEvents: BelongsToManyGetAssociationsMixin<Event>
+	declare addAttendingEvent: BelongsToManyAddAssociationMixin<Event, number>
+	declare removeAttendingEvent: BelongsToManyRemoveAssociationMixin<
+		Event,
+		number
+	>
 }
 
 User.init(

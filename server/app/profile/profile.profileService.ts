@@ -1,3 +1,4 @@
+import User from '@/auth/models/user'
 import ApiError from '@/exceptions/apiError'
 import { camelToSnake, snakeToCamel } from '@/utils/caseConvert'
 import { logger } from '@/utils/logger/log'
@@ -38,6 +39,37 @@ class ProfileService {
 			return snakeToCamel(updateProfile.dataValues)
 		} catch (error) {
 			throw ApiError.BadRequest('Не вдалося оновити профіль')
+		}
+	}
+
+	async getUserProfileById(userId: number) {
+		// Перевіряємо, що користувач і профіль існують
+		const user = await User.findByPk(userId, {
+			attributes: ['id', 'username', 'email'], // при бажанні обмежити поля
+		})
+		if (!user) {
+			throw ApiError.NotFound('Користувача не знайдено')
+		}
+
+		const profile = await UserProfile.findOne({
+			where: { user_id: userId },
+			attributes: { exclude: ['user_id'] },
+		})
+		// Якщо профіль ще не створений, можна повернути обʼєкт із дефолтами
+		if (!profile) {
+			return {
+				id: user.id,
+				username: user.username,
+				// інші дефолтні значення...
+			}
+		}
+
+		// Зливаємо дані з двох таблиць
+		return {
+			id: user.id,
+			username: user.username,
+			email: user.email, // або прибрати, якщо не публічно
+			...profile.get({ plain: true }),
 		}
 	}
 }

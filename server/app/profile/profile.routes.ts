@@ -1,7 +1,7 @@
 import { Router } from 'express'
 
 import { isAuthorized } from '@/middleware/authMiddleware'
-import { profileUpdateValidation } from './middleware/profileUpdateValidation'
+import { validateBody } from '@/middleware/validateBody'
 import { profileController } from './profile.controllers'
 import { updateProfileSchema } from './schemas/profile.schema'
 
@@ -11,8 +11,14 @@ router.get('/api/profile', isAuthorized, profileController.getProfile)
 router.put(
 	'/api/profile',
 	isAuthorized,
-	profileUpdateValidation(updateProfileSchema),
+	validateBody(updateProfileSchema),
 	profileController.updateProfile
+)
+
+router.get(
+	'/api/users/:id/profile',
+	isAuthorized, // якщо хочете, щоб лише авторизовані бачили чужі профілі
+	profileController.getProfileById
 )
 
 export const profileRouter = router
