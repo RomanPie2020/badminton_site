@@ -17,6 +17,6 @@
 			"@/*": ["app/*"]
 		}
 	},
-	"include": ["app/**/*", "index.ts"],
+	"include": ["app/**/*", "app/types", "index.ts"],
 	"exclude": ["node_modules", "build"]
 }

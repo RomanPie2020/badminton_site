@@ -65,7 +65,7 @@ function TopBar() {
 
 	return (
 		<>
-			<div className='flex justify-between fixed top-0 w-full px-5 bg-[#282828]'>
+			<div className='flex justify-between fixed top-0 w-full px-5 bg-[#282828] z-50'>
 				<div className='flex'>
 					<Link
 						className='inline-block bg-logo bg-no-repeat bg-left w-16 h-16 my-4'

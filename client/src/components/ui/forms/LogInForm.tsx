@@ -91,7 +91,7 @@ const LogInForm = ({ onSubmit, errorMessage }: ILogInFormProps) => {
 				<button
 					onClick={googleLogin}
 					type='button'
-					className='flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-md shadow-sm hover:bg-gray-100 transition'
+					className='flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-md shadow-sm hover:bg-gray-100 transition bg-blue-100'
 				>
 					<img src={googleIcon} alt='Google' className='w-5 h-5' />
 					<span className='text-sm text-gray-700'>Continue with Google</span>

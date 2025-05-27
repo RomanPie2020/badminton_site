@@ -18,7 +18,8 @@ class ProfileController {
 			if (!req.user) {
 				return next(ApiError.UnauthorizedError())
 			}
-			logger.info('User ID:', req.user.id)
+			logger.info(`User ID: ${req.user.id}`)
+			logger.info({ service: 'user body', body: req.body })
 			const profile = await profileService.updateUserProfile(
 				req.user.id,
 				req.body

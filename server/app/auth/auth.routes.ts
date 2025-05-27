@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import passport from 'passport'
-import { authMiddleware } from '../middleware/auth.authMiddleware'
+import { isAuthorized } from '../middleware/authMiddleware'
 import { authController } from './auth.controller'
 import { registerValidate } from './middleware/registerValidate'
 import { registerSchema } from './schemas/register.schema'
@@ -16,16 +16,8 @@ router.post(
 router.get('/api/auth/confirm', authController.confirmRegister)
 router.post('/api/auth/login', authController.login)
 router.post('/api/auth/refresh', authController.refreshToken)
-router.delete(
-	'/api/auth/logout',
-	authMiddleware.isAuthorized.bind(authMiddleware),
-	authController.logout
-)
-router.get(
-	'/api/auth/users',
-	authMiddleware.isAuthorized.bind(authMiddleware),
-	authController.getUsers
-)
+router.delete('/api/auth/logout', isAuthorized, authController.logout)
+router.get('/api/auth/users', isAuthorized, authController.getUsers)
 router.post('/api/auth/forgot-password', authController.forgotPassword)
 router.patch('/api/auth/reset-password', authController.resetPassword)
 

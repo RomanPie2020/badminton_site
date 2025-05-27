@@ -1,6 +1,7 @@
 import { createApi } from '@reduxjs/toolkit/query/react'
 import {
 	IRequestSignUp,
+	IResetPasswordRequest,
 	IResponseLogIn,
 	IResponseSignUp,
 } from '../shared/interfaces/models'
@@ -91,13 +92,29 @@ export const authService = createApi({
 				body,
 			}),
 		}),
-		resetPassword: build.mutation<
-			any,
-			{ token: string; body: { newPassword: string; confirmPassword: string } }
-		>({
+		resetPassword: build.mutation<any, IResetPasswordRequest>({
 			query: ({ token, body }) => ({
 				url: `/api/auth/reset-password?token=${token}`,
 				method: 'PATCH',
+				body,
+			}),
+		}),
+		// Profile
+		getProfile: build.query<any, void>({
+			query: () => ({
+				url: '/api/profile',
+				method: 'GET',
+			}),
+		}),
+
+		updateProfile: build.mutation<
+			any,
+			// Partial<UpdateProfileInput>
+			any
+		>({
+			query: body => ({
+				url: '/api/profile',
+				method: 'PUT',
 				body,
 			}),
 		}),
@@ -116,4 +133,6 @@ export const {
 	// useDeleteUserMutation,
 	useForgotPasswordMutation,
 	useResetPasswordMutation,
+	useGetProfileQuery,
+	useUpdateProfileMutation,
 } = authService

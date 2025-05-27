@@ -33,7 +33,7 @@ class TokenService {
 		try {
 			return jwt.verify(token, this.jwtSecret) as { id: number }
 		} catch (error) {
-			throw ApiError.BadRequest('Invalid access token:')
+			throw ApiError.UnauthorizedError()
 		}
 	}
 

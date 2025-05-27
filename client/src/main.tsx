@@ -7,6 +7,7 @@ import { ErrorPage } from './components/screens/ErrorPage'
 import GoogleSuccess from './components/screens/GoogleSuccess'
 import Home from './components/screens/Home'
 import LogIn from './components/screens/LogIn'
+import ProfileForm from './components/screens/ProfileForm'
 import { RegisterConfirm } from './components/screens/RegisterConfirm'
 import ResetPassword from './components/screens/ResetPassword'
 import SignUp from './components/screens/SignUp'
@@ -40,10 +41,10 @@ const router = createBrowserRouter([
 			// 	path: '/codeverification',
 			// 	element: <CodeVerificationPage />,
 			// },
-			// {
-			// 	path: '/profile',
-			// 	element: <Profile />,
-			// },
+			{
+				path: '/profile',
+				element: <ProfileForm />,
+			},
 			// {
 			// 	path: '/paste/:url',
 			// 	element: <Paste />,

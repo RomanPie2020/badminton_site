@@ -117,3 +117,11 @@ export interface IResetPasswordData {
 export interface IResetPasswordFormProps {
 	onSubmit: (userData: IResetPasswordData) => void
 }
+
+export interface IResetPasswordRequest {
+	token: string
+	body: {
+		newPassword: string
+		confirmPassword: string
+	}
+}
