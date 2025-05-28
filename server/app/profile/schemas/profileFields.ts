@@ -5,15 +5,15 @@ export const NicknameField = z.string().min(1, 'Нікнейм обовʼязк�
 
 export const AvatarUrlField = z.string().url('Невалідне посилання')
 
-export const AgeField = z.number().int().min(0).max(120)
+export const AgeField = z.number().int().min(0).max(120).nullable()
 
-export const GenderField = z.enum(['male', 'female', 'other'])
+export const GenderField = z.enum(['male', 'female', 'other', ''])
 
 export const ExperienceField = z.number().int().min(0)
 
-export const DominantHandField = z.enum(['left', 'right'])
+export const DominantHandField = z.enum(['left', 'right', ''])
 
-export const PreferredFormatField = z.enum(['singles', 'doubles', 'mixed'])
+export const PreferredFormatField = z.enum(['singles', 'doubles', 'mixed', ''])
 
 export const CommonPlacesField = z.array(z.string())
 

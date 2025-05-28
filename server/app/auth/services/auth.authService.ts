@@ -15,8 +15,10 @@ import {
 import User from '../models/user'
 import { tokenService } from './auth.tokenService'
 
+import sequelize from '../../config/database'
 class AuthService {
 	async registerUser(email: string, username: string, password: string) {
+		const t = await sequelize.transaction()
 		try {
 			// Перевірка валідності email
 			if (!email || typeof email !== 'string') {
@@ -39,18 +41,18 @@ class AuthService {
 			// logger.info(`Лист надіслано до ${email}`)
 
 			// Якщо все ок — створюємо користувача
-			const newUser = await User.create({
-				email,
-				username,
-				password: hashedPassword,
-				confirmationToken: token,
-			})
+			const newUser = await User.create(
+				{ email, username, password: hashedPassword, confirmationToken: token },
+				{ transaction: t }
+			)
 
-			logger.info(newUser)
-			await UserProfile.create({
-				user_id: newUser.id,
-				nickname: username, // або '' якщо хочеш пусте
-			})
+			// Створюємо профіль у тій же транзакції
+			await UserProfile.create(
+				{ userId: newUser.id, nickname: username },
+				{ transaction: t }
+			)
+			await t.commit()
+
 			return newUser
 		} catch (error) {
 			logger.error('Помилка при реєстрації користувача: ' + error.message)

@@ -117,7 +117,7 @@ const ProfileForm = () => {
 						<label className={LABEL_CLASS}>Нікнейм</label>
 						<input
 							type='text'
-							{...register('nickname')}
+							{...register('nickname', { required: true })}
 							disabled={!isEditing}
 							className='mt-1 block w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring focus:ring-blue-200 disabled:bg-gray-100'
 						/>

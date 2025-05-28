@@ -378,3 +378,25 @@
 {"level":"error","message":"Error:","timestamp":"2025-05-27T21:24:47.557Z"}
 {"level":"error","message":"Error:","timestamp":"2025-05-27T21:51:14.429Z"}
 {"level":"error","message":"Error:","timestamp":"2025-05-28T17:17:07.659Z"}
+{"level":"error","message":"Помилка при реєстрації користувача: Validation error","timestamp":"2025-05-28T19:51:00.831Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-28T19:51:00.832Z"}
+{"level":"error","message":"Помилка при реєстрації користувача: notNull Violation: UserProfile.userId cannot be null","timestamp":"2025-05-28T19:51:29.964Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-28T19:51:29.964Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-28T19:52:45.459Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-28T19:56:16.767Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-28T19:56:16.785Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-28T20:10:59.126Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-28T20:11:51.443Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-28T20:12:36.167Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-28T20:12:43.326Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-28T20:12:56.864Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-28T20:14:40.990Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-28T20:16:42.217Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-28T20:17:41.315Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-28T20:18:41.784Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-28T20:20:51.562Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-28T20:21:03.864Z"}
+{"level":"error","message":"Помилка при реєстрації користувача: notNull Violation: UserProfile.userId cannot be null","timestamp":"2025-05-28T20:35:29.206Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-28T20:35:29.208Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-28T20:37:27.252Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-28T20:37:31.341Z"}
