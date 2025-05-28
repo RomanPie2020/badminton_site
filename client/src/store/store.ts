@@ -1,6 +1,7 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import { useDispatch, useSelector, useStore } from 'react-redux'
 import { authService } from '../services/AuthService'
+import { eventService } from '../services/EventService'
 import { pasteService } from '../services/PasteService'
 import { authStatusSliceReducer } from './authStatus.slice'
 import { favoritesReducer } from './favorites/favoritesSlice'
@@ -12,6 +13,7 @@ const reducers = combineReducers({
 	authStatus: authStatusSliceReducer,
 	[authService.reducerPath]: authService.reducer,
 	[pasteService.reducerPath]: pasteService.reducer,
+	[eventService.reducerPath]: eventService.reducer,
 })
 
 export const store = configureStore({
@@ -21,6 +23,7 @@ export const store = configureStore({
 		getDefaultMiddleware().concat([
 			authService.middleware,
 			pasteService.middleware,
+			eventService.middleware,
 		]),
 })
 

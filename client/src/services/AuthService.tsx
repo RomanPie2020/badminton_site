@@ -4,12 +4,14 @@ import {
 	IResetPasswordRequest,
 	IResponseLogIn,
 	IResponseSignUp,
+	UserProfile,
 } from '../shared/interfaces/models'
 import { baseQueryWithReauth } from './baseQueryWithReauth'
 
 export const authService = createApi({
 	reducerPath: 'auth',
 	baseQuery: baseQueryWithReauth,
+	tagTypes: ['UserProfile'],
 	endpoints: build => ({
 		register: build.mutation<IResponseSignUp, IRequestSignUp>({
 			query: body => ({
@@ -99,6 +101,7 @@ export const authService = createApi({
 				body,
 			}),
 		}),
+
 		// Profile
 		getProfile: build.query<any, void>({
 			query: () => ({
@@ -118,6 +121,16 @@ export const authService = createApi({
 				body,
 			}),
 		}),
+		getUserProfileById: build.query<UserProfile, number>({
+			query: id => ({
+				url: `/api/users/${id}/profile`,
+				method: 'GET',
+			}),
+			providesTags: (result, error, id) => [{ type: 'UserProfile', id }],
+			transformResponse: (res: UserProfile) => {
+				return res
+			},
+		}),
 	}),
 })
 
@@ -135,4 +148,5 @@ export const {
 	useResetPasswordMutation,
 	useGetProfileQuery,
 	useUpdateProfileMutation,
+	useGetUserProfileByIdQuery,
 } = authService

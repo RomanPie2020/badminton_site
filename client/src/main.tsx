@@ -4,13 +4,15 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import TopBar from './components/layout/TopBar/TopBar'
 import EnterEmail from './components/screens/EnterEmail'
 import { ErrorPage } from './components/screens/ErrorPage'
+import EventList from './components/screens/EventList'
 import GoogleSuccess from './components/screens/GoogleSuccess'
 import Home from './components/screens/Home'
 import LogIn from './components/screens/LogIn'
-import ProfileForm from './components/screens/ProfileForm'
+import MyProfile from './components/screens/MyProfile'
 import { RegisterConfirm } from './components/screens/RegisterConfirm'
 import ResetPassword from './components/screens/ResetPassword'
 import SignUp from './components/screens/SignUp'
+import UserProfile from './components/screens/UserProfile'
 import './index.css'
 import { store } from './store/store'
 
@@ -41,10 +43,6 @@ const router = createBrowserRouter([
 			// 	path: '/codeverification',
 			// 	element: <CodeVerificationPage />,
 			// },
-			{
-				path: '/profile',
-				element: <ProfileForm />,
-			},
 			// {
 			// 	path: '/paste/:url',
 			// 	element: <Paste />,
@@ -60,6 +58,18 @@ const router = createBrowserRouter([
 			{
 				path: '/auth/reset-password',
 				element: <ResetPassword />,
+			},
+			{
+				path: '/profile',
+				element: <MyProfile />,
+			},
+			{
+				path: '/events',
+				element: <EventList />,
+			},
+			{
+				path: '/users/:id/profile',
+				element: <UserProfile />,
 			},
 		],
 	},

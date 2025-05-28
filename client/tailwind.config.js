@@ -4,7 +4,11 @@ export default {
 	theme: {
 		extend: {
 			backgroundImage: theme => ({
-				logo: "url('./assets/images/logo.png')",
+				// logo: "url('./assets/images/logo.png')",
+				shuttlecock_badminton_icon:
+					"url('./assets/images/shuttlecock-badminton-icon.png')",
+				shuttlecock_icon: "url('./assets/images/shuttlecock-icon.svg')",
+				topbar_logo: "url('./assets/images/topbar_logo.png')",
 				gradient_grey: 'linear-gradient(to right, #f0f0f0, #cccccc)',
 				gradient_grey_blue: 'linear-gradient(to right, #f0f4f8, #cfd9df)',
 			}),

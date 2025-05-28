@@ -4,61 +4,60 @@ import sequelize from '../../config/database'
 
 interface UserProfileAttributes {
 	id?: number
-	user_id: number
+	userId: number
 
 	nickname: string
-	avatar_url?: string
-	city?: string
-	age?: number
-	gender?: string
+	avatarUrl?: string | null
+	city?: string | null
+	age?: number | null
+	gender?: string | null
 
-	level?: string
-	experience_months?: number
-	dominant_hand?: string
-	preferred_format?: string
-	play_frequency?: string
-	common_places?: string[]
-	play_time?: string
+	level?: string | null
+	experienceMonths?: number | null
+	dominantHand?: string | null
+	preferredFormat?: string | null
+	playFrequency?: string | null
+	commonPlaces?: string[] | null
+	playTime?: string | null
 
-	bio?: string
-	contact?: string
+	bio?: string | null
+	contact?: string | null
 
 	rating?: number
-	reviews_count?: number
+	reviewsCount?: number
 
 	createdAt?: Date
 	updatedAt?: Date
 }
 
-interface UserProfileCreationAttributes
-	extends Optional<UserProfileAttributes, 'id'> {}
+type UserProfileCreationAttributes = Optional<UserProfileAttributes, 'id'>
 
 class UserProfile
 	extends Model<UserProfileAttributes, UserProfileCreationAttributes>
 	implements UserProfileAttributes
 {
 	declare id: number
-	declare user_id: number
+	declare userId: number
 
 	declare nickname: string
-	declare avatar_url: string
-	declare city: string
-	declare age: number
-	declare gender: string
+	declare avatarUrl: string | null
+	declare city: string | null
+	declare age: number | null
+	declare gender: string | null
 
-	declare level: string
-	declare experience_months: number
-	declare dominant_hand: string
-	declare preferred_format: string
-	declare play_frequency: string
-	declare common_places: string[]
-	declare play_time: string
+	declare level: string | null
+	declare experienceMonths: number | null
+	declare dominantHand: string | null
+	declare preferredFormat: string | null
+	declare playFrequency: string | null
+	declare commonPlaces: string[] | null
+	declare playTime: string | null
 
-	declare bio: string
-	declare contact: string
+	declare bio: string | null
+	declare contact: string | null
 
 	declare rating: number
-	declare reviews_count: number
+	declare reviewsCount: number
 
 	declare readonly createdAt: Date
 	declare readonly updatedAt: Date
@@ -71,63 +70,73 @@ UserProfile.init(
 			autoIncrement: true,
 			primaryKey: true,
 		},
-		user_id: {
+		userId: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
-			references: {
-				model: 'users',
-				key: 'id',
-			},
+			references: { model: 'users', key: 'id' },
 			onDelete: 'CASCADE',
 		},
 		nickname: {
 			type: DataTypes.STRING,
 			allowNull: false,
 		},
-		avatar_url: {
+		avatarUrl: {
 			type: DataTypes.STRING,
+			allowNull: true,
 		},
 		city: {
 			type: DataTypes.STRING,
+			allowNull: true,
 		},
 		age: {
 			type: DataTypes.INTEGER,
+			allowNull: true,
 		},
 		gender: {
 			type: DataTypes.STRING,
+			allowNull: true,
 		},
 		level: {
 			type: DataTypes.STRING,
+			allowNull: true,
 		},
-		experience_months: {
+		experienceMonths: {
 			type: DataTypes.INTEGER,
+			allowNull: true,
 		},
-		dominant_hand: {
+		dominantHand: {
 			type: DataTypes.STRING,
+			allowNull: true,
 		},
-		preferred_format: {
+		preferredFormat: {
 			type: DataTypes.STRING,
+			allowNull: true,
 		},
-		play_frequency: {
+		playFrequency: {
 			type: DataTypes.STRING,
+			allowNull: true,
 		},
-		common_places: {
+		commonPlaces: {
 			type: DataTypes.ARRAY(DataTypes.STRING),
+			allowNull: true,
 		},
-		play_time: {
+		playTime: {
 			type: DataTypes.STRING,
+			allowNull: true,
 		},
 		bio: {
 			type: DataTypes.TEXT,
+			allowNull: true,
 		},
 		contact: {
 			type: DataTypes.STRING,
+			allowNull: true,
 		},
 		rating: {
 			type: DataTypes.DECIMAL(3, 2),
 			defaultValue: 0.0,
 		},
-		reviews_count: {
+		reviewsCount: {
 			type: DataTypes.INTEGER,
 			defaultValue: 0,
 		},
@@ -141,7 +150,7 @@ UserProfile.init(
 	}
 )
 
-UserProfile.belongsTo(User, { foreignKey: 'user_id', as: 'user' })
-User.hasOne(UserProfile, { foreignKey: 'user_id', as: 'profile' })
+UserProfile.belongsTo(User, { foreignKey: 'userId', as: 'user' })
+User.hasOne(UserProfile, { foreignKey: 'userId', as: 'profile' })
 
 export default UserProfile

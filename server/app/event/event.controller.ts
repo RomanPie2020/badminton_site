@@ -96,14 +96,15 @@ class EventController {
 				throw ApiError.Forbidden('Доступ заборонено')
 			}
 
+			// Тепер підтримуємо: created | attending | all
 			const type = (req.query.type as string) || 'created'
-			if (!['created', 'attending'].includes(type)) {
+			if (!['created', 'attending', 'all'].includes(type)) {
 				throw ApiError.BadRequest('Невідомий тип подій')
 			}
 
 			const events = await eventService.getUserEvents(
 				me,
-				type as 'created' | 'attending'
+				type as 'created' | 'attending' | 'all'
 			)
 			res.json(events)
 		} catch (err) {

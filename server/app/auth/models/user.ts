@@ -1,3 +1,4 @@
+import EventModel from '@/event/models/event'
 import {
 	BelongsToManyAddAssociationMixin,
 	BelongsToManyGetAssociationsMixin,
@@ -52,10 +53,13 @@ class User extends Model<UserAttributes, UserCreationAttributes> {
 	declare refreshToken: string | null
 	declare googleId: string | null
 
-	declare getAttendingEvents: BelongsToManyGetAssociationsMixin<Event>
-	declare addAttendingEvent: BelongsToManyAddAssociationMixin<Event, number>
+	declare getAttendingEvents: BelongsToManyGetAssociationsMixin<EventModel>
+	declare addAttendingEvent: BelongsToManyAddAssociationMixin<
+		EventModel,
+		number
+	>
 	declare removeAttendingEvent: BelongsToManyRemoveAssociationMixin<
-		Event,
+		EventModel,
 		number
 	>
 }

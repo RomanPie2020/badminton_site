@@ -125,3 +125,50 @@ export interface IResetPasswordRequest {
 		confirmPassword: string
 	}
 }
+
+// Events
+export interface EventWithRelations {
+	id: number
+	title: string
+	location: string
+	eventDate: string
+	creator: { id: number; username: string }
+	participants: { id: number }[]
+}
+
+export interface EventCardProps {
+	event: EventWithRelations
+	currentUserId: number
+	onJoin: (id: number) => void
+	onLeave: (id: number) => void
+}
+
+// user profile
+export interface UserProfile {
+	id: number
+	userId: number
+	username: string // з таблиці users
+	email?: string // якщо ви віддаєте email
+	nickname: string
+	avatarUrl?: string | null
+	city?: string | null
+	age?: number | null
+	gender?: 'male' | 'female' | 'other' | null
+
+	level?: string | null
+	experienceMonths?: number | null
+	dominantHand?: 'left' | 'right' | null
+	preferredFormat?: 'singles' | 'doubles' | 'mixed' | null
+	playFrequency?: string | null
+	commonPlaces?: string[] | null
+	playTime?: string | null
+
+	bio?: string | null
+	contact?: string | null
+
+	rating: number
+	reviewsCount: number
+
+	createdAt: string // ISO-рядок
+	updatedAt: string // ISO-рядок
+}

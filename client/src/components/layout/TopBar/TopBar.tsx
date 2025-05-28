@@ -37,6 +37,12 @@ const profileButtonProps: ILogButton = {
 	styles: 'log-button',
 }
 
+const eventsButtonProps: ILogButton = {
+	title: 'Events',
+	to: '/events',
+	styles: 'log-button',
+}
+
 function TopBar() {
 	const navigate = useNavigate()
 	const { logOut } = useActions()
@@ -65,23 +71,25 @@ function TopBar() {
 
 	return (
 		<>
-			<div className='flex justify-between fixed top-0 w-full px-5 bg-[#282828] z-50'>
+			<div className='flex justify-between fixed top-0 w-full px-5 bg-[#282828] z-50 '>
 				<div className='flex'>
 					<Link
-						className='inline-block bg-logo bg-no-repeat bg-left w-16 h-16 my-4'
+						className='inline-block bg-shuttlecock_icon bg-no-repeat bg-left my-4 bg-cover h-16 w-16'
 						to='/'
 					></Link>
-					<div className='ml-2 mt-10 text-white sm:hidden'>QuickPaste</div>
+					<div className='ml-2 mt-10 text-white sm:hidden'>BadmickTogether</div>
 				</div>
 
 				{/* <SearchInput /> */}
 				{isAuthenticated ? (
 					<div className='flex'>
+						<LogButton button={eventsButtonProps} />
+
+						<LogButton button={profileButtonProps} />
 						<LogButton
 							onButtonClick={() => logoutUser()}
 							button={logoutButtonProps}
 						/>
-						<LogButton button={profileButtonProps} />
 					</div>
 				) : (
 					<div className='flex'>

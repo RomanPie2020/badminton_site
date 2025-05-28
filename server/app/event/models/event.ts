@@ -27,7 +27,7 @@ export interface EventAttributes {
 interface EventCreationAttributes
 	extends Optional<EventAttributes, 'id' | 'description' | 'maxParticipants'> {}
 
-class Event
+class EventModel
 	extends Model<EventAttributes, EventCreationAttributes>
 	implements EventAttributes
 {
@@ -48,12 +48,12 @@ class Event
 
 	// Ассоціації
 	static associations: {
-		participants: Association<Event, User>
-		creator: Association<Event, User>
+		participants: Association<EventModel, User>
+		creator: Association<EventModel, User>
 	}
 }
 
-Event.init(
+EventModel.init(
 	{
 		id: {
 			type: DataTypes.INTEGER,
@@ -100,19 +100,19 @@ Event.init(
 )
 
 // Взаємозв’язки
-Event.belongsTo(User, { as: 'creator', foreignKey: 'creatorId' })
-User.hasMany(Event, { as: 'createdEvents', foreignKey: 'creatorId' })
+EventModel.belongsTo(User, { as: 'creator', foreignKey: 'creatorId' })
+User.hasMany(EventModel, { as: 'createdEvents', foreignKey: 'creatorId' })
 
 // Таблиця учасників — many-to-many
-Event.belongsToMany(User, {
+EventModel.belongsToMany(User, {
 	through: 'event_participants',
 	as: 'participants',
 	foreignKey: 'event_id',
 })
-User.belongsToMany(Event, {
+User.belongsToMany(EventModel, {
 	through: 'event_participants',
 	as: 'attendingEvents',
 	foreignKey: 'user_id',
 })
 
-export default Event
+export default EventModel

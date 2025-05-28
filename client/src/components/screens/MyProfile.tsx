@@ -101,6 +101,19 @@ const ProfileForm = () => {
 				</h3>
 				<div className='grid grid-cols-1 sm:grid-cols-2 gap-4'>
 					<div>
+						{profile.avatarUrl ? (
+							<img
+								src={profile.avatarUrl}
+								alt='Avatar'
+								className='w-24 h-24 rounded-full mb-4 object-cover'
+							/>
+						) : (
+							<div className='w-24 h-24 rounded-full bg-gray-200 mb-4 flex items-center justify-center text-gray-500 m-auto'>
+								Немає
+							</div>
+						)}
+					</div>
+					<div>
 						<label className={LABEL_CLASS}>Нікнейм</label>
 						<input
 							type='text'
