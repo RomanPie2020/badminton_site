@@ -49,16 +49,18 @@ function Home() {
 
 	if (!isAuthenticated) {
 		return (
-			<div className='bg-gray-300 py-40 md:px-10'>
+			<div className='min-h-screen bg-gradient-to-t from-sky-200 to-indigo-300 py-40 md:px-10'>
 				<main className='flex flex-col items-center mt-10'>
 					<h1 className='text-7xl sm:text-4xl text-center font-bold mb-4 '>
-						Welcome to QuickPaste!
+						Вітаємо на BadmickTogether!
 					</h1>
 					<p className='text-xl sm:text-lg text-center max-w-2xl mb-8'>
-						QuickPaste is a simple and efficient tool for creating, sharing, and
-						managing text notes. Whether you need to save your information,
-						notes, or any other text, QuickPaste makes it easy. Log in or sign
-						up to start creating and sharing your pastes today!
+						Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quia
+						repellat tenetur molestias quasi esse, eligendi distinctio illo vel
+						iusto ullam non odio consectetur tempora ex dolores omnis quam
+						accusamus. Accusantium praesentium placeat et doloribus aliquam
+						molestias maxime est, velit non, in, fugiat saepe vel reprehenderit
+						porro doloremque? Est, repellat autem!
 					</p>
 					<div className='flex space-x-4'>
 						<Link
@@ -89,23 +91,35 @@ function Home() {
 
 	return (
 		<>
-			<div className='mt-28'>
-				{/* <PasteForm
-					submitFunc={createPasteFunc}
-					submitButton={createPasteButtonProps}
-				/>
-				<h1 className='text-7xl sm:text-4xl mt-16 text-center'>Pastes</h1>
-				<ul>
-					{pastes && pastes.length > 0 ? (
-						pastes.map(paste => (
-							<PasteItem key={paste.id} paste={paste} refetch={refetch} />
-						))
-					) : (
-						<p className='text-center mt-4 mb-8 text-gray-600'>
-							No pastes available.
-						</p>
-					)}
-				</ul> */}
+			<div className='w-full min-h-screen bg-gradient-to-t from-slate-200 to-indigo-400 py-40 md:px-10 px-4'>
+				{/* <div className='absolute inset-0'></div> */}
+				<div className='flex flex-col items-center mt-10'>
+					<h1 className='text-7xl sm:text-4xl text-center font-bold mb-4'>
+						Приєднуйся до подій та грай бадмінтон!!!
+					</h1>
+					<p className='text-xl sm:text-lg text-center max-w-2xl mb-8'>
+						Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quia
+						repellat tenetur molestias quasi esse, eligendi distinctio illo vel
+						iusto ullam non odio consectetur tempora ex dolores omnis quam
+						accusamus. Accusantium praesentium placeat et doloribus aliquam
+						molestias maxime est, velit non, in, fugiat saepe vel reprehenderit
+						porro doloremque? Est, repellat autem!
+					</p>
+					<div className='flex space-x-4'>
+						<Link
+							to='/login'
+							className='px-6 py-2 bg-gray-600 text-white rounded hover:bg-gray-700'
+						>
+							Log In
+						</Link>
+						<Link
+							to='/signup'
+							className='px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700'
+						>
+							Sign Up
+						</Link>
+					</div>
+				</div>
 			</div>
 		</>
 	)

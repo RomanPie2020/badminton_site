@@ -6,6 +6,7 @@ import {
 	ILogInData,
 	ILogInFormProps,
 } from '../../../shared/interfaces/models'
+import TextInput from '../Inputs/FormInput'
 import LogButton from '../LogButton/LogButton'
 // const submitButtonProps: ILogButton = {
 // 	title: 'LogIn',
@@ -62,41 +63,37 @@ const LogInForm = ({ onSubmit, errorMessage }: ILogInFormProps) => {
 				autoComplete='off'
 				onSubmit={handleSubmit(onSubmit)}
 			>
-				<label>
-					Email <br />
-					<input type='email' {...register('email', { required: true })} />
-				</label>
-				{errors.email && (
-					<div>
-						<span>This field is required</span>
-					</div>
-				)}
-
-				<label>
-					<br /> Password <br />
-					<input
-						type='password'
-						{...register('password', { required: true })}
-					/>
-				</label>
-				{errors.password && <span>This field is required</span>}
-				<br />
-				{errorMessage && (
-					<div className='text-red-600 mt-2'>{errorMessage}</div>
-				)}
+				<TextInput
+					label='Email'
+					name='email'
+					type='email'
+					register={register}
+					rules={{ required: 'Email is required' }}
+					error={errors.email}
+					placeholder='you@example.com'
+				/>
+				<TextInput
+					label='Password'
+					name='password'
+					type='password'
+					register={register}
+					rules={{
+						minLength: { value: 6, message: 'Min 6 characters' },
+					}}
+					error={errors.password}
+					placeholder='******'
+				/>
 				<LogButton button={logInButtonProps} />
-				<br />
 				<LogButton button={forgotPasswordButtonProps} />
-				<br />
+
 				<button
 					onClick={googleLogin}
 					type='button'
-					className='flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-md shadow-sm hover:bg-gray-100 transition bg-blue-100'
+					className='flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-md shadow-sm hover:bg-gray-100 transition bg-blue-100 my-5'
 				>
 					<img src={googleIcon} alt='Google' className='w-5 h-5' />
 					<span className='text-sm text-gray-700'>Continue with Google</span>
 				</button>
-				<br />
 			</form>
 			<LogButton button={signUpButtonProps} />
 		</>

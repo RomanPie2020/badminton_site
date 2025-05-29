@@ -10,7 +10,7 @@ import {
 import { ILogButton, IRequestCreatePaste } from '../../shared/interfaces/models'
 import PasteForm from './forms/PasteForm'
 import LogButton from './LogButton/LogButton'
-import Modal from './Modal'
+import Modal from './Modal_old'
 
 const updatePasteButtonProps: ILogButton = {
 	title: 'Update',
