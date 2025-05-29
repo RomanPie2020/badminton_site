@@ -107,16 +107,10 @@ function Home() {
 					</p>
 					<div className='flex space-x-4'>
 						<Link
-							to='/login'
+							to='/events'
 							className='px-6 py-2 bg-gray-600 text-white rounded hover:bg-gray-700'
 						>
-							Log In
-						</Link>
-						<Link
-							to='/signup'
-							className='px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700'
-						>
-							Sign Up
+							Go to Events
 						</Link>
 					</div>
 				</div>

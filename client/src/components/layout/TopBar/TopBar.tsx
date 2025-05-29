@@ -71,7 +71,7 @@ function TopBar() {
 
 	return (
 		<>
-			<div className='flex justify-between fixed top-0 w-full px-5 bg-[#282828] z-50 '>
+			<div className='flex justify-between fixed top-0 w-full px-5 bg-gradient-to-t from-gray-700 to-indigo-500 z-50 '>
 				<div className='flex'>
 					<Link
 						className='inline-block bg-shuttlecock_icon bg-no-repeat bg-left my-4 bg-cover h-16 w-16'

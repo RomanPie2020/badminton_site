@@ -5,12 +5,14 @@ import { eventService } from '../services/EventService'
 import { pasteService } from '../services/PasteService'
 import { authStatusSliceReducer } from './authStatus.slice'
 import { favoritesReducer } from './favorites/favoritesSlice'
+import { filtersSliceReducer } from './filtersSlice'
 import { userIdReducer } from './userId.slice'
 
 const reducers = combineReducers({
 	code: userIdReducer,
 	favorites: favoritesReducer,
 	authStatus: authStatusSliceReducer,
+	filters: filtersSliceReducer,
 	[authService.reducerPath]: authService.reducer,
 	[pasteService.reducerPath]: pasteService.reducer,
 	[eventService.reducerPath]: eventService.reducer,

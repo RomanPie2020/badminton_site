@@ -12,7 +12,7 @@ const LogButton = ({ button, onButtonClick }: ButtonProps) => {
 	const baseClasses = 'block p-3 border-2 rounded-md text-center'
 	const buttonClass = clsx(
 		{
-			[`${baseClasses} text-white bg-[#282828] border-white my-6 ml-5 `]:
+			[`${baseClasses} text-white bg-gray border-white my-6 ml-5 `]:
 				button.styles === 'log-button',
 			[`${baseClasses} text-black bg-white border-black my-6 ml-5 `]:
 				button.styles === 'reg-button',

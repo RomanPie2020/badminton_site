@@ -2,11 +2,19 @@
 import { format } from 'date-fns'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import {
+	useDeleteEventMutation,
+	useUpdateEventMutation,
+} from '../../services/EventService'
 import { EventWithRelations } from '../../shared/interfaces/models'
+import ConfirmModal from './ConfirmModal'
+import DetailModal from './DetailModal'
+import EventFormModal from './EventFormModal'
 
 interface EventCardProps {
 	event: EventWithRelations
 	currentUserId: number
+	onRefetch: () => void
 	onJoin: (id: number) => void
 	onLeave: (id: number) => void
 }
@@ -14,35 +22,60 @@ interface EventCardProps {
 const EventCard: React.FC<EventCardProps> = ({
 	event,
 	currentUserId,
+	onRefetch,
 	onJoin,
 	onLeave,
 }) => {
-	const [showModal, setShowModal] = useState(false)
+	const [showDetails, setShowDetails] = useState(false)
+	const [isEditOpen, setIsEditOpen] = useState(false)
+	const [isDeleteConfirm, setIsDeleteConfirm] = useState(false)
+
+	const [updateEvent] = useUpdateEventMutation()
+	const [deleteEvent, { isLoading: isDeleting }] = useDeleteEventMutation()
+
 	const joined = event.participants.some(u => u.id === currentUserId)
+	const isCreator = event.creator.id === currentUserId
 	const isFull =
 		typeof event.maxParticipants === 'number' &&
 		event.participants.length >= event.maxParticipants
+
 	const navigate = useNavigate()
+
+	const handleEditSubmit = async (updatedData: any) => {
+		console.log('Submitting updated data:', updatedData)
+		console.log('Event ID:', { eventId: event.id, data: { ...updatedData } })
+
+		await updateEvent({ eventId: event.id, data: { ...updatedData } }).unwrap()
+		setIsEditOpen(false)
+		onRefetch()
+	}
+	const handleDelete = async () => {
+		await deleteEvent(event.id).unwrap()
+		setIsDeleteConfirm(false)
+		onRefetch()
+	}
 
 	return (
 		<>
 			<div className='w-full max-w-md bg-white rounded-2xl shadow-md p-6 flex flex-col justify-self-center  hover:shadow-lg transition-shadow duration-200 text-justify hyphens-auto'>
-				<h3 className='text-xl font-semibold mb-2'>{event.title}</h3>
+				<h3 className='text-xl font-semibold mb-2 truncate'>{event.title}</h3>
 				<p className='text-gray-600 text-sm mb-1'>
 					📅 {format(new Date(event.eventDate), 'dd.MM.yyyy HH:mm')}
 				</p>
-				<p className='text-gray-600 text-sm mb-2'>📍 {event.location}</p>
+				<p className='text-gray-600 text-sm mb-2 truncate'>
+					📍 {event.location}
+				</p>
 				<p className='text-gray-500 text-sm mb-4'>
 					Створив:{' '}
 					<span className='font-medium'>
-						{event.creator.nickname || event.creator.username}
+						{event.creator.profile.nickname || event.creator.username}
 					</span>
 				</p>
 
 				<div className='mt-auto flex flex-col justify-between space-x-2 gap-2'>
 					<div className='flex gap-2 flex-wrap'>
 						<button
-							onClick={() => setShowModal(true)}
+							onClick={() => setShowDetails(true)}
 							className='px-3 py-1 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300'
 						>
 							Деталі
@@ -50,7 +83,7 @@ const EventCard: React.FC<EventCardProps> = ({
 						{!joined && !isFull && (
 							<button
 								onClick={() => onJoin(event.id)}
-								className='px-3 py-1 bg-blue-600 text-white rounded-lg hover:bg-blue-700'
+								className='px-3 py-1 bg-blue-700 text-white rounded-lg hover:bg-blue-500'
 							>
 								Join
 							</button>
@@ -58,13 +91,13 @@ const EventCard: React.FC<EventCardProps> = ({
 						{joined && (
 							<button
 								onClick={() => onLeave(event.id)}
-								className='px-3 py-1 bg-red-500 text-white rounded-lg hover:bg-red-600'
+								className='px-3 py-1 text-black bg-red-700 rounded-lg hover:bg-red-600'
 							>
 								Leave
 							</button>
 						)}
 						{isFull && !joined && (
-							<span className='px-3 py-1 bg-gray-300 text-gray-700 rounded-lg'>
+							<span className='px-2 py-1 bg-gray-300 text-gray-700 rounded-lg whitespace-nowrap'>
 								Усі місця зайнято
 							</span>
 						)}
@@ -74,11 +107,61 @@ const EventCard: React.FC<EventCardProps> = ({
 						Учасників: {event.participants.length}
 						{event.maxParticipants != null && <> / {event.maxParticipants}</>}
 					</div>
+					{/* Edit/Delete for creator */}
+					{isCreator && (
+						<div className='flex gap-2 mt-2'>
+							<button
+								onClick={() => setIsEditOpen(true)}
+								className='px-3 py-1 bg-yellow-600 text-black rounded-lg hover:bg-yellow-500'
+							>
+								Редагувати
+							</button>
+							<button
+								onClick={() => setIsDeleteConfirm(true)}
+								className='px-3 py-1 bg-red-700 text-black rounded-lg hover:bg-red-600'
+							>
+								Видалити
+							</button>
+						</div>
+					)}
 				</div>
 			</div>
 
+			{/* Детальна модалка (без змін) */}
+			{showDetails && (
+				<DetailModal
+					event={event}
+					onClose={() => setShowDetails(false)}
+					currentUserId={currentUserId}
+					onJoin={onJoin}
+					onLeave={onLeave}
+				/>
+			)}
+
+			{/* (1) Modal для створення/редагування */}
+			{isEditOpen && (
+				<EventFormModal
+					initialData={event}
+					currentParticipants={event.participants.length}
+					onClose={() => setIsEditOpen(false)}
+					onSubmit={handleEditSubmit}
+				/>
+			)}
+
+			{/* (2) Confirm перед видаленням */}
+			{isDeleteConfirm && (
+				<ConfirmModal
+					title='Видалити подію?'
+					message='Цю дію не можна буде відмінити.'
+					confirmText='Видалити'
+					cancelText='Скасувати'
+					onConfirm={handleDelete}
+					onCancel={() => setIsDeleteConfirm(false)}
+					isLoading={isDeleting}
+				/>
+			)}
 			{/* Modal */}
-			{showModal && (
+			{/* {showModal && (
 				<div className='fixed inset-0 bg-black/40 flex items-center justify-center z-50 text-justify hyphens-auto'>
 					<div className='bg-white rounded-xl shadow-xl w-full max-w-lg p-6 relative'>
 						<button
@@ -132,7 +215,7 @@ const EventCard: React.FC<EventCardProps> = ({
 						)}
 					</div>
 				</div>
-			)}
+			)} */}
 		</>
 	)
 }

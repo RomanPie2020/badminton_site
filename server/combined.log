@@ -4067,3 +4067,43 @@
 {"level":"info","message":"User logged out","timestamp":"2025-05-29T14:44:51.884Z"}
 {"level":"info","message":"Refresh token saved for user 40","timestamp":"2025-05-29T14:44:56.178Z"}
 {"level":"info","message":"Користувач romanstone2004@gmail.com успішно увійшов","timestamp":"2025-05-29T14:44:56.178Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-05-29T14:50:10.263Z"}
+{"level":"info","message":"Refresh token saved for user 40","timestamp":"2025-05-29T14:50:19.276Z"}
+{"level":"info","message":"Користувач romanstone2004@gmail.com успішно увійшов","timestamp":"2025-05-29T14:50:19.276Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-05-29T14:50:38.575Z"}
+{"level":"info","message":"Refresh token saved for user 40","timestamp":"2025-05-29T14:50:49.002Z"}
+{"level":"info","message":"Користувач romanstone2004@gmail.com успішно увійшов","timestamp":"2025-05-29T14:50:49.002Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-29T15:06:29.933Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-29T15:06:59.659Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-29T15:09:27.436Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-29T15:10:10.393Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-05-29T15:24:37.613Z"}
+{"level":"info","message":"Refresh token saved for user 40","timestamp":"2025-05-29T15:41:32.527Z"}
+{"level":"info","message":"Користувач romanstone2004@gmail.com успішно увійшов","timestamp":"2025-05-29T15:41:32.527Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-05-29T15:43:08.467Z"}
+{"level":"info","message":"Refresh token saved for user 35","timestamp":"2025-05-29T15:43:13.044Z"}
+{"level":"info","message":"Користувач romankaras2004@gmail.com успішно увійшов","timestamp":"2025-05-29T15:43:13.045Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-29T16:06:18.267Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-29T16:07:35.473Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-29T16:10:33.232Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-29T16:11:10.517Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-29T16:19:35.429Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-29T16:19:51.095Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-29T16:50:40.638Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-29T16:50:40.642Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-29T16:50:40.717Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-29T16:54:07.814Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-29T16:54:59.773Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-29T16:56:20.095Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-29T16:56:32.840Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-29T16:56:42.175Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-29T16:56:51.939Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-29T16:56:54.564Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-29T17:05:05.298Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-29T17:18:03.244Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-29T17:18:03.249Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-29T17:18:03.298Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-29T17:30:31.410Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-29T22:33:26.278Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-29T22:33:26.282Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-29T22:33:26.381Z"}
