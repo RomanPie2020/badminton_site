@@ -1,11 +1,17 @@
-import { Dialog, Tab, Transition } from '@headlessui/react'
+import {
+	Dialog,
+	DialogTitle,
+	Tab,
+	TabGroup,
+	TabList,
+	TabPanels,
+	Transition,
+	TransitionChild,
+} from '@headlessui/react'
 import { Fragment } from 'react'
-import { useSelector } from 'react-redux'
-
 import { useActions } from '../../hooks/useActions'
 import { selectFilters } from '../../store/filtersSlice'
-import { RootState } from '../../store/store'
-
+import { useAppSelector } from '../../store/store'
 const categories = [
 	{ key: 'style', label: 'Style' },
 	{ key: 'productType', label: 'Product Type' },
@@ -15,12 +21,11 @@ const categories = [
 	{ key: 'brand', label: 'Brand' },
 ]
 
-export default function FilterModal() {
+function FilterModal() {
 	const { closeFiltersModal, setFilter, clearFilters } = useActions()
-	const { isOpen, values } = useSelector((state: RootState) => ({
-		isOpen: state.filters.modalOpen,
-		values: selectFilters(state),
-	}))
+
+	const isOpen = useAppSelector(state => state.filters.modalOpen)
+	const values = useAppSelector(selectFilters)
 
 	const closeModal = () => closeFiltersModal()
 
@@ -32,7 +37,7 @@ export default function FilterModal() {
 				onClose={closeModal}
 			>
 				<div className='min-h-screen px-4 text-center'>
-					<Transition.Child
+					<TransitionChild
 						as={Fragment}
 						enter='ease-out duration-300'
 						enterFrom='opacity-0'
@@ -41,8 +46,10 @@ export default function FilterModal() {
 						leaveFrom='opacity-100'
 						leaveTo='opacity-0'
 					>
-						<Dialog.Overlay className='fixed inset-0 bg-black bg-opacity-40' />
-					</Transition.Child>
+						<TransitionChild as={Fragment} enter='...' leave='...'>
+							<div className='fixed inset-0 bg-black bg-opacity-40' />
+						</TransitionChild>
+					</TransitionChild>
 
 					<span
 						className='inline-block h-screen align-middle'
@@ -50,7 +57,7 @@ export default function FilterModal() {
 					>
 						&#8203;
 					</span>
-					<Transition.Child
+					<TransitionChild
 						as={Fragment}
 						enter='ease-out duration-300'
 						enterFrom='opacity-0 scale-95'
@@ -60,14 +67,14 @@ export default function FilterModal() {
 						leaveTo='opacity-0 scale-95'
 					>
 						<div className='inline-block w-full max-w-2xl p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl'>
-							<Dialog.Title
+							<DialogTitle
 								as='h3'
 								className='text-lg font-medium leading-6 text-gray-900 mb-4'
 							>
 								Filters
-							</Dialog.Title>
-							<Tab.Group>
-								<Tab.List className='flex space-x-4 border-b mb-4'>
+							</DialogTitle>
+							<TabGroup>
+								<TabList className='flex space-x-4 border-b mb-4'>
 									{categories.map(cat => (
 										<Tab
 											key={cat.key}
@@ -82,8 +89,8 @@ export default function FilterModal() {
 											{cat.label}
 										</Tab>
 									))}
-								</Tab.List>
-								<Tab.Panels>
+								</TabList>
+								<TabPanels>
 									{categories.map(cat => (
 										<Tab.Panel key={cat.key} className='space-y-3'>
 											{/* Render filter controls based on category */}
@@ -149,8 +156,8 @@ export default function FilterModal() {
 											)}
 										</Tab.Panel>
 									))}
-								</Tab.Panels>
-							</Tab.Group>
+								</TabPanels>
+							</TabGroup>
 
 							<div className='mt-6 flex justify-between'>
 								<button
@@ -178,9 +185,10 @@ export default function FilterModal() {
 								</div>
 							</div>
 						</div>
-					</Transition.Child>
+					</TransitionChild>
 				</div>
 			</Dialog>
 		</Transition>
 	)
 }
+export default FilterModal

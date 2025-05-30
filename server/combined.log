@@ -4107,3 +4107,21 @@
 {"level":"info","message":"database password is: string","timestamp":"2025-05-29T22:33:26.278Z"}
 {"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-29T22:33:26.282Z"}
 {"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-29T22:33:26.381Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-30T08:48:35.201Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-30T08:48:35.206Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-30T08:48:35.320Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-30T08:57:34.783Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-30T08:57:34.788Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-30T08:57:34.841Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-30T09:42:44.616Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-30T09:42:44.620Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-30T09:42:44.746Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-05-30T09:46:05.926Z"}
+{"level":"info","message":"Refresh token saved for user 35","timestamp":"2025-05-30T09:46:06.997Z"}
+{"level":"info","message":"Користувач romankaras2004@gmail.com успішно увійшов","timestamp":"2025-05-30T09:46:06.997Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-05-30T09:46:07.909Z"}
+{"level":"info","message":"Refresh token saved for user 35","timestamp":"2025-05-30T09:46:11.044Z"}
+{"level":"info","message":"Користувач romankaras2004@gmail.com успішно увійшов","timestamp":"2025-05-30T09:46:11.045Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-30T10:32:59.033Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-30T10:32:59.037Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-30T10:32:59.162Z"}
