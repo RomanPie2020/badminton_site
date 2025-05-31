@@ -1,5 +1,6 @@
 // app/services/eventService.ts
 import { createApi } from '@reduxjs/toolkit/query/react'
+import { EventWithRelations, Filters } from '../shared/interfaces/models'
 import { baseQueryWithReauth } from './baseQueryWithReauth'
 
 export const eventService = createApi({
@@ -99,6 +100,44 @@ export const eventService = createApi({
 			}),
 			providesTags: ['UserEvents'],
 		}),
+
+		getFilteredEvents: build.query<EventWithRelations[], { filters: Filters }>({
+			query: ({ filters }) => {
+				const params = new URLSearchParams()
+
+				if (filters.events && filters.events.length > 0) {
+					// «events=Турнір,Тренування»
+					params.set('events', filters.events.join(','))
+				}
+
+				if (filters.date) {
+					// «dateFrom=2025-06-01&dateTo=2025-06-07»
+					params.set('dateFrom', filters.date.from)
+					params.set('dateTo', filters.date.to)
+				}
+
+				if (filters.typeOfGame && filters.typeOfGame.length > 0) {
+					// «typeOfGame=Одиночна,Парна»
+					params.set('typeOfGame', filters.typeOfGame.join(','))
+				}
+
+				if (filters.levelOfPlayers && filters.levelOfPlayers.length > 0) {
+					// «levelOfPlayers=Новачок,Просунутий»
+					params.set('levelOfPlayers', filters.levelOfPlayers.join(','))
+				}
+
+				const queryString = params.toString()
+				// Якщо не задано жодного фільтра, просто повернете '/events'
+				return queryString ? `/api/events?${queryString}` : '/api/events'
+			},
+			providesTags: (result, error, { filters }) =>
+				result
+					? [
+							...result.map(({ id }) => ({ type: 'Event' as const, id })),
+							{ type: 'Event', id: `FILTERED_${JSON.stringify(filters)}` },
+					  ]
+					: [{ type: 'Event', id: `FILTERED_${JSON.stringify(filters)}` }],
+		}),
 	}),
 })
 
@@ -111,4 +150,5 @@ export const {
 	useJoinEventMutation,
 	useLeaveEventMutation,
 	useGetUserEventsQuery,
+	useGetFilteredEventsQuery,
 } = eventService

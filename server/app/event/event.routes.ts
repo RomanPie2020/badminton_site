@@ -7,7 +7,7 @@ import { eventSchema } from './schemas/event.schema'
 const router = Router()
 
 // Список всіх івентів (public)
-router.get('/api/events', eventController.getAllEvents)
+router.get('/api/events', eventController.getFilteredEvents)
 
 // Деталі конкретного івенту (public)
 router.get('/api/events/:id', eventController.getEventById)

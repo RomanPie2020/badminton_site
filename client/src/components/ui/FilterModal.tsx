@@ -428,17 +428,10 @@ export default function FilterModal() {
 								<div className='space-x-2'>
 									<button
 										type='button'
-										className='px-4 py-2 bg-gray-200 rounded hover:bg-gray-300'
+										className='px-4 py-2 bg-red-700 text-white rounded hover:bg-red-600'
 										onClick={closeModal}
 									>
-										Скасувати
-									</button>
-									<button
-										type='button'
-										className='px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700'
-										onClick={closeModal}
-									>
-										Застосувати
+										Закрити
 									</button>
 								</div>
 							</div>

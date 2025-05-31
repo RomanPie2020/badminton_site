@@ -1,6 +1,8 @@
 import User from '@/auth/models/user'
 import ApiError from '@/exceptions/apiError'
 import UserProfile from '@/profile/models/userProfile'
+import { Op, WhereOptions } from 'sequelize'
+import { Filters } from './event.types'
 import {
 	default as Event,
 	EventAttributes,
@@ -8,9 +10,53 @@ import {
 } from './models/event'
 class EventService {
 	// 1) Отримати всі івенти разом із кількістю учасників
-	async getAll() {
-		return await Event.findAll({
-			order: [['id', 'ASC']],
+	public async getFiltered(filters: Partial<Filters>) {
+		// 1) Створюємо об'єкт where для базової фільтрації
+		const where: WhereOptions = {}
+
+		// 2) Якщо є eventType (масив строк) → WHERE eventType IN (...)
+		if (filters.eventType && filters.eventType.length > 0) {
+			where.eventType = { [Op.in]: filters.eventType }
+		}
+
+		// 3) Якщо є gameType → WHERE gameType IN (...)
+		if (filters.gameType && filters.gameType.length > 0) {
+			where.gameType = { [Op.in]: filters.gameType }
+		}
+
+		// 4) Якщо є levelOfPlayers → WHERE levelOfPlayers IN (...)
+		if (filters.levelOfPlayers && filters.levelOfPlayers.length > 0) {
+			where.levelOfPlayers = { [Op.in]: filters.levelOfPlayers }
+		}
+
+		// 5) Якщо є діапазон дат → WHERE eventDate BETWEEN dateFrom AND dateTo
+		if (
+			typeof filters.dateFrom === 'string' &&
+			filters.dateFrom.trim() !== '' &&
+			typeof filters.dateTo === 'string' &&
+			filters.dateTo.trim() !== ''
+		) {
+			where.eventDate = {
+				[Op.between]: [new Date(filters.dateFrom), new Date(filters.dateTo)],
+			}
+		} else if (
+			typeof filters.dateFrom === 'string' &&
+			filters.dateFrom.trim() !== ''
+		) {
+			// Якщо задано тільки dateFrom → всі події з дати dateFrom і далі
+			where.eventDate = { [Op.gte]: new Date(filters.dateFrom) }
+		} else if (
+			typeof filters.dateTo === 'string' &&
+			filters.dateTo.trim() !== ''
+		) {
+			// Якщо задано тільки dateTo → всі події до dateTo включно
+			where.eventDate = { [Op.lte]: new Date(filters.dateTo) }
+		}
+
+		// 6) Виконуємо запит до БД з урахуванням where (фільтра) та включенням асоціацій
+		const events = await Event.findAll({
+			where,
+			order: [['eventDate', 'ASC']], // сортування за датою зростанням
 			include: [
 				{
 					// Творець події
@@ -18,7 +64,6 @@ class EventService {
 					attributes: ['id', 'username'],
 					include: [
 						{
-							// Профіль користувача
 							model: UserProfile,
 							as: 'profile',
 							attributes: ['nickname'],
@@ -29,7 +74,7 @@ class EventService {
 					// Учасники події
 					association: Event.associations.participants,
 					attributes: ['id', 'username'],
-					through: { attributes: [] },
+					through: { attributes: [] }, // не тягнути поля з join-таблиці
 					include: [
 						{
 							model: UserProfile,
@@ -40,6 +85,8 @@ class EventService {
 				},
 			],
 		})
+
+		return events
 	}
 
 	// 2) Отримати один івент з деталями

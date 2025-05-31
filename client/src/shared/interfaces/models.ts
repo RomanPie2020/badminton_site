@@ -172,3 +172,11 @@ export interface UserProfile {
 	createdAt: string // ISO-рядок
 	updatedAt: string // ISO-рядок
 }
+
+// Filters
+export interface Filters {
+	events?: string[]
+	date?: { from: string; to: string }
+	typeOfGame?: string[]
+	levelOfPlayers?: string[]
+}

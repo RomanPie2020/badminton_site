@@ -19,6 +19,9 @@ export interface EventAttributes {
 	eventDate: Date | null // коли найчастіше
 	maxParticipants?: number // скільки максимум
 	creatorId: number // хто створив
+	eventType: string
+	gameType: string
+	levelOfPlayers: string
 	createdAt?: Date
 	updatedAt?: Date
 }
@@ -38,6 +41,9 @@ class EventModel
 	declare eventDate: Date | null
 	declare maxParticipants: number
 	declare creatorId: number
+	declare eventType: string
+	declare gameType: string
+	declare levelOfPlayers: string
 	declare readonly createdAt: Date
 	declare readonly updatedAt: Date
 
@@ -88,6 +94,18 @@ EventModel.init(
 			field: 'creator_id',
 			references: { model: 'users', key: 'id' },
 			onDelete: 'CASCADE',
+		},
+		eventType: {
+			type: DataTypes.STRING,
+			allowNull: false,
+		},
+		gameType: {
+			type: DataTypes.STRING,
+			allowNull: false,
+		},
+		levelOfPlayers: {
+			type: DataTypes.STRING,
+			allowNull: false,
 		},
 	},
 	{

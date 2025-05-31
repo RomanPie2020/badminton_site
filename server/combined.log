@@ -4166,3 +4166,58 @@
 {"level":"info","message":"database password is: string","timestamp":"2025-05-31T16:48:58.921Z"}
 {"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-31T16:48:58.924Z"}
 {"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-31T16:48:58.974Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-31T20:19:45.115Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-31T20:19:45.119Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-31T20:19:45.175Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-31T20:20:28.655Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-31T20:20:28.659Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-31T20:20:28.723Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-31T20:22:03.669Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-31T20:22:03.674Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-31T20:22:03.728Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-31T20:22:26.942Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-31T20:22:26.946Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-31T20:22:27.005Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-31T20:24:31.851Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-31T20:24:31.855Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-31T20:24:31.899Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-31T20:24:35.587Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-31T20:24:35.592Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-31T20:24:35.647Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-31T20:25:30.322Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-31T20:25:30.326Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-31T20:25:30.385Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-31T20:26:10.781Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-31T20:26:10.785Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-31T20:26:10.841Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-31T20:26:30.237Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-31T20:26:30.241Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-31T20:26:30.287Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-31T20:27:45.370Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-31T20:27:45.375Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-31T20:27:45.440Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-31T20:37:24.708Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-31T20:48:16.748Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-31T20:48:23.787Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-31T20:50:26.428Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-31T20:50:26.432Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-31T20:50:26.490Z"}
+{"level":"error","message":"Error:","timestamp":"2025-05-31T20:52:04.977Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-31T20:55:08.258Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-31T20:55:08.264Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-31T20:55:08.314Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-31T20:56:24.145Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-31T20:56:24.149Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-31T20:56:24.200Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-31T21:41:42.525Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-31T21:41:42.529Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-31T21:41:42.623Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-31T21:46:17.891Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-31T21:46:17.895Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-31T21:46:17.943Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-31T21:49:06.669Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-31T21:49:06.673Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-31T21:49:06.727Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-05-31T21:52:44.540Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-05-31T21:52:44.546Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-05-31T21:52:44.662Z"}
