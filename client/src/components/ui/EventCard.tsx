@@ -67,9 +67,14 @@ const EventCard: React.FC<EventCardProps> = ({
 				</p>
 				<p className='text-gray-500 text-sm mb-4'>
 					Створив:{' '}
-					<span className='font-medium'>
-						{event.creator.profile.nickname || event.creator.username}
-					</span>
+					<button
+						onClick={() => {
+							navigate(`/users/${event.creatorId}/profile`)
+						}}
+						className='hover:underline font-medium'
+					>
+						{event.creator.profile.nickname || user.username}
+					</button>
 				</p>
 
 				<div className='mt-auto flex flex-col justify-between space-x-2 gap-2'>

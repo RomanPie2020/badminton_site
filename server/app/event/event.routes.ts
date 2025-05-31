@@ -36,6 +36,6 @@ router.post('/api/events/:id/join', isAuthorized, eventController.joinEvent)
 // Вийти з івенту
 router.post('/api/events/:id/leave', isAuthorized, eventController.leaveEvent)
 
-router.get('/api/events/user/:id/', isAuthorized, eventController.getUserEvents)
+router.get('/api/events/user/:id', isAuthorized, eventController.getUserEvents)
 
 export const eventRouter = router

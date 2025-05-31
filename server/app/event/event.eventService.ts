@@ -122,38 +122,23 @@ class EventService {
 		if (!user) throw ApiError.NotFound('Користувача не знайдено')
 
 		if (type === 'all') {
-			// 1) події, які я створив
-			const created = await Event.findAll({
-				where: { creatorId: userId },
-				order: [['event_date', 'ASC']],
-				include: [
-					{ association: Event.associations.participants, attributes: ['id'] },
-				],
-			})
+			// 1) Отримуємо всі створені івенти
+			const created = await this.getUserEvents(userId, 'created')
 
-			// 2) події, до яких я приєднався
-			const attending = await user.getAttendingEvents({
-				order: [['event_date', 'ASC']],
-				joinTableAttributes: [],
-				include: [
-					{
-						association: Event.associations.creator,
-						attributes: ['id', 'username'],
-					},
-				],
-			})
+			// 2) Отримуємо всі івенти, в яких користувач бере участь
+			const attending = await this.getUserEvents(userId, 'attending')
 
-			// 3) Зливаємо два масиви й видаляємо дублі (за id)
-			const map = new Map<number, EventModel>()
-			for (const e of created) {
-				map.set(e.id, e)
+			// 3) Зливаємо два масиви та уникаємо дублікатів за id
+			const combinedMap = new Map<number, EventModel>()
+			for (const evt of created) {
+				combinedMap.set(evt.id, evt)
 			}
-			for (const e of attending) {
-				map.set(e.id, e)
+			for (const evt of attending) {
+				combinedMap.set(evt.id, evt)
 			}
 
-			// Повертаємо відсортований за датою масив
-			return Array.from(map.values()).sort(
+			// 4) Повертаємо сортований за датою масив
+			return Array.from(combinedMap.values()).sort(
 				(a, b) => (a.eventDate?.getTime() ?? 0) - (b.eventDate?.getTime() ?? 0)
 			)
 		}
@@ -164,7 +149,30 @@ class EventService {
 				where: { creatorId: userId },
 				order: [['event_date', 'ASC']],
 				include: [
-					{ association: Event.associations.participants, attributes: ['id'] },
+					{
+						association: Event.associations.creator,
+						attributes: ['id', 'username'],
+						include: [
+							{
+								// Профіль користувача
+								model: UserProfile,
+								as: 'profile',
+								attributes: ['nickname'],
+							},
+						],
+					},
+					{
+						association: Event.associations.participants,
+						attributes: ['id'],
+						include: [
+							{
+								// Профіль користувача
+								model: UserProfile,
+								as: 'profile',
+								attributes: ['nickname'],
+							},
+						],
+					},
 				],
 			})
 		} else {
@@ -176,6 +184,26 @@ class EventService {
 					{
 						association: Event.associations.creator,
 						attributes: ['id', 'username'],
+						include: [
+							{
+								// Профіль користувача
+								model: UserProfile,
+								as: 'profile',
+								attributes: ['nickname'],
+							},
+						],
+					},
+					{
+						association: Event.associations.participants,
+						attributes: ['id'],
+						include: [
+							{
+								// Профіль користувача
+								model: UserProfile,
+								as: 'profile',
+								attributes: ['nickname'],
+							},
+						],
 					},
 				],
 			})

@@ -24,6 +24,7 @@ const DetailModal: React.FC<DetailModalProps> = ({
 		typeof event.maxParticipants === 'number' &&
 		event.participants.length >= event.maxParticipants
 
+	console.log(event)
 	return (
 		<div className='fixed inset-0 bg-black/40 flex items-center justify-center z-50 text-justify hyphens-auto'>
 			<div className='bg-white rounded-xl shadow-xl w-full max-w-lg p-6 relative'>
@@ -70,9 +71,10 @@ const DetailModal: React.FC<DetailModalProps> = ({
 									/>
 								) : (
 									<div className='w-8 h-8 rounded-full bg-gray-300 flex items-center justify-center text-xs text-gray-600'>
-										{(user.nickname || user.username)[0]?.toUpperCase()}
+										{(user.profile.nickname || user.username)[0]?.toUpperCase()}
 									</div>
 								)}
+
 								<button
 									onClick={() => {
 										onClose()
@@ -80,7 +82,7 @@ const DetailModal: React.FC<DetailModalProps> = ({
 									}}
 									className='text-blue-600 hover:underline font-medium'
 								>
-									{user.nickname || user.username}
+									{user.profile.nickname || user.username}
 								</button>
 							</li>
 						))}

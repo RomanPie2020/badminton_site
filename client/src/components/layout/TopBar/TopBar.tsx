@@ -43,6 +43,12 @@ const eventsButtonProps: ILogButton = {
 	styles: 'log-button',
 }
 
+const myEventsButtonProps: ILogButton = {
+	title: 'My Events',
+	to: '/myevents',
+	styles: 'log-button',
+}
+
 function TopBar() {
 	const navigate = useNavigate()
 	const { logOut } = useActions()
@@ -83,6 +89,7 @@ function TopBar() {
 				{/* <SearchInput /> */}
 				{isAuthenticated ? (
 					<div className='flex'>
+						<LogButton button={myEventsButtonProps} />
 						<LogButton button={eventsButtonProps} />
 
 						<LogButton button={profileButtonProps} />

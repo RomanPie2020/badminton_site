@@ -8,6 +8,7 @@ import EventList from './components/screens/EventList'
 import GoogleSuccess from './components/screens/GoogleSuccess'
 import Home from './components/screens/Home'
 import LogIn from './components/screens/LogIn'
+import MyEvents from './components/screens/MyEvents'
 import MyProfile from './components/screens/MyProfile'
 import { RegisterConfirm } from './components/screens/RegisterConfirm'
 import ResetPassword from './components/screens/ResetPassword'
@@ -66,6 +67,10 @@ const router = createBrowserRouter([
 			{
 				path: '/events',
 				element: <EventList />,
+			},
+			{
+				path: '/myevents',
+				element: <MyEvents />,
 			},
 			{
 				path: '/users/:id/profile',

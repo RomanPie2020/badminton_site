@@ -94,7 +94,7 @@ export const eventService = createApi({
 			{ userId: number; type?: 'created' | 'attending' | 'all' }
 		>({
 			query: ({ userId, type = 'created' }) => ({
-				url: `/api/users/${userId}/events?type=${type}`,
+				url: `/api/events/user/${userId}?type=${type}`,
 				method: 'GET',
 			}),
 			providesTags: ['UserEvents'],

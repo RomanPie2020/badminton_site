@@ -1,9 +1,11 @@
+// src/components/ui/FilterModal.tsx
 import {
 	Dialog,
 	DialogTitle,
 	Tab,
 	TabGroup,
 	TabList,
+	TabPanel,
 	TabPanels,
 	Transition,
 	TransitionChild,
@@ -12,22 +14,34 @@ import { Fragment } from 'react'
 import { useActions } from '../../hooks/useActions'
 import { selectFilters } from '../../store/filtersSlice'
 import { useAppSelector } from '../../store/store'
+
 const categories = [
-	{ key: 'style', label: 'Style' },
-	{ key: 'productType', label: 'Product Type' },
-	{ key: 'size', label: 'Size' },
-	{ key: 'colour', label: 'Colour' },
-	{ key: 'range', label: 'Range' },
-	{ key: 'brand', label: 'Brand' },
+	{ key: 'events', label: 'Події' },
+	{ key: 'date', label: 'Дата і час' },
+	{ key: 'typeOfGame', label: 'Тип гри' },
+	{ key: 'levelOfPlayers', label: 'Рівень гравців' },
 ]
 
-function FilterModal() {
+export default function FilterModal() {
 	const { closeFiltersModal, setFilter, clearFilters } = useActions()
 
 	const isOpen = useAppSelector(state => state.filters.modalOpen)
 	const values = useAppSelector(selectFilters)
 
-	const closeModal = () => closeFiltersModal()
+	const closeModal = () => {
+		closeFiltersModal()
+	}
+
+	// Дані для чекбоксів у кожній категорії:
+	const EVENT_OPTIONS = [
+		'Турнір',
+		'Тренування',
+		'Дружня гра',
+		'Приватна гра',
+		'Клубний захід',
+	]
+	const GAME_TYPE_OPTIONS = ['Одиночна', 'Парна', 'Змішана парна', 'Командна']
+	const LEVEL_OPTIONS = ['Новачок', 'Середній', 'Просунутий', 'Профі']
 
 	return (
 		<Transition appear show={isOpen} as={Fragment}>
@@ -36,9 +50,10 @@ function FilterModal() {
 				className='fixed inset-0 z-50 overflow-y-auto'
 				onClose={closeModal}
 			>
-				<div className='min-h-screen px-4 text-center'>
+				<div className='min-h-screen px-4 flex items-center justify-center'>
+					{/* затемнювач позаду модалки */}
 					<TransitionChild
-						as={Fragment}
+						as='div'
 						enter='ease-out duration-300'
 						enterFrom='opacity-0'
 						enterTo='opacity-100'
@@ -46,19 +61,12 @@ function FilterModal() {
 						leaveFrom='opacity-100'
 						leaveTo='opacity-0'
 					>
-						<TransitionChild as={Fragment} enter='...' leave='...'>
-							<div className='fixed inset-0 bg-black bg-opacity-40' />
-						</TransitionChild>
+						<div className='fixed inset-0 bg-black bg-opacity-40' />
 					</TransitionChild>
 
-					<span
-						className='inline-block h-screen align-middle'
-						aria-hidden='true'
-					>
-						&#8203;
-					</span>
+					{/* Основна панель модалки */}
 					<TransitionChild
-						as={Fragment}
+						as='div'
 						enter='ease-out duration-300'
 						enterFrom='opacity-0 scale-95'
 						enterTo='opacity-100 scale-100'
@@ -66,20 +74,21 @@ function FilterModal() {
 						leaveFrom='opacity-100 scale-100'
 						leaveTo='opacity-0 scale-95'
 					>
-						<div className='inline-block w-full max-w-2xl p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl'>
+						<div className='inline-block w-full max-w-2xl p-6 my-8 overflow-hidden text-left align-middle transform bg-white shadow-xl rounded-2xl'>
 							<DialogTitle
 								as='h3'
 								className='text-lg font-medium leading-6 text-gray-900 mb-4'
 							>
-								Filters
+								Фільтри
 							</DialogTitle>
+
 							<TabGroup>
 								<TabList className='flex space-x-4 border-b mb-4'>
 									{categories.map(cat => (
 										<Tab
 											key={cat.key}
 											className={({ selected }) =>
-												`px-3 py-1.5 font-medium text-sm rounded ${
+												`px-3 py-1.5 text-sm font-medium rounded ${
 													selected
 														? 'bg-blue-100 text-blue-700'
 														: 'text-gray-600'
@@ -90,71 +99,320 @@ function FilterModal() {
 										</Tab>
 									))}
 								</TabList>
+
 								<TabPanels>
 									{categories.map(cat => (
-										<Tab.Panel key={cat.key} className='space-y-3'>
-											{/* Render filter controls based on category */}
-											{values[cat.key] && Array.isArray(values[cat.key]) ? (
-												<div className='grid grid-cols-2 gap-2'>
-													{['Option 1', 'Option 2', 'Option 3'].map(option => (
+										<TabPanel key={cat.key} className='space-y-6'>
+											{/* #### 1) Категорія "Події" #### */}
+											{cat.key === 'events' && (
+												<div className='grid grid-cols-2 gap-3'>
+													{EVENT_OPTIONS.map(opt => (
 														<label
-															key={option}
+															key={opt}
 															className='flex items-center space-x-2'
 														>
 															<input
 																type='checkbox'
-																checked={values[cat.key].includes(option)}
+																checked={values.events.includes(opt)}
+																onChange={() =>
+																	setFilter({ category: 'events', value: opt })
+																}
+																className='h-4 w-4'
+															/>
+															<span className='text-sm text-gray-700'>
+																{opt}
+															</span>
+														</label>
+													))}
+												</div>
+											)}
+
+											{/* #### 2) Категорія "Дата і час" #### */}
+											{cat.key === 'date' && (
+												<div className='space-y-4'>
+													{/* Пресети */}
+													<div className='flex space-x-2'>
+														<button
+															type='button'
+															className={`px-3 py-1 rounded ${
+																values.date.from ===
+																	new Date().toISOString().slice(0, 10) &&
+																values.date.to ===
+																	new Date().toISOString().slice(0, 10)
+																	? 'bg-blue-100 text-blue-700'
+																	: 'bg-gray-100 text-gray-700'
+															}`}
+															onClick={() => {
+																const today = new Date()
+																	.toISOString()
+																	.slice(0, 10)
+																setFilter({
+																	category: 'date',
+																	value: { from: today, to: today },
+																})
+															}}
+														>
+															Сьогодні
+														</button>
+														<button
+															type='button'
+															className={`px-3 py-1 rounded ${
+																values.date.from ===
+																	new Date(
+																		new Date().setDate(new Date().getDate() + 1)
+																	)
+																		.toISOString()
+																		.slice(0, 10) &&
+																values.date.to ===
+																	new Date(
+																		new Date().setDate(new Date().getDate() + 1)
+																	)
+																		.toISOString()
+																		.slice(0, 10)
+																	? 'bg-blue-100 text-blue-700'
+																	: 'bg-gray-100 text-gray-700'
+															}`}
+															onClick={() => {
+																const tomorrow = new Date(
+																	new Date().setDate(new Date().getDate() + 1)
+																)
+																	.toISOString()
+																	.slice(0, 10)
+																setFilter({
+																	category: 'date',
+																	value: { from: tomorrow, to: tomorrow },
+																})
+															}}
+														>
+															Завтра
+														</button>
+														<button
+															type='button'
+															className={`px-3 py-1 rounded ${
+																// перевірка: якщо обидві дати лежать у межах поточного тижня
+																(() => {
+																	const now = new Date()
+																	const day = now.getDay() || 7 // 1 (пон) … 7 (нд)
+																	const monday = new Date(now)
+																	monday.setDate(now.getDate() - (day - 1))
+																	const sunday = new Date(monday)
+																	sunday.setDate(monday.getDate() + 6)
+																	const from = monday.toISOString().slice(0, 10)
+																	const to = sunday.toISOString().slice(0, 10)
+																	return (
+																		values.date.from === from &&
+																		values.date.to === to
+																	)
+																})()
+																	? 'bg-blue-100 text-blue-700'
+																	: 'bg-gray-100 text-gray-700'
+															}`}
+															onClick={() => {
+																const now = new Date()
+																const day = now.getDay() || 7
+																const monday = new Date(now)
+																monday.setDate(now.getDate() - (day - 1))
+																const sunday = new Date(monday)
+																sunday.setDate(monday.getDate() + 6)
+																setFilter({
+																	category: 'date',
+																	value: {
+																		from: monday.toISOString().slice(0, 10),
+																		to: sunday.toISOString().slice(0, 10),
+																	},
+																})
+															}}
+														>
+															Цього тижня
+														</button>
+														<button
+															type='button'
+															className={`px-3 py-1 rounded ${
+																(() => {
+																	const now = new Date()
+																	const next7 = new Date(now)
+																	next7.setDate(now.getDate() + 6)
+																	const from = now.toISOString().slice(0, 10)
+																	const to = next7.toISOString().slice(0, 10)
+																	return (
+																		values.date.from === from &&
+																		values.date.to === to
+																	)
+																})()
+																	? 'bg-blue-100 text-blue-700'
+																	: 'bg-gray-100 text-gray-700'
+															}`}
+															onClick={() => {
+																const now = new Date()
+																const next7 = new Date(now)
+																next7.setDate(now.getDate() + 6)
+																setFilter({
+																	category: 'date',
+																	value: {
+																		from: now.toISOString().slice(0, 10),
+																		to: next7.toISOString().slice(0, 10),
+																	},
+																})
+															}}
+														>
+															Наступні 7 днів
+														</button>
+														<button
+															type='button'
+															className={`px-3 py-1 rounded ${
+																(() => {
+																	const now = new Date()
+																	const startOfNextMonth = new Date(
+																		now.getFullYear(),
+																		now.getMonth() + 1,
+																		1
+																	)
+																	const endOfNextMonth = new Date(
+																		now.getFullYear(),
+																		now.getMonth() + 2,
+																		0
+																	)
+																	const from = startOfNextMonth
+																		.toISOString()
+																		.slice(0, 10)
+																	const to = endOfNextMonth
+																		.toISOString()
+																		.slice(0, 10)
+																	return (
+																		values.date.from === from &&
+																		values.date.to === to
+																	)
+																})()
+																	? 'bg-blue-100 text-blue-700'
+																	: 'bg-gray-100 text-gray-700'
+															}`}
+															onClick={() => {
+																const now = new Date()
+																const startOfNextMonth = new Date(
+																	now.getFullYear(),
+																	now.getMonth() + 1,
+																	1
+																)
+																const endOfNextMonth = new Date(
+																	now.getFullYear(),
+																	now.getMonth() + 2,
+																	0
+																)
+																setFilter({
+																	category: 'date',
+																	value: {
+																		from: startOfNextMonth
+																			.toISOString()
+																			.slice(0, 10),
+																		to: endOfNextMonth
+																			.toISOString()
+																			.slice(0, 10),
+																	},
+																})
+															}}
+														>
+															Наступний місяць
+														</button>
+													</div>
+
+													{/* Діапазон дати: два інпути type="date" */}
+													<div className='flex space-x-4 mt-2'>
+														<div className='flex flex-col'>
+															<label className='text-sm text-gray-600'>
+																Від:
+															</label>
+															<input
+																type='date'
+																value={values.date.from || ''}
+																onChange={e =>
+																	setFilter({
+																		category: 'date',
+																		value: {
+																			from: e.target.value,
+																			to: values.date.to,
+																		},
+																	})
+																}
+																className='p-2 border rounded'
+															/>
+														</div>
+														<div className='flex flex-col'>
+															<label className='text-sm text-gray-600'>
+																До:
+															</label>
+															<input
+																type='date'
+																value={values.date.to || ''}
+																onChange={e =>
+																	setFilter({
+																		category: 'date',
+																		value: {
+																			from: values.date.from,
+																			to: e.target.value,
+																		},
+																	})
+																}
+																className='p-2 border rounded'
+															/>
+														</div>
+													</div>
+												</div>
+											)}
+
+											{/* #### 3) Категорія "Тип гри" #### */}
+											{cat.key === 'typeOfGame' && (
+												<div className='grid grid-cols-2 gap-3'>
+													{GAME_TYPE_OPTIONS.map(opt => (
+														<label
+															key={opt}
+															className='flex items-center space-x-2'
+														>
+															<input
+																type='checkbox'
+																checked={values.typeOfGame.includes(opt)}
 																onChange={() =>
 																	setFilter({
-																		category: cat.key,
-																		value: option,
+																		category: 'typeOfGame',
+																		value: opt,
 																	})
 																}
 																className='h-4 w-4'
 															/>
 															<span className='text-sm text-gray-700'>
-																{option}
+																{opt}
 															</span>
 														</label>
 													))}
 												</div>
-											) : cat.key === 'range' ? (
-												<div className='flex space-x-4'>
-													<input
-														type='number'
-														placeholder='Min'
-														value={values.range.min || ''}
-														onChange={e =>
-															setFilter({
-																category: 'range',
-																value: {
-																	min: +e.target.value,
-																	max: values.range.max,
-																},
-															})
-														}
-														className='w-1/2 p-2 border rounded'
-													/>
-													<input
-														type='number'
-														placeholder='Max'
-														value={values.range.max || ''}
-														onChange={e =>
-															setFilter({
-																category: 'range',
-																value: {
-																	min: values.range.min,
-																	max: +e.target.value,
-																},
-															})
-														}
-														className='w-1/2 p-2 border rounded'
-													/>
-												</div>
-											) : (
-												<p className='text-gray-500'>No options</p>
 											)}
-										</Tab.Panel>
+
+											{/* #### 4) Категорія "Рівень гравців" #### */}
+											{cat.key === 'levelOfPlayers' && (
+												<div className='grid grid-cols-2 gap-3'>
+													{LEVEL_OPTIONS.map(opt => (
+														<label
+															key={opt}
+															className='flex items-center space-x-2'
+														>
+															<input
+																type='checkbox'
+																checked={values.levelOfPlayers.includes(opt)}
+																onChange={() =>
+																	setFilter({
+																		category: 'levelOfPlayers',
+																		value: opt,
+																	})
+																}
+																className='h-4 w-4'
+															/>
+															<span className='text-sm text-gray-700'>
+																{opt}
+															</span>
+														</label>
+													))}
+												</div>
+											)}
+										</TabPanel>
 									))}
 								</TabPanels>
 							</TabGroup>
@@ -165,7 +423,7 @@ function FilterModal() {
 									className='text-sm text-red-500 hover:underline'
 									onClick={() => clearFilters()}
 								>
-									Clear all
+									Очистити всі
 								</button>
 								<div className='space-x-2'>
 									<button
@@ -173,14 +431,14 @@ function FilterModal() {
 										className='px-4 py-2 bg-gray-200 rounded hover:bg-gray-300'
 										onClick={closeModal}
 									>
-										Cancel
+										Скасувати
 									</button>
 									<button
 										type='button'
 										className='px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700'
 										onClick={closeModal}
 									>
-										Apply
+										Застосувати
 									</button>
 								</div>
 							</div>
@@ -191,4 +449,3 @@ function FilterModal() {
 		</Transition>
 	)
 }
-export default FilterModal
