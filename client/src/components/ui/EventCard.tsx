@@ -59,13 +59,21 @@ const EventCard: React.FC<EventCardProps> = ({
 		<>
 			<div className='w-full max-w-md bg-white rounded-2xl shadow-md p-6 flex flex-col justify-self-center  hover:shadow-lg transition-shadow duration-200 text-justify hyphens-auto'>
 				<h3 className='text-xl font-semibold mb-2 truncate'>{event.title}</h3>
-				<p className='text-gray-600 text-sm mb-1'>
+				<p className='text-gray-600 mb-1'>
 					📅 {format(new Date(event.eventDate), 'dd.MM.yyyy HH:mm')}
 				</p>
-				<p className='text-gray-600 text-sm mb-2 truncate'>
-					📍 {event.location}
+				<p className='text-gray-600 mb-2 truncate'>📍 {event.location}</p>
+				<p>
+					🏷️ Тип події: <strong>{event.eventType}</strong>
 				</p>
-				<p className='text-gray-500 text-sm mb-4'>
+				<p>
+					🎮 Формат гри: <strong>{event.gameType}</strong>
+				</p>
+				<p>
+					⭐ Рівень гравців: <strong>{event.levelOfPlayers}</strong>
+				</p>
+
+				<p className='text-gray-500 text-md mb-4'>
 					Створив:{' '}
 					<button
 						onClick={() => {

@@ -1,7 +1,11 @@
+// src/shared/validations/event.schema.ts
 import { z } from 'zod'
 import {
 	DescriptionField,
 	EventDateField,
+	EventTypeField,
+	GameTypeField,
+	LevelOfPlayersField,
 	LocationField,
 	MaxParticipantsField,
 	TitleField,
@@ -13,6 +17,9 @@ export const eventSchema = z.object({
 	location: LocationField,
 	eventDate: EventDateField,
 	maxParticipants: MaxParticipantsField,
+	eventType: EventTypeField,
+	gameType: GameTypeField,
+	levelOfPlayers: LevelOfPlayersField,
 })
 
 export type EventInput = z.infer<typeof eventSchema>

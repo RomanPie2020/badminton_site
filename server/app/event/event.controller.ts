@@ -14,6 +14,12 @@ class EventController {
 				dateTo: dateToParam,
 				typeOfGame: gameParam,
 				levelOfPlayers: levelParam,
+				search: searchParam,
+				searchField: searchFieldParam,
+				sortBy: sortByParam,
+				sortOrder: sortOrderParam,
+				limit: limitParam,
+				offset: offsetParam,
 			} = req.query
 
 			// Будуємо об'єкт filters — перевіряємо, чи параметри задані й непусті
@@ -78,9 +84,77 @@ class EventController {
 					.filter(s => s !== '' && s.toLowerCase() !== 'null')
 			}
 
-			// Викликаємо сервіс із сформованими фільтрами
-			const events = await eventService.getFiltered(filters)
-			return res.json(events)
+			// 2) Приймаємо параметр search (як раніше)
+			let search: string | undefined
+			if (
+				typeof searchParam === 'string' &&
+				searchParam.trim() !== '' &&
+				searchParam.trim().toLowerCase() !== 'null'
+			) {
+				search = searchParam.trim()
+			}
+
+			// Приймаємо параметр searchField
+			//     Дозволяємо лише три значення: 'title', 'location', 'creator'
+			let searchField: 'title' | 'location' | 'creator' | undefined
+			if (
+				typeof searchFieldParam === 'string' &&
+				['title', 'location', 'creator'].includes(searchFieldParam)
+			) {
+				// TS у точці бачить, що параметр є саме одна з трьох рядків
+				searchField = searchFieldParam as 'title' | 'location' | 'creator'
+			} else {
+				// якщо не вказано, або невірне значення — залишаємо undefined
+				searchField = undefined
+			}
+
+			// 3) Сортування
+			type SortByOption = 'eventDate' | 'title' | 'location'
+			let sortBy: SortByOption = 'eventDate' // значення за замовчуванням
+			if (
+				typeof sortByParam === 'string' &&
+				['eventDate', 'title', 'location'].includes(sortByParam)
+			) {
+				sortBy = sortByParam as SortByOption
+			}
+			let sortOrder: 'asc' | 'desc' = 'asc'
+			if (
+				typeof sortOrderParam === 'string' &&
+				['asc', 'desc'].includes(sortOrderParam.toLowerCase())
+			) {
+				sortOrder = sortOrderParam.toLowerCase() as 'asc' | 'desc'
+			}
+
+			// 5) Pagination: limit & offset
+			// Якщо не передано, за замовчуванням беремо limit=10, offset=0
+			let limit = 10
+			let offset = 0
+
+			if (typeof limitParam === 'string' && !isNaN(Number(limitParam))) {
+				limit = Math.max(1, Number(limitParam)) // мінімум 1
+			}
+			if (typeof offsetParam === 'string' && !isNaN(Number(offsetParam))) {
+				offset = Math.max(0, Number(offsetParam))
+			}
+
+			// Викликаємо сервіс із всіма параметрами
+			const { rows: events, count: total } =
+				await eventService.getFilteredPaged({
+					filters,
+					search,
+					searchField,
+					sortBy,
+					sortOrder,
+					limit,
+					offset,
+				})
+
+			return res.json({
+				events,
+				total,
+				limit,
+				offset,
+			})
 		} catch (err) {
 			next(err)
 		}

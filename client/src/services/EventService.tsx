@@ -101,8 +101,33 @@ export const eventService = createApi({
 			providesTags: ['UserEvents'],
 		}),
 
-		getFilteredEvents: build.query<EventWithRelations[], { filters: Filters }>({
-			query: ({ filters }) => {
+		// Отримати івенти з фільтрами, пошуком та сортуванням
+		getFilteredEvents: build.query<
+			{
+				events: EventWithRelations[]
+				total: number
+				limit: number
+				offset: number
+			},
+			{
+				filters: Filters
+				search?: string
+				searchField?: 'title' | 'location' | 'creator'
+				sortBy?: 'eventDate' | 'title' | 'location'
+				sortOrder?: 'asc' | 'desc'
+				limit?: number
+				offset?: number
+			}
+		>({
+			query: ({
+				filters,
+				search,
+				searchField,
+				sortBy,
+				sortOrder,
+				limit,
+				offset,
+			}) => {
 				const params = new URLSearchParams()
 
 				if (filters.events && filters.events.length > 0) {
@@ -126,17 +151,76 @@ export const eventService = createApi({
 					params.set('levelOfPlayers', filters.levelOfPlayers.join(','))
 				}
 
+				// --- Додаємо пошук (якщо є) ---
+				if (search && search.trim() !== '') {
+					params.set('search', search.trim())
+				}
+
+				// --- Додаємо поле для таргетованого пошуку (якщо є) ---
+				if (searchField) {
+					params.set('searchField', searchField)
+				}
+
+				// --- Додаємо поле для таргетованого пошуку (якщо є) ---
+				if (searchField) {
+					params.set('searchField', searchField)
+				}
+
+				// --- Додаємо сортування (якщо є) ---
+				if (sortBy) {
+					params.set('sortBy', sortBy)
+					params.set('sortOrder', sortOrder || 'asc')
+				}
+
+				if (typeof limit === 'number') {
+					params.set('limit', String(limit))
+				}
+				if (typeof offset === 'number') {
+					params.set('offset', String(offset))
+				}
+
 				const queryString = params.toString()
 				// Якщо не задано жодного фільтра, просто повернете '/events'
 				return queryString ? `/api/events?${queryString}` : '/api/events'
 			},
-			providesTags: (result, error, { filters }) =>
+			providesTags: (
+				result,
+				error,
+				{ filters, search, searchField, sortBy, sortOrder, limit, offset }
+			) =>
 				result
 					? [
-							...result.map(({ id }) => ({ type: 'Event' as const, id })),
-							{ type: 'Event', id: `FILTERED_${JSON.stringify(filters)}` },
+							...result.events.map(({ id }) => ({
+								type: 'Event' as const,
+								id,
+							})),
+							{
+								type: 'Event',
+								id: `FILTERED_${JSON.stringify({
+									filters,
+									search,
+									searchField,
+									sortBy,
+									sortOrder,
+									limit,
+									offset,
+								})}`,
+							},
 					  ]
-					: [{ type: 'Event', id: `FILTERED_${JSON.stringify(filters)}` }],
+					: [
+							{
+								type: 'Event',
+								id: `FILTERED_${JSON.stringify({
+									filters,
+									search,
+									searchField,
+									sortBy,
+									sortOrder,
+									limit,
+									offset,
+								})}`,
+							},
+					  ],
 		}),
 	}),
 })
@@ -151,4 +235,5 @@ export const {
 	useLeaveEventMutation,
 	useGetUserEventsQuery,
 	useGetFilteredEventsQuery,
+	useLazyGetFilteredEventsQuery,
 } = eventService

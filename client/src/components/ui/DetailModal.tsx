@@ -37,23 +37,59 @@ const DetailModal: React.FC<DetailModalProps> = ({
 				<h2 className='text-2xl font-semibold mb-4 mt-4 break-words'>
 					{event.title}
 				</h2>
+				<div className='mb-4 text-xl text-gray-600'>
+					<p>📅 {format(new Date(event.eventDate), 'dd.MM.yyyy HH:mm')}</p>
+					<p>📍 {event.location}</p>
+					{/* {event.maxParticipants != null && (
+						<p>
+							Учасників: {event.participants.length} / {event.maxParticipants}
+						</p>
+					)} */}
+				</div>
+				<p className='text-gray-600 mb-2'>
+					🏷️ <span className='font-medium'>Тип події:</span> {event.eventType}
+				</p>
+				<p className='text-gray-600 mb-2'>
+					🎮 <span className='font-medium'>Формат гри:</span> {event.gameType}
+				</p>
+				<p className='text-gray-600 mb-4'>
+					⭐ <span className='font-medium'>Рівень гравців:</span>{' '}
+					{event.levelOfPlayers}
+				</p>
+
 				<p className='text-gray-700 mb-4 break-words'>
 					{event.description || '— немає опису —'}
 				</p>
 
-				<div className='mb-4 text-xl text-gray-600'>
-					<p>📅 {format(new Date(event.eventDate), 'dd.MM.yyyy HH:mm')}</p>
-					<p>📍 {event.location}</p>
-					{event.maxParticipants != null && (
-						<p>
-							Учасників: {event.participants.length} / {event.maxParticipants}
-						</p>
+				{/* s */}
+				<div className='flex justify-end gap-3'>
+					{!joined && !isFull && (
+						<button
+							onClick={() => onJoin(event.id)}
+							className='px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700'
+						>
+							Приєднатися
+						</button>
+					)}
+					{joined && (
+						<button
+							onClick={() => onLeave(event.id)}
+							className='px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600'
+						>
+							Вийти
+						</button>
+					)}
+					{isFull && !joined && (
+						<span className='block text-center px-4 py-2 bg-gray-300 text-gray-700 rounded-lg'>
+							Усі місця зайнято
+						</span>
 					)}
 				</div>
 
-				{/* s */}
-
-				<h3 className='text-xl font-medium mb-2'>Учасники</h3>
+				<h3 className='text-lg font-medium mt-6 mb-2'>
+					Учасники ({event.participants.length}
+					{event.maxParticipants != null && <> / {event.maxParticipants}</>})
+				</h3>
 				{event.participants.length === 0 ? (
 					<p className='text-gray-500'>Ще ніхто не приєднався.</p>
 				) : (
@@ -88,30 +124,6 @@ const DetailModal: React.FC<DetailModalProps> = ({
 						))}
 					</ul>
 				)}
-				<div className='flex justify-end gap-3'>
-					{!joined && !isFull && (
-						<button
-							onClick={() => onJoin(event.id)}
-							className='px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700'
-						>
-							Join
-						</button>
-					)}
-					{joined && (
-						<button
-							onClick={() => onLeave(event.id)}
-							className='px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600'
-						>
-							Leave
-						</button>
-					)}
-					<button
-						onClick={onClose}
-						className='px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300'
-					>
-						Закрити
-					</button>
-				</div>
 			</div>
 		</div>
 	)

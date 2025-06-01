@@ -1,16 +1,42 @@
 import User from '@/auth/models/user'
 import ApiError from '@/exceptions/apiError'
 import UserProfile from '@/profile/models/userProfile'
-import { Op, WhereOptions } from 'sequelize'
+import {
+	Op,
+	OrderItem,
+	WhereOptions,
+	col,
+	fn,
+	where as sqWhere,
+} from 'sequelize'
 import { Filters } from './event.types'
 import {
 	default as Event,
 	EventAttributes,
 	default as EventModel,
 } from './models/event'
+
+type SortByOption = 'eventDate' | 'title' | 'location'
+type SortOrder = 'asc' | 'desc'
 class EventService {
 	// 1) Отримати всі івенти разом із кількістю учасників
-	public async getFiltered(filters: Partial<Filters>) {
+	public async getFilteredPaged({
+		filters,
+		search,
+		searchField = 'title', // Поле для пошуку: 'title', 'location' або 'creator'
+		sortBy,
+		sortOrder,
+		limit,
+		offset,
+	}: {
+		filters: Partial<Filters>
+		search?: string
+		searchField?: 'title' | 'location' | 'creator' // Поле для пошуку
+		sortBy: SortByOption
+		sortOrder: SortOrder
+		limit: number
+		offset: number
+	}): Promise<{ rows: any[]; count: number }> {
 		// 1) Створюємо об'єкт where для базової фільтрації
 		const where: WhereOptions = {}
 
@@ -53,13 +79,46 @@ class EventService {
 			where.eventDate = { [Op.lte]: new Date(filters.dateTo) }
 		}
 
-		// 6) Виконуємо запит до БД з урахуванням where (фільтра) та включенням асоціацій
-		const events = await Event.findAll({
+		// 2) Додаємо пошук лише у визначеному полі (searchField)
+		if (search && searchField) {
+			const pattern = `%${search}%`
+
+			if (searchField === 'title') {
+				// шукати лише у заголовку
+				Object.assign(where, { title: { [Op.iLike]: pattern } })
+			} else if (searchField === 'location') {
+				// шукати лише у локації
+				Object.assign(where, { location: { [Op.iLike]: pattern } })
+			} else if (searchField === 'creator') {
+				// шукати лише у ніку організатора (creator.profile.nickname)
+				// Для цього додаємо OR/AND умову через sqWhere:
+				Object.assign(where, {
+					[Op.and]: [
+						sqWhere(fn('LOWER', col('creator->profile.nickname')), {
+							[Op.like]: `%${search.toLowerCase()}%`,
+						}),
+					],
+				})
+			}
+		}
+
+		// 3) Сортування
+		// За замовчуванням сортуємо за eventDate, але якщо sortBy === 'title' чи 'location', змінюємо
+		const order: OrderItem[] = []
+		if (sortBy === 'title') {
+			order.push(['title', sortOrder])
+		} else if (sortBy === 'location') {
+			order.push(['location', sortOrder])
+		} else {
+			// eventDate
+			order.push(['eventDate', sortOrder])
+		}
+
+		// 4) Збираємо include (щоб підхопити creator + profile і participants)
+		const result = await Event.findAndCountAll({
 			where,
-			order: [['eventDate', 'ASC']], // сортування за датою зростанням
 			include: [
 				{
-					// Творець події
 					association: Event.associations.creator,
 					attributes: ['id', 'username'],
 					include: [
@@ -71,10 +130,9 @@ class EventService {
 					],
 				},
 				{
-					// Учасники події
 					association: Event.associations.participants,
 					attributes: ['id', 'username'],
-					through: { attributes: [] }, // не тягнути поля з join-таблиці
+					through: { attributes: [] },
 					include: [
 						{
 							model: UserProfile,
@@ -84,9 +142,16 @@ class EventService {
 					],
 				},
 			],
+			order: [
+				['eventDate', 'ASC'],
+				['id', 'ASC'], // <-- додайте другорядний ключ, щоб однозначно сортувати
+			],
+			distinct: true,
+			limit,
+			offset,
 		})
 
-		return events
+		return { rows: result.rows, count: result.count }
 	}
 
 	// 2) Отримати один івент з деталями

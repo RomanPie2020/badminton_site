@@ -8,6 +8,16 @@ interface CreateEventModalProps {
 	onCreated: () => void
 }
 
+const EVENT_OPTIONS = [
+	'Турнір',
+	'Тренування',
+	'Дружня гра',
+	'Приватна гра',
+	'Клубний захід',
+]
+const GAME_TYPE_OPTIONS = ['Одиночна', 'Парна', 'Змішана парна', 'Командна']
+const LEVEL_OPTIONS = ['Новачок', 'Середній', 'Просунутий', 'Профі']
+
 const CreateEventModal: React.FC<CreateEventModalProps> = ({ onCreated }) => {
 	const [isOpen, setIsOpen] = useState(false)
 	const [createEvent, { isLoading }] = useCreateEventMutation()
@@ -99,7 +109,89 @@ const CreateEventModal: React.FC<CreateEventModalProps> = ({ onCreated }) => {
 									</p>
 								)}
 							</div>
+							{/* Нові поля: Тип події */}
+							<div>
+								<label className='block text-sm font-medium text-gray-700'>
+									Тип події *
+								</label>
+								<select
+									{...register('eventType', {
+										required: 'Виберіть тип події',
+									})}
+									defaultValue=''
+									className='mt-1 block w-full border-gray-300 rounded-md p-2'
+								>
+									<option value='' disabled>
+										--Оберіть тип--
+									</option>
+									{EVENT_OPTIONS.map(opt => (
+										<option key={opt} value={opt}>
+											{opt}
+										</option>
+									))}
+								</select>
+								{errors.eventType && (
+									<p className='text-red-600 text-sm'>
+										{errors.eventType.message}
+									</p>
+								)}
+							</div>
 
+							{/* Нові поля: Формат гри */}
+							<div>
+								<label className='block text-sm font-medium text-gray-700'>
+									Формат гри *
+								</label>
+								<select
+									{...register('gameType', {
+										required: 'Виберіть формат гри',
+									})}
+									defaultValue=''
+									className='mt-1 block w-full border-gray-300 rounded-md p-2'
+								>
+									<option value='' disabled>
+										--Оберіть формат--
+									</option>
+									{GAME_TYPE_OPTIONS.map(opt => (
+										<option key={opt} value={opt}>
+											{opt}
+										</option>
+									))}
+								</select>
+								{errors.gameType && (
+									<p className='text-red-600 text-sm'>
+										{errors.gameType.message}
+									</p>
+								)}
+							</div>
+
+							{/* Нові поля: Рівень гравців */}
+							<div>
+								<label className='block text-sm font-medium text-gray-700'>
+									Рівень гравців *
+								</label>
+								<select
+									{...register('levelOfPlayers', {
+										required: 'Виберіть рівень гравців',
+									})}
+									defaultValue=''
+									className='mt-1 block w-full border-gray-300 rounded-md p-2'
+								>
+									<option value='' disabled>
+										--Оберіть рівень--
+									</option>
+									{LEVEL_OPTIONS.map(opt => (
+										<option key={opt} value={opt}>
+											{opt}
+										</option>
+									))}
+								</select>
+								{errors.levelOfPlayers && (
+									<p className='text-red-600 text-sm'>
+										{errors.levelOfPlayers.message}
+									</p>
+								)}
+							</div>
 							<div>
 								<label className='block text-sm font-medium text-gray-700'>
 									Опис

@@ -132,7 +132,8 @@ export interface EventWithRelations {
 	title: string
 	location: string
 	eventDate: string
-	creator: { id: number; username: string }
+	creator: { id: number; username: string; profile?: { nickname: string } }
+	maxParticipants?: number
 	participants: { id: number }[]
 }
 
