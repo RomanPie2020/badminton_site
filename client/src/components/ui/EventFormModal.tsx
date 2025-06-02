@@ -9,6 +9,16 @@ interface EventFormModalProps {
 	onSubmit: (data: EventInput) => void
 }
 
+const EVENT_TYPE_OPTIONS = [
+	'Турнір',
+	'Тренування',
+	'Дружня гра',
+	'Приватна гра',
+	'Клубний захід',
+]
+const GAME_TYPE_OPTIONS = ['Одиночна', 'Парна', 'Змішана парна', 'Командна']
+const LEVEL_OPTIONS = ['Новачок', 'Середній', 'Просунутий', 'Профі']
+
 const EventFormModal: React.FC<EventFormModalProps> = ({
 	initialData,
 	currentParticipants = 0,
@@ -38,6 +48,7 @@ const EventFormModal: React.FC<EventFormModalProps> = ({
 					{initialData ? 'Редагувати подію' : 'Нова подія'}
 				</h2>
 				<form noValidate onSubmit={handleSubmit(submit)} className='space-y-4'>
+					{/* Заголовок */}
 					<div>
 						<label className='block text-sm font-medium text-gray-700'>
 							Заголовок *
@@ -51,6 +62,7 @@ const EventFormModal: React.FC<EventFormModalProps> = ({
 						)}
 					</div>
 
+					{/* Локація */}
 					<div>
 						<label className='block text-sm font-medium text-gray-700'>
 							Локація *
@@ -64,6 +76,7 @@ const EventFormModal: React.FC<EventFormModalProps> = ({
 						)}
 					</div>
 
+					{/* Дата та час */}
 					<div>
 						<label className='block text-sm font-medium text-gray-700'>
 							Дата та час *
@@ -78,6 +91,7 @@ const EventFormModal: React.FC<EventFormModalProps> = ({
 						)}
 					</div>
 
+					{/* Опис */}
 					<div>
 						<label className='block text-sm font-medium text-gray-700'>
 							Опис
@@ -89,17 +103,83 @@ const EventFormModal: React.FC<EventFormModalProps> = ({
 						/>
 					</div>
 
+					{/* Тип події */}
+					<div>
+						<label className='block text-sm font-medium text-gray-700'>
+							Тип події *
+						</label>
+						<select
+							{...register('eventType', { required: 'Обовʼязково' })}
+							className='mt-1 block w-full border-gray-300 rounded-md p-2'
+						>
+							<option value=''>--- Виберіть тип події ---</option>
+							{EVENT_TYPE_OPTIONS.map(opt => (
+								<option key={opt} value={opt}>
+									{opt}
+								</option>
+							))}
+						</select>
+						{errors.eventType && (
+							<p className='text-red-600 text-sm'>{errors.eventType.message}</p>
+						)}
+					</div>
+
+					{/* Тип гри */}
+					<div>
+						<label className='block text-sm font-medium text-gray-700'>
+							Тип гри *
+						</label>
+						<select
+							{...register('gameType', { required: 'Обовʼязково' })}
+							className='mt-1 block w-full border-gray-300 rounded-md p-2'
+						>
+							<option value=''>--- Виберіть тип гри ---</option>
+							{GAME_TYPE_OPTIONS.map(opt => (
+								<option key={opt} value={opt}>
+									{opt}
+								</option>
+							))}
+						</select>
+						{errors.gameType && (
+							<p className='text-red-600 text-sm'>{errors.gameType.message}</p>
+						)}
+					</div>
+
+					{/* Рівень гравців */}
+					<div>
+						<label className='block text-sm font-medium text-gray-700'>
+							Рівень гравців *
+						</label>
+						<select
+							{...register('levelOfPlayers', { required: 'Обовʼязково' })}
+							className='mt-1 block w-full border-gray-300 rounded-md p-2'
+						>
+							<option value=''>--- Виберіть рівень ---</option>
+							{LEVEL_OPTIONS.map(opt => (
+								<option key={opt} value={opt}>
+									{opt}
+								</option>
+							))}
+						</select>
+						{errors.levelOfPlayers && (
+							<p className='text-red-600 text-sm'>
+								{errors.levelOfPlayers.message}
+							</p>
+						)}
+					</div>
+
+					{/* Макс. учасників */}
 					<div>
 						<label className='block text-sm font-medium text-gray-700'>
 							Макс. учасників
 						</label>
 						<input
 							type='number'
-							min={currentParticipants}
+							min={currentParticipants || 1}
 							{...register('maxParticipants', {
 								valueAsNumber: true,
 								min: {
-									value: currentParticipants,
+									value: currentParticipants || 1,
 									message: `Не менше ${currentParticipants} (вже приєдналися)`,
 								},
 							})}

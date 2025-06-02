@@ -1,14 +1,7 @@
 import User from '@/auth/models/user'
 import ApiError from '@/exceptions/apiError'
 import UserProfile from '@/profile/models/userProfile'
-import {
-	Op,
-	OrderItem,
-	WhereOptions,
-	col,
-	fn,
-	where as sqWhere,
-} from 'sequelize'
+import { Op, OrderItem, WhereOptions } from 'sequelize'
 import { Filters } from './event.types'
 import {
 	default as Event,
@@ -23,7 +16,7 @@ class EventService {
 	public async getFilteredPaged({
 		filters,
 		search,
-		searchField = 'title', // Поле для пошуку: 'title', 'location' або 'creator'
+		searchField = 'title',
 		sortBy,
 		sortOrder,
 		limit,
@@ -31,31 +24,40 @@ class EventService {
 	}: {
 		filters: Partial<Filters>
 		search?: string
-		searchField?: 'title' | 'location' | 'creator' // Поле для пошуку
+		searchField?: 'title' | 'location' | 'creator'
 		sortBy: SortByOption
 		sortOrder: SortOrder
 		limit: number
 		offset: number
 	}): Promise<{ rows: any[]; count: number }> {
-		// 1) Створюємо об'єкт where для базової фільтрації
+		console.log('Backend params:', {
+			limit,
+			offset,
+			sortBy,
+			sortOrder,
+			search,
+			searchField,
+		})
+
+		// 1) Створюємо базовий where для Event
 		const where: WhereOptions = {}
 
-		// 2) Якщо є eventType (масив строк) → WHERE eventType IN (...)
+		// 2) Фільтри по типу події
 		if (filters.eventType && filters.eventType.length > 0) {
 			where.eventType = { [Op.in]: filters.eventType }
 		}
 
-		// 3) Якщо є gameType → WHERE gameType IN (...)
+		// 3) Фільтри по типу гри
 		if (filters.gameType && filters.gameType.length > 0) {
 			where.gameType = { [Op.in]: filters.gameType }
 		}
 
-		// 4) Якщо є levelOfPlayers → WHERE levelOfPlayers IN (...)
+		// 4) Фільтри по рівню гравців
 		if (filters.levelOfPlayers && filters.levelOfPlayers.length > 0) {
 			where.levelOfPlayers = { [Op.in]: filters.levelOfPlayers }
 		}
 
-		// 5) Якщо є діапазон дат → WHERE eventDate BETWEEN dateFrom AND dateTo
+		// 5) Фільтри по датах
 		if (
 			typeof filters.dateFrom === 'string' &&
 			filters.dateFrom.trim() !== '' &&
@@ -69,90 +71,143 @@ class EventService {
 			typeof filters.dateFrom === 'string' &&
 			filters.dateFrom.trim() !== ''
 		) {
-			// Якщо задано тільки dateFrom → всі події з дати dateFrom і далі
 			where.eventDate = { [Op.gte]: new Date(filters.dateFrom) }
 		} else if (
 			typeof filters.dateTo === 'string' &&
 			filters.dateTo.trim() !== ''
 		) {
-			// Якщо задано тільки dateTo → всі події до dateTo включно
 			where.eventDate = { [Op.lte]: new Date(filters.dateTo) }
 		}
 
-		// 2) Додаємо пошук лише у визначеному полі (searchField)
-		if (search && searchField) {
-			const pattern = `%${search}%`
+		// 6) Пошук по різних полях
+		if (search && search.trim() !== '' && searchField) {
+			const trimmedSearch = search.trim()
+			const ilikePattern = { [Op.iLike]: `%${trimmedSearch}%` }
 
 			if (searchField === 'title') {
-				// шукати лише у заголовку
-				Object.assign(where, { title: { [Op.iLike]: pattern } })
+				where.title = ilikePattern
 			} else if (searchField === 'location') {
-				// шукати лише у локації
-				Object.assign(where, { location: { [Op.iLike]: pattern } })
-			} else if (searchField === 'creator') {
-				// шукати лише у ніку організатора (creator.profile.nickname)
-				// Для цього додаємо OR/AND умову через sqWhere:
-				Object.assign(where, {
-					[Op.and]: [
-						sqWhere(fn('LOWER', col('creator->profile.nickname')), {
-							[Op.like]: `%${search.toLowerCase()}%`,
-						}),
-					],
-				})
+				where.location = ilikePattern
+			}
+			// Для creator пошук буде в include
+		}
+
+		// 7) Налаштовуємо include для creator
+		const creatorInclude: any = {
+			association: Event.associations.creator,
+			attributes: ['id', 'username'],
+			required: false, // LEFT JOIN за замовчуванням
+			include: [
+				{
+					model: UserProfile,
+					as: 'profile',
+					attributes: ['nickname'],
+					required: false, // LEFT JOIN за замовчуванням
+				},
+			],
+		}
+
+		// Якщо шукаємо по creator, змінюємо на INNER JOIN з умовою
+		if (search && search.trim() !== '' && searchField === 'creator') {
+			const trimmedSearch = search.trim()
+			creatorInclude.required = true // INNER JOIN
+			creatorInclude.include[0].required = true // INNER JOIN для profile
+			creatorInclude.include[0].where = {
+				nickname: { [Op.iLike]: `%${trimmedSearch}%` },
 			}
 		}
 
-		// 3) Сортування
-		// За замовчуванням сортуємо за eventDate, але якщо sortBy === 'title' чи 'location', змінюємо
+		// 8) Налаштовуємо сортування
 		const order: OrderItem[] = []
+
 		if (sortBy === 'title') {
 			order.push(['title', sortOrder])
 		} else if (sortBy === 'location') {
 			order.push(['location', sortOrder])
-		} else {
-			// eventDate
+		} else if (sortBy === 'eventDate') {
 			order.push(['eventDate', sortOrder])
 		}
 
-		// 4) Збираємо include (щоб підхопити creator + profile і participants)
-		const result = await Event.findAndCountAll({
-			where,
-			include: [
-				{
-					association: Event.associations.creator,
-					attributes: ['id', 'username'],
-					include: [
-						{
-							model: UserProfile,
-							as: 'profile',
-							attributes: ['nickname'],
-						},
-					],
-				},
-				{
-					association: Event.associations.participants,
-					attributes: ['id', 'username'],
-					through: { attributes: [] },
-					include: [
-						{
-							model: UserProfile,
-							as: 'profile',
-							attributes: ['nickname'],
-						},
-					],
-				},
-			],
-			order: [
-				['eventDate', 'ASC'],
-				['id', 'ASC'], // <-- додайте другорядний ключ, щоб однозначно сортувати
-			],
-			distinct: true,
-			limit,
-			offset,
-		})
+		// Додаємо додаткове сортування для стабільності
+		order.push(['id', 'ASC'])
 
-		return { rows: result.rows, count: result.count }
+		// 9) Виконуємо запит з виправленням проблеми пагінації
+		try {
+			// ВИПРАВЛЕННЯ: Використовуємо окремі запити для уникнення проблем з пагінацією при JOIN
+
+			// Спочатку отримуємо ID подій без participants (щоб уникнути дублювання)
+			const eventIds = await Event.findAll({
+				attributes: ['id'],
+				where,
+				include: [creatorInclude], // Тільки creator, без participants
+				order,
+				limit: Math.max(1, Math.min(100, limit)),
+				offset: Math.max(0, offset),
+				raw: true,
+			})
+
+			if (eventIds.length === 0) {
+				return { rows: [], count: 0 }
+			}
+
+			// Отримуємо загальну кількість без limit/offset
+			const totalCount = await Event.count({
+				where,
+				include: [creatorInclude],
+				distinct: true,
+			})
+
+			// Тепер отримуємо повні дані для знайдених ID
+			const events = await Event.findAll({
+				where: {
+					id: {
+						[Op.in]: eventIds.map((event: any) => event.id),
+					},
+				},
+				include: [
+					{
+						association: Event.associations.creator,
+						attributes: ['id', 'username'],
+						required: false,
+						include: [
+							{
+								model: UserProfile,
+								as: 'profile',
+								attributes: ['nickname'],
+								required: false,
+							},
+						],
+					},
+					{
+						association: Event.associations.participants,
+						attributes: ['id', 'username'],
+						through: { attributes: [] },
+						required: false,
+						include: [
+							{
+								model: UserProfile,
+								as: 'profile',
+								attributes: ['nickname'],
+								required: false,
+							},
+						],
+					},
+				],
+				order, // Зберігаємо той самий порядок
+			})
+
+			console.log(`Found ${events.length} events out of ${totalCount} total`)
+
+			return {
+				rows: events,
+				count: totalCount,
+			}
+		} catch (error) {
+			console.error('Помилка при отриманні відфільтрованих подій:', error)
+			throw new Error('Не вдалося отримати події. Спробуйте пізніше.')
+		}
 	}
+	// TODO Вроді добре працює все в купі(сортування, фільтри, пошук, пагінація)
 
 	// 2) Отримати один івент з деталями
 	async getById(id: number) {
