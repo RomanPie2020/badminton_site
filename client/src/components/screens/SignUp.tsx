@@ -55,7 +55,7 @@ const SignUp = () => {
 	return (
 		<div>
 			<div className={`${formStyles}`}>
-				<h1 className='text-7xl sm:text-4xl mb-10'>SignUp</h1>
+				<h1 className='text-7xl sm:text-4xl mb-10'>Реєстрація</h1>
 
 				{isLoading ? (
 					<div className='flex justify-center items-center'>

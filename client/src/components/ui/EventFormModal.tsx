@@ -1,4 +1,3 @@
-import React from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { EventInput } from '../../shared/validations/event.schema'
 
@@ -86,6 +85,7 @@ const EventFormModal: React.FC<EventFormModalProps> = ({
 							{...register('eventDate', { required: 'Обовʼязково' })}
 							className='mt-1 block w-full border-gray-300 rounded-md p-2'
 						/>
+						{/* TODO узгоджена локальна дата і час адаптив треба */}
 						{errors.eventDate && (
 							<p className='text-red-600 text-sm'>{errors.eventDate.message}</p>
 						)}

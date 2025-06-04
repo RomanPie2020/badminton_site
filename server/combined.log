@@ -4524,3 +4524,86 @@
 {"level":"info","message":"database password is: string","timestamp":"2025-06-02T19:18:10.327Z"}
 {"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-06-02T19:18:10.331Z"}
 {"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-06-02T19:18:10.375Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-06-03T10:59:42.742Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-06-03T10:59:42.747Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-06-03T10:59:42.887Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-06-03T15:28:00.412Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-06-03T15:28:00.417Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-06-03T15:28:00.499Z"}
+{"level":"error","message":"Error:","timestamp":"2025-06-03T15:59:56.982Z"}
+{"level":"error","message":"Error:","timestamp":"2025-06-03T16:01:34.243Z"}
+{"level":"error","message":"Error:","timestamp":"2025-06-03T16:01:44.660Z"}
+{"level":"error","message":"Error:","timestamp":"2025-06-03T16:02:57.441Z"}
+{"level":"error","message":"Error:","timestamp":"2025-06-03T16:04:30.750Z"}
+{"level":"error","message":"Error:","timestamp":"2025-06-03T16:04:51.700Z"}
+{"level":"error","message":"Error:","timestamp":"2025-06-03T16:04:56.659Z"}
+{"level":"error","message":"Error:","timestamp":"2025-06-03T21:07:49.531Z"}
+{"level":"error","message":"Error:","timestamp":"2025-06-03T21:07:49.581Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-06-03T21:08:21.849Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-06-03T21:08:21.853Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-06-03T21:08:21.912Z"}
+{"level":"error","message":"Error:","timestamp":"2025-06-03T21:10:02.822Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-06-03T21:22:49.968Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-06-03T21:22:49.972Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-06-03T21:22:50.037Z"}
+{"level":"error","message":"Error:","timestamp":"2025-06-03T21:24:08.167Z"}
+{"level":"error","message":"Error:","timestamp":"2025-06-03T21:25:03.629Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-06-03T21:25:30.666Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-06-03T21:25:30.670Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-06-03T21:25:30.763Z"}
+{"level":"error","message":"Error:","timestamp":"2025-06-03T21:26:04.606Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-06-03T21:30:16.412Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-06-03T21:30:16.417Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-06-03T21:30:16.480Z"}
+{"level":"error","message":"Error:","timestamp":"2025-06-03T21:30:33.134Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-06-03T21:31:17.508Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-06-03T21:31:17.512Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-06-03T21:31:17.562Z"}
+{"creatorId":35,"description":"","eventDate":"2025-06-08T20:46","eventType":"Тренування","gameType":"Одиночна","level":"info","levelOfPlayers":"Середній","location":"Arena Lviv","maxParticipants":3,"message":"Створення івенту:","timestamp":"2025-06-03T21:31:24.764Z","title":"2 (4)"}
+{"level":"error","message":"Error:","timestamp":"2025-06-03T21:31:24.809Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-06-03T21:32:00.876Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-06-03T21:32:00.880Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-06-03T21:32:00.926Z"}
+{"creatorId":35,"description":"","eventDate":"2025-06-08T20:46","eventType":"Тренування","gameType":"Одиночна","level":"info","levelOfPlayers":"Середній","location":"Arena Lviv","maxParticipants":3,"message":"Створення івенту:","timestamp":"2025-06-03T21:32:15.207Z","title":"2 (4)"}
+{"level":"error","message":"Error:","timestamp":"2025-06-03T21:32:15.265Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-06-03T21:39:26.676Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-06-03T21:39:26.681Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-06-03T21:39:26.762Z"}
+{"creatorId":35,"description":"","eventDate":"2025-06-08T20:46","eventType":"Тренування","gameType":"Одиночна","level":"info","levelOfPlayers":"Середній","location":"Arena Lviv","maxParticipants":3,"message":"Створення івенту:","timestamp":"2025-06-03T21:42:09.060Z","title":"2 (4)"}
+{"level":"error","message":"Error:","timestamp":"2025-06-03T21:42:09.113Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-06-03T21:48:29.877Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-06-03T21:48:29.882Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-06-03T21:48:29.928Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-06-03T21:48:38.812Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-06-03T21:48:38.816Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-06-03T21:48:38.867Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-06-03T21:48:47.487Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-06-03T21:48:47.490Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-06-03T21:48:47.545Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-06-03T21:49:19.924Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-06-03T21:49:19.928Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-06-03T21:49:19.983Z"}
+{"creatorId":35,"description":"","eventDate":"2025-06-08T20:46","eventType":"Тренування","gameType":"Одиночна","level":"info","levelOfPlayers":"Середній","location":"Arena Lviv","maxParticipants":3,"message":"Створення івенту:","timestamp":"2025-06-03T21:49:33.212Z","title":"2 (4)"}
+{"level":"error","message":"Error:","timestamp":"2025-06-03T21:49:33.264Z"}
+{"creatorId":35,"description":"","eventDate":"2025-06-08T20:46","eventType":"Тренування","gameType":"Одиночна","level":"info","levelOfPlayers":"Середній","location":"Arena Lviv","maxParticipants":3,"message":"Створення івенту:","timestamp":"2025-06-03T21:50:48.489Z","title":"2 (4)"}
+{"level":"error","message":"Error:","timestamp":"2025-06-03T21:50:48.494Z"}
+{"creatorId":35,"description":"","eventDate":"2025-06-08T20:46","eventType":"Тренування","gameType":"Одиночна","level":"info","levelOfPlayers":"Середній","location":"Arena Lviv","maxParticipants":3,"message":"Створення івенту:","timestamp":"2025-06-03T21:51:44.891Z","title":"2 (4)"}
+{"level":"info","message":"database password is: string","timestamp":"2025-06-04T08:16:47.341Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-06-04T08:16:47.345Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-06-04T08:16:47.532Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-06-04T08:51:00.817Z"}
+{"level":"info","message":"Refresh token saved for user 35","timestamp":"2025-06-04T08:51:09.002Z"}
+{"level":"info","message":"Користувач romankaras2004@gmail.com успішно увійшов","timestamp":"2025-06-04T08:51:09.002Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-06-04T08:55:11.596Z"}
+{"level":"info","message":"Refresh token saved for user 35","timestamp":"2025-06-04T08:55:19.378Z"}
+{"level":"info","message":"Користувач romankaras2004@gmail.com успішно увійшов","timestamp":"2025-06-04T08:55:19.379Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-06-04T09:28:42.802Z"}
+{"level":"info","message":"Refresh token saved for user 35","timestamp":"2025-06-04T09:30:28.881Z"}
+{"level":"info","message":"Користувач romankaras2004@gmail.com успішно увійшов","timestamp":"2025-06-04T09:30:28.881Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-06-04T09:46:20.390Z"}
+{"level":"info","message":"Refresh token saved for user 35","timestamp":"2025-06-04T09:51:59.242Z"}
+{"level":"info","message":"Користувач romankaras2004@gmail.com успішно увійшов","timestamp":"2025-06-04T09:51:59.243Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-06-04T09:53:22.578Z"}
+{"level":"info","message":"Refresh token saved for user 35","timestamp":"2025-06-04T09:53:31.658Z"}
+{"level":"info","message":"Користувач romankaras2004@gmail.com успішно увійшов","timestamp":"2025-06-04T09:53:31.658Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-06-04T09:54:00.504Z"}

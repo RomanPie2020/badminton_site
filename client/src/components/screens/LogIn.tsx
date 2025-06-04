@@ -34,7 +34,7 @@ const LogIn = () => {
 	return (
 		<div>
 			<div className={`${formStyles}`}>
-				<h1 className='text-7xl mb-10 sm:text-4xl'>LogIn</h1>
+				<h1 className='text-7xl mb-10 sm:text-4xl'>Увійти</h1>
 				<LogInForm onSubmit={onSubmit} errorMessage={loginError} />
 			</div>
 		</div>

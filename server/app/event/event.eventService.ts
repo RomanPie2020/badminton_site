@@ -1,6 +1,7 @@
 import User from '@/auth/models/user'
 import ApiError from '@/exceptions/apiError'
 import UserProfile from '@/profile/models/userProfile'
+import { logger } from '@/utils/logger/log'
 import { Op, OrderItem, WhereOptions } from 'sequelize'
 import { Filters } from './event.types'
 import {
@@ -229,7 +230,34 @@ class EventService {
 
 	// 3) Створити івент
 	async create(creatorId: number, data: Partial<Event>) {
-		return await Event.create({ ...data, creatorId })
+		try {
+			logger.info('Створення івенту:', { ...data, creatorId })
+			const {
+				title,
+				description,
+				location,
+				eventDate,
+				maxParticipants,
+				eventType,
+				gameType,
+				levelOfPlayers,
+			} = data
+			return await Event.create({
+				title,
+				description,
+				location,
+				eventDate,
+				maxParticipants,
+				creatorId,
+				eventType,
+				gameType,
+				levelOfPlayers,
+				creatorId,
+			})
+		} catch (e) {
+			console.error('Помилка при створенні івенту:', (e as any).errors)
+			throw ApiError.InternalServerError('Не вдалося створити івент')
+		}
 	}
 
 	async update(

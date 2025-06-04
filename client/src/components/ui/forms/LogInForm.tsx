@@ -15,20 +15,20 @@ import LogButton from '../LogButton/LogButton'
 // }
 
 const logInButtonProps: ILogButton = {
-	title: 'Log In',
+	title: 'Увійти',
 	styles: 'signup-button',
 	to: '',
 	type: 'button',
 }
 
 const signUpButtonProps: ILogButton = {
-	title: 'Register now',
+	title: 'Зареєструватися зараз',
 	styles: '',
 	to: '/signup',
 }
 
 const forgotPasswordButtonProps: ILogButton = {
-	title: 'Forgot password?',
+	title: 'Забули пароль?',
 	styles: '',
 	to: '/enter-email',
 }
@@ -73,7 +73,7 @@ const LogInForm = ({ onSubmit, errorMessage }: ILogInFormProps) => {
 					placeholder='you@example.com'
 				/>
 				<TextInput
-					label='Password'
+					label='Пароль'
 					name='password'
 					type='password'
 					register={register}
@@ -92,7 +92,7 @@ const LogInForm = ({ onSubmit, errorMessage }: ILogInFormProps) => {
 					className='flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-md shadow-sm hover:bg-gray-100 transition bg-blue-100 my-5'
 				>
 					<img src={googleIcon} alt='Google' className='w-5 h-5' />
-					<span className='text-sm text-gray-700'>Continue with Google</span>
+					<span className='text-sm text-gray-700'>Продовжити з Google</span>
 				</button>
 			</form>
 			<LogButton button={signUpButtonProps} />

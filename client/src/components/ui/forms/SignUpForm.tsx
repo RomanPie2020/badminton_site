@@ -21,14 +21,14 @@ import LogButton from '../LogButton/LogButton'
 // 	to: '/',
 // }
 const SubmitButtonProps: ILogButton = {
-	title: 'Sign up',
+	title: 'Зареєструватися',
 	styles: 'signup-button',
 	to: '',
 	type: 'button',
 }
 
 const LogInButtonProps: ILogButton = {
-	title: 'Have account? Log in',
+	title: 'Маєш аккаунт? Увійди зараз',
 	styles: '',
 	to: '/login',
 }
@@ -74,7 +74,7 @@ const SignUpForm = ({ onSubmit }: ISignUpFormProps) => {
 					placeholder='you@example.com'
 				/>
 				<TextInput
-					label='Username'
+					label='Імʼя користувача'
 					name='username'
 					type='text'
 					register={register}
@@ -84,7 +84,7 @@ const SignUpForm = ({ onSubmit }: ISignUpFormProps) => {
 				/>
 
 				<TextInput
-					label='Password'
+					label='Пароль'
 					name='password'
 					type='password'
 					register={register}
@@ -95,7 +95,7 @@ const SignUpForm = ({ onSubmit }: ISignUpFormProps) => {
 					placeholder='******'
 				/>
 				<TextInput
-					label='Confirm Password'
+					label='Підтвердження паролю'
 					name='passwordConfirmation'
 					type='password'
 					register={register}
@@ -135,7 +135,7 @@ const SignUpForm = ({ onSubmit }: ISignUpFormProps) => {
 					className='flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-md shadow-sm hover:bg-gray-100 transition mb-5 mt-5 bg-blue-100'
 				>
 					<img src={googleIcon} alt='Google' className='w-5 h-5 ' />
-					<span className='text-sm text-gray-700'>Continue with Google</span>
+					<span className='text-sm text-gray-700'>Продовжити з Google</span>
 				</button>
 			</form>
 

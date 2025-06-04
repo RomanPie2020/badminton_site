@@ -14,37 +14,37 @@ import LogButton from '../../ui/LogButton/LogButton'
 // }
 
 const logButtonProps: ILogButton = {
-	title: 'Log in',
+	title: 'Увійти',
 	to: '/login',
 	styles: 'log-button',
 }
 
 const regButtonProps: ILogButton = {
-	title: 'Sign up',
+	title: 'Зареєструватися',
 	to: '/signup',
 	styles: 'reg-button',
 }
 
 const logoutButtonProps: ILogButton = {
-	title: 'Log out',
+	title: 'Вийти',
 	to: '/login',
 	styles: 'reg-button',
 }
 
 const profileButtonProps: ILogButton = {
-	title: 'Profile',
+	title: 'Профіль',
 	to: '/profile',
 	styles: 'log-button',
 }
 
 const eventsButtonProps: ILogButton = {
-	title: 'Events',
+	title: 'Події',
 	to: '/events',
 	styles: 'log-button',
 }
 
 const myEventsButtonProps: ILogButton = {
-	title: 'My Events',
+	title: 'Мої події',
 	to: '/myevents',
 	styles: 'log-button',
 }

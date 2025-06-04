@@ -59,7 +59,7 @@ const MyEvents = () => {
 
 	return (
 		<div className='p-6 max-w-7xl mx-auto mt-24'>
-			<h2 className='text-3xl font-semibold mb-6 text-center'>Мої івенти</h2>
+			<h2 className='text-3xl font-semibold mb-6 text-center'>Мої події</h2>
 
 			<TabGroup>
 				<TabList className='flex space-x-4 border-b mb-4'>

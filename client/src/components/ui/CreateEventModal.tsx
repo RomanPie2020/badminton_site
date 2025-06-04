@@ -2,7 +2,6 @@
 import React, { useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useCreateEventMutation } from '../../services/EventService'
-import { EventInput } from '../../shared/validations/event.schema'
 
 interface CreateEventModalProps {
 	onCreated: () => void
@@ -27,9 +26,9 @@ const CreateEventModal: React.FC<CreateEventModalProps> = ({ onCreated }) => {
 		handleSubmit,
 		reset,
 		formState: { errors },
-	} = useForm<EventInput>()
+	} = useForm<any>()
 
-	const onSubmit: SubmitHandler<EventInput> = async data => {
+	const onSubmit: SubmitHandler<any> = async data => {
 		try {
 			await createEvent(data).unwrap()
 			reset()

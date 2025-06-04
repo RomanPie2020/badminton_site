@@ -16,7 +16,7 @@ router.get('/api/events/:id', eventController.getEventById)
 router.post(
 	'/api/events',
 	isAuthorized,
-	validateBody(eventSchema),
+	// validateBody(eventSchema),
 	eventController.createEvent
 )
 // Оновити івент (тільки той, хто створив)
