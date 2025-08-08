@@ -7,19 +7,19 @@
 // 	useUpdateUserMutation,
 // } from '../../services/AuthService'
 // import {
-// 	ILogButton,
+// 	IBaseButton,
 // 	IRequestChangeUsername,
 // } from '../../shared/interfaces/models'
-// import LogButton from '../ui/LogButton/LogButton'
+// import BaseButton from '../ui/BaseButton/BaseButton'
 
-// const ChangeAccountButtonProps: ILogButton = {
+// const ChangeAccountButtonProps: IBaseButton = {
 // 	title: 'Change username',
 // 	to: '',
 // 	styles: 'signup-button',
 // 	type: 'button',
 // }
 
-// const deleteAccountButtonProps: ILogButton = {
+// const deleteAccountButtonProps: IBaseButton = {
 // 	title: 'Delete account',
 // 	to: '',
 // 	styles: 'delete-account-button',
@@ -93,12 +93,12 @@
 // 					)}
 
 // 					<br />
-// 					<LogButton button={ChangeAccountButtonProps} />
+// 					<BaseButton button={ChangeAccountButtonProps} />
 // 					<br />
 // 				</form>
 // 			</div>
 // 			<div className=''>
-// 				<LogButton
+// 				<BaseButton
 // 					onButtonClick={() => deleteAccount()}
 // 					button={deleteAccountButtonProps}
 // 				/>

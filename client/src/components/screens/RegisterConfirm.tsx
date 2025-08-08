@@ -1,10 +1,10 @@
 import { useLocation } from 'react-router-dom'
 import { formStyles } from '../../configs/styles.config'
 import { useConfirmRegistrationQuery } from '../../services/AuthService'
-import { ILogButton } from '../../shared/interfaces/models'
-import LogButton from '../ui/LogButton/LogButton'
+import { IBaseButton } from '../../shared/interfaces/models'
+import BaseButton from '../ui/BaseButton/BaseButton'
 
-const buttonProps: ILogButton = {
+const buttonProps: IBaseButton = {
 	title: 'Log In',
 	styles: 'signup-button',
 	to: '/login',
@@ -28,7 +28,7 @@ export const RegisterConfirm = () => {
 					<>
 						<h1 className='text-6xl mb-10'>Registration was successful!</h1>
 						<h1 className='text-4xl mb-10'>Log In and let's go!</h1>
-						<LogButton button={buttonProps} />
+						<BaseButton button={buttonProps} />
 					</>
 				)}
 			</div>

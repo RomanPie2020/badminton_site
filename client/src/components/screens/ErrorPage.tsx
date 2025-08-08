@@ -1,8 +1,8 @@
 import { useRouteError } from 'react-router-dom'
-import { ILogButton } from '../../shared/interfaces/models'
-import LogButton from '../ui/LogButton/LogButton'
+import { IBaseButton } from '../../shared/interfaces/models'
+import BaseButton from '../ui/BaseButton/BaseButton'
 
-const buttonProps: ILogButton = {
+const buttonProps: IBaseButton = {
 	title: 'Home',
 	styles: 'signup-button',
 	to: '/',
@@ -18,7 +18,7 @@ export const ErrorPage = () => {
 				<h1 className='text-6xl mb-10'>Oops!</h1>
 				<p>{error.statusText ?? error.message}</p>
 				<p>{error.status}</p>
-				<LogButton button={buttonProps} />
+				<BaseButton button={buttonProps} />
 			</div>
 		</>
 	)

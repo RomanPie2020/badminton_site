@@ -14,10 +14,8 @@ import FilterModal from '../ui/FilterModal'
 const PAGE_SIZE = 10
 
 const EventList = () => {
-	// Redux фільтри
 	const filters = useAppSelector(selectFilters)
 
-	// Локальні стани для пошуку + сортування
 	const [searchText, setSearchText] = useState('')
 	const [searchField, setSearchField] = useState<
 		'title' | 'location' | 'creator'
@@ -27,7 +25,6 @@ const EventList = () => {
 	)
 	const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc')
 
-	// Стани для інфініті-скролу
 	const [items, setItems] = useState<any[]>([])
 	const [currentOffset, setCurrentOffset] = useState(0)
 	const [total, setTotal] = useState(0)
@@ -35,20 +32,15 @@ const EventList = () => {
 	const [isLoadingMore, setIsLoadingMore] = useState(false)
 	const [isInitialLoad, setIsInitialLoad] = useState(true)
 
-	// RTK Query
 	const [trigger, { isFetching, isError }] = useLazyGetFilteredEventsQuery()
-
-	// Мутації
 	const [joinEvent] = useJoinEventMutation()
 	const [leaveEvent] = useLeaveEventMutation()
 	const currentUserId = Number(localStorage.getItem('user_id'))
 	const { openFiltersModal } = useActions()
 
-	// Refs для intersection observer
 	const observerRef = useRef<IntersectionObserver | null>(null)
 	const bottomRef = useRef<HTMLDivElement | null>(null)
 
-	// Функція для завантаження даних
 	const loadEvents = useCallback(
 		async (offset: number, isNewSearch: boolean = false) => {
 			try {

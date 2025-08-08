@@ -1,19 +1,20 @@
 // import React from 'react'
 import { useForm } from 'react-hook-form'
 import {
-	ILogButton,
+	IBaseButton,
 	IResetPasswordData,
 	IResetPasswordFormProps,
 } from '../../../shared/interfaces/models'
-import LogButton from '../LogButton/LogButton'
-// const submitButtonProps: ILogButton = {
+import BaseButton from '../BaseButton/BaseButton'
+import TextInput from '../Inputs/FormInput'
+// const submitButtonProps: IBaseButton = {
 // 	title: 'LogIn',
 // 	styles: 'log-button mt-5',
 // 	to: '/',
 // }
 
-const logInButtonProps: ILogButton = {
-	title: 'Change password',
+const logInButtonProps: IBaseButton = {
+	title: 'Змінити пароль',
 	styles: 'signup-button',
 	to: '',
 	type: 'button',
@@ -39,25 +40,29 @@ const ResetPasswordForm = ({ onSubmit }: IResetPasswordFormProps) => {
 				autoComplete='off'
 				onSubmit={handleSubmit(onSubmit)}
 			>
-				<label>
-					New password <br />
-					<input
-						type='password'
-						{...register('newPassword', { required: true })}
-					/>
-				</label>
-				{errors.newPassword && <span>This field is required</span>}
+				<TextInput
+					label='Пароль'
+					name='newPassword'
+					type='password'
+					register={register}
+					rules={{ required: "Обов'язкове поле" }}
+					error={errors.password}
+					placeholder='Введіть новий пароль'
+				/>
+				{errors.newPassword && <span>Обов'язкове поле</span>}
 
-				<label>
-					Confirm password <br />
-					<input
-						type='password'
-						{...register('confirmPassword', { required: true })}
-					/>
-				</label>
-				{errors.confirmPassword && <span>This field is required</span>}
+				<TextInput
+					label='Підтвердження паролю'
+					name='confirmPassword'
+					type='password'
+					register={register}
+					rules={{ required: "Обов'язкове поле" }}
+					error={errors.confirmPassword}
+					placeholder='Підтвердіть пароль'
+				/>
+				{errors.confirmPassword && <span>Обов'язкове поле</span>}
 
-				<LogButton button={logInButtonProps} />
+				<BaseButton button={logInButtonProps} />
 				<br />
 			</form>
 		</>

@@ -2,19 +2,19 @@
 // import {
 // 	ICodeVerifyData,
 // 	ICodeVerifyFormProps,
-// 	ILogButton,
+// 	IBaseButton,
 // } from '../../../shared/interfaces/models'
 // import { useAppSelector } from '../../../store/store'
-// import LogButton from '../LogButton/LogButton'
+// import BaseButton from '../BaseButton/BaseButton'
 
-// const SubmitButtonProps: ILogButton = {
+// const SubmitButtonProps: IBaseButton = {
 // 	title: 'Send',
 // 	styles: 'signup-button',
 // 	to: '',
 // 	type: 'button',
 // }
 
-// const signUpButtonProps: ILogButton = {
+// const signUpButtonProps: IBaseButton = {
 // 	title: 'Send code again',
 // 	styles: 'mt-2 inline-block',
 // 	to: '',
@@ -54,10 +54,10 @@
 // 					<span className='text-red-500 mt-2'>{errorMessage}</span>
 // 				)}
 // 				<br />
-// 				<LogButton button={SubmitButtonProps} />
+// 				<BaseButton button={SubmitButtonProps} />
 // 				<br />
 // 			</form>
-// 			<LogButton
+// 			<BaseButton
 // 				onButtonClick={() => onSendCodeAgain()}
 // 				button={signUpButtonProps}
 // 			/>

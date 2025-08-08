@@ -7,19 +7,22 @@ import {
 	useDeletePasteByIdMutation,
 	useUpdatePasteByIdMutation,
 } from '../../services/PasteService'
-import { ILogButton, IRequestCreatePaste } from '../../shared/interfaces/models'
+import {
+	IBaseButton,
+	IRequestCreatePaste,
+} from '../../shared/interfaces/models'
+import BaseButton from './BaseButton/BaseButton'
 import PasteForm from './forms/PasteForm'
-import LogButton from './LogButton/LogButton'
 import Modal from './Modal_old'
 
-const updatePasteButtonProps: ILogButton = {
+const updatePasteButtonProps: IBaseButton = {
 	title: 'Update',
 	styles: 'update-paste-button',
 	to: '',
 	type: 'button',
 }
 
-const deletePasteButtonProps: ILogButton = {
+const deletePasteButtonProps: IBaseButton = {
 	title: 'Delete',
 	styles: 'delete-paste-button',
 	to: '',
@@ -77,12 +80,12 @@ const PasteItem = ({ paste, refetch }) => {
 				<div className='text-3xl break-words w-full'>{paste.title}</div>
 				<div className='text-xl break-words w-full'>{paste.text}</div>
 				<div className='text-xl break-words w-full'>{`http://localhost:5173/paste/${paste.url}`}</div>
-				<LogButton
+				<BaseButton
 					button={updatePasteButtonProps}
 					onButtonClick={handleUpdate}
 				/>
 
-				<LogButton
+				<BaseButton
 					button={deletePasteButtonProps}
 					onButtonClick={handleDelete}
 				/>

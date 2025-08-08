@@ -1,14 +1,14 @@
 import clsx from 'clsx'
 import { Link } from 'react-router-dom'
-import { ICodeSendAgain, ILogButton } from '../../../shared/interfaces/models'
+import { IBaseButton, ICodeSendAgain } from '../../../shared/interfaces/models'
 
 interface ButtonProps {
-	button: ILogButton
+	button: IBaseButton
 	onButtonClick?: (codeData: ICodeSendAgain | any) => void
 	// children?: ReactNode
 }
 
-const LogButton = ({ button, onButtonClick }: ButtonProps) => {
+const BaseButton = ({ button, onButtonClick }: ButtonProps) => {
 	const baseClasses = 'block p-3 border-2 rounded-md text-center'
 	const buttonClass = clsx(
 		{
@@ -51,4 +51,4 @@ const LogButton = ({ button, onButtonClick }: ButtonProps) => {
 	}
 }
 
-export default LogButton
+export default BaseButton

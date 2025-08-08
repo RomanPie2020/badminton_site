@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form'
 import { formStyles } from '../../../configs/styles.config'
 import { IRequestCreatePaste } from '../../../shared/interfaces/models'
-import LogButton from '../LogButton/LogButton'
+import BaseButton from '../BaseButton/BaseButton'
 
 function PasteForm({ submitFunc, submitButton }) {
 	const {
@@ -78,7 +78,7 @@ function PasteForm({ submitFunc, submitButton }) {
 					</label>
 
 					<br />
-					<LogButton button={submitButton} />
+					<BaseButton button={submitButton} />
 					<br />
 				</form>
 			</div>

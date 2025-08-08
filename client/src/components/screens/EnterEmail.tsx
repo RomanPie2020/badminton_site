@@ -11,7 +11,7 @@ const EnterEmail = () => {
 	const [errorMessage, setErrorMessage] = useState('')
 
 	const onSubmit: SubmitHandler<IEnterEmailData> = async req => {
-		setErrorMessage('') // скидаємо перед новою спробою
+		setErrorMessage('') // reset before trying again
 		try {
 			const data = await forgotPassword(req).unwrap()
 			if (data) {
@@ -20,7 +20,7 @@ const EnterEmail = () => {
 		} catch (error: any) {
 			console.log(error, 'Enter email was failed')
 
-			// Якщо в error є повідомлення — виводимо його
+			// If there is a message in error, we display it
 			const message =
 				error?.data?.message ||
 				error?.error ||
@@ -32,10 +32,12 @@ const EnterEmail = () => {
 	return (
 		<div>
 			<div className={`${formStyles}`}>
-				<h1 className='text-7xl mb-10 sm:text-4xl'>Enter email</h1>
+				<h1 className='text-6xl mb-10 sm:text-4xl'>
+					Введіть email на який прийде лист
+				</h1>
 
 				{isLoading ? (
-					<div className='flex justify-center items-center'>
+					<div className='flex 	justify-center items-center'>
 						<div className='w-12 h-12 border-4 border-blue-500 border-dashed rounded-full animate-spin'></div>
 					</div>
 				) : isSuccess ? (

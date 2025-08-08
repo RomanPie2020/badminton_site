@@ -2,32 +2,32 @@
 import { useForm } from 'react-hook-form'
 import googleIcon from '../../../assets/images/google_icon.svg'
 import {
-	ILogButton,
+	IBaseButton,
 	ILogInData,
 	ILogInFormProps,
 } from '../../../shared/interfaces/models'
+import BaseButton from '../BaseButton/BaseButton'
 import TextInput from '../Inputs/FormInput'
-import LogButton from '../LogButton/LogButton'
-// const submitButtonProps: ILogButton = {
+// const submitButtonProps: IBaseButton = {
 // 	title: 'LogIn',
 // 	styles: 'log-button mt-5',
 // 	to: '/',
 // }
 
-const logInButtonProps: ILogButton = {
+const logInButtonProps: IBaseButton = {
 	title: 'Увійти',
 	styles: 'signup-button',
 	to: '',
 	type: 'button',
 }
 
-const signUpButtonProps: ILogButton = {
+const signUpButtonProps: IBaseButton = {
 	title: 'Зареєструватися зараз',
 	styles: '',
 	to: '/signup',
 }
 
-const forgotPasswordButtonProps: ILogButton = {
+const forgotPasswordButtonProps: IBaseButton = {
 	title: 'Забули пароль?',
 	styles: '',
 	to: '/enter-email',
@@ -83,8 +83,8 @@ const LogInForm = ({ onSubmit, errorMessage }: ILogInFormProps) => {
 					error={errors.password}
 					placeholder='******'
 				/>
-				<LogButton button={logInButtonProps} />
-				<LogButton button={forgotPasswordButtonProps} />
+				<BaseButton button={logInButtonProps} />
+				<BaseButton button={forgotPasswordButtonProps} />
 
 				<button
 					onClick={googleLogin}
@@ -95,7 +95,7 @@ const LogInForm = ({ onSubmit, errorMessage }: ILogInFormProps) => {
 					<span className='text-sm text-gray-700'>Продовжити з Google</span>
 				</button>
 			</form>
-			<LogButton button={signUpButtonProps} />
+			<BaseButton button={signUpButtonProps} />
 		</>
 	)
 }

@@ -2,12 +2,12 @@
 import { useForm } from 'react-hook-form'
 import googleIcon from '../../../assets/images/google_icon.svg'
 import {
-	ILogButton,
+	IBaseButton,
 	ISignUpData,
 	ISignUpFormProps,
 } from '../../../shared/interfaces/models'
+import BaseButton from '../BaseButton/BaseButton'
 import TextInput from '../Inputs/FormInput'
-import LogButton from '../LogButton/LogButton'
 // #todo підключити reduxtoolkit
 
 // type FormData = {
@@ -15,19 +15,19 @@ import LogButton from '../LogButton/LogButton'
 //   touched?: boolean
 // }
 
-// const submitButtonProps: ILogButton = {
+// const submitButtonProps: IBaseButton = {
 // 	title: 'SignUp',
 // 	styles: 'log-button mt-5',
 // 	to: '/',
 // }
-const SubmitButtonProps: ILogButton = {
+const SubmitButtonProps: IBaseButton = {
 	title: 'Зареєструватися',
 	styles: 'signup-button',
 	to: '',
 	type: 'button',
 }
 
-const LogInButtonProps: ILogButton = {
+const LogInButtonProps: IBaseButton = {
 	title: 'Маєш аккаунт? Увійди зараз',
 	styles: '',
 	to: '/login',
@@ -80,7 +80,7 @@ const SignUpForm = ({ onSubmit }: ISignUpFormProps) => {
 					register={register}
 					rules={{ required: 'Username is required' }}
 					error={errors.username}
-					placeholder='Enter your username'
+					placeholder='Введіть імʼя користувача'
 				/>
 
 				<TextInput
@@ -127,7 +127,7 @@ const SignUpForm = ({ onSubmit }: ISignUpFormProps) => {
 				)}
 				<br /> */}
 
-				<LogButton button={SubmitButtonProps} />
+				<BaseButton button={SubmitButtonProps} />
 
 				<button
 					onClick={googleLogin}
@@ -139,7 +139,7 @@ const SignUpForm = ({ onSubmit }: ISignUpFormProps) => {
 				</button>
 			</form>
 
-			<LogButton button={LogInButtonProps} />
+			<BaseButton button={LogInButtonProps} />
 		</>
 	)
 	// <f></f>

@@ -1,10 +1,13 @@
 import { SubmitHandler } from 'react-hook-form'
 import { Link } from 'react-router-dom'
 import { useCreatePasteMutation } from '../../services/PasteService'
-import { ILogButton, IRequestCreatePaste } from '../../shared/interfaces/models'
+import {
+	IBaseButton,
+	IRequestCreatePaste,
+} from '../../shared/interfaces/models'
 import { useAppSelector } from '../../store/store'
 
-const createPasteButtonProps: ILogButton = {
+const createPasteButtonProps: IBaseButton = {
 	title: 'Create',
 	styles: 'signup-button',
 	to: '',

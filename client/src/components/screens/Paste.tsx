@@ -6,14 +6,14 @@ import {
 	useGetPrivatePasteByUrlMutation,
 	useGetPublicPasteByUrlQuery,
 } from '../../services/PasteService'
-import { ILogButton } from '../../shared/interfaces/models'
-import LogButton from '../ui/LogButton/LogButton'
+import { IBaseButton } from '../../shared/interfaces/models'
+import BaseButton from '../ui/BaseButton/BaseButton'
 
 interface PasswordFormValues {
 	password: string
 }
 
-const submitButtonProps: ILogButton = {
+const submitButtonProps: IBaseButton = {
 	title: 'Accept',
 	to: '',
 	styles: 'signup-button',
@@ -77,7 +77,7 @@ const Paste = () => {
 						)}
 						{privateError && <div style={{ color: 'red' }}>{privateError}</div>}
 
-						<LogButton button={submitButtonProps} />
+						<BaseButton button={submitButtonProps} />
 					</form>
 				</div>
 			)}

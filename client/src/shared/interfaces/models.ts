@@ -1,7 +1,7 @@
 import { UseFormSetError } from 'react-hook-form'
 
 // topBar
-export interface ILogButton {
+export interface IBaseButton {
 	title: string
 	styles: any
 	to: string

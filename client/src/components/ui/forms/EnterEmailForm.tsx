@@ -1,19 +1,20 @@
 // import React from 'react'
 import { useForm } from 'react-hook-form'
 import {
+	IBaseButton,
 	IEnterEmailData,
 	IEnterEmailFormProps,
-	ILogButton,
 } from '../../../shared/interfaces/models'
-import LogButton from '../LogButton/LogButton'
-// const submitButtonProps: ILogButton = {
+import BaseButton from '../BaseButton/BaseButton'
+import TextInput from '../Inputs/FormInput'
+// const submitButtonProps: IBaseButton = {
 // 	title: 'LogIn',
 // 	styles: 'log-button mt-5',
 // 	to: '/',
 // }
 
-const logInButtonProps: ILogButton = {
-	title: 'Send',
+const logInButtonProps: IBaseButton = {
+	title: 'Надіслати',
 	styles: 'signup-button',
 	to: '',
 	type: 'button',
@@ -48,13 +49,18 @@ const EnterEmailForm = ({ onSubmit }: IEnterEmailFormProps) => {
 				autoComplete='off'
 				onSubmit={handleSubmit(onSubmit)}
 			>
-				<label>
-					Email <br />
-					<input type='email' {...register('email', { required: true })} />
-				</label>
-				{errors.email && <span>This field is required</span>}
+				<TextInput
+					label='Email'
+					name='email'
+					type='email'
+					register={register}
+					rules={{ required: "email обов'язкове поле" }}
+					error={errors.email}
+					placeholder='you@example.com'
+				/>
+				{errors.email && <span>Обов'язкове поле</span>}
 
-				<LogButton button={logInButtonProps} />
+				<BaseButton button={logInButtonProps} />
 				<br />
 			</form>
 		</>

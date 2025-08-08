@@ -46,7 +46,7 @@ const ResetPassword = () => {
 	return (
 		<div>
 			<div className={`${formStyles}`}>
-				<h1 className='text-7xl mb-10 sm:text-4xl'>Reset Password</h1>
+				<h1 className='text-6xl mb-10 sm:text-4xl'>Відновлення паролю</h1>
 
 				<ResetPasswordForm onSubmit={onSubmit} />
 
