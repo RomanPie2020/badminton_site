@@ -5,6 +5,7 @@ import {
 	useLazyGetFilteredEventsQuery,
 	useLeaveEventMutation,
 } from '../../services/EventService'
+import { EventWithRelations, Filters } from '../../shared/interfaces/models'
 import { selectFilters } from '../../store/filtersSlice'
 import { useAppSelector } from '../../store/store'
 import CreateEventModal from '../ui/CreateEventModal'
@@ -25,7 +26,7 @@ const EventList = () => {
 	)
 	const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc')
 
-	const [items, setItems] = useState<any[]>([])
+	const [items, setItems] = useState<EventWithRelations[]>([])
 	const [currentOffset, setCurrentOffset] = useState(0)
 	const [total, setTotal] = useState(0)
 	const [hasMore, setHasMore] = useState(true)
@@ -325,7 +326,11 @@ const EventList = () => {
 					<p className='text-sm text-gray-500 mb-4'>
 						Спробуйте змінити фільтри або умови пошуку
 					</p>
-					{(searchText || Object.keys(filters).some(key => filters[key])) && (
+
+					{(searchText ||
+						(Object.keys(filters) as Array<keyof Filters>).some(key =>
+							Boolean(filters[key])
+						)) && (
 						<button
 							onClick={() => {
 								setSearchText('')

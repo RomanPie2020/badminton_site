@@ -177,7 +177,7 @@ export interface UserProfile {
 // Filters
 export interface Filters {
 	events?: string[]
-	date?: { from: string; to: string }
+	date?: { from: string | null; to: string | null }
 	typeOfGame?: string[]
 	levelOfPlayers?: string[]
 }

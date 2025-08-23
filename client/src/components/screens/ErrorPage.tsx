@@ -1,4 +1,4 @@
-import { useRouteError } from 'react-router-dom'
+import { isRouteErrorResponse, useRouteError } from 'react-router-dom'
 import { IBaseButton } from '../../shared/interfaces/models'
 import BaseButton from '../ui/BaseButton/BaseButton'
 
@@ -13,13 +13,21 @@ export const ErrorPage = () => {
 	console.log(error)
 
 	return (
-		<>
-			<div className='text-center flex flex-col items-center'>
-				<h1 className='text-6xl mb-10'>Oops!</h1>
-				<p>{error.statusText ?? error.message}</p>
-				<p>{error.status}</p>
-				<BaseButton button={buttonProps} />
-			</div>
-		</>
+		<div className='text-center flex flex-col items-center'>
+			<h1 className='text-6xl mb-10'>Oops!</h1>
+
+			{isRouteErrorResponse(error) ? (
+				<>
+					<p>{error.statusText}</p>
+					<p>{error.status}</p>
+				</>
+			) : error instanceof Error ? (
+				<p>{error.message}</p>
+			) : (
+				<p>Unknown error</p>
+			)}
+
+			<BaseButton button={buttonProps} />
+		</div>
 	)
 }
