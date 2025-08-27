@@ -46,7 +46,7 @@ const ResetPasswordForm = ({ onSubmit }: IResetPasswordFormProps) => {
 					type='password'
 					register={register}
 					rules={{ required: "Обов'язкове поле" }}
-					error={errors.password}
+					error={errors.newPassword}
 					placeholder='Введіть новий пароль'
 				/>
 				{errors.newPassword && <span>Обов'язкове поле</span>}

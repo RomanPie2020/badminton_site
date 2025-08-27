@@ -107,25 +107,6 @@ const SignUpForm = ({ onSubmit }: ISignUpFormProps) => {
 					error={errors.passwordConfirmation}
 					placeholder='******'
 				/>
-				{/* <label>
-					<br /> Confirm Password <br />
-					<input
-						type='password'
-						className={`${formInputStyles}`}
-						{...register('passwordConfirmation', {
-							required: true,
-							minLength: { value: 6, message: 'Min 6 characters' },
-							validate: value =>
-								value === getValues('password') || 'Passwords do not match',
-						})}
-					/>
-				</label>
-				{errors.passwordConfirmation && (
-					<div>
-						<span>{errors.passwordConfirmation.message}</span>
-					</div>
-				)}
-				<br /> */}
 
 				<BaseButton button={SubmitButtonProps} />
 
