@@ -1,16 +1,8 @@
-import { FieldValues, RegisterOptions, useForm } from 'react-hook-form'
-import { IBaseButton } from '../../../shared/interfaces/models'
+import { FieldValues, useForm } from 'react-hook-form'
+import { IBaseButton, IFormInput } from '../../../shared/interfaces/models'
+import { getFieldError } from '../../../utils/getFieldError'
 import BaseButton from '../BaseButton/BaseButton'
 import TextInput from '../Inputs/FormInput'
-
-interface IFormInput<T extends FieldValues> {
-	name: keyof T
-	label: string
-	type: string
-	placeholder: string
-	rules?: RegisterOptions
-	validateWith?: keyof T // для підтвердження пароля чи інших співставлень
-}
 
 interface IFormBuilderProps<T extends FieldValues> {
 	inputs: IFormInput<T>[]
@@ -51,21 +43,23 @@ function FormBuilder<T extends FieldValues>({
 				onSubmit={handleSubmit(onSubmit)}
 			>
 				{inputs.map(input => (
-					<TextInput
+					<TextInput<T>
 						key={String(input.name)}
 						label={input.label}
-						name={String(input.name)}
+						name={input.name}
 						type={input.type}
 						register={register}
 						rules={{
 							...input.rules,
-							validate: input.validateWith
-								? (value: string) =>
-										value === getValues(input.validateWith as string) ||
-										'Values do not match'
-								: input.rules?.validate,
+							validate: (value: string) => {
+								if (!input.validateWith) return true
+								return (
+									value === getValues(input.validateWith) ||
+									'Values do not match'
+								)
+							},
 						}}
-						error={errors[input.name]}
+						error={getFieldError(errors, input.name)}
 						placeholder={input.placeholder}
 					/>
 				))}

@@ -1,4 +1,9 @@
-import { UseFormSetError } from 'react-hook-form'
+import {
+	FieldValues,
+	Path,
+	RegisterOptions,
+	UseFormSetError,
+} from 'react-hook-form'
 
 // topBar
 export interface IBaseButton {
@@ -7,6 +12,16 @@ export interface IBaseButton {
 	to: string
 	type?: 'a' | 'button'
 	onButtonClick?: (codeData: ICodeSendAgain | any) => void
+}
+
+// FormInput
+export interface IFormInput<T extends FieldValues> {
+	name: Path<T>
+	label?: string
+	type?: React.HTMLInputTypeAttribute
+	placeholder?: string
+	rules?: RegisterOptions<T, Path<T>>
+	validateWith?: Path<T> //  for a secure password of the user
 }
 
 // LogInForm

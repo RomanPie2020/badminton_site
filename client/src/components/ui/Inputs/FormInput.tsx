@@ -8,14 +8,11 @@ import {
 	UseFormRegister,
 } from 'react-hook-form'
 
-interface TextInputProps<
-	T extends FieldValues,
-	TName extends Path<T> = Path<T>
-> {
+interface TextInputProps<T extends FieldValues> {
 	label?: string
 	name: Path<T>
 	register: UseFormRegister<T>
-	rules?: RegisterOptions<T, TName>
+	rules?: RegisterOptions<T, Path<T>>
 	error?: FieldError
 	className?: string
 	inputClassName?: string

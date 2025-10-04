@@ -1,18 +1,9 @@
-// import React from 'react'
-import { useForm } from 'react-hook-form'
-import googleIcon from '../../../assets/images/google_icon.svg'
 import {
 	IBaseButton,
 	ILogInData,
 	ILogInFormProps,
 } from '../../../shared/interfaces/models'
-import BaseButton from '../BaseButton/BaseButton'
-import TextInput from '../Inputs/FormInput'
-// const submitButtonProps: IBaseButton = {
-// 	title: 'LogIn',
-// 	styles: 'log-button mt-5',
-// 	to: '/',
-// }
+import FormBuilder from './FormBuilder'
 
 const logInButtonProps: IBaseButton = {
 	title: 'Увійти',
@@ -34,69 +25,33 @@ const forgotPasswordButtonProps: IBaseButton = {
 }
 
 const LogInForm = ({ onSubmit, errorMessage }: ILogInFormProps) => {
-	const googleLogin = async () => {
-		// try {
-		window.location.href = 'http://localhost:3000/auth/google'
-		// 	// console.log(result)
-		// 	logIn() // Оновлюємо стан авторизації
-		// 	navigate('/')
-		// } catch (err) {
-		// 	console.error(err, 'login was failed')
-		// }
-	}
-	const {
-		register,
-		handleSubmit,
-		formState: { errors },
-	} = useForm<ILogInData>({
-		values: {
-			email: '',
-			password: '',
-		},
-	})
-
 	return (
-		<>
-			<form
-				className='flex flex-col items-center'
-				noValidate
-				autoComplete='off'
-				onSubmit={handleSubmit(onSubmit)}
-			>
-				<TextInput
-					label='Email'
-					name='email'
-					type='email'
-					register={register}
-					rules={{ required: 'Email is required' }}
-					error={errors.email}
-					placeholder='you@example.com'
-				/>
-				<TextInput
-					label='Пароль'
-					name='password'
-					type='password'
-					register={register}
-					rules={{
-						minLength: { value: 6, message: 'Min 6 characters' },
-					}}
-					error={errors.password}
-					placeholder='******'
-				/>
-				<BaseButton button={logInButtonProps} />
-				<BaseButton button={forgotPasswordButtonProps} />
-
-				<button
-					onClick={googleLogin}
-					type='button'
-					className='flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-md shadow-sm hover:bg-gray-100 transition bg-blue-100 my-5'
-				>
-					<img src={googleIcon} alt='Google' className='w-5 h-5' />
-					<span className='text-sm text-gray-700'>Продовжити з Google</span>
-				</button>
-			</form>
-			<BaseButton button={signUpButtonProps} />
-		</>
+		<FormBuilder<ILogInData>
+			inputs={[
+				{
+					name: 'email',
+					label: 'Email',
+					type: 'email',
+					placeholder: 'you@example.com',
+					rules: { required: 'Email is required' },
+				},
+				{
+					name: 'password',
+					label: 'Пароль',
+					type: 'password',
+					placeholder: '******',
+					rules: { minLength: { value: 6, message: 'Min 6 characters' } },
+				},
+			]}
+			submitButton={logInButtonProps}
+			extraButton={signUpButtonProps}
+			defaultValues={{
+				email: '',
+				password: '',
+			}}
+			onSubmit={onSubmit}
+			showGoogleButton={true}
+		/>
 	)
 }
 
