@@ -4781,3 +4781,28 @@
 {"level":"info","message":"database password is: string","timestamp":"2025-09-18T11:52:45.856Z"}
 {"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-09-18T11:52:45.860Z"}
 {"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-09-18T11:52:45.975Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-10-22T21:54:15.323Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-10-22T21:54:15.329Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-10-22T21:54:15.424Z"}
+{"level":"error","message":"Error:","timestamp":"2025-10-22T21:56:53.577Z"}
+{"level":"error","message":"Error:","timestamp":"2025-10-22T21:57:18.250Z"}
+{"level":"error","message":"Error:","timestamp":"2025-10-22T21:57:20.675Z"}
+{"level":"error","message":"Error:","timestamp":"2025-10-22T21:57:34.979Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-10-22T22:05:28.055Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-10-22T22:05:28.068Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-10-22T22:05:28.227Z"}
+{"level":"info","message":"Користувач romankaras2004@gmail.com успішно увійшов через Google","timestamp":"2025-10-22T22:05:48.374Z"}
+{"level":"info","message":"Отримані дані:","timestamp":"2025-10-22T22:05:48.376Z"}
+{"level":"info","message":"Refresh token saved for user 1","timestamp":"2025-10-22T22:05:48.393Z"}
+{"level":"error","message":"Error:","timestamp":"2025-10-22T22:06:39.094Z"}
+{"level":"error","message":"Error:","timestamp":"2025-10-22T22:06:39.113Z"}
+{"level":"info","message":"Користувач romankaras2004@gmail.com успішно увійшов через Google","timestamp":"2025-10-22T22:06:47.190Z"}
+{"level":"info","message":"Отримані дані:","timestamp":"2025-10-22T22:06:47.190Z"}
+{"level":"info","message":"Refresh token saved for user 2","timestamp":"2025-10-22T22:06:47.197Z"}
+{"level":"info","message":"Профіль не знайдено для користувача з ID:","timestamp":"2025-10-22T22:11:58.017Z"}
+{"level":"error","message":"Error:","timestamp":"2025-10-22T22:11:58.018Z"}
+{"level":"info","message":"Профіль не знайдено для користувача з ID:","timestamp":"2025-10-22T22:12:00.708Z"}
+{"level":"error","message":"Error:","timestamp":"2025-10-22T22:12:00.709Z"}
+{"level":"info","message":"Профіль не знайдено для користувача з ID:","timestamp":"2025-10-22T22:12:02.895Z"}
+{"level":"error","message":"Error:","timestamp":"2025-10-22T22:12:02.896Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-22T22:12:04.116Z"}

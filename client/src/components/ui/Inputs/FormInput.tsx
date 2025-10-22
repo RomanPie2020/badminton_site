@@ -13,7 +13,7 @@ interface TextInputProps<T extends FieldValues> {
 	name: Path<T>
 	register: UseFormRegister<T>
 	rules?: RegisterOptions<T, Path<T>>
-	error?: FieldError
+	error?: FieldError | { message: string } | null
 	className?: string
 	inputClassName?: string
 	type?: React.HTMLInputTypeAttribute

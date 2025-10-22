@@ -44,11 +44,12 @@ const LogInForm = ({ onSubmit, errorMessage }: ILogInFormProps) => {
 				},
 			]}
 			submitButton={logInButtonProps}
-			extraButton={signUpButtonProps}
+			extraButtons={[signUpButtonProps, forgotPasswordButtonProps]}
 			defaultValues={{
 				email: '',
 				password: '',
 			}}
+			errorMessage={errorMessage}
 			onSubmit={onSubmit}
 			showGoogleButton={true}
 		/>
