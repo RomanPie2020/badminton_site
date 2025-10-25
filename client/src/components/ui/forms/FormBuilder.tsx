@@ -1,4 +1,9 @@
-import { FieldError, FieldValues, useForm } from 'react-hook-form'
+import {
+	FieldError,
+	FieldValues,
+	useForm,
+	UseFormSetError,
+} from 'react-hook-form'
 import googleIcon from '../../../assets/images/google_icon.svg'
 import { IBaseButton, IFormInput } from '../../../shared/interfaces/models'
 import BaseButton from '../BaseButton/BaseButton'
@@ -10,7 +15,8 @@ interface IFormBuilderProps<T extends FieldValues> {
 	extraButtons?: IBaseButton[] // <-- тепер масив
 	defaultValues: T
 	errorMessage?: string | null
-	onSubmit: (data: T) => void
+	onSubmit: (data: T, helpers?: { setError: UseFormSetError<T> }) => void
+
 	showGoogleButton?: boolean
 }
 
@@ -28,6 +34,7 @@ function FormBuilder<T extends FieldValues>({
 		handleSubmit,
 		getValues,
 		formState: { errors },
+		setError,
 	} = useForm<T>({
 		values: defaultValues,
 	})
@@ -42,7 +49,7 @@ function FormBuilder<T extends FieldValues>({
 				className='flex flex-col items-center'
 				noValidate
 				autoComplete='off'
-				onSubmit={handleSubmit(onSubmit)}
+				onSubmit={handleSubmit(data => onSubmit(data, { setError }))}
 			>
 				{inputs.map(input => (
 					<TextInput

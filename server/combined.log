@@ -4806,3 +4806,37 @@
 {"level":"info","message":"Профіль не знайдено для користувача з ID:","timestamp":"2025-10-22T22:12:02.895Z"}
 {"level":"error","message":"Error:","timestamp":"2025-10-22T22:12:02.896Z"}
 {"level":"info","message":"User logged out","timestamp":"2025-10-22T22:12:04.116Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-10-23T13:35:03.128Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-10-23T13:35:03.133Z"}
+{"level":"error","message":"Unable to connect to the database: getaddrinfo ENOTFOUND postgres","name":"SequelizeHostNotFoundError","original":{"code":"ENOTFOUND","errno":-3008,"hostname":"postgres","syscall":"getaddrinfo"},"parent":{"code":"ENOTFOUND","errno":-3008,"hostname":"postgres","syscall":"getaddrinfo"},"stack":"SequelizeHostNotFoundError: getaddrinfo ENOTFOUND postgres\n    at Client._connectionCallback (/app/node_modules/sequelize/src/dialects/postgres/connection-manager.js:187:24)\n    at Client._handleErrorWhileConnecting (/app/node_modules/pg/lib/client.js:336:19)\n    at Client._handleErrorEvent (/app/node_modules/pg/lib/client.js:346:19)\n    at Connection.emit (node:events:507:28)\n    at Socket.reportStreamError (/app/node_modules/pg/lib/connection.js:57:12)\n    at Socket.emit (node:events:507:28)\n    at emitErrorNT (node:internal/streams/destroy:170:8)\n    at emitErrorCloseNT (node:internal/streams/destroy:129:3)\n    at processTicksAndRejections (node:internal/process/task_queues:90:21)","timestamp":"2025-10-23T13:35:11.013Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-10-23T15:46:47.982Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-10-23T15:46:47.991Z"}
+{"level":"error","message":"Unable to connect to the database: getaddrinfo ENOTFOUND postgres","name":"SequelizeHostNotFoundError","original":{"code":"ENOTFOUND","errno":-3008,"hostname":"postgres","syscall":"getaddrinfo"},"parent":{"code":"ENOTFOUND","errno":-3008,"hostname":"postgres","syscall":"getaddrinfo"},"stack":"SequelizeHostNotFoundError: getaddrinfo ENOTFOUND postgres\n    at Client._connectionCallback (/app/node_modules/sequelize/src/dialects/postgres/connection-manager.js:187:24)\n    at Client._handleErrorWhileConnecting (/app/node_modules/pg/lib/client.js:336:19)\n    at Client._handleErrorEvent (/app/node_modules/pg/lib/client.js:346:19)\n    at Connection.emit (node:events:507:28)\n    at Socket.reportStreamError (/app/node_modules/pg/lib/connection.js:57:12)\n    at Socket.emit (node:events:507:28)\n    at emitErrorNT (node:internal/streams/destroy:170:8)\n    at emitErrorCloseNT (node:internal/streams/destroy:129:3)\n    at processTicksAndRejections (node:internal/process/task_queues:90:21)","timestamp":"2025-10-23T15:46:55.871Z"}
+{"level":"error","message":"Error:","timestamp":"2025-10-23T21:31:10.147Z"}
+{"level":"error","message":"Error:","timestamp":"2025-10-23T21:31:48.516Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-10-23T21:36:25.212Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-10-23T21:36:25.216Z"}
+{"level":"error","message":"Unable to connect to the database: getaddrinfo ENOTFOUND postgres","name":"SequelizeHostNotFoundError","original":{"code":"ENOTFOUND","errno":-3008,"hostname":"postgres","syscall":"getaddrinfo"},"parent":{"code":"ENOTFOUND","errno":-3008,"hostname":"postgres","syscall":"getaddrinfo"},"stack":"SequelizeHostNotFoundError: getaddrinfo ENOTFOUND postgres\n    at Client._connectionCallback (/app/node_modules/sequelize/src/dialects/postgres/connection-manager.js:187:24)\n    at Client._handleErrorWhileConnecting (/app/node_modules/pg/lib/client.js:336:19)\n    at Client._handleErrorEvent (/app/node_modules/pg/lib/client.js:346:19)\n    at Connection.emit (node:events:507:28)\n    at Socket.reportStreamError (/app/node_modules/pg/lib/connection.js:57:12)\n    at Socket.emit (node:events:507:28)\n    at emitErrorNT (node:internal/streams/destroy:170:8)\n    at emitErrorCloseNT (node:internal/streams/destroy:129:3)\n    at processTicksAndRejections (node:internal/process/task_queues:90:21)","timestamp":"2025-10-23T21:36:29.200Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-10-23T21:46:11.573Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-10-23T21:46:11.578Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-10-23T21:46:11.652Z"}
+{"level":"error","message":"Error:","timestamp":"2025-10-23T21:46:20.858Z"}
+{"level":"error","message":"Error:","timestamp":"2025-10-23T21:46:24.500Z"}
+{"level":"error","message":"Error:","timestamp":"2025-10-23T21:46:37.222Z"}
+{"level":"info","message":"Користувач romankaras2004@gmail.com успішно увійшов через Google","timestamp":"2025-10-23T21:51:23.022Z"}
+{"level":"info","message":"Отримані дані:","timestamp":"2025-10-23T21:51:23.023Z"}
+{"level":"info","message":"Refresh token saved for user 1","timestamp":"2025-10-23T21:51:23.036Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-23T21:51:27.794Z"}
+{"level":"info","message":"romankaras2004@gmail.com","timestamp":"2025-10-23T21:51:36.544Z"}
+{"level":"info","message":"Лист для скидання пароля надіслано до romankaras2004@gmail.com","timestamp":"2025-10-23T21:51:38.169Z"}
+{"level":"info","message":"Пароль для користувача romankaras2004@gmail.com успішно змінено","timestamp":"2025-10-23T22:10:04.071Z"}
+{"level":"info","message":"Користувач romankaras2004@gmail.com успішно увійшов через Google","timestamp":"2025-10-23T22:28:55.056Z"}
+{"level":"info","message":"Отримані дані:","timestamp":"2025-10-23T22:28:55.058Z"}
+{"level":"info","message":"Refresh token saved for user 1","timestamp":"2025-10-23T22:28:55.070Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-23T22:28:56.907Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-10-24T17:22:19.849Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-10-24T17:22:19.857Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-10-24T17:22:20.008Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-10-25T11:32:12.084Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-10-25T11:32:12.090Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-10-25T11:32:12.232Z"}

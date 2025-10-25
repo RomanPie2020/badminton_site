@@ -24,6 +24,12 @@ export interface IFormInput<T extends FieldValues> {
 	validateWith?: Path<T> //  for a secure password of the user
 }
 
+// FormBuilder
+export type FormBuilderSubmitHandler<T extends FieldValues> = (
+	data: T,
+	helpers?: { setError: UseFormSetError<T> }
+) => void | Promise<void>
+
 // LogInForm
 export interface ILogInData {
 	email: string
@@ -42,11 +48,8 @@ export interface ISignUpData {
 	passwordConfirmation: string
 }
 export interface ISignUpFormProps {
-	onSubmit: (
-		data: ISignUpData,
-		event?: React.BaseSyntheticEvent,
-		setServerErrors?: UseFormSetError<ISignUpData>
-	) => void
+	onSubmit: FormBuilderSubmitHandler<ISignUpData>
+	errorMessage?: string
 }
 
 // Code verification

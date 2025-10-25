@@ -1,13 +1,12 @@
 // import React from 'react'
-import { useForm } from 'react-hook-form'
-import googleIcon from '../../../assets/images/google_icon.svg'
+import { UseFormSetError } from 'react-hook-form'
 import {
 	IBaseButton,
+	IFormInput,
 	ISignUpData,
 	ISignUpFormProps,
 } from '../../../shared/interfaces/models'
-import BaseButton from '../BaseButton/BaseButton'
-import TextInput from '../Inputs/FormInput'
+import FormBuilder from './FormBuilder'
 // #todo підключити reduxtoolkit
 
 // type FormData = {
@@ -34,97 +33,64 @@ const LogInButtonProps: IBaseButton = {
 }
 const formInputStyles =
 	'px-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent'
+
 const SignUpForm = ({ onSubmit }: ISignUpFormProps) => {
-	const googleLogin = async () => {
-		window.location.href = 'http://localhost:3000/auth/google'
-	}
-	const {
-		register,
-		handleSubmit,
-		setError,
-		getValues,
-		watch,
-		formState: { errors },
-	} = useForm<ISignUpData>({
-		values: {
-			email: '',
-			username: '',
-			password: '',
-			passwordConfirmation: '',
+	const inputs: IFormInput<ISignUpData>[] = [
+		{
+			name: 'email',
+			label: 'Email',
+			type: 'email',
+			placeholder: 'you@example.com',
+			rules: { required: 'Email is required' },
 		},
-	})
-	const handleInternalSubmit = (data: ISignUpData) =>
-		onSubmit(data, undefined, setError)
+		{
+			name: 'username',
+			label: 'Імʼя користувача',
+			type: 'text',
+			placeholder: 'Введіть імʼя користувача',
+			rules: { required: 'Username is required' },
+		},
+		{
+			name: 'password',
+			label: 'Пароль',
+			type: 'password',
+			placeholder: '******',
+			rules: {
+				minLength: { value: 6, message: 'Min 6 characters' },
+			},
+		},
+		{
+			name: 'passwordConfirmation',
+			label: 'Підтвердження паролю',
+			type: 'password',
+			placeholder: '******',
+			rules: {
+				minLength: { value: 6, message: 'Min 6 characters' },
+			},
+			validateWith: 'password',
+		},
+	]
+
+	const handleSubmit = (
+		data: ISignUpData,
+		helpers?: { setError: UseFormSetError<ISignUpData> }
+	) => onSubmit(data, helpers)
 
 	return (
-		<>
-			<form
-				className='flex flex-col items-center'
-				noValidate
-				autoComplete='off'
-				onSubmit={handleSubmit(handleInternalSubmit)}
-			>
-				<TextInput
-					label='Email'
-					name='email'
-					type='email'
-					register={register}
-					rules={{ required: 'Email is required' }}
-					error={errors.email}
-					placeholder='you@example.com'
-				/>
-				<TextInput
-					label='Імʼя користувача'
-					name='username'
-					type='text'
-					register={register}
-					rules={{ required: 'Username is required' }}
-					error={errors.username}
-					placeholder='Введіть імʼя користувача'
-				/>
-
-				<TextInput
-					label='Пароль'
-					name='password'
-					type='password'
-					register={register}
-					rules={{
-						minLength: { value: 6, message: 'Min 6 characters' },
-					}}
-					error={errors.password}
-					placeholder='******'
-				/>
-				<TextInput
-					label='Підтвердження паролю'
-					name='passwordConfirmation'
-					type='password'
-					register={register}
-					rules={{
-						minLength: { value: 6, message: 'Min 6 characters' },
-						validate: value =>
-							value === getValues('password') || 'Passwords do not match',
-					}}
-					error={errors.passwordConfirmation}
-					placeholder='******'
-				/>
-
-				<BaseButton button={SubmitButtonProps} />
-
-				<button
-					onClick={googleLogin}
-					type='button'
-					className='flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-md shadow-sm hover:bg-gray-100 transition mb-5 mt-5 bg-blue-100'
-				>
-					<img src={googleIcon} alt='Google' className='w-5 h-5 ' />
-					<span className='text-sm text-gray-700'>Продовжити з Google</span>
-				</button>
-			</form>
-
-			<BaseButton button={LogInButtonProps} />
-		</>
+		<FormBuilder<ISignUpData>
+			inputs={inputs}
+			submitButton={SubmitButtonProps}
+			extraButtons={[LogInButtonProps]}
+			defaultValues={{
+				email: '',
+				username: '',
+				password: '',
+				passwordConfirmation: '',
+			}}
+			onSubmit={handleSubmit}
+			showGoogleButton={true}
+		/>
 	)
-	// <f></f>
 }
 
 export default SignUpForm
-// faа

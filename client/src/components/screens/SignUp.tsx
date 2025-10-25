@@ -1,33 +1,29 @@
 import { useState } from 'react'
-import { SubmitHandler } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom'
+import { Path } from 'react-hook-form'
 import { formStyles } from '../../configs/styles.config'
 import { useActions } from '../../hooks/useActions'
 import { useRegisterMutation } from '../../services/AuthService'
-import { ISignUpData } from '../../shared/interfaces/models'
+import {
+	FormBuilderSubmitHandler,
+	ISignUpData,
+} from '../../shared/interfaces/models'
 import SignUpForm from '../ui/forms/SignUpForm'
 
 const SignUp = () => {
 	const { addUserId } = useActions()
-	const navigate = useNavigate()
-
 	const [signUp, { isLoading }] = useRegisterMutation()
 	const [isSuccess, setIsSuccess] = useState(false)
 	const [errorMessage, setErrorMessage] = useState('')
 
-	const onSubmit: SubmitHandler<ISignUpData> = async (
+	const onSubmit: FormBuilderSubmitHandler<ISignUpData> = async (
 		formData,
-		event,
-		setServerErrors
+		helpers
 	) => {
 		setErrorMessage('')
 		try {
 			const response = await signUp(formData).unwrap()
 			await addUserId(response.id)
 			setIsSuccess(true)
-
-			// Якщо хочеш редірект одразу:
-			// navigate('/')
 		} catch (error: any) {
 			console.error('Signup error', error)
 
@@ -35,7 +31,7 @@ const SignUp = () => {
 				const fieldErrors = error.data.errors
 				Object.entries(fieldErrors).forEach(([field, messages]) => {
 					if (Array.isArray(messages)) {
-						setServerErrors?.(field as keyof ISignUpData, {
+						helpers?.setError(field as Path<ISignUpData>, {
 							type: 'server',
 							message: messages[0],
 						})
@@ -51,6 +47,7 @@ const SignUp = () => {
 			setErrorMessage(message)
 		}
 	}
+
 	// console.log(errors)
 	return (
 		<div>
