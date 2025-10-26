@@ -4840,3 +4840,7 @@
 {"level":"info","message":"database password is: string","timestamp":"2025-10-25T11:32:12.084Z"}
 {"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-10-25T11:32:12.090Z"}
 {"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-10-25T11:32:12.232Z"}
+{"level":"info","message":"Користувач romankaras2004@gmail.com успішно увійшов через Google","timestamp":"2025-10-25T23:20:10.028Z"}
+{"level":"info","message":"Отримані дані:","timestamp":"2025-10-25T23:20:10.033Z"}
+{"level":"info","message":"Refresh token saved for user 1","timestamp":"2025-10-25T23:20:10.077Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-25T23:20:13.075Z"}

@@ -20,7 +20,7 @@ const signUpButtonProps: IBaseButton = {
 
 const forgotPasswordButtonProps: IBaseButton = {
 	title: 'Забули пароль?',
-	styles: '',
+	styles: 'underline',
 	to: '/enter-email',
 }
 

@@ -1,5 +1,5 @@
 import { Menu, X } from 'lucide-react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, Outlet, useNavigate } from 'react-router-dom'
 import { useActions } from '../../../hooks/useActions'
 import { useLogOutMutation } from '../../../services/AuthService'
@@ -100,19 +100,29 @@ function TopBar() {
 		</>
 	)
 
+	useEffect(() => {
+		if (menuOpen) {
+			document.body.classList.add('overflow-hidden')
+		} else {
+			document.body.classList.remove('overflow-hidden')
+		}
+	}, [menuOpen])
+
 	return (
 		<>
 			<header className='fixed top-0 w-full bg-gradient-to-t from-gray-700 to-indigo-500 z-50'>
 				<div className='flex items-center justify-between px-5 h-20'>
 					{/* Лого */}
 					<Link
-						className='inline-block bg-shuttlecock_icon bg-no-repeat bg-left bg-cover h-16 w-16'
 						to='/'
 						onClick={() => setMenuOpen(false)}
-					/>
-					<span className='ml-2 text-white text-lg font-semibold md:hidden'>
-						BadmickTogether
-					</span>
+						className='flex items-center gap-2'
+					>
+						<div className='bg-shuttlecock_icon bg-no-repeat bg-left bg-cover h-16 w-16' />
+						<span className='text-white text-lg font-semibold md:hidden'>
+							BadmickTogether
+						</span>
+					</Link>
 
 					{/* Десктоп-меню (показувати за замовчуванням, ховати при ≤768px) */}
 					<nav className='flex gap-3 md:hidden'>
@@ -131,8 +141,22 @@ function TopBar() {
 				</div>
 
 				{/* Мобільне випадаюче меню (приховане за замовчуванням, показувати при ≤768px) */}
-				{menuOpen && (
+				{/* {menuOpen && (
 					<nav className='hidden md:flex flex-col gap-4 px-5 pb-6 bg-gradient-to-b from-indigo-500 to-gray-700'>
+						{isAuthenticated ? renderAuthButtons() : renderGuestButtons()}
+					</nav>
+				)} */}
+				{menuOpen && (
+					<nav
+						className='
+							fixed inset-x-0 top-20 z-40
+							flex flex-col gap-4
+							px-5 pb-6 pt-20
+							bg-gradient-to-b from-indigo-500 to-gray-700
+							overflow-y-auto h-[calc(100vh-5rem)]
+							hidden md:flex
+						'
+					>
 						{isAuthenticated ? renderAuthButtons() : renderGuestButtons()}
 					</nav>
 				)}
