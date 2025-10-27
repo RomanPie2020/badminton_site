@@ -1,4 +1,5 @@
 import { Request } from 'express'
+import { Transaction } from 'sequelize'
 export interface IUserRequest extends Request {
 	user?: {
 		id: number
@@ -31,4 +32,14 @@ export interface IForgotPasswordServiceData {
 export interface IResetPasswordServiceData {
 	token: string
 	newPassword: string
+}
+
+export interface CreateUserWithProfileOptions {
+	email: string
+	username: string
+	passwordHash?: string
+	googleId?: string
+	isActive?: boolean
+	transaction?: Transaction
+	avatarUrl?: string
 }

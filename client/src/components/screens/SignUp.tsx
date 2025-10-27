@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Path } from 'react-hook-form'
+import { Link } from 'react-router-dom'
 import { formStyles } from '../../configs/styles.config'
 import { useActions } from '../../hooks/useActions'
 import { useRegisterMutation } from '../../services/AuthService'
@@ -68,6 +69,9 @@ const SignUp = () => {
 						{errorMessage && (
 							<p className='text-red-600 mt-4 text-lg'>{errorMessage}</p>
 						)}
+						<Link className={''} to={'/login'}>
+							Маєш аккаунт? Увійди зараз
+						</Link>
 					</div>
 				)}
 			</div>

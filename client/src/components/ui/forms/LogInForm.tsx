@@ -20,7 +20,7 @@ const signUpButtonProps: IBaseButton = {
 
 const forgotPasswordButtonProps: IBaseButton = {
 	title: 'Забули пароль?',
-	styles: 'underline',
+	styles: '',
 	to: '/enter-email',
 }
 
@@ -44,7 +44,7 @@ const LogInForm = ({ onSubmit, errorMessage }: ILogInFormProps) => {
 				},
 			]}
 			submitButton={logInButtonProps}
-			extraButtons={[signUpButtonProps, forgotPasswordButtonProps]}
+			extraButtons={[]}
 			defaultValues={{
 				email: '',
 				password: '',

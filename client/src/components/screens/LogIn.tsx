@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { SubmitHandler } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { formStyles } from '../../configs/styles.config'
 import { useActions } from '../../hooks/useActions'
 import { useLoginUserMutation } from '../../services/AuthService'
@@ -36,6 +36,12 @@ const LogIn = () => {
 			<div className={`${formStyles}`}>
 				<h1 className='text-7xl mb-10 sm:text-4xl'>Увійти</h1>
 				<LogInForm onSubmit={onSubmit} errorMessage={loginError} />
+				<Link className={'block mb-4'} to={'/signup'}>
+					Зареєструватися зараз
+				</Link>
+				<Link className={'underline'} to={'/enter-email'}>
+					Забули пароль?
+				</Link>
 			</div>
 		</div>
 	)

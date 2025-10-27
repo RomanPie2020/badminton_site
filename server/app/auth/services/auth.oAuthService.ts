@@ -1,7 +1,9 @@
 import ApiError from '@/exceptions/apiError'
+import UserProfile from '@/profile/models/userProfile'
 import { logger } from '@/utils/logger/log'
 import passport from 'passport'
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20'
+import sequelize from '../../config/database'
 import User from '../models/user'
 
 class OAuthService {
@@ -50,26 +52,34 @@ class OAuthService {
 
 	async findOrCreateUser(profile) {
 		try {
-			// Шукаємо користувача за email з профілю Google
-			let user = await User.findOne({
-				where: { email: profile.emails[0].value },
-			})
+			const email = profile.emails[0].value
+			let user = await User.findOne({ where: { email } })
+			const t = await sequelize.transaction()
 
-			// Якщо користувача не знайдено, створюємо нового
 			if (!user) {
-				user = await User.create({
-					email: profile.emails[0].value,
-					username: profile.displayName,
-					googleId: profile.id,
-					isActive: true,
-				})
-			}
-			// Якщо користувач існує, але не має googleId, оновлюємо його
-			else if (!user.googleId) {
+				user = await User.create(
+					{
+						email,
+						username: profile.displayName,
+						googleId: profile.id,
+						isActive: true,
+					},
+					{ transaction: t }
+				)
+
+				await UserProfile.create(
+					{
+						userId: user.id,
+						nickname: profile.displayName,
+						avatarUrl: profile.photos?.[0]?.value,
+					},
+					{ transaction: t }
+				)
+			} else if (!user.googleId) {
 				user.googleId = profile.id
 				await user.save()
 			}
-
+			await t.commit()
 			logger.info(`Користувач ${user.email} успішно увійшов через Google`)
 
 			return {
@@ -78,7 +88,7 @@ class OAuthService {
 				email: user.email,
 			}
 		} catch (error) {
-			throw ApiError.BadRequest('Помилка при вході через Google:')
+			throw ApiError.BadRequest('Помилка при вході через Google')
 		}
 	}
 

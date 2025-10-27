@@ -80,7 +80,7 @@ const SignUpForm = ({ onSubmit }: ISignUpFormProps) => {
 		<FormBuilder<ISignUpData>
 			inputs={inputs}
 			submitButton={SubmitButtonProps}
-			extraButtons={[LogInButtonProps]}
+			extraButtons={[]}
 			defaultValues={{
 				email: '',
 				username: '',

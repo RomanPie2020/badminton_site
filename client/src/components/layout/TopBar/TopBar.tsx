@@ -1,10 +1,7 @@
 import { Menu, X } from 'lucide-react'
-import { useEffect, useState } from 'react'
-import { Link, Outlet, useNavigate } from 'react-router-dom'
-import { useActions } from '../../../hooks/useActions'
-import { useLogOutMutation } from '../../../services/AuthService'
+import { Link, Outlet } from 'react-router-dom'
+import { useTopBar } from '../../../hooks/useTopBar'
 import { IBaseButton } from '../../../shared/interfaces/models'
-import { useAppSelector } from '../../../store/store'
 import BaseButton from '../../ui/BaseButton/BaseButton'
 
 const logButtonProps: IBaseButton = {
@@ -12,31 +9,26 @@ const logButtonProps: IBaseButton = {
 	to: '/login',
 	styles: 'log-button',
 }
-
 const regButtonProps: IBaseButton = {
 	title: 'Зареєструватися',
 	to: '/signup',
 	styles: 'reg-button',
 }
-
 const logoutButtonProps: IBaseButton = {
 	title: 'Вийти',
 	to: '/login',
 	styles: 'reg-button',
 }
-
 const profileButtonProps: IBaseButton = {
 	title: 'Профіль',
 	to: '/profile',
 	styles: 'log-button',
 }
-
 const eventsButtonProps: IBaseButton = {
 	title: 'Події',
 	to: '/events',
 	styles: 'log-button',
 }
-
 const myEventsButtonProps: IBaseButton = {
 	title: 'Мої події',
 	to: '/myevents',
@@ -44,30 +36,7 @@ const myEventsButtonProps: IBaseButton = {
 }
 
 function TopBar() {
-	const navigate = useNavigate()
-	const { logOut } = useActions()
-	const isAuthenticated = useAppSelector(
-		state => state.authStatus.isAuthenticated
-	)
-	const [logOutUser] = useLogOutMutation()
-
-	const [menuOpen, setMenuOpen] = useState(false)
-
-	const handleLogout = async () => {
-		try {
-			const refreshToken = localStorage.getItem('refresh_token')
-			await logOutUser({ refreshToken }).unwrap()
-			localStorage.removeItem('access_token')
-			localStorage.removeItem('refresh_token')
-			localStorage.setItem('is_Auth', 'false')
-			localStorage.setItem('user_id', '')
-			logOut()
-			setMenuOpen(false)
-			navigate('/login')
-		} catch (error) {
-			console.error('error of logging out', error)
-		}
-	}
+	const { isAuthenticated, menuOpen, setMenuOpen, handleLogout } = useTopBar()
 
 	const renderAuthButtons = () => (
 		<>
@@ -86,7 +55,6 @@ function TopBar() {
 			<BaseButton button={logoutButtonProps} onButtonClick={handleLogout} />
 		</>
 	)
-
 	const renderGuestButtons = () => (
 		<>
 			<BaseButton
@@ -100,19 +68,11 @@ function TopBar() {
 		</>
 	)
 
-	useEffect(() => {
-		if (menuOpen) {
-			document.body.classList.add('overflow-hidden')
-		} else {
-			document.body.classList.remove('overflow-hidden')
-		}
-	}, [menuOpen])
-
 	return (
 		<>
 			<header className='fixed top-0 w-full bg-gradient-to-t from-gray-700 to-indigo-500 z-50'>
 				<div className='flex items-center justify-between px-5 h-20'>
-					{/* Лого */}
+					{/* Logo */}
 					<Link
 						to='/'
 						onClick={() => setMenuOpen(false)}
@@ -124,12 +84,12 @@ function TopBar() {
 						</span>
 					</Link>
 
-					{/* Десктоп-меню (показувати за замовчуванням, ховати при ≤768px) */}
+					{/* Desktop menu */}
 					<nav className='flex gap-3 md:hidden'>
 						{isAuthenticated ? renderAuthButtons() : renderGuestButtons()}
 					</nav>
 
-					{/* Бургер-іконка (прихована за замовчуванням, показувати при ≤768px) */}
+					{/* Burger icon */}
 					<button
 						type='button'
 						aria-label='Toggle menu'
@@ -140,12 +100,6 @@ function TopBar() {
 					</button>
 				</div>
 
-				{/* Мобільне випадаюче меню (приховане за замовчуванням, показувати при ≤768px) */}
-				{/* {menuOpen && (
-					<nav className='hidden md:flex flex-col gap-4 px-5 pb-6 bg-gradient-to-b from-indigo-500 to-gray-700'>
-						{isAuthenticated ? renderAuthButtons() : renderGuestButtons()}
-					</nav>
-				)} */}
 				{menuOpen && (
 					<nav
 						className='
@@ -162,7 +116,6 @@ function TopBar() {
 				)}
 			</header>
 
-			{/* Відступ під фіксовану шапку */}
 			<div className='pt-20'>
 				<Outlet />
 			</div>

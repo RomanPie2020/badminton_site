@@ -8,7 +8,7 @@ import {
 
 interface ProfileFormData {
 	nickname?: string
-	avatarUrl?: string
+	avatarUrl?: string | undefined
 	city?: string
 	age?: number
 	gender?: string
@@ -105,7 +105,7 @@ const ProfileForm = () => {
 							<img
 								src={profile.avatarUrl}
 								alt='Avatar'
-								className='w-24 h-24 rounded-full mb-4 object-cover'
+								className='w-24 h-24 rounded-full mb-4 object-cover m-auto'
 							/>
 						) : (
 							<div className='w-24 h-24 rounded-full bg-gray-200 mb-4 flex items-center justify-center text-gray-500 m-auto'>

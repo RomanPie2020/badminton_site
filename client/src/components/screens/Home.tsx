@@ -16,9 +16,9 @@ function Home() {
 
 	if (!isAuthenticated) {
 		return (
-			<div className='min-h-screen bg-gradient-to-t from-sky-200 to-indigo-300 py-40 md:px-10'>
+			<div className='min-h-screen bg-gradient-to-t from-sky-200 to-indigo-300 py-40 md:px-6'>
 				<main className='flex flex-col items-center mt-10'>
-					<h1 className='text-7xl sm:text-4xl text-center font-bold mb-4 '>
+					<h1 className='text-7xl sm:text-3xl text-center font-bold mb-4 px-8'>
 						Вітаємо на BadmickTogether!
 					</h1>
 					<p className='my-8 text-2xl sm:text-lg max-w-2xl text-center'>
@@ -53,16 +53,16 @@ function Home() {
 	// if (error) {
 	// 	return <div className='mt-28'>Error: {error.message}</div>
 	// }
-
+	// #TODO розібратись з медіа запитами
 	return (
 		<>
-			<div className='w-full min-h-screen bg-gradient-to-t from-slate-200 to-indigo-400 py-40 md:px-10 px-4'>
+			<div className='w-full min-h-screen bg-gradient-to-t from-slate-200 to-indigo-400 py-40'>
 				{/* <div className='absolute inset-0'></div> */}
 				<div className='flex flex-col items-center justify-center mt-10'>
-					<h1 className='text-6xl sm:text-4xl text-center font-bold mb-4 max-w-7xl'>
+					<h1 className='text-6xl sm:text-3xl text-center font-bold mb-4 max-w-5xl px-6 sm:px-8'>
 						Приєднуйся до подій BadmickTogether та грай бадмінтон релаксуючи!!!
 					</h1>
-					<div className='mb-8 max-w-5xl m-auto'>
+					<div className='mb-8 max-w-5xl m-auto xl:px-8'>
 						<p className='text-xl sm:text-lg text-center max-w-2xl mb-8 mt-4'></p>
 						<p className='mb-8 text-xl sm:text-lg'>
 							Цей сайт створений, щоб допомогти вам легко знаходити однодумців
