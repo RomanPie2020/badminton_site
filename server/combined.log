@@ -5013,3 +5013,30 @@
 {"level":"info","message":"Користувач romankaras2004@gmail.com успішно увійшов через Google","timestamp":"2025-10-27T22:10:13.483Z"}
 {"level":"info","message":"Отримані дані:","timestamp":"2025-10-27T22:10:13.484Z"}
 {"level":"info","message":"Refresh token saved for user 10","timestamp":"2025-10-27T22:10:13.496Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-10-28T11:46:08.437Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-10-28T11:46:08.442Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-10-28T11:46:08.565Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-10-28T20:59:21.449Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-10-28T20:59:21.467Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-10-28T20:59:21.700Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-10-28T21:39:15.620Z"}
+{"level":"error","message":"Error:","timestamp":"2025-10-28T21:39:17.490Z"}
+{"level":"error","message":"Error:","timestamp":"2025-10-28T21:39:20.665Z"}
+{"level":"info","message":"Користувач romankaras2004@gmail.com успішно увійшов через Google","timestamp":"2025-10-28T21:39:34.130Z"}
+{"level":"info","message":"Отримані дані:","timestamp":"2025-10-28T21:39:34.131Z"}
+{"level":"info","message":"Refresh token saved for user 10","timestamp":"2025-10-28T21:39:34.141Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-10-28T22:21:14.859Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-10-28T22:21:14.865Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-10-28T22:21:14.978Z"}
+{"level":"info","message":"User ID: 10","timestamp":"2025-10-28T22:46:46.949Z"}
+{"level":"info","message":{"body":{"avatarUrl":"https://lh3.googleusercontent.com/a/ACg8ocKTNrwOfcSf4fRgQlfT-ncQvjs6A_OOZOu9ELHdmKeAhDqCsA=s96-c","bio":"1","nickname":"Roman Karas"},"service":"user body"},"timestamp":"2025-10-28T22:46:46.952Z"}
+{"level":"info","message":"User IDservice: 10","timestamp":"2025-10-28T22:46:46.953Z"}
+{"level":"info","message":{"data":{"avatarUrl":"https://lh3.googleusercontent.com/a/ACg8ocKTNrwOfcSf4fRgQlfT-ncQvjs6A_OOZOu9ELHdmKeAhDqCsA=s96-c","bio":"1","nickname":"Roman Karas"},"service":"updateUserProfile"},"timestamp":"2025-10-28T22:46:46.958Z"}
+{"level":"info","message":"profile service2  {\n  \"id\": 7,\n  \"userId\": 10,\n  \"nickname\": \"Roman Karas\",\n  \"avatarUrl\": \"https://lh3.googleusercontent.com/a/ACg8ocKTNrwOfcSf4fRgQlfT-ncQvjs6A_OOZOu9ELHdmKeAhDqCsA=s96-c\",\n  \"city\": null,\n  \"age\": null,\n  \"gender\": null,\n  \"level\": null,\n  \"experienceMonths\": null,\n  \"dominantHand\": null,\n  \"preferredFormat\": null,\n  \"playFrequency\": null,\n  \"commonPlaces\": null,\n  \"playTime\": null,\n  \"bio\": null,\n  \"contact\": null,\n  \"rating\": \"0.00\",\n  \"reviewsCount\": 0,\n  \"createdAt\": \"2025-10-27T21:44:37.581Z\",\n  \"updatedAt\": \"2025-10-27T21:44:37.581Z\"\n}","timestamp":"2025-10-28T22:46:46.959Z"}
+{"level":"info","message":"data service3: {\n  \"nickname\": \"Roman Karas\",\n  \"avatarUrl\": \"https://lh3.googleusercontent.com/a/ACg8ocKTNrwOfcSf4fRgQlfT-ncQvjs6A_OOZOu9ELHdmKeAhDqCsA=s96-c\",\n  \"bio\": \"1\"\n}","timestamp":"2025-10-28T22:46:46.961Z"}
+{"level":"info","message":"User ID: 10","timestamp":"2025-10-28T22:59:25.237Z"}
+{"level":"info","message":{"body":{"avatarUrl":"https://lh3.googleusercontent.com/a/ACg8ocKTNrwOfcSf4fRgQlfT-ncQvjs6A_OOZOu9ELHdmKeAhDqCsA=s96-c","bio":"12","nickname":"Roman Karas"},"service":"user body"},"timestamp":"2025-10-28T22:59:25.238Z"}
+{"level":"info","message":"User IDservice: 10","timestamp":"2025-10-28T22:59:25.238Z"}
+{"level":"info","message":{"data":{"avatarUrl":"https://lh3.googleusercontent.com/a/ACg8ocKTNrwOfcSf4fRgQlfT-ncQvjs6A_OOZOu9ELHdmKeAhDqCsA=s96-c","bio":"12","nickname":"Roman Karas"},"service":"updateUserProfile"},"timestamp":"2025-10-28T22:59:25.241Z"}
+{"level":"info","message":"profile service2  {\n  \"id\": 7,\n  \"userId\": 10,\n  \"nickname\": \"Roman Karas\",\n  \"avatarUrl\": \"https://lh3.googleusercontent.com/a/ACg8ocKTNrwOfcSf4fRgQlfT-ncQvjs6A_OOZOu9ELHdmKeAhDqCsA=s96-c\",\n  \"city\": null,\n  \"age\": null,\n  \"gender\": null,\n  \"level\": null,\n  \"experienceMonths\": null,\n  \"dominantHand\": null,\n  \"preferredFormat\": null,\n  \"playFrequency\": null,\n  \"commonPlaces\": null,\n  \"playTime\": null,\n  \"bio\": \"1\",\n  \"contact\": null,\n  \"rating\": \"0.00\",\n  \"reviewsCount\": 0,\n  \"createdAt\": \"2025-10-27T21:44:37.581Z\",\n  \"updatedAt\": \"2025-10-28T22:46:46.967Z\"\n}","timestamp":"2025-10-28T22:59:25.242Z"}
+{"level":"info","message":"data service3: {\n  \"nickname\": \"Roman Karas\",\n  \"avatarUrl\": \"https://lh3.googleusercontent.com/a/ACg8ocKTNrwOfcSf4fRgQlfT-ncQvjs6A_OOZOu9ELHdmKeAhDqCsA=s96-c\",\n  \"bio\": \"12\"\n}","timestamp":"2025-10-28T22:59:25.242Z"}

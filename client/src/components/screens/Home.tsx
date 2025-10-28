@@ -1,13 +1,5 @@
 import { Link } from 'react-router-dom'
-import { IBaseButton } from '../../shared/interfaces/models'
 import { useAppSelector } from '../../store/store'
-
-const createPasteButtonProps: IBaseButton = {
-	title: 'Create',
-	styles: 'signup-button',
-	to: '',
-	type: 'button',
-}
 
 function Home() {
 	const isAuthenticated = useAppSelector(
@@ -53,16 +45,16 @@ function Home() {
 	// if (error) {
 	// 	return <div className='mt-28'>Error: {error.message}</div>
 	// }
-	// #TODO розібратись з медіа запитами
+
 	return (
 		<>
 			<div className='w-full min-h-screen bg-gradient-to-t from-slate-200 to-indigo-400 py-40'>
 				{/* <div className='absolute inset-0'></div> */}
 				<div className='flex flex-col items-center justify-center mt-10'>
-					<h1 className='text-6xl sm:text-3xl text-center font-bold mb-4 max-w-5xl px-6 sm:px-8'>
+					<h1 className='text-6xl sm:text-3xl text-center font-bold mb-4 max-w-5xl px-8 sm:px-6'>
 						Приєднуйся до подій BadmickTogether та грай бадмінтон релаксуючи!!!
 					</h1>
-					<div className='mb-8 max-w-5xl m-auto xl:px-8'>
+					<div className='mb-8 max-w-5xl mx-auto xl:px-8'>
 						<p className='text-xl sm:text-lg text-center max-w-2xl mb-8 mt-4'></p>
 						<p className='mb-8 text-xl sm:text-lg'>
 							Цей сайт створений, щоб допомогти вам легко знаходити однодумців

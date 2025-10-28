@@ -100,22 +100,25 @@ function TopBar() {
 					</button>
 				</div>
 
-				{menuOpen && (
-					<nav
-						className='
-							fixed inset-x-0 top-20 z-40
-							flex flex-col gap-4
-							px-5 pb-6 pt-20
-							bg-gradient-to-b from-indigo-500 to-gray-700
-							overflow-y-auto h-[calc(100vh-5rem)]
-							hidden md:flex
-						'
-					>
-						{isAuthenticated ? renderAuthButtons() : renderGuestButtons()}
-					</nav>
-				)}
+				<nav
+					className={`
+						fixed inset-x-0 top-20 z-40
+						flex flex-col gap-4
+						px-5 pb-6 pt-20
+						bg-gradient-to-b from-indigo-500 to-gray-700
+						overflow-y-auto h-[calc(100vh-5rem)]
+						transition-all duration-300 ease-in-out
+						transform ${
+							menuOpen
+								? 'translate-y-0 opacity-100'
+								: '-translate-y-4 opacity-0 pointer-events-none'
+						}
+						hidden md:flex
+					`}
+				>
+					{isAuthenticated ? renderAuthButtons() : renderGuestButtons()}
+				</nav>
 			</header>
-
 			<div className='pt-20'>
 				<Outlet />
 			</div>
