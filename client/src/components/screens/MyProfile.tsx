@@ -64,7 +64,7 @@ const ProfileForm = () => {
 
 				<div className='flex justify-end space-x-3 pt-4'>
 					{isEditing ? (
-						<>
+						<div className='flex space-x-3 sm:flex-col sm:space-x-0 sm:space-y-2'>
 							<button
 								type='button'
 								onClick={handleCancelClick}
@@ -79,7 +79,7 @@ const ProfileForm = () => {
 							>
 								{isUpdating ? 'Збереження...' : 'Зберегти'}
 							</button>
-						</>
+						</div>
 					) : (
 						<button
 							type='button'
