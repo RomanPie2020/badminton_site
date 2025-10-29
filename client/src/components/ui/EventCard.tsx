@@ -98,7 +98,7 @@ const EventCard: React.FC<EventCardProps> = ({
 								onClick={() => onJoin(event.id)}
 								className='px-3 py-1 bg-blue-700 text-white rounded-lg hover:bg-blue-500'
 							>
-								Join
+								Приєднатися
 							</button>
 						)}
 						{joined && (
@@ -106,7 +106,7 @@ const EventCard: React.FC<EventCardProps> = ({
 								onClick={() => onLeave(event.id)}
 								className='px-3 py-1 text-black bg-red-700 rounded-lg hover:bg-red-600'
 							>
-								Leave
+								Залишити
 							</button>
 						)}
 						{isFull && !joined && (

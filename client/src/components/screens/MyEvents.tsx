@@ -9,7 +9,6 @@ import {
 import EventCard from '../ui/EventCard'
 
 const MyEvents = () => {
-	// Отримаємо userId із localStorage (як у попередньому коді)
 	const currentUserId = Number(localStorage.getItem('user_id'))
 
 	// Запити для обох вкладок
@@ -38,7 +37,6 @@ const MyEvents = () => {
 			joinEvent(eventId)
 				.unwrap()
 				.then(() => {
-					// після успішного приєднання — оновлюємо обидва списки (якщо треба)
 					refetchAttending()
 				})
 		},
@@ -50,7 +48,6 @@ const MyEvents = () => {
 			leaveEvent(eventId)
 				.unwrap()
 				.then(() => {
-					// після успішного виходу — оновлюємо обидва списки (якщо треба)
 					refetchAttending()
 				})
 		},
@@ -88,7 +85,6 @@ const MyEvents = () => {
 				</TabList>
 
 				<TabPanels>
-					{/* ======================================= */}
 					{/* Вкладка 1: “Створені” */}
 					<TabPanel className='pt-4'>
 						{isLoadingCreated && (
@@ -116,11 +112,6 @@ const MyEvents = () => {
 											key={evt.id}
 											event={evt}
 											currentUserId={currentUserId}
-											// У вкладці «Створені» припустимо, що користувач може тільки видаляти —
-											// у EventCard кнопка «Вийти» / «Приєднатися» не потрібна, але вам
-											// потрібно передати ці два колбеки. Якщо ви у цьому компоненті не хочете
-											// показувати кнопки join/leave для створених, то ви все одно маєте передати
-											// дві функції. Наприклад, передаємо порожні лямбда-функції:
 											onJoin={handleJoin}
 											onLeave={handleLeave}
 											onRefetch={refetchCreated}
@@ -129,8 +120,6 @@ const MyEvents = () => {
 								</div>
 							)}
 					</TabPanel>
-
-					{/* ======================================= */}
 					{/* Вкладка 2: “В яких я беру участь” */}
 					<TabPanel className='pt-4'>
 						{isLoadingAttending && (

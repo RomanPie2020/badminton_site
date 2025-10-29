@@ -38,7 +38,9 @@ export const useMyProfileForm = () => {
 	} = useForm<ProfileFormData>()
 
 	useEffect(() => {
-		if (profile) reset(profile)
+		if (profile) {
+			reset(profile)
+		}
 	}, [profile, reset])
 
 	const onSubmit = async (data: ProfileFormData) => {
@@ -48,7 +50,8 @@ export const useMyProfileForm = () => {
 			const cleaned = Object.fromEntries(
 				Object.entries(data).filter(([, v]) => v !== undefined && v !== null)
 			)
-			await updateProfile(cleaned).unwrap()
+			const updated = await updateProfile(cleaned).unwrap()
+			reset(updated)
 			setIsEditing(false)
 			setSuccessMessage('Профіль успішно оновлено ✅')
 		} catch (err: any) {

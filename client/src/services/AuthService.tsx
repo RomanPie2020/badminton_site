@@ -108,6 +108,7 @@ export const authService = createApi({
 				url: '/api/profile',
 				method: 'GET',
 			}),
+			providesTags: ['UserProfile'],
 		}),
 
 		updateProfile: build.mutation<
@@ -120,6 +121,7 @@ export const authService = createApi({
 				method: 'PUT',
 				body,
 			}),
+			invalidatesTags: ['UserProfile'],
 		}),
 		getUserProfileById: build.query<UserProfile, number>({
 			query: id => ({
