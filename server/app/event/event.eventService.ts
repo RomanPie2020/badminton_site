@@ -217,10 +217,29 @@ class EventService {
 				{
 					association: Event.associations.creator,
 					attributes: ['id', 'username'],
+					required: false,
+					include: [
+						{
+							model: UserProfile,
+							as: 'profile',
+							attributes: ['nickname'],
+							required: false,
+						},
+					],
 				},
 				{
 					association: Event.associations.participants,
 					attributes: ['id', 'username'],
+					through: { attributes: [] },
+					required: false,
+					include: [
+						{
+							model: UserProfile,
+							as: 'profile',
+							attributes: ['nickname'],
+							required: false,
+						},
+					],
 				},
 			],
 		})

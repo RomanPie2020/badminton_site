@@ -5253,3 +5253,27 @@
 {"level":"info","message":"database password is: string","timestamp":"2025-10-29T22:43:50.008Z"}
 {"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-10-29T22:43:50.022Z"}
 {"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-10-29T22:43:50.201Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-10-30T12:23:44.271Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-10-30T12:23:44.279Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-10-30T12:23:44.450Z"}
+{"creatorId":10,"description":"1234","eventDate":"2025-10-31T18:44","eventType":"Дружня гра","gameType":"Одиночна","level":"info","levelOfPlayers":"Новачок","location":"2312412412","maxParticipants":3,"message":"Створення івенту:","timestamp":"2025-10-30T18:44:11.524Z","title":"13241"}
+{"level":"error","message":"Error:","timestamp":"2025-10-30T20:38:32.096Z"}
+{"level":"error","message":"Error:","timestamp":"2025-10-31T19:50:41.069Z"}
+{"level":"error","message":"Error:","timestamp":"2025-10-31T19:51:23.628Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-10-31T20:08:29.004Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-10-31T20:08:29.036Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-10-31T20:08:29.149Z"}
+{"level":"error","message":"Error:","timestamp":"2025-10-31T20:08:36.941Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-10-31T20:10:44.465Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-10-31T20:10:44.484Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-10-31T20:10:44.661Z"}
+{"level":"error","message":"Error:","timestamp":"2025-10-31T20:10:47.621Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-10-31T20:16:22.548Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-10-31T20:16:22.554Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-10-31T20:16:22.645Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-10-31T20:16:31.022Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-10-31T20:16:31.029Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-10-31T20:16:31.118Z"}
+{"level":"error","message":"Error:","timestamp":"2025-10-31T22:26:24.955Z"}
+{"creatorId":10,"description":"1","eventDate":"2025-10-31T23:56","eventType":"Турнір","gameType":"Одиночна","level":"info","levelOfPlayers":"Новачок","location":"1212","maxParticipants":2,"message":"Створення івенту:","timestamp":"2025-10-31T23:56:18.568Z","title":"12112"}
+{"level":"error","message":"Error:","timestamp":"2025-11-01T00:04:49.381Z"}

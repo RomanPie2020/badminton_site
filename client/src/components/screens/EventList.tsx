@@ -1,15 +1,21 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useActions } from '../../hooks/useActions'
 import {
+	useDeleteEventMutation,
 	useJoinEventMutation,
+	useLazyGetEventByIdQuery,
 	useLazyGetFilteredEventsQuery,
 	useLeaveEventMutation,
+	useUpdateEventMutation,
 } from '../../services/EventService'
 import { EventWithRelations, Filters } from '../../shared/interfaces/models'
 import { selectFilters } from '../../store/filtersSlice'
 import { useAppSelector } from '../../store/store'
+import ConfirmModal from '../ui/ConfirmModal'
 import CreateEventModal from '../ui/CreateEventModal'
+import DetailModal from '../ui/DetailModal'
 import EventCard from '../ui/EventCard'
+import EventFormModal from '../ui/EventFormModal'
 import FilterModal from '../ui/FilterModal'
 
 const PAGE_SIZE = 10
@@ -35,12 +41,20 @@ const EventList = () => {
 
 	const [trigger, { isFetching, isError }] = useLazyGetFilteredEventsQuery()
 	const [joinEvent] = useJoinEventMutation()
+	const [getEventById] = useLazyGetEventByIdQuery()
 	const [leaveEvent] = useLeaveEventMutation()
 	const currentUserId = Number(localStorage.getItem('user_id'))
 	const { openFiltersModal } = useActions()
 
 	const observerRef = useRef<IntersectionObserver | null>(null)
 	const bottomRef = useRef<HTMLDivElement | null>(null)
+
+	const [showDetails, setShowDetails] = useState<number | null>(null)
+	const [editEventId, setEditEventId] = useState<number | null>(null)
+	const [deleteEventId, setDeleteEventId] = useState<number | null>(null)
+
+	const [updateEvent] = useUpdateEventMutation()
+	const [deleteEvent] = useDeleteEventMutation()
 
 	const loadEvents = useCallback(
 		async (offset: number, isNewSearch: boolean = false) => {
@@ -64,11 +78,9 @@ const EventList = () => {
 				const { events: newEvents, total: newTotal } = result
 
 				if (isNewSearch) {
-					// Новий пошук - замінюємо всі елементи
 					setItems(newEvents || [])
 					setCurrentOffset(newEvents?.length || 0)
 				} else {
-					// Додаємо до існуючих елементів
 					setItems(prev => {
 						const existingIds = new Set(prev.map(e => e.id))
 						const uniqueEvents = (newEvents || []).filter(
@@ -94,7 +106,6 @@ const EventList = () => {
 		[trigger, filters, searchText, searchField, sortBy, sortOrder]
 	)
 
-	// Функція для скидання стану та завантаження нових даних
 	const resetAndLoad = useCallback(() => {
 		setItems([])
 		setCurrentOffset(0)
@@ -103,16 +114,13 @@ const EventList = () => {
 		loadEvents(0, true)
 	}, [loadEvents])
 
-	// Завантаження наступної сторінки
 	const loadNextPage = useCallback(() => {
 		if (!isLoadingMore && !isFetching && hasMore && currentOffset < total) {
 			loadEvents(currentOffset, false)
 		}
 	}, [loadEvents, isLoadingMore, isFetching, hasMore, currentOffset, total])
 
-	// Ефект для реагування на зміни фільтрів, пошуку, сортування
 	useEffect(() => {
-		// Відключаємо observer перед скиданням
 		if (observerRef.current) {
 			observerRef.current.disconnect()
 		}
@@ -120,7 +128,6 @@ const EventList = () => {
 		resetAndLoad()
 	}, [filters, searchText, searchField, sortBy, sortOrder])
 
-	// Intersection Observer для автозавантаження
 	useEffect(() => {
 		if (!hasMore || isLoadingMore || isFetching || isInitialLoad) {
 			return
@@ -137,7 +144,7 @@ const EventList = () => {
 				}
 			},
 			{
-				rootMargin: '100px', // Починаємо завантаження трохи раніше
+				rootMargin: '100px',
 			}
 		)
 
@@ -150,23 +157,13 @@ const EventList = () => {
 		}
 	}, [loadNextPage, hasMore, isLoadingMore, isFetching, isInitialLoad])
 
-	// Обробники подій
 	const handleJoin = async (eventId: number) => {
 		try {
-			await joinEvent(eventId).unwrap()
-			// Оновлюємо локальний стан
+			await joinEvent({ eventId }).unwrap()
+
+			const updatedEvent = await getEventById(eventId).unwrap()
 			setItems(prev =>
-				prev.map(event =>
-					event.id === eventId
-						? {
-								...event,
-								participants: [
-									...(event.participants || []),
-									{ id: currentUserId },
-								],
-						  }
-						: event
-				)
+				prev.map(event => (event.id === eventId ? updatedEvent : event))
 			)
 		} catch (error) {
 			console.error('Помилка приєднання до події:', error)
@@ -176,7 +173,6 @@ const EventList = () => {
 	const handleLeave = async (eventId: number) => {
 		try {
 			await leaveEvent(eventId).unwrap()
-			// Оновлюємо локальний стан
 			setItems(prev =>
 				prev.map(event =>
 					event.id === eventId
@@ -191,6 +187,24 @@ const EventList = () => {
 			)
 		} catch (error) {
 			console.error('Помилка виходу з події:', error)
+		}
+	}
+	const handleEdit = async (eventId: number, updatedData: any) => {
+		console.log('Submitting updated data:', updatedData)
+		console.log('Event ID:', { eventId, data: { ...updatedData } })
+
+		await updateEvent({ eventId, data: { ...updatedData } }).unwrap()
+		const updatedEvent = await getEventById(eventId).unwrap()
+		setItems(prev => prev.map(evt => (evt.id === eventId ? updatedEvent : evt)))
+		setEditEventId(null)
+	}
+	const handleDelete = async (eventId: number) => {
+		try {
+			await deleteEvent(eventId).unwrap()
+			setItems(prev => prev.filter(evt => evt.id !== eventId))
+			setDeleteEventId(null)
+		} catch (error) {
+			console.error('Помилка видалення події:', error)
 		}
 	}
 
@@ -214,7 +228,6 @@ const EventList = () => {
 
 	return (
 		<div className='p-6'>
-			{/* Верхня панель з кнопками */}
 			<div className='flex items-center justify-between mb-6 mt-32 px-4 flex-wrap gap-4'>
 				<CreateEventModal onCreated={resetAndLoad} />
 
@@ -239,7 +252,6 @@ const EventList = () => {
 					<span>Фільтри</span>
 				</button>
 
-				{/* Пошук */}
 				<div className='flex items-center space-x-2 flex-wrap'>
 					<select
 						value={searchField}
@@ -261,7 +273,6 @@ const EventList = () => {
 					/>
 				</div>
 
-				{/* Сортування */}
 				<div className='flex items-center space-x-2 flex-wrap'>
 					<label className='text-sm font-medium whitespace-nowrap'>
 						Сортувати:
@@ -289,35 +300,35 @@ const EventList = () => {
 				</div>
 			</div>
 
-			{/* Сітка івент-карток */}
 			<div className='max-w-7xl mx-auto py-8 px-4 grid gap-6 grid-cols-[repeat(auto-fit,_minmax(250px,_1fr))]'>
 				{items.map(evt => (
 					<EventCard
 						key={evt.id}
 						event={evt}
-						onRefetch={resetAndLoad}
 						currentUserId={currentUserId}
 						onJoin={handleJoin}
 						onLeave={handleLeave}
+						onUpdate={handleEdit}
+						onDelete={handleDelete}
+						setShowDetails={() => setShowDetails(evt.id)}
+						setEdit={() => setEditEventId(evt.id)}
+						setDelete={() => setDeleteEventId(evt.id)}
 					/>
 				))}
 			</div>
 
-			{/* Спінер для початкового завантаження */}
 			{isInitialLoad && (
 				<div className='flex justify-center py-8'>
 					<div className='animate-spin h-8 w-8 border-4 border-blue-500 border-t-transparent rounded-full'></div>
 				</div>
 			)}
 
-			{/* Спінер для завантаження наступних сторінок */}
 			{isLoadingMore && !isInitialLoad && (
 				<div className='flex justify-center py-4'>
 					<div className='animate-spin h-6 w-6 border-4 border-blue-500 border-t-transparent rounded-full'></div>
 				</div>
 			)}
 
-			{/* Повідомлення про відсутність результатів */}
 			{!isInitialLoad && !isLoadingMore && items.length === 0 && (
 				<div className='max-w-2xl mx-auto py-16 text-center'>
 					<p className='text-lg font-medium text-gray-700 mb-2'>
@@ -334,7 +345,6 @@ const EventList = () => {
 						<button
 							onClick={() => {
 								setSearchText('')
-								// Скидаємо фільтри через actions, якщо потрібно
 							}}
 							className='px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-md text-sm'
 						>
@@ -344,7 +354,6 @@ const EventList = () => {
 				</div>
 			)}
 
-			{/* Інформація про кількість завантажених подій */}
 			{!isInitialLoad && items.length > 0 && (
 				<div className='text-center py-4 text-sm text-gray-500'>
 					Показано {items.length} з {total} подій
@@ -354,12 +363,36 @@ const EventList = () => {
 				</div>
 			)}
 
-			{/* Маркер для IntersectionObserver */}
 			{hasMore && !isInitialLoad && (
 				<div ref={bottomRef} className='h-4 w-full' />
 			)}
 
-			{/* Модалка фільтрів */}
+			{showDetails && (
+				<DetailModal
+					event={items.find(e => e.id === showDetails)!}
+					currentUserId={currentUserId}
+					onClose={() => setShowDetails(null)}
+					onJoin={() => handleJoin(showDetails)}
+					onLeave={() => handleLeave(showDetails)}
+				/>
+			)}
+
+			{editEventId && (
+				<EventFormModal
+					event={items.find(e => e.id === editEventId)!}
+					onClose={() => setEditEventId(null)}
+					onSubmit={handleEdit}
+				/>
+			)}
+
+			{deleteEventId && (
+				<ConfirmModal
+					event={items.find(e => e.id === deleteEventId)!}
+					onClose={() => setDeleteEventId(null)}
+					onConfirm={id => handleDelete(id)}
+				/>
+			)}
+
 			<FilterModal />
 		</div>
 	)

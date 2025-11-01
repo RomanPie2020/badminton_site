@@ -1,37 +1,38 @@
 // components/EventCard.tsx
 import { format } from 'date-fns'
-import React, { useState } from 'react'
+import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import {
-	useDeleteEventMutation,
-	useUpdateEventMutation,
-} from '../../services/EventService'
 import { EventWithRelations } from '../../shared/interfaces/models'
-import ConfirmModal from './ConfirmModal'
-import DetailModal from './DetailModal'
-import EventFormModal from './EventFormModal'
 
 interface EventCardProps {
 	event: EventWithRelations
 	currentUserId: number
-	onRefetch: () => void
 	onJoin: (id: number) => void
 	onLeave: (id: number) => void
+	onUpdate: (id: number, data: EventWithRelations) => void
+	onDelete: (id: number) => void
+	setShowDetails: (id: number) => void
+	setEdit: (id: number) => void
+	setDelete: (id: number) => void
 }
 
 const EventCard: React.FC<EventCardProps> = ({
 	event,
 	currentUserId,
-	onRefetch,
 	onJoin,
 	onLeave,
+	onUpdate,
+	onDelete,
+	setShowDetails,
+	setEdit,
+	setDelete,
 }) => {
-	const [showDetails, setShowDetails] = useState(false)
-	const [isEditOpen, setIsEditOpen] = useState(false)
-	const [isDeleteConfirm, setIsDeleteConfirm] = useState(false)
+	// const [showDetails, setShowDetails] = useState(false)
+	// const [isEditOpen, setIsEditOpen] = useState(false)
+	// const [isDeleteConfirm, setIsDeleteConfirm] = useState(false)
 
-	const [updateEvent] = useUpdateEventMutation()
-	const [deleteEvent, { isLoading: isDeleting }] = useDeleteEventMutation()
+	// const [updateEvent] = useUpdateEventMutation()
+	// const [deleteEvent, { isLoading: isDeleting }] = useDeleteEventMutation()
 
 	const joined = event.participants.some(u => u.id === currentUserId)
 	const isCreator = event.creator.id === currentUserId
@@ -41,19 +42,28 @@ const EventCard: React.FC<EventCardProps> = ({
 
 	const navigate = useNavigate()
 
-	const handleEditSubmit = async (updatedData: any) => {
-		console.log('Submitting updated data:', updatedData)
-		console.log('Event ID:', { eventId: event.id, data: { ...updatedData } })
+	// const handleEditSubmit = async (updatedData: any) => {
+	// 	console.log('Submitting updated data:', updatedData)
+	// 	console.log('Event ID:', { eventId: event.id, data: { ...updatedData } })
 
-		await updateEvent({ eventId: event.id, data: { ...updatedData } }).unwrap()
-		setIsEditOpen(false)
-		onRefetch()
-	}
-	const handleDelete = async () => {
-		await deleteEvent(event.id).unwrap()
-		setIsDeleteConfirm(false)
-		onRefetch()
-	}
+	// 	await updateEvent({ eventId: event.id, data: { ...updatedData } }).unwrap()
+	// 	const updatedEvent = await getEventById(event.id).unwrap()
+	// 	setItems(prev =>
+	// 		prev.map(evt => (evt.id === event.id ? updatedEvent : evt))
+	// 	)
+
+	// 	setIsEditOpen(false)
+	// }
+	// const handleDelete = async () => {
+	// 	try {
+	// 		await deleteEvent(event.id).unwrap()
+
+	// 		setItems(prev => prev.filter(evt => evt.id !== event.id))
+	// 		setIsDeleteConfirm(false)
+	// 	} catch (error) {
+	// 		console.error('Помилка видалення події:', error)
+	// 	}
+	// }
 
 	return (
 		<>
@@ -81,14 +91,14 @@ const EventCard: React.FC<EventCardProps> = ({
 						}}
 						className='hover:underline font-medium'
 					>
-						{event.creator.profile.nickname || user.username}
+						{event.creator.profile?.nickname || event.creator.username}
 					</button>
 				</p>
 
 				<div className='mt-auto flex flex-col justify-between space-x-2 gap-2'>
 					<div className='flex gap-2 flex-wrap'>
 						<button
-							onClick={() => setShowDetails(true)}
+							onClick={() => setShowDetails(event.id)}
 							className='px-3 py-1 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300'
 						>
 							Деталі
@@ -124,13 +134,13 @@ const EventCard: React.FC<EventCardProps> = ({
 					{isCreator && (
 						<div className='flex gap-2 mt-2'>
 							<button
-								onClick={() => setIsEditOpen(true)}
+								onClick={() => setEdit(event.id)}
 								className='px-3 py-1 bg-yellow-600 text-black rounded-lg hover:bg-yellow-500'
 							>
 								Редагувати
 							</button>
 							<button
-								onClick={() => setIsDeleteConfirm(true)}
+								onClick={() => setDelete(event.id)}
 								className='px-3 py-1 bg-red-700 text-black rounded-lg hover:bg-red-600'
 							>
 								Видалити
@@ -139,42 +149,13 @@ const EventCard: React.FC<EventCardProps> = ({
 					)}
 				</div>
 			</div>
+		</>
+	)
+}
 
-			{/* Детальна модалка (без змін) */}
-			{showDetails && (
-				<DetailModal
-					event={event}
-					onClose={() => setShowDetails(false)}
-					currentUserId={currentUserId}
-					onJoin={onJoin}
-					onLeave={onLeave}
-				/>
-			)}
+export default EventCard
 
-			{/* (1) Modal для створення/редагування */}
-			{isEditOpen && (
-				<EventFormModal
-					initialData={event}
-					currentParticipants={event.participants.length}
-					onClose={() => setIsEditOpen(false)}
-					onSubmit={handleEditSubmit}
-				/>
-			)}
-
-			{/* (2) Confirm перед видаленням */}
-			{isDeleteConfirm && (
-				<ConfirmModal
-					title='Видалити подію?'
-					message='Цю дію не можна буде відмінити.'
-					confirmText='Видалити'
-					cancelText='Скасувати'
-					onConfirm={handleDelete}
-					onCancel={() => setIsDeleteConfirm(false)}
-					isLoading={isDeleting}
-				/>
-			)}
-			{/* Modal */}
-			{/* {showModal && (
+/* {showModal && (
 				<div className='fixed inset-0 bg-black/40 flex items-center justify-center z-50 text-justify hyphens-auto'>
 					<div className='bg-white rounded-xl shadow-xl w-full max-w-lg p-6 relative'>
 						<button
@@ -228,9 +209,4 @@ const EventCard: React.FC<EventCardProps> = ({
 						)}
 					</div>
 				</div>
-			)} */}
-		</>
-	)
-}
-
-export default EventCard
+			)}  */

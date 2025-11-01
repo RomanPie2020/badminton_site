@@ -1,5 +1,4 @@
 import { format } from 'date-fns'
-import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { EventWithRelations } from '../../shared/interfaces/models'
 
@@ -7,17 +6,17 @@ interface DetailModalProps {
 	event: EventWithRelations
 	currentUserId: number
 	onClose: () => void
-	onJoin: (id: number) => void
-	onLeave: (id: number) => void
+	onJoin: () => void
+	onLeave: () => void
 }
 
-const DetailModal: React.FC<DetailModalProps> = ({
+const DetailModal = ({
 	event,
 	currentUserId,
 	onClose,
 	onJoin,
 	onLeave,
-}) => {
+}: DetailModalProps) => {
 	const navigate = useNavigate()
 	const joined = event.participants.some(u => u.id === currentUserId)
 	const isFull =
@@ -65,7 +64,7 @@ const DetailModal: React.FC<DetailModalProps> = ({
 				<div className='flex justify-end gap-3'>
 					{!joined && !isFull && (
 						<button
-							onClick={() => onJoin(event.id)}
+							onClick={() => onJoin()}
 							className='px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700'
 						>
 							Приєднатися
@@ -73,7 +72,7 @@ const DetailModal: React.FC<DetailModalProps> = ({
 					)}
 					{joined && (
 						<button
-							onClick={() => onLeave(event.id)}
+							onClick={() => onLeave()}
 							className='px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600'
 						>
 							Вийти
@@ -107,7 +106,7 @@ const DetailModal: React.FC<DetailModalProps> = ({
 									/>
 								) : (
 									<div className='w-8 h-8 rounded-full bg-gray-300 flex items-center justify-center text-xs text-gray-600'>
-										{(user.profile.nickname || user.username)[0]?.toUpperCase()}
+										{'user'}
 									</div>
 								)}
 
@@ -118,7 +117,7 @@ const DetailModal: React.FC<DetailModalProps> = ({
 									}}
 									className='text-blue-600 hover:underline font-medium'
 								>
-									{user.profile.nickname || user.username}
+									{user.profile?.nickname ?? user.username ?? 'Unknown user'}
 								</button>
 							</li>
 						))}

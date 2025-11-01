@@ -1,11 +1,13 @@
 import { SubmitHandler, useForm } from 'react-hook-form'
+import { EventWithRelations } from '../../shared/interfaces/models'
 import { EventInput } from '../../shared/validations/event.schema'
 
 interface EventFormModalProps {
+	event: EventWithRelations
 	initialData?: EventInput
 	currentParticipants?: number
 	onClose: () => void
-	onSubmit: (data: EventInput) => void
+	onSubmit: (eventId: number, data: EventWithRelations) => void
 }
 
 const EVENT_TYPE_OPTIONS = [
@@ -19,6 +21,7 @@ const GAME_TYPE_OPTIONS = ['Одиночна', 'Парна', 'Змішана п�
 const LEVEL_OPTIONS = ['Новачок', 'Середній', 'Просунутий', 'Профі']
 
 const EventFormModal: React.FC<EventFormModalProps> = ({
+	event,
 	initialData,
 	currentParticipants = 0,
 	onClose,
@@ -31,7 +34,7 @@ const EventFormModal: React.FC<EventFormModalProps> = ({
 	} = useForm<EventInput>({ defaultValues: initialData })
 
 	const submit: SubmitHandler<EventInput> = data => {
-		onSubmit(data)
+		onSubmit(event.id, data)
 	}
 
 	return (
@@ -91,6 +94,7 @@ const EventFormModal: React.FC<EventFormModalProps> = ({
 						)}
 					</div>
 
+					{/* #TODO initialData do */}
 					{/* Опис */}
 					<div>
 						<label className='block text-sm font-medium text-gray-700'>
