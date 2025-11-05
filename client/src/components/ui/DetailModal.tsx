@@ -6,8 +6,8 @@ interface DetailModalProps {
 	event: EventWithRelations
 	currentUserId: number
 	onClose: () => void
-	onJoin: () => void
-	onLeave: () => void
+	onJoin: (eventId: number) => void
+	onLeave: (eventId: number) => void
 }
 
 const DetailModal = ({

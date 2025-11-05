@@ -251,6 +251,7 @@ class EventService {
 	async create(creatorId: number, data: Partial<Event>) {
 		try {
 			logger.info('Створення івенту:', { ...data, creatorId })
+
 			const {
 				title,
 				description,
@@ -261,7 +262,9 @@ class EventService {
 				gameType,
 				levelOfPlayers,
 			} = data
-			return await Event.create({
+
+			// створюємо івент
+			const created = await Event.create({
 				title,
 				description,
 				location,
@@ -271,8 +274,42 @@ class EventService {
 				eventType,
 				gameType,
 				levelOfPlayers,
-				creatorId,
 			})
+
+			// одразу підтягуємо повний об’єкт з усіма зв’язками
+			const event = await Event.findByPk(created.id, {
+				include: [
+					{
+						association: Event.associations.creator,
+						attributes: ['id', 'username'],
+						required: false,
+						include: [
+							{
+								model: UserProfile,
+								as: 'profile',
+								attributes: ['nickname'],
+								required: false,
+							},
+						],
+					},
+					{
+						association: Event.associations.participants,
+						attributes: ['id', 'username'],
+						through: { attributes: [] },
+						required: false,
+						include: [
+							{
+								model: UserProfile,
+								as: 'profile',
+								attributes: ['nickname'],
+								required: false,
+							},
+						],
+					},
+				],
+			})
+
+			return event
 		} catch (e) {
 			console.error('Помилка при створенні івенту:', (e as any).errors)
 			throw ApiError.InternalServerError('Не вдалося створити івент')

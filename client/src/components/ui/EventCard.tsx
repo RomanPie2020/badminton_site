@@ -9,8 +9,7 @@ interface EventCardProps {
 	currentUserId: number
 	onJoin: (id: number) => void
 	onLeave: (id: number) => void
-	onUpdate: (id: number, data: EventWithRelations) => void
-	onDelete: (id: number) => void
+	onRefetch?: () => any
 	setShowDetails: (id: number) => void
 	setEdit: (id: number) => void
 	setDelete: (id: number) => void
@@ -21,8 +20,7 @@ const EventCard: React.FC<EventCardProps> = ({
 	currentUserId,
 	onJoin,
 	onLeave,
-	onUpdate,
-	onDelete,
+	onRefetch,
 	setShowDetails,
 	setEdit,
 	setDelete,

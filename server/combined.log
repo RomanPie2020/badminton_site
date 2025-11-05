@@ -5277,3 +5277,53 @@
 {"level":"error","message":"Error:","timestamp":"2025-10-31T22:26:24.955Z"}
 {"creatorId":10,"description":"1","eventDate":"2025-10-31T23:56","eventType":"Турнір","gameType":"Одиночна","level":"info","levelOfPlayers":"Новачок","location":"1212","maxParticipants":2,"message":"Створення івенту:","timestamp":"2025-10-31T23:56:18.568Z","title":"12112"}
 {"level":"error","message":"Error:","timestamp":"2025-11-01T00:04:49.381Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-11-02T16:13:50.698Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-11-02T16:13:50.707Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-11-02T16:13:50.903Z"}
+{"level":"error","message":"Error:","timestamp":"2025-11-02T16:14:55.504Z"}
+{"creatorId":10,"description":"12","eventDate":"2025-11-16T19:14","eventType":"Тренування","gameType":"Парна","level":"info","levelOfPlayers":"Новачок","location":"123123","maxParticipants":2,"message":"Створення івенту:","timestamp":"2025-11-02T16:14:55.562Z","title":"karka"}
+{"creatorId":10,"description":"fdaf","eventDate":"2025-11-02T16:15","eventType":"Турнір","gameType":"Одиночна","level":"info","levelOfPlayers":"Новачок","location":"afkd","maxParticipants":3,"message":"Створення івенту:","timestamp":"2025-11-02T16:15:45.739Z","title":"karka"}
+{"creatorId":10,"description":"1221","eventDate":"2025-11-02T21:15","eventType":"Турнір","gameType":"Одиночна","level":"info","levelOfPlayers":"Новачок","location":"21","maxParticipants":2,"message":"Створення івенту:","timestamp":"2025-11-02T19:15:27.652Z","title":"mam"}
+{"creatorId":10,"description":"abfdb","eventDate":"2025-11-21T21:44","eventType":"Турнір","gameType":"Одиночна","level":"info","levelOfPlayers":"Середній","location":"1babf","maxParticipants":2,"message":"Створення івенту:","timestamp":"2025-11-02T21:44:42.918Z","title":"bab"}
+{"creatorId":10,"description":"ab","eventDate":"2025-11-08T21:46","eventType":"Турнір","gameType":"Одиночна","level":"info","levelOfPlayers":"Новачок","location":"bab","maxParticipants":2,"message":"Створення івенту:","timestamp":"2025-11-02T21:46:31.698Z","title":"bab"}
+{"creatorId":10,"description":"bab","eventDate":"2025-11-09T21:50","eventType":"Тренування","gameType":"Змішана парна","level":"info","levelOfPlayers":"Новачок","location":"bab","maxParticipants":2,"message":"Створення івенту:","timestamp":"2025-11-02T21:50:59.218Z","title":"bab"}
+{"level":"info","message":"database password is: string","timestamp":"2025-11-02T23:49:43.333Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-11-02T23:49:43.362Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-11-02T23:49:43.805Z"}
+{"creatorId":10,"description":"bab","eventDate":"2025-11-08T23:49","eventType":"Дружня гра","gameType":"Одиночна","level":"info","levelOfPlayers":"Новачок","location":"ba","maxParticipants":2,"message":"Створення івенту:","timestamp":"2025-11-02T23:50:03.233Z","title":"bab"}
+{"level":"info","message":"database password is: string","timestamp":"2025-11-03T12:04:30.929Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-11-03T12:04:30.936Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-11-03T12:04:31.102Z"}
+{"level":"error","message":"Error:","timestamp":"2025-11-03T14:21:46.265Z"}
+{"level":"error","message":"Error:","timestamp":"2025-11-03T18:40:53.202Z"}
+{"level":"error","message":"Error:","timestamp":"2025-11-03T18:40:53.271Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-11-04T15:12:54.806Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-11-04T15:12:54.811Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-11-04T15:12:54.941Z"}
+{"level":"error","message":"Error:","timestamp":"2025-11-04T18:50:33.183Z"}
+{"level":"error","message":"Error:","timestamp":"2025-11-04T18:50:33.231Z"}
+{"level":"error","message":"Error:","timestamp":"2025-11-04T23:12:07.872Z"}
+{"level":"error","message":"Error:","timestamp":"2025-11-04T23:12:08.704Z"}
+{"level":"error","message":"Error:","timestamp":"2025-11-04T23:12:14.357Z"}
+{"level":"error","message":"Error:","timestamp":"2025-11-04T23:12:16.323Z"}
+{"level":"error","message":"Error:","timestamp":"2025-11-04T23:12:55.022Z"}
+{"level":"error","message":"Error:","timestamp":"2025-11-04T23:19:58.859Z"}
+{"level":"error","message":"Error:","timestamp":"2025-11-04T23:27:48.197Z"}
+{"level":"error","message":"Error:","timestamp":"2025-11-04T23:27:49.096Z"}
+{"level":"error","message":"Error:","timestamp":"2025-11-04T23:32:15.204Z"}
+{"level":"error","message":"Error:","timestamp":"2025-11-04T23:32:16.420Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-11-04T23:39:54.277Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-11-04T23:39:54.284Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-11-04T23:39:54.409Z"}
+{"level":"error","message":"Error:","timestamp":"2025-11-04T23:41:35.986Z"}
+{"level":"error","message":"Error:","timestamp":"2025-11-04T23:42:29.355Z"}
+{"level":"error","message":"Error:","timestamp":"2025-11-04T23:43:18.090Z"}
+{"level":"error","message":"Error:","timestamp":"2025-11-04T23:43:33.604Z"}
+{"level":"error","message":"Error:","timestamp":"2025-11-04T23:44:36.836Z"}
+{"level":"error","message":"Error:","timestamp":"2025-11-04T23:46:40.898Z"}
+{"level":"error","message":"Error:","timestamp":"2025-11-04T23:46:46.759Z"}
+{"level":"error","message":"Error:","timestamp":"2025-11-04T23:47:20.073Z"}
+{"level":"error","message":"Error:","timestamp":"2025-11-04T23:47:52.544Z"}
+{"level":"error","message":"Error:","timestamp":"2025-11-04T23:52:37.372Z"}
+{"level":"error","message":"Error:","timestamp":"2025-11-04T23:58:13.740Z"}
+{"level":"error","message":"Error:","timestamp":"2025-11-05T00:01:32.529Z"}

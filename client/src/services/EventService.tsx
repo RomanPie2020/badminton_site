@@ -51,7 +51,7 @@ export const eventService = createApi({
 
 		updateEvent: build.mutation<
 			EventWithRelations,
-			{ eventId: number; data: Partial<any> }
+			{ eventId: number | null; data: EventWithRelations }
 		>({
 			query: ({ eventId, data }) => ({
 				url: `/api/events/${eventId}`,

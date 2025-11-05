@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useActions } from '../../hooks/useActions'
 import {
+	useCreateEventMutation,
 	useDeleteEventMutation,
 	useJoinEventMutation,
 	useLazyGetEventByIdQuery,
@@ -9,10 +10,10 @@ import {
 	useUpdateEventMutation,
 } from '../../services/EventService'
 import { EventWithRelations, Filters } from '../../shared/interfaces/models'
+import { EventInput } from '../../shared/validations/event.schema'
 import { selectFilters } from '../../store/filtersSlice'
 import { useAppSelector } from '../../store/store'
 import ConfirmModal from '../ui/ConfirmModal'
-import CreateEventModal from '../ui/CreateEventModal'
 import DetailModal from '../ui/DetailModal'
 import EventCard from '../ui/EventCard'
 import EventFormModal from '../ui/EventFormModal'
@@ -50,9 +51,11 @@ const EventList = () => {
 	const bottomRef = useRef<HTMLDivElement | null>(null)
 
 	const [showDetails, setShowDetails] = useState<number | null>(null)
+	const [createEventForm, setCreateEventForm] = useState<Boolean>(false)
 	const [editEventId, setEditEventId] = useState<number | null>(null)
 	const [deleteEventId, setDeleteEventId] = useState<number | null>(null)
 
+	const [createEvent] = useCreateEventMutation()
 	const [updateEvent] = useUpdateEventMutation()
 	const [deleteEvent] = useDeleteEventMutation()
 
@@ -157,6 +160,17 @@ const EventList = () => {
 		}
 	}, [loadNextPage, hasMore, isLoadingMore, isFetching, isInitialLoad])
 
+	const handleCreate = async (_: number | null, data: EventInput) => {
+		try {
+			const newEvent = await createEvent(data).unwrap()
+			setItems(prev => [newEvent, ...prev])
+
+			setCreateEventForm(false)
+		} catch (error) {
+			console.error('Помилка створення події:', error)
+		}
+	}
+
 	const handleJoin = async (eventId: number) => {
 		try {
 			await joinEvent({ eventId }).unwrap()
@@ -229,7 +243,19 @@ const EventList = () => {
 	return (
 		<div className='p-6'>
 			<div className='flex items-center justify-between mb-6 mt-32 px-4 flex-wrap gap-4'>
-				<CreateEventModal onCreated={resetAndLoad} />
+				{/* <CreateEventModal onCreated={resetAndLoad} /> */}
+				<button
+					onClick={() => setCreateEventForm(true)}
+					className='flex items-center space-x-2 px-4 py-2 bg-green-600 hover:bg-green-700 rounded-md text-white transition'
+				>
+					Створити подію
+				</button>
+				{createEventForm && (
+					<EventFormModal
+						onClose={() => setCreateEventForm(false)}
+						onSubmit={handleCreate}
+					/>
+				)}
 
 				<button
 					onClick={() => openFiltersModal()}
@@ -380,6 +406,9 @@ const EventList = () => {
 			{editEventId && (
 				<EventFormModal
 					event={items.find(e => e.id === editEventId)!}
+					currentParticipants={
+						items.find(e => e.id === editEventId)?.participants.length
+					}
 					onClose={() => setEditEventId(null)}
 					onSubmit={handleEdit}
 				/>

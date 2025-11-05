@@ -1,13 +1,14 @@
+import { useEffect } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { EventWithRelations } from '../../shared/interfaces/models'
 import { EventInput } from '../../shared/validations/event.schema'
 
 interface EventFormModalProps {
-	event: EventWithRelations
-	initialData?: EventInput
+	event?: EventWithRelations
+	// initialData?: EventInput
 	currentParticipants?: number
 	onClose: () => void
-	onSubmit: (eventId: number, data: EventWithRelations) => void
+	onSubmit: (eventId: number | null, data: EventWithRelations) => void
 }
 
 const EVENT_TYPE_OPTIONS = [
@@ -22,7 +23,7 @@ const LEVEL_OPTIONS = ['Новачок', 'Середній', 'Просунути
 
 const EventFormModal: React.FC<EventFormModalProps> = ({
 	event,
-	initialData,
+	// initialData,
 	currentParticipants = 0,
 	onClose,
 	onSubmit,
@@ -31,10 +32,28 @@ const EventFormModal: React.FC<EventFormModalProps> = ({
 		register,
 		handleSubmit,
 		formState: { errors },
-	} = useForm<EventInput>({ defaultValues: initialData })
+		reset,
+	} = useForm<EventInput>()
+
+	useEffect(() => {
+		if (event) {
+			reset({
+				title: event.title,
+				location: event.location,
+				eventDate: event.eventDate.slice(0, 16),
+				description: event.description || '',
+				eventType: event.eventType,
+				gameType: event.gameType,
+				levelOfPlayers: event.levelOfPlayers,
+				maxParticipants: event.maxParticipants ?? undefined,
+			})
+		} else {
+			reset({})
+		}
+	}, [event, reset])
 
 	const submit: SubmitHandler<EventInput> = data => {
-		onSubmit(event.id, data)
+		onSubmit(event ? event.id : null, data)
 	}
 
 	return (
@@ -47,8 +66,9 @@ const EventFormModal: React.FC<EventFormModalProps> = ({
 					✕
 				</button>
 				<h2 className='text-2xl font-semibold mb-4'>
-					{initialData ? 'Редагувати подію' : 'Нова подія'}
+					{event ? 'Редагувати подію' : 'Нова подія'}
 				</h2>
+
 				<form noValidate onSubmit={handleSubmit(submit)} className='space-y-4'>
 					{/* Заголовок */}
 					<div>
@@ -92,19 +112,6 @@ const EventFormModal: React.FC<EventFormModalProps> = ({
 						{errors.eventDate && (
 							<p className='text-red-600 text-sm'>{errors.eventDate.message}</p>
 						)}
-					</div>
-
-					{/* #TODO initialData do */}
-					{/* Опис */}
-					<div>
-						<label className='block text-sm font-medium text-gray-700'>
-							Опис
-						</label>
-						<textarea
-							{...register('description')}
-							rows={3}
-							className='mt-1 block w-full border-gray-300 rounded-md p-2'
-						/>
 					</div>
 
 					{/* Тип події */}
@@ -170,6 +177,18 @@ const EventFormModal: React.FC<EventFormModalProps> = ({
 								{errors.levelOfPlayers.message}
 							</p>
 						)}
+					</div>
+
+					{/* Опис */}
+					<div>
+						<label className='block text-sm font-medium text-gray-700'>
+							Опис
+						</label>
+						<textarea
+							{...register('description')}
+							rows={3}
+							className='mt-1 block w-full border-gray-300 rounded-md p-2'
+						/>
 					</div>
 
 					{/* Макс. учасників */}

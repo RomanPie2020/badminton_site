@@ -1,15 +1,25 @@
 // src/components/pages/MyEvents.tsx
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react'
-import { useCallback } from 'react'
+import { useState } from 'react'
 import {
+	useDeleteEventMutation,
 	useGetUserEventsQuery,
 	useJoinEventMutation,
 	useLeaveEventMutation,
+	useUpdateEventMutation,
 } from '../../services/EventService'
+import { EventWithRelations } from '../../shared/interfaces/models'
+import ConfirmModal from '../ui/ConfirmModal'
+import DetailModal from '../ui/DetailModal'
 import EventCard from '../ui/EventCard'
+import EventFormModal from '../ui/EventFormModal'
 
 const MyEvents = () => {
 	const currentUserId = Number(localStorage.getItem('user_id'))
+
+	const [editEventId, setEditEventId] = useState<number | null>(null)
+	const [deleteEventId, setDeleteEventId] = useState<number | null>(null)
+	const [showDetailsId, setShowDetailsId] = useState<number | null>(null)
 
 	// Запити для обох вкладок
 	const {
@@ -30,29 +40,47 @@ const MyEvents = () => {
 
 	const [joinEvent] = useJoinEventMutation()
 	const [leaveEvent] = useLeaveEventMutation()
+	const [updateEvent] = useUpdateEventMutation()
+	const [deleteEvent] = useDeleteEventMutation()
 
-	// Створимо обгортки, щоб передавати в EventCard:
-	const handleJoin = useCallback(
-		(eventId: number) => {
-			joinEvent(eventId)
+	const handleJoin = async (eventId: number) => {
+		try {
+			if (!eventId) return
+			await joinEvent({ eventId })
 				.unwrap()
 				.then(() => {
 					refetchAttending()
+					refetchCreated()
 				})
-		},
-		[joinEvent, refetchAttending]
-	)
+		} catch (error) {
+			console.error('Помилка приєднання до події:', error)
+		}
+	}
 
-	const handleLeave = useCallback(
-		(eventId: number) => {
-			leaveEvent(eventId)
+	const handleLeave = async (eventId: number) => {
+		try {
+			await leaveEvent(eventId)
 				.unwrap()
 				.then(() => {
 					refetchAttending()
+					refetchCreated()
 				})
-		},
-		[leaveEvent, refetchAttending]
-	)
+		} catch (error) {
+			console.error('Помилка виходу з події:', error)
+		}
+	}
+
+	const handleEdit = async (eventId: number, data: EventWithRelations) => {
+		await updateEvent({ eventId, data }).unwrap()
+		await Promise.all([refetchCreated(), refetchAttending()])
+		setEditEventId(null)
+	}
+
+	const handleDelete = async (eventId: number) => {
+		await deleteEvent(eventId).unwrap()
+		await Promise.all([refetchCreated(), refetchAttending()])
+		setDeleteEventId(null)
+	}
 
 	return (
 		<div className='p-6 max-w-7xl mx-auto mt-24'>
@@ -107,7 +135,7 @@ const MyEvents = () => {
 							createdEvents &&
 							createdEvents.length > 0 && (
 								<div className='grid gap-6 grid-cols-[repeat(auto-fit,_minmax(250px,_1fr))]'>
-									{createdEvents.map(evt => (
+									{createdEvents?.map(evt => (
 										<EventCard
 											key={evt.id}
 											event={evt}
@@ -115,6 +143,9 @@ const MyEvents = () => {
 											onJoin={handleJoin}
 											onLeave={handleLeave}
 											onRefetch={refetchCreated}
+											setEdit={() => setEditEventId(evt.id)}
+											setDelete={() => setDeleteEventId(evt.id)}
+											setShowDetails={() => setShowDetailsId(evt.id)}
 										/>
 									))}
 								</div>
@@ -147,9 +178,12 @@ const MyEvents = () => {
 											key={evt.id}
 											event={evt}
 											currentUserId={currentUserId}
-											onRefetch={refetchAttending}
 											onJoin={handleJoin}
 											onLeave={handleLeave}
+											onRefetch={refetchAttending}
+											setEdit={() => setEditEventId(evt.id)}
+											setDelete={() => setDeleteEventId(evt.id)}
+											setShowDetails={() => setShowDetailsId(evt.id)}
 										/>
 									))}
 								</div>
@@ -157,8 +191,46 @@ const MyEvents = () => {
 					</TabPanel>
 				</TabPanels>
 			</TabGroup>
+
+			{showDetailsId && (
+				<DetailModal
+					event={
+						[...(createdEvents ?? []), ...(attendingEvents ?? [])].find(
+							e => e.id === showDetailsId
+						)!
+					}
+					currentUserId={currentUserId}
+					onJoin={() => handleJoin(showDetailsId)}
+					onLeave={() => handleLeave(showDetailsId)}
+					onClose={() => setShowDetailsId(null)}
+				/>
+			)}
+
+			{editEventId && (
+				<EventFormModal
+					event={
+						[...(createdEvents ?? []), ...(attendingEvents ?? [])].find(
+							e => e.id === editEventId
+						)!
+					}
+					onClose={() => setEditEventId(null)}
+					onSubmit={handleEdit}
+				/>
+			)}
+
+			{deleteEventId && (
+				<ConfirmModal
+					event={
+						[...(createdEvents ?? []), ...(attendingEvents ?? [])].find(
+							e => e.id === deleteEventId
+						)!
+					}
+					onClose={() => setDeleteEventId(null)}
+					onConfirm={handleDelete}
+				/>
+			)}
 		</div>
 	)
 }
-
+// #TODO join and leave handlers
 export default MyEvents

@@ -13,7 +13,7 @@ interface ConfirmModalProps {
 
 const ConfirmModal: React.FC<ConfirmModalProps> = ({
 	title,
-	message,
+	message = 'Ви впевнені, що хочете видалити цю подію?',
 	confirmText = 'Так',
 	cancelText = 'Ні',
 	isLoading = false,
