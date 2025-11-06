@@ -1,6 +1,7 @@
 // src/components/pages/MyEvents.tsx
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom'
 import {
 	useDeleteEventMutation,
 	useGetUserEventsQuery,
@@ -15,6 +16,7 @@ import EventCard from '../ui/EventCard'
 import EventFormModal from '../ui/EventFormModal'
 
 const MyEvents = () => {
+	const location = useLocation()
 	const currentUserId = Number(localStorage.getItem('user_id'))
 
 	const [editEventId, setEditEventId] = useState<number | null>(null)
@@ -37,6 +39,13 @@ const MyEvents = () => {
 	} = useGetUserEventsQuery({ userId: currentUserId, type: 'attending' })
 
 	console.log(attendingEvents)
+	// TODO Spinner при завантаженні my events
+	useEffect(() => {
+		if (location.pathname === '/myevents') {
+			refetchCreated()
+			refetchAttending()
+		}
+	}, [location.pathname, refetchCreated, refetchAttending])
 
 	const [joinEvent] = useJoinEventMutation()
 	const [leaveEvent] = useLeaveEventMutation()
@@ -232,5 +241,5 @@ const MyEvents = () => {
 		</div>
 	)
 }
-// #TODO join and leave handlers
+
 export default MyEvents
