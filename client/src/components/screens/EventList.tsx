@@ -241,12 +241,16 @@ const EventList = () => {
 	}
 
 	return (
-		<div className='p-6'>
-			<div className='flex items-center justify-between mb-6 mt-32 px-4 flex-wrap gap-4'>
-				{/* <CreateEventModal onCreated={resetAndLoad} /> */}
+		<div className='p-6 xs:!px-4'>
+			<div
+				className='flex items-center justify-between mb-6 mt-32 px-4 flex-wrap gap-4
+                sm:!flex-col sm:!items-stretch sm:!gap-3'
+			>
+				{/* Кнопка створення події */}
 				<button
 					onClick={() => setCreateEventForm(true)}
-					className='flex items-center space-x-2 px-4 py-2 bg-green-600 hover:bg-green-700 rounded-md text-white transition'
+					className='flex items-center space-x-2 px-4 py-2 bg-green-600 hover:bg-green-700 rounded-md text-white transition
+               sm:!w-full sm:!justify-center'
 				>
 					Створити подію
 				</button>
@@ -257,9 +261,11 @@ const EventList = () => {
 					/>
 				)}
 
+				{/* Кнопка фільтрів */}
 				<button
 					onClick={() => openFiltersModal()}
-					className='flex items-center space-x-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-md text-sm font-medium'
+					className='flex items-center space-x-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-md text-sm font-medium
+               sm:!w-full sm:!justify-center'
 				>
 					<svg
 						xmlns='http://www.w3.org/2000/svg'
@@ -278,13 +284,17 @@ const EventList = () => {
 					<span>Фільтри</span>
 				</button>
 
-				<div className='flex items-center space-x-2 flex-wrap'>
+				{/* Пошук */}
+				<div
+					className='flex items-center space-x-2 flex-wrap
+                  sm:!flex-col sm:!items-stretch sm:!space-x-0 sm:!gap-2 sm:!w-full'
+				>
 					<select
 						value={searchField}
 						onChange={e =>
 							setSearchField(e.target.value as 'title' | 'location' | 'creator')
 						}
-						className='border border-gray-300 rounded-md p-2 text-sm'
+						className='border border-gray-300 rounded-md p-2 text-sm sm:!w-full'
 					>
 						<option value='title'>По назві</option>
 						<option value='location'>По локації</option>
@@ -295,12 +305,16 @@ const EventList = () => {
 						value={searchText}
 						onChange={e => setSearchText(e.target.value)}
 						placeholder='Введіть текст для пошуку...'
-						className='border border-gray-300 rounded-md p-2 text-sm min-w-[200px]'
+						className='border border-gray-300 rounded-md p-2 text-sm min-w-[200px] sm:!w-full'
 					/>
 				</div>
 
-				<div className='flex items-center space-x-2 flex-wrap'>
-					<label className='text-sm font-medium whitespace-nowrap'>
+				{/* Сортування */}
+				<div
+					className='flex items-center space-x-2 flex-wrap
+                  sm:!flex-col sm:!items-stretch sm:!space-x-0 sm:!gap-2 sm:!w-full'
+				>
+					<label className='text-sm font-medium whitespace-nowrap sm:!w-full sm:!text-center'>
 						Сортувати:
 					</label>
 					<select
@@ -308,7 +322,7 @@ const EventList = () => {
 						onChange={e =>
 							setSortBy(e.target.value as 'eventDate' | 'title' | 'location')
 						}
-						className='border border-gray-300 rounded-md p-2 text-sm'
+						className='border border-gray-300 rounded-md p-2 text-sm sm:!w-full'
 					>
 						<option value='eventDate'>По даті</option>
 						<option value='title'>По назві</option>
@@ -318,7 +332,7 @@ const EventList = () => {
 					<select
 						value={sortOrder}
 						onChange={e => setSortOrder(e.target.value as 'asc' | 'desc')}
-						className='border border-gray-300 rounded-md p-2 text-sm'
+						className='border border-gray-300 rounded-md p-2 text-sm sm:!w-full'
 					>
 						<option value='asc'>↑ Зростанням</option>
 						<option value='desc'>↓ Спаданням</option>
@@ -326,7 +340,7 @@ const EventList = () => {
 				</div>
 			</div>
 
-			<div className='max-w-7xl mx-auto py-8 px-4 grid gap-6 grid-cols-[repeat(auto-fit,_minmax(250px,_1fr))]'>
+			<div className='max-w-7xl mx-auto py-8 xs:!px-0 px-4 grid gap-6 grid-cols-[repeat(auto-fit,_minmax(280px,_1fr))]'>
 				{items.map(evt => (
 					<EventCard
 						key={evt.id}

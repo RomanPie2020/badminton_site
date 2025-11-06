@@ -5332,3 +5332,10 @@
 {"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-11-05T15:02:27.554Z"}
 {"level":"error","message":"Error:","timestamp":"2025-11-05T23:21:47.326Z"}
 {"level":"error","message":"Error:","timestamp":"2025-11-05T23:21:47.428Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-11-06T14:24:38.837Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-11-06T14:24:38.844Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-11-06T14:24:38.953Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-11-06T21:04:49.044Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-11-06T21:04:49.052Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-11-06T21:04:49.206Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-11-06T22:58:20.179Z"}

@@ -13,6 +13,7 @@ export default {
 				gradient_grey_blue: 'linear-gradient(to right, #f0f4f8, #cfd9df)',
 			}),
 			screens: {
+				xs: { max: '425px' },
 				sm: { max: '640px' },
 				md: { max: '768px' },
 				lg: { max: '1024px' },
