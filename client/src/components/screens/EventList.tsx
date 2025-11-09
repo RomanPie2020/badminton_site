@@ -1,14 +1,6 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useState } from 'react'
 import { useActions } from '../../hooks/useActions'
-import {
-	useCreateEventMutation,
-	useDeleteEventMutation,
-	useJoinEventMutation,
-	useLazyGetEventByIdQuery,
-	useLazyGetFilteredEventsQuery,
-	useLeaveEventMutation,
-	useUpdateEventMutation,
-} from '../../services/EventService'
+import { useEvents } from '../../hooks/useEvents'
 import { EventWithRelations, Filters } from '../../shared/interfaces/models'
 import { EventInput } from '../../shared/validations/event.schema'
 import { selectFilters } from '../../store/filtersSlice'
@@ -19,11 +11,8 @@ import EventCard from '../ui/EventCard'
 import EventFormModal from '../ui/EventFormModal'
 import FilterModal from '../ui/FilterModal'
 
-const PAGE_SIZE = 10
-
 const EventList = () => {
 	const filters = useAppSelector(selectFilters)
-
 	const [searchText, setSearchText] = useState('')
 	const [searchField, setSearchField] = useState<
 		'title' | 'location' | 'creator'
@@ -32,196 +21,64 @@ const EventList = () => {
 		'eventDate'
 	)
 	const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc')
+	const {
+		items,
+		isFetching,
+		isError,
+		hasMore,
+		isLoadingMore,
+		isInitialLoad,
+		currentOffset,
+		total,
+		loadEvents,
+		resetAndLoad,
+		loadNextPage,
+		bottomRef,
+		handleCreate,
+		handleJoin,
+		handleLeave,
+		handleEdit,
+		handleDelete,
+	} = useEvents(filters, searchText, searchField, sortBy, sortOrder)
 
-	const [items, setItems] = useState<EventWithRelations[]>([])
-	const [currentOffset, setCurrentOffset] = useState(0)
-	const [total, setTotal] = useState(0)
-	const [hasMore, setHasMore] = useState(true)
-	const [isLoadingMore, setIsLoadingMore] = useState(false)
-	const [isInitialLoad, setIsInitialLoad] = useState(true)
-
-	const [trigger, { isFetching, isError }] = useLazyGetFilteredEventsQuery()
-	const [joinEvent] = useJoinEventMutation()
-	const [getEventById] = useLazyGetEventByIdQuery()
-	const [leaveEvent] = useLeaveEventMutation()
 	const currentUserId = Number(localStorage.getItem('user_id'))
 	const { openFiltersModal } = useActions()
-
-	const observerRef = useRef<IntersectionObserver | null>(null)
-	const bottomRef = useRef<HTMLDivElement | null>(null)
 
 	const [showDetails, setShowDetails] = useState<number | null>(null)
 	const [createEventForm, setCreateEventForm] = useState<Boolean>(false)
 	const [editEventId, setEditEventId] = useState<number | null>(null)
 	const [deleteEventId, setDeleteEventId] = useState<number | null>(null)
 
-	const [createEvent] = useCreateEventMutation()
-	const [updateEvent] = useUpdateEventMutation()
-	const [deleteEvent] = useDeleteEventMutation()
-
-	const loadEvents = useCallback(
-		async (offset: number, isNewSearch: boolean = false) => {
-			try {
-				if (isNewSearch) {
-					setIsInitialLoad(true)
-				} else {
-					setIsLoadingMore(true)
-				}
-
-				const result = await trigger({
-					filters,
-					search: searchText.trim(),
-					searchField,
-					sortBy,
-					sortOrder,
-					limit: PAGE_SIZE,
-					offset,
-				}).unwrap()
-
-				const { events: newEvents, total: newTotal } = result
-
-				if (isNewSearch) {
-					setItems(newEvents || [])
-					setCurrentOffset(newEvents?.length || 0)
-				} else {
-					setItems(prev => {
-						const existingIds = new Set(prev.map(e => e.id))
-						const uniqueEvents = (newEvents || []).filter(
-							e => !existingIds.has(e.id)
-						)
-						return [...prev, ...uniqueEvents]
-					})
-					setCurrentOffset(prev => prev + (newEvents?.length || 0))
-				}
-
-				setTotal(newTotal || 0)
-				setHasMore(
-					(newEvents?.length || 0) === PAGE_SIZE &&
-						offset + (newEvents?.length || 0) < (newTotal || 0)
-				)
-			} catch (error) {
-				console.error('Помилка завантаження подій:', error)
-			} finally {
-				setIsInitialLoad(false)
-				setIsLoadingMore(false)
-			}
-		},
-		[trigger, filters, searchText, searchField, sortBy, sortOrder]
-	)
-
-	const resetAndLoad = useCallback(() => {
-		setItems([])
-		setCurrentOffset(0)
-		setTotal(0)
-		setHasMore(true)
-		loadEvents(0, true)
-	}, [loadEvents])
-
-	const loadNextPage = useCallback(() => {
-		if (!isLoadingMore && !isFetching && hasMore && currentOffset < total) {
-			loadEvents(currentOffset, false)
-		}
-	}, [loadEvents, isLoadingMore, isFetching, hasMore, currentOffset, total])
-
-	useEffect(() => {
-		if (observerRef.current) {
-			observerRef.current.disconnect()
-		}
-
-		resetAndLoad()
-	}, [filters, searchText, searchField, sortBy, sortOrder])
-
-	useEffect(() => {
-		if (!hasMore || isLoadingMore || isFetching || isInitialLoad) {
-			return
-		}
-
-		if (observerRef.current) {
-			observerRef.current.disconnect()
-		}
-
-		observerRef.current = new IntersectionObserver(
-			entries => {
-				if (entries[0].isIntersecting) {
-					loadNextPage()
-				}
-			},
-			{
-				rootMargin: '100px',
-			}
-		)
-
-		if (bottomRef.current) {
-			observerRef.current.observe(bottomRef.current)
-		}
-
-		return () => {
-			observerRef.current?.disconnect()
-		}
-	}, [loadNextPage, hasMore, isLoadingMore, isFetching, isInitialLoad])
-
-	const handleCreate = async (_: number | null, data: EventInput) => {
+	const onConfirmCreate = async (data: EventWithRelations) => {
 		try {
-			const newEvent = await createEvent(data).unwrap()
-			setItems(prev => [newEvent, ...prev])
-
+			await handleCreate(data)
 			setCreateEventForm(false)
 		} catch (error) {
-			console.error('Помилка створення події:', error)
+			console.error('Error creating event:', error)
 		}
 	}
-
-	const handleJoin = async (eventId: number) => {
-		try {
-			await joinEvent({ eventId }).unwrap()
-
-			const updatedEvent = await getEventById(eventId).unwrap()
-			setItems(prev =>
-				prev.map(event => (event.id === eventId ? updatedEvent : event))
-			)
-		} catch (error) {
-			console.error('Помилка приєднання до події:', error)
-		}
-	}
-
-	const handleLeave = async (eventId: number) => {
-		try {
-			await leaveEvent(eventId).unwrap()
-			setItems(prev =>
-				prev.map(event =>
-					event.id === eventId
-						? {
-								...event,
-								participants: (event.participants || []).filter(
-									p => p.id !== currentUserId
-								),
-						  }
-						: event
-				)
-			)
-		} catch (error) {
-			console.error('Помилка виходу з події:', error)
-		}
-	}
-	const handleEdit = async (eventId: number, updatedData: any) => {
-		console.log('Submitting updated data:', updatedData)
-		console.log('Event ID:', { eventId, data: { ...updatedData } })
-
-		await updateEvent({ eventId, data: { ...updatedData } }).unwrap()
-		const updatedEvent = await getEventById(eventId).unwrap()
-		setItems(prev => prev.map(evt => (evt.id === eventId ? updatedEvent : evt)))
+	const onConfirmEdit = async (eventId: number, data: EventInput) => {
+		await handleEdit(eventId, data)
 		setEditEventId(null)
 	}
-	const handleDelete = async (eventId: number) => {
-		try {
-			await deleteEvent(eventId).unwrap()
-			setItems(prev => prev.filter(evt => evt.id !== eventId))
-			setDeleteEventId(null)
-		} catch (error) {
-			console.error('Помилка видалення події:', error)
-		}
+	const onConfirmDelete = async (eventId: number) => {
+		await handleDelete(eventId)
+		setDeleteEventId(null)
 	}
 
+	const onConfirmJoin = async (eventId: number) => {
+		await handleJoin(eventId)
+		setShowDetails(null)
+	}
+
+	const onConfirmLeave = async (eventId: number) => {
+		await handleLeave(eventId)
+		setShowDetails(null)
+	}
+
+	if (isFetching) {
+		return <p>Loading...</p>
+	}
 	if (isError) {
 		return (
 			<div className='p-6'>
@@ -246,7 +103,6 @@ const EventList = () => {
 				className='flex items-center justify-between mb-6 mt-32 px-4 flex-wrap gap-4
                 sm:!flex-col sm:!items-stretch sm:!gap-3'
 			>
-				{/* Кнопка створення події */}
 				<button
 					onClick={() => setCreateEventForm(true)}
 					className='flex items-center space-x-2 px-4 py-2 bg-green-600 hover:bg-green-700 rounded-md text-white transition
@@ -257,11 +113,10 @@ const EventList = () => {
 				{createEventForm && (
 					<EventFormModal
 						onClose={() => setCreateEventForm(false)}
-						onSubmit={handleCreate}
+						onSubmit={onConfirmCreate}
 					/>
 				)}
 
-				{/* Кнопка фільтрів */}
 				<button
 					onClick={() => openFiltersModal()}
 					className='flex items-center space-x-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-md text-sm font-medium
@@ -284,7 +139,6 @@ const EventList = () => {
 					<span>Фільтри</span>
 				</button>
 
-				{/* Пошук */}
 				<div
 					className='flex items-center space-x-2 flex-wrap
                   sm:!flex-col sm:!items-stretch sm:!space-x-0 sm:!gap-2 sm:!w-full'
@@ -309,7 +163,6 @@ const EventList = () => {
 					/>
 				</div>
 
-				{/* Сортування */}
 				<div
 					className='flex items-center space-x-2 flex-wrap
                   sm:!flex-col sm:!items-stretch sm:!space-x-0 sm:!gap-2 sm:!w-full'
@@ -346,10 +199,10 @@ const EventList = () => {
 						key={evt.id}
 						event={evt}
 						currentUserId={currentUserId}
-						onJoin={handleJoin}
-						onLeave={handleLeave}
-						onUpdate={handleEdit}
-						onDelete={handleDelete}
+						onJoin={onConfirmJoin}
+						onLeave={onConfirmLeave}
+						onUpdate={onConfirmEdit}
+						onDelete={onConfirmDelete}
 						setShowDetails={() => setShowDetails(evt.id)}
 						setEdit={() => setEditEventId(evt.id)}
 						setDelete={() => setDeleteEventId(evt.id)}
@@ -412,8 +265,8 @@ const EventList = () => {
 					event={items.find(e => e.id === showDetails)!}
 					currentUserId={currentUserId}
 					onClose={() => setShowDetails(null)}
-					onJoin={() => handleJoin(showDetails)}
-					onLeave={() => handleLeave(showDetails)}
+					onJoin={() => onConfirmJoin(showDetails)}
+					onLeave={() => onConfirmLeave(showDetails)}
 				/>
 			)}
 
@@ -424,7 +277,7 @@ const EventList = () => {
 						items.find(e => e.id === editEventId)?.participants.length
 					}
 					onClose={() => setEditEventId(null)}
-					onSubmit={handleEdit}
+					onSubmit={onConfirmEdit}
 				/>
 			)}
 
@@ -432,7 +285,7 @@ const EventList = () => {
 				<ConfirmModal
 					event={items.find(e => e.id === deleteEventId)!}
 					onClose={() => setDeleteEventId(null)}
-					onConfirm={id => handleDelete(id)}
+					onConfirm={id => onConfirmDelete(id)}
 				/>
 			)}
 

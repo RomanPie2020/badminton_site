@@ -5339,3 +5339,22 @@
 {"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-11-06T21:04:49.052Z"}
 {"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-11-06T21:04:49.206Z"}
 {"level":"info","message":"User logged out","timestamp":"2025-11-06T22:58:20.179Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-11-07T15:20:11.560Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-11-07T15:20:11.568Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-11-07T15:20:11.748Z"}
+{"level":"info","message":"Refresh token saved for user 11","timestamp":"2025-11-08T15:47:38.918Z"}
+{"level":"info","message":"Користувач romanstone2004@gmail.com успішно увійшов","timestamp":"2025-11-08T15:47:38.923Z"}
+{"level":"error","message":"Error:","timestamp":"2025-11-09T18:09:10.392Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-11-09T18:09:22.749Z"}
+{"level":"info","message":"Refresh token saved for user 11","timestamp":"2025-11-09T18:09:24.307Z"}
+{"level":"info","message":"Користувач romanstone2004@gmail.com успішно увійшов","timestamp":"2025-11-09T18:09:24.310Z"}
+{"level":"error","message":"Error:","timestamp":"2025-11-09T18:09:44.281Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-11-09T18:13:19.772Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-11-09T18:13:19.776Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-11-09T18:13:19.894Z"}
+{"creatorId":11,"description":"vav","eventDate":"2025-11-09T18:57","eventType":"Турнір","gameType":"Одиночна","level":"info","levelOfPlayers":"Новачок","location":"vav","maxParticipants":3,"message":"Створення івенту:","timestamp":"2025-11-09T18:57:33.936Z","title":"vav"}
+{"creatorId":11,"description":"vav","eventDate":"2025-11-09T01:09","eventType":"Турнір","gameType":"Одиночна","level":"info","levelOfPlayers":"Новачок","location":"vadva","maxParticipants":2,"message":"Створення івенту:","timestamp":"2025-11-09T23:09:37.920Z","title":"vadvavdsv"}
+{"level":"error","message":"Error:","timestamp":"2025-11-09T23:09:45.921Z"}
+{"level":"error","message":"Error:","timestamp":"2025-11-09T23:09:49.371Z"}
+{"level":"error","message":"Error:","timestamp":"2025-11-09T23:09:58.115Z"}
+{"level":"error","message":"Error:","timestamp":"2025-11-09T23:10:06.144Z"}

@@ -8,7 +8,7 @@ interface EventFormModalProps {
 	// initialData?: EventInput
 	currentParticipants?: number
 	onClose: () => void
-	onSubmit: (eventId: number | null, data: EventWithRelations) => void
+	onSubmit: (data: EventWithRelations) => void
 }
 
 const EVENT_TYPE_OPTIONS = [
@@ -52,8 +52,8 @@ const EventFormModal: React.FC<EventFormModalProps> = ({
 		}
 	}, [event, reset])
 
-	const submit: SubmitHandler<EventInput> = data => {
-		onSubmit(event ? event.id : null, data)
+	const submit: SubmitHandler<EventWithRelations> = data => {
+		onSubmit(data)
 	}
 
 	return (
