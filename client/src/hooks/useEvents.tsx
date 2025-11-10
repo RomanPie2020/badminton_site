@@ -141,7 +141,7 @@ export const useEvents = (
 		}
 	}, [loadNextPage, hasMore, isLoadingMore, isFetching, isInitialLoad])
 
-	const handleCreate = async (data: EventWithRelations) => {
+	const handleCreate = async (data: EventInput) => {
 		try {
 			const newEvent = await createEvent(data).unwrap()
 			setItems(prev => [newEvent, ...prev])

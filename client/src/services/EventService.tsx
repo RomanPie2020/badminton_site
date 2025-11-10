@@ -1,6 +1,7 @@
 // app/services/eventService.ts
 import { createApi } from '@reduxjs/toolkit/query/react'
 import { EventWithRelations, Filters } from '../shared/interfaces/models'
+import { EventInput } from '../shared/validations/event.schema'
 import { baseQueryWithReauth } from './baseQueryWithReauth'
 
 export const eventService = createApi({
@@ -32,11 +33,11 @@ export const eventService = createApi({
 		// 	providesTags: (result, error, id) => [{ type: 'Event', id }],
 		// }),
 
-		createEvent: build.mutation<any, Partial<any>>({
+		createEvent: build.mutation<any, EventInput>({
 			query: body => ({ url: '/api/events', method: 'POST', body }),
 			invalidatesTags: (result, error, body) => [
-				{ type: 'Event', id: 'LIST' },
-				{ type: 'UserEvents', id: 'LIST' }, // refresh all user event lists
+				// { type: 'Event', id: 'LIST' },
+				// { type: 'UserEvents', id: 'LIST' }, // refresh all user event lists
 			],
 		}),
 
@@ -127,9 +128,9 @@ export const eventService = createApi({
 		leaveEvent: build.mutation<void, number>({
 			query: id => ({ url: `/api/events/${id}/leave`, method: 'POST' }),
 			invalidatesTags: (result, error, id) => [
-				{ type: 'Event', id },
-				{ type: 'Event', id: 'LIST' },
-				{ type: 'UserEvents', id: 'LIST' },
+				// { type: 'Event', id },
+				// { type: 'Event', id: 'LIST' },
+				// { type: 'UserEvents', id: 'LIST' },
 			],
 		}),
 		// leaveEvent: build.mutation<void, number>({

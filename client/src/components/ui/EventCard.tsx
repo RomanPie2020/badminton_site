@@ -1,6 +1,4 @@
-// components/EventCard.tsx
 import { format } from 'date-fns'
-import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { EventWithRelations } from '../../shared/interfaces/models'
 
@@ -15,7 +13,7 @@ interface EventCardProps {
 	setDelete: (id: number) => void
 }
 
-const EventCard: React.FC<EventCardProps> = ({
+const EventCard = ({
 	event,
 	currentUserId,
 	onJoin,
@@ -24,14 +22,7 @@ const EventCard: React.FC<EventCardProps> = ({
 	setShowDetails,
 	setEdit,
 	setDelete,
-}) => {
-	// const [showDetails, setShowDetails] = useState(false)
-	// const [isEditOpen, setIsEditOpen] = useState(false)
-	// const [isDeleteConfirm, setIsDeleteConfirm] = useState(false)
-
-	// const [updateEvent] = useUpdateEventMutation()
-	// const [deleteEvent, { isLoading: isDeleting }] = useDeleteEventMutation()
-
+}: EventCardProps) => {
 	const joined = event.participants.some(u => u.id === currentUserId)
 	const isCreator = event.creator.id === currentUserId
 	const isFull =
@@ -39,29 +30,6 @@ const EventCard: React.FC<EventCardProps> = ({
 		event.participants.length >= event.maxParticipants
 
 	const navigate = useNavigate()
-
-	// const handleEditSubmit = async (updatedData: any) => {
-	// 	console.log('Submitting updated data:', updatedData)
-	// 	console.log('Event ID:', { eventId: event.id, data: { ...updatedData } })
-
-	// 	await updateEvent({ eventId: event.id, data: { ...updatedData } }).unwrap()
-	// 	const updatedEvent = await getEventById(event.id).unwrap()
-	// 	setItems(prev =>
-	// 		prev.map(evt => (evt.id === event.id ? updatedEvent : evt))
-	// 	)
-
-	// 	setIsEditOpen(false)
-	// }
-	// const handleDelete = async () => {
-	// 	try {
-	// 		await deleteEvent(event.id).unwrap()
-
-	// 		setItems(prev => prev.filter(evt => evt.id !== event.id))
-	// 		setIsDeleteConfirm(false)
-	// 	} catch (error) {
-	// 		console.error('Помилка видалення події:', error)
-	// 	}
-	// }
 
 	return (
 		<>

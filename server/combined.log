@@ -5358,3 +5358,55 @@
 {"level":"error","message":"Error:","timestamp":"2025-11-09T23:09:49.371Z"}
 {"level":"error","message":"Error:","timestamp":"2025-11-09T23:09:58.115Z"}
 {"level":"error","message":"Error:","timestamp":"2025-11-09T23:10:06.144Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-11-10T14:12:42.013Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-11-10T14:12:42.018Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-11-10T14:12:42.127Z"}
+{"level":"info","message":"User ID: 11","timestamp":"2025-11-10T15:48:25.110Z"}
+{"level":"info","message":{"body":{"age":21,"bio":"21","city":"Lviv","commonPlaces":["нулп","село"],"contact":"121221","dominantHand":"left","experienceMonths":21,"gender":"male","nickname":"stone12","playFrequency":"2 рази в тиждень","playTime":"авафівфіавфіа","preferredFormat":"singles"},"service":"user body"},"timestamp":"2025-11-10T15:48:25.112Z"}
+{"level":"info","message":"User IDservice: 11","timestamp":"2025-11-10T15:48:25.113Z"}
+{"level":"info","message":{"data":{"age":21,"bio":"21","city":"Lviv","commonPlaces":["нулп","село"],"contact":"121221","dominantHand":"left","experienceMonths":21,"gender":"male","nickname":"stone12","playFrequency":"2 рази в тиждень","playTime":"авафівфіавфіа","preferredFormat":"singles"},"service":"updateUserProfile"},"timestamp":"2025-11-10T15:48:25.115Z"}
+{"level":"info","message":"profile service2  {\n  \"id\": 8,\n  \"userId\": 11,\n  \"nickname\": \"stone1\",\n  \"avatarUrl\": null,\n  \"city\": \"Lviv\",\n  \"age\": 21,\n  \"gender\": \"male\",\n  \"level\": null,\n  \"experienceMonths\": 21,\n  \"dominantHand\": \"left\",\n  \"preferredFormat\": \"singles\",\n  \"playFrequency\": \"2 рази в тиждень\",\n  \"commonPlaces\": [\n    \"нулп\",\n    \"село\"\n  ],\n  \"playTime\": \"авафівфіавфіа\",\n  \"bio\": \"21\",\n  \"contact\": \"121221\",\n  \"rating\": \"0.00\",\n  \"reviewsCount\": 0,\n  \"createdAt\": \"2025-10-29T15:42:33.667Z\",\n  \"updatedAt\": \"2025-10-29T18:32:55.003Z\"\n}","timestamp":"2025-11-10T15:48:25.115Z"}
+{"level":"info","message":"data service3: {\n  \"nickname\": \"stone12\",\n  \"city\": \"Lviv\",\n  \"age\": 21,\n  \"gender\": \"male\",\n  \"experienceMonths\": 21,\n  \"dominantHand\": \"left\",\n  \"preferredFormat\": \"singles\",\n  \"playFrequency\": \"2 рази в тиждень\",\n  \"commonPlaces\": [\n    \"нулп\",\n    \"село\"\n  ],\n  \"playTime\": \"авафівфіавфіа\",\n  \"bio\": \"21\",\n  \"contact\": \"121221\"\n}","timestamp":"2025-11-10T15:48:25.116Z"}
+{"creatorId":11,"description":"ba","eventDate":"2025-11-23T17:53","eventType":"Турнір","gameType":"Одиночна","level":"info","levelOfPlayers":"Новачок","location":"cvzx","maxParticipants":34,"message":"Створення івенту:","timestamp":"2025-11-10T15:53:52.399Z","title":"xzcxvz"}
+{"level":"info","message":"database password is: string","timestamp":"2025-11-10T17:04:53.487Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-11-10T17:04:53.509Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-11-10T17:04:53.737Z"}
+{"level":"error","message":"Error:","timestamp":"2025-11-10T18:33:41.898Z"}
+{"creatorId":11,"description":"adsf","eventDate":"2025-11-23T18:33","eventType":"Турнір","gameType":"Змішана парна","level":"info","levelOfPlayers":"Новачок","location":"adf","maxParticipants":3,"message":"Створення івенту:","timestamp":"2025-11-10T18:33:41.972Z","title":"adad"}
+{"level":"error","message":"Error:","timestamp":"2025-11-10T18:34:44.783Z"}
+{"level":"error","message":"Error:","timestamp":"2025-11-10T18:35:03.119Z"}
+{"creatorId":11,"description":"adsfas","eventDate":"2025-11-23T19:46","eventType":"Турнір","gameType":"Одиночна","level":"info","levelOfPlayers":"Новачок","location":"adsfasdfadsf","maxParticipants":3,"message":"Створення івенту:","timestamp":"2025-11-10T19:46:39.112Z","title":"hgfhdfgh"}
+{"level":"error","message":"Error:","timestamp":"2025-11-10T19:46:39.148Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-11-10T19:47:19.360Z"}
+{"level":"info","message":"Refresh token saved for user 11","timestamp":"2025-11-10T19:47:20.665Z"}
+{"level":"info","message":"Користувач romanstone2004@gmail.com успішно увійшов","timestamp":"2025-11-10T19:47:20.665Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-11-10T19:47:26.149Z"}
+{"level":"info","message":"Користувач romankaras2004@gmail.com успішно увійшов через Google","timestamp":"2025-11-10T19:47:33.518Z"}
+{"level":"info","message":"Отримані дані:","timestamp":"2025-11-10T19:47:33.520Z"}
+{"level":"info","message":"Refresh token saved for user 10","timestamp":"2025-11-10T19:47:33.527Z"}
+{"level":"error","message":"Error:","timestamp":"2025-11-10T19:49:34.467Z"}
+{"creatorId":10,"description":"babab","eventDate":"2025-11-10T20:49","eventType":"Турнір","gameType":"Одиночна","level":"info","levelOfPlayers":"Новачок","location":"bab","maxParticipants":3,"message":"Створення івенту:","timestamp":"2025-11-10T19:50:02.825Z","title":"bab6"}
+{"level":"error","message":"Error:","timestamp":"2025-11-10T19:50:02.832Z"}
+{"creatorId":10,"description":"babfab","eventDate":"2025-11-23T19:56","eventType":"Турнір","gameType":"Одиночна","level":"info","levelOfPlayers":"Новачок","location":"bfgafag","maxParticipants":3,"message":"Створення івенту:","timestamp":"2025-11-10T19:56:53.841Z","title":"bab6"}
+{"level":"error","message":"Error:","timestamp":"2025-11-10T19:56:53.852Z"}
+{"creatorId":10,"description":"vavav","eventDate":"2025-11-23T20:03","eventType":"Турнір","gameType":"Одиночна","level":"info","levelOfPlayers":"Новачок","location":"vav","maxParticipants":3,"message":"Створення івенту:","timestamp":"2025-11-10T20:03:39.111Z","title":"vavva"}
+{"level":"error","message":"Error:","timestamp":"2025-11-10T20:03:39.118Z"}
+{"creatorId":10,"description":"vabab","eventDate":"2025-11-23T20:17","eventType":"Тренування","gameType":"Одиночна","level":"info","levelOfPlayers":"Новачок","location":"advsva","maxParticipants":3,"message":"Створення івенту:","timestamp":"2025-11-10T20:17:46.349Z","title":"vavavdasdvv"}
+{"level":"error","message":"Error:","timestamp":"2025-11-10T20:17:46.357Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-11-10T20:21:24.803Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-11-10T20:21:24.820Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-11-10T20:21:25.166Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-11-10T20:37:20.644Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-11-10T20:37:20.651Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-11-10T20:37:20.766Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-11-10T20:46:23.518Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-11-10T20:46:23.531Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-11-10T20:46:23.714Z"}
+{"creatorId":10,"description":"bfba","eventDate":"2025-11-21T00:55","eventType":"Турнір","gameType":"Одиночна","level":"info","levelOfPlayers":"Новачок","location":"vava","maxParticipants":3,"message":"Створення івенту:","timestamp":"2025-11-10T22:55:55.057Z","title":"vava"}
+{"level":"error","message":"Error:","timestamp":"2025-11-10T22:55:55.221Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-11-10T22:56:26.752Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-11-10T22:56:26.760Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-11-10T22:56:26.835Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-11-10T22:56:38.673Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-11-10T22:56:38.679Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-11-10T22:56:38.748Z"}

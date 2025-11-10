@@ -1,7 +1,8 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import spinner from '../../assets/spinner.svg'
 import { useActions } from '../../hooks/useActions'
 import { useEvents } from '../../hooks/useEvents'
-import { EventWithRelations, Filters } from '../../shared/interfaces/models'
+import { Filters } from '../../shared/interfaces/models'
 import { EventInput } from '../../shared/validations/event.schema'
 import { selectFilters } from '../../store/filtersSlice'
 import { useAppSelector } from '../../store/store'
@@ -49,7 +50,7 @@ const EventList = () => {
 	const [editEventId, setEditEventId] = useState<number | null>(null)
 	const [deleteEventId, setDeleteEventId] = useState<number | null>(null)
 
-	const onConfirmCreate = async (data: EventWithRelations) => {
+	const onConfirmCreate = async (data: EventInput) => {
 		try {
 			await handleCreate(data)
 			setCreateEventForm(false)
@@ -57,6 +58,7 @@ const EventList = () => {
 			console.error('Error creating event:', error)
 		}
 	}
+	// #TODO Creating event server error and many refetching and observer works bad
 	const onConfirmEdit = async (eventId: number, data: EventInput) => {
 		await handleEdit(eventId, data)
 		setEditEventId(null)
@@ -76,8 +78,24 @@ const EventList = () => {
 		setShowDetails(null)
 	}
 
+	useEffect(() => {
+		if (createEventForm) {
+			document.body.classList.add('overflow-hidden')
+		} else {
+			document.body.classList.remove('overflow-hidden')
+		}
+
+		return () => {
+			document.body.classList.remove('overflow-hidden')
+		}
+	}, [createEventForm])
+
 	if (isFetching) {
-		return <p>Loading...</p>
+		return (
+			<div className='mt-48 py-10 flex justify-center'>
+				<img src={spinner} alt='Loading...' className='w-8 h-8 animate-spin' />
+			</div>
+		)
 	}
 	if (isError) {
 		return (
@@ -210,11 +228,11 @@ const EventList = () => {
 				))}
 			</div>
 
-			{isInitialLoad && (
+			{/* {isInitialLoad && (
 				<div className='flex justify-center py-8'>
 					<div className='animate-spin h-8 w-8 border-4 border-blue-500 border-t-transparent rounded-full'></div>
 				</div>
-			)}
+			)} */}
 
 			{isLoadingMore && !isInitialLoad && (
 				<div className='flex justify-center py-4'>
@@ -265,8 +283,8 @@ const EventList = () => {
 					event={items.find(e => e.id === showDetails)!}
 					currentUserId={currentUserId}
 					onClose={() => setShowDetails(null)}
-					onJoin={() => onConfirmJoin(showDetails)}
-					onLeave={() => onConfirmLeave(showDetails)}
+					onJoin={() => handleJoin(showDetails)}
+					onLeave={() => handleLeave(showDetails)}
 				/>
 			)}
 
