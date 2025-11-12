@@ -10,7 +10,7 @@ export const eventService = createApi({
 	tagTypes: ['Event', 'UserEvents'],
 	endpoints: build => ({
 		// 1) Список всіх івентів
-		getEvents: build.query<EventWithRelations[], void>({
+		getEvents: build.query<EventInput[], void>({
 			query: () => ({ url: '/api/events', method: 'GET' }),
 			providesTags: result =>
 				result
@@ -21,17 +21,10 @@ export const eventService = createApi({
 					: [{ type: 'Event', id: 'LIST' }],
 		}),
 
-		getEventById: build.query<EventWithRelations, number>({
+		getEventById: build.query<EventInput, number>({
 			query: id => ({ url: `/api/events/${id}`, method: 'GET' }),
 			providesTags: (result, error, id) => [{ type: 'Event', id }],
 		}),
-		// getEventById: build.query<EventWithRelations, number>({
-		// 	query: id => ({
-		// 		url: `/api/events/${id}`,
-		// 		method: 'GET',
-		// 	}),
-		// 	providesTags: (result, error, id) => [{ type: 'Event', id }],
-		// }),
 
 		createEvent: build.mutation<any, EventInput>({
 			query: body => ({ url: '/api/events', method: 'POST', body }),
@@ -41,18 +34,9 @@ export const eventService = createApi({
 			],
 		}),
 
-		// createEvent: build.mutation<any, Partial<any>>({
-		// 	query: body => ({
-		// 		url: '/api/events',
-		// 		method: 'POST',
-		// 		body,
-		// 	}),
-		// 	invalidatesTags: ['Events', 'UserEvents'],
-		// }),
-
 		updateEvent: build.mutation<
-			EventWithRelations,
-			{ eventId: number | null; data: EventWithRelations }
+			EventInput,
+			{ eventId: number; data: EventInput }
 		>({
 			query: ({ eventId, data }) => ({
 				url: `/api/events/${eventId}`,
@@ -60,46 +44,20 @@ export const eventService = createApi({
 				body: data,
 			}),
 			invalidatesTags: (result, error, { eventId }) => [
-				{ type: 'Event', id: eventId },
-				{ type: 'Event', id: 'LIST' },
-				{ type: 'UserEvents', id: 'LIST' },
+				// { type: 'Event', id: eventId },
+				// { type: 'Event', id: 'LIST' },
+				// { type: 'UserEvents', id: 'LIST' },
 			],
 		}),
-		// updateEvent: build.mutation<
-		// 	EventWithRelations,
-		// 	{ eventId: number; data: Partial<any> }
-		// >({
-		// 	query: ({ eventId, data }) => ({
-		// 		url: `/api/events/${eventId}`,
-		// 		method: 'PUT',
-		// 		body: data,
-		// 	}),
-		// 	invalidatesTags: (result, error, { eventId }) => [
-		// 		'Events',
-		// 		{ type: 'Event', id: eventId },
-		// 		'UserEvents',
-		// 	],
-		// }),
 
 		deleteEvent: build.mutation<void, number>({
 			query: id => ({ url: `/api/events/${id}`, method: 'DELETE' }),
 			invalidatesTags: (result, error, id) => [
-				{ type: 'Event', id },
-				{ type: 'Event', id: 'LIST' },
-				{ type: 'UserEvents', id: 'LIST' },
+				// { type: 'Event', id },
+				// { type: 'Event', id: 'LIST' },
+				// { type: 'UserEvents', id: 'LIST' },
 			],
 		}),
-		// deleteEvent: build.mutation<void, number>({
-		// 	query: id => ({
-		// 		url: `/api/events/${id}`,
-		// 		method: 'DELETE',
-		// 	}),
-		// 	invalidatesTags: (result, error, id) => [
-		// 		'Events',
-		// 		{ type: 'Event', id },
-		// 		'UserEvents',
-		// 	],
-		// }),
 
 		joinEvent: build.mutation<void, any>({
 			query: ({ eventId }) => ({
@@ -113,17 +71,6 @@ export const eventService = createApi({
 			// 	{ type: 'UserEvents', id: `${userId}_all` },
 			// ],
 		}),
-		// joinEvent: build.mutation<void, number>({
-		// 		query: id => ({
-		// 			url: `/api/events/${id}/join`,
-		// 			method: 'POST',
-		// 		}),
-		// 		invalidatesTags: (result, error, id) => [
-		// 			'Events',
-		// 			{ type: 'Event', id },
-		// 			'UserEvents',
-		// 		],
-		// 	}),
 
 		leaveEvent: build.mutation<void, number>({
 			query: id => ({ url: `/api/events/${id}/leave`, method: 'POST' }),
@@ -133,17 +80,6 @@ export const eventService = createApi({
 				// { type: 'UserEvents', id: 'LIST' },
 			],
 		}),
-		// leaveEvent: build.mutation<void, number>({
-		// 	query: id => ({
-		// 		url: `/api/events/${id}/leave`,
-		// 		method: 'POST',
-		// 	}),
-		// 	invalidatesTags: (result, error, id) => [
-		// 		'Events',
-		// 		{ type: 'Event', id },
-		// 		'UserEvents',
-		// 	],
-		// }),
 
 		getUserEvents: build.query<
 			any[],

@@ -8,7 +8,6 @@ import {
 	useLeaveEventMutation,
 	useUpdateEventMutation,
 } from '../services/EventService'
-import { EventWithRelations } from '../shared/interfaces/models'
 import { EventInput } from '../shared/validations/event.schema'
 
 const PAGE_SIZE = 10
@@ -19,8 +18,9 @@ export const useEvents = (
 	searchField: 'title' | 'location' | 'creator',
 	sortBy: 'eventDate' | 'title' | 'location',
 	sortOrder: 'asc' | 'desc'
+	// observerRef: React.MutableRefObject<IntersectionObserver | null>
 ) => {
-	const [items, setItems] = useState<EventWithRelations[]>([])
+	const [items, setItems] = useState<EventInput[]>([])
 	const [currentOffset, setCurrentOffset] = useState(0)
 	const [total, setTotal] = useState(0)
 	const [hasMore, setHasMore] = useState(true)
@@ -35,10 +35,9 @@ export const useEvents = (
 	const [updateEvent] = useUpdateEventMutation()
 	const [deleteEvent] = useDeleteEventMutation()
 
-	const currentUserId = Number(localStorage.getItem('user_id'))
-
 	const observerRef = useRef<IntersectionObserver | null>(null)
 	const bottomRef = useRef<HTMLDivElement | null>(null)
+	const currentUserId = Number(localStorage.getItem('user_id'))
 
 	const loadEvents = useCallback(
 		async (offset: number, isNewSearch: boolean = false) => {
@@ -159,7 +158,7 @@ export const useEvents = (
 				prev.map(event => (event.id === eventId ? updatedEvent : event))
 			)
 		} catch (error) {
-			console.error('Error loading events:', error)
+			console.error('Error joining to the event:', error)
 		}
 	}
 
@@ -179,7 +178,7 @@ export const useEvents = (
 				)
 			)
 		} catch (error) {
-			console.error('Помилка виходу з події:', error)
+			console.error('Error during leaving the event:', error)
 		}
 	}
 	const handleEdit = async (eventId: number, updatedData: EventInput) => {
@@ -195,7 +194,7 @@ export const useEvents = (
 			await deleteEvent(eventId).unwrap()
 			setItems(prev => prev.filter(evt => evt.id !== eventId))
 		} catch (error) {
-			console.error('Помилка видалення події:', error)
+			console.error('Error during deleting the event:', error)
 		}
 	}
 

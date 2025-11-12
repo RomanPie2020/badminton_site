@@ -1,14 +1,13 @@
 import { useEffect } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { EventWithRelations } from '../../shared/interfaces/models'
 import { EventInput } from '../../shared/validations/event.schema'
 
 interface EventFormModalProps {
-	event?: EventWithRelations
+	event?: EventInput
 	// initialData?: EventInput
 	currentParticipants?: number
 	onClose: () => void
-	onSubmit: (data: EventWithRelations) => void
+	onSubmit: (data: EventInput) => void
 }
 
 const EVENT_TYPE_OPTIONS = [

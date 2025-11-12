@@ -5410,3 +5410,8 @@
 {"level":"info","message":"database password is: string","timestamp":"2025-11-10T22:56:38.673Z"}
 {"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-11-10T22:56:38.679Z"}
 {"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-11-10T22:56:38.748Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-11-11T14:08:39.373Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-11-11T14:08:39.378Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-11-11T14:08:39.546Z"}
+{"creatorId":10,"description":"avva","eventDate":"2025-11-23T14:09","eventType":"Турнір","gameType":"Одиночна","level":"info","levelOfPlayers":"Новачок","location":"vav","maxParticipants":2,"message":"Створення івенту:","timestamp":"2025-11-11T14:09:39.471Z","title":"vav"}
+{"creatorId":10,"description":"vav","eventDate":"2025-11-22T14:09","eventType":"Турнір","gameType":"Одиночна","level":"info","levelOfPlayers":"Новачок","location":"zvcv","maxParticipants":3,"message":"Створення івенту:","timestamp":"2025-11-11T14:10:09.126Z","title":"zaz"}

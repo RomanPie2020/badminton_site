@@ -238,7 +238,7 @@ const MyEvents = () => {
 						)!
 					}
 					onClose={() => setEditEventId(null)}
-					onSubmit={handleEdit}
+					onSubmit={data => handleEdit(editEventId, data)}
 				/>
 			)}
 

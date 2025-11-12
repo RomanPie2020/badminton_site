@@ -11,7 +11,7 @@ import DetailModal from '../ui/DetailModal'
 import EventCard from '../ui/EventCard'
 import EventFormModal from '../ui/EventFormModal'
 import FilterModal from '../ui/FilterModal'
-
+// #TODO add suspense loadin
 const EventList = () => {
 	const filters = useAppSelector(selectFilters)
 	const [searchText, setSearchText] = useState('')
@@ -22,6 +22,7 @@ const EventList = () => {
 		'eventDate'
 	)
 	const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc')
+
 	const {
 		items,
 		isFetching,
@@ -58,24 +59,23 @@ const EventList = () => {
 			console.error('Error creating event:', error)
 		}
 	}
-	// #TODO Creating event server error and many refetching and observer works bad
+	// #TODO  many refetching and observer works bad
 	const onConfirmEdit = async (eventId: number, data: EventInput) => {
-		await handleEdit(eventId, data)
-		setEditEventId(null)
+		try {
+			await handleEdit(eventId, data)
+			setEditEventId(null)
+		} catch (error) {
+			console.error('Error editing event:', error)
+		}
 	}
+
 	const onConfirmDelete = async (eventId: number) => {
-		await handleDelete(eventId)
-		setDeleteEventId(null)
-	}
-
-	const onConfirmJoin = async (eventId: number) => {
-		await handleJoin(eventId)
-		setShowDetails(null)
-	}
-
-	const onConfirmLeave = async (eventId: number) => {
-		await handleLeave(eventId)
-		setShowDetails(null)
+		try {
+			await handleDelete(eventId)
+			setDeleteEventId(null)
+		} catch (error) {
+			console.error('Error deleting event:', error)
+		}
 	}
 
 	useEffect(() => {
@@ -217,10 +217,10 @@ const EventList = () => {
 						key={evt.id}
 						event={evt}
 						currentUserId={currentUserId}
-						onJoin={onConfirmJoin}
-						onLeave={onConfirmLeave}
-						onUpdate={onConfirmEdit}
-						onDelete={onConfirmDelete}
+						onJoin={handleJoin}
+						onLeave={handleLeave}
+						// onUpdate={onConfirmEdit}
+						// onDelete={onConfirmDelete}
 						setShowDetails={() => setShowDetails(evt.id)}
 						setEdit={() => setEditEventId(evt.id)}
 						setDelete={() => setDeleteEventId(evt.id)}
@@ -295,7 +295,7 @@ const EventList = () => {
 						items.find(e => e.id === editEventId)?.participants.length
 					}
 					onClose={() => setEditEventId(null)}
-					onSubmit={onConfirmEdit}
+					onSubmit={data => onConfirmEdit(editEventId, data)}
 				/>
 			)}
 

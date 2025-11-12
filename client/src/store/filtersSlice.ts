@@ -3,18 +3,17 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from './store'
 
 interface DateRange {
-	from: string | null // рядок у форматі "YYYY-MM-DD"
-	to: string | null // рядок у форматі "YYYY-MM-DD"
+	from: string | null
+	to: string | null
 }
 
 export interface FiltersState {
 	modalOpen: boolean
 	values: {
-		// категорії мають відповідати саме цим ключам:
-		events: string[] // напр., ['Турнір', 'Тренування']
-		date: DateRange // { from: '2025-06-01', to: '2025-06-07' }
-		typeOfGame: string[] // напр., ['Одиночна', 'Парна']
-		levelOfPlayers: string[] // напр., ['Новачок', 'Просунутий']
+		events: string[]
+		date: DateRange
+		typeOfGame: string[]
+		levelOfPlayers: string[]
 	}
 }
 
@@ -38,7 +37,6 @@ const filtersSlice = createSlice({
 		closeFiltersModal(state) {
 			state.modalOpen = false
 		},
-		// Обробляємо чотири типи фільтрів:
 		setFilter(
 			state,
 			action: PayloadAction<{
@@ -48,7 +46,6 @@ const filtersSlice = createSlice({
 		) {
 			const { category, value } = action.payload
 
-			// 1) Масивні фільтри (чекбокси) → events, typeOfGame, levelOfPlayers
 			if (
 				category === 'events' ||
 				category === 'typeOfGame' ||
@@ -59,13 +56,10 @@ const filtersSlice = createSlice({
 				state.values[category] = arr.includes(val)
 					? arr.filter(x => x !== val)
 					: [...arr, val]
-			}
-			// 2) Фільтр date (dateRange) → власний об’єкт
-			else if (category === 'date') {
+			} else if (category === 'date') {
 				state.values.date = value as DateRange
 			}
 		},
-		// Якщо треба швидко скидати всі фільтри:
 		clearFilters(state) {
 			state.values = initialState.values
 		},
