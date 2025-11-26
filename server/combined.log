@@ -5415,3 +5415,66 @@
 {"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-11-11T14:08:39.546Z"}
 {"creatorId":10,"description":"avva","eventDate":"2025-11-23T14:09","eventType":"Турнір","gameType":"Одиночна","level":"info","levelOfPlayers":"Новачок","location":"vav","maxParticipants":2,"message":"Створення івенту:","timestamp":"2025-11-11T14:09:39.471Z","title":"vav"}
 {"creatorId":10,"description":"vav","eventDate":"2025-11-22T14:09","eventType":"Турнір","gameType":"Одиночна","level":"info","levelOfPlayers":"Новачок","location":"zvcv","maxParticipants":3,"message":"Створення івенту:","timestamp":"2025-11-11T14:10:09.126Z","title":"zaz"}
+{"level":"info","message":"database password is: string","timestamp":"2025-11-11T14:10:46.361Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-11-11T14:10:46.365Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-11-11T14:10:46.449Z"}
+{"creatorId":10,"description":"vavasv","eventDate":"2025-11-23T14:13","eventType":"Турнір","gameType":"Одиночна","level":"info","levelOfPlayers":"Новачок","location":"dfadfa","maxParticipants":3,"message":"Створення івенту:","timestamp":"2025-11-11T14:13:46.664Z","title":"xaxa"}
+{"level":"error","message":"Error:","timestamp":"2025-11-11T14:14:45.351Z"}
+{"level":"error","message":"Error:","timestamp":"2025-11-11T14:21:25.456Z"}
+{"level":"error","message":"Error:","timestamp":"2025-11-11T14:21:51.891Z"}
+{"creatorId":10,"description":"bb","eventDate":"2025-11-22T14:38","eventType":"Дружня гра","gameType":"Одиночна","level":"info","levelOfPlayers":"Новачок","location":"badfba","maxParticipants":3,"message":"Створення івенту:","timestamp":"2025-11-11T14:38:24.787Z","title":"abafdbabab"}
+{"creatorId":10,"description":"bab","eventDate":"2025-11-29T14:39","eventType":"Дружня гра","gameType":"Одиночна","level":"info","levelOfPlayers":"Новачок","location":"bab","maxParticipants":3,"message":"Створення івенту:","timestamp":"2025-11-11T14:39:08.228Z","title":"abaf"}
+{"level":"error","message":"Error:","timestamp":"2025-11-11T14:43:08.131Z"}
+{"level":"error","message":"Error:","timestamp":"2025-11-11T14:43:08.399Z"}
+{"level":"error","message":"Error:","timestamp":"2025-11-11T14:43:09.161Z"}
+{"level":"error","message":"Error:","timestamp":"2025-11-11T14:43:09.368Z"}
+{"level":"error","message":"Error:","timestamp":"2025-11-11T14:43:57.430Z"}
+{"level":"error","message":"Error:","timestamp":"2025-11-11T15:00:18.647Z"}
+{"creatorId":10,"description":"babab","eventDate":"2025-11-23T18:20","eventType":"Турнір","gameType":"Одиночна","level":"info","levelOfPlayers":"Новачок","location":"cacca","maxParticipants":3,"message":"Створення івенту:","timestamp":"2025-11-11T18:20:20.912Z","title":"caca"}
+{"level":"info","message":"User logged out","timestamp":"2025-11-11T18:38:30.398Z"}
+{"level":"info","message":"Користувач romankaras2004@gmail.com успішно увійшов через Google","timestamp":"2025-11-11T18:39:04.274Z"}
+{"level":"info","message":"Отримані дані:","timestamp":"2025-11-11T18:39:04.276Z"}
+{"level":"info","message":"Refresh token saved for user 10","timestamp":"2025-11-11T18:39:04.300Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-11-12T13:34:34.717Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-11-12T13:34:34.722Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-11-12T13:34:34.838Z"}
+{"level":"error","message":"Error:","timestamp":"2025-11-12T22:39:55.704Z"}
+{"level":"error","message":"Error:","timestamp":"2025-11-12T22:39:55.730Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-11-13T14:12:09.372Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-11-13T14:12:09.378Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-11-13T14:12:09.512Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-11-14T13:55:22.870Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-11-14T13:55:22.881Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-11-14T13:55:23.036Z"}
+{"level":"error","message":"Error:","timestamp":"2025-11-14T23:16:00.057Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-11-15T00:43:53.449Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-11-15T00:43:53.456Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-11-15T00:43:53.612Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-11-16T22:21:50.079Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-11-16T22:21:50.091Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-11-16T22:21:50.306Z"}
+{"level":"error","message":"Error:","timestamp":"2025-11-16T23:06:07.897Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-11-18T13:41:50.277Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-11-18T13:41:50.284Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-11-18T13:41:50.413Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-11-23T14:42:29.810Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-11-23T14:42:29.824Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-11-23T14:42:30.081Z"}
+{"level":"error","message":"Error:","timestamp":"2025-11-23T14:43:29.157Z"}
+{"level":"error","message":"Error:","timestamp":"2025-11-23T14:43:30.034Z"}
+{"level":"error","message":"Error:","timestamp":"2025-11-23T14:43:30.561Z"}
+{"level":"error","message":"Error:","timestamp":"2025-11-23T14:43:30.760Z"}
+{"level":"error","message":"Error:","timestamp":"2025-11-23T14:43:34.275Z"}
+{"level":"error","message":"Error:","timestamp":"2025-11-23T14:43:34.850Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-11-23T14:43:49.515Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-11-23T14:43:49.520Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-11-23T14:43:49.579Z"}
+{"level":"info","message":"Refresh token saved for user 11","timestamp":"2025-11-23T14:44:26.956Z"}
+{"level":"info","message":"Користувач romanstone2004@gmail.com успішно увійшов","timestamp":"2025-11-23T14:44:26.956Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-11-24T15:15:08.461Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-11-24T15:15:08.467Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-11-24T15:15:08.599Z"}
+{"level":"error","message":"Error:","timestamp":"2025-11-24T23:17:23.019Z"}
+{"creatorId":11,"description":"gasdg","eventDate":"2025-11-30T23:33","eventType":"Турнір","gameType":"Одиночна","level":"info","levelOfPlayers":"Новачок","location":"dafs","maxParticipants":3,"message":"Створення івенту:","timestamp":"2025-11-24T23:33:59.702Z","title":"gas"}
+{"creatorId":11,"description":"fafd","eventDate":"2025-11-30T23:34","eventType":"Турнір","gameType":"Одиночна","level":"info","levelOfPlayers":"Новачок","location":"fadsfasd","maxParticipants":2,"message":"Створення івенту:","timestamp":"2025-11-24T23:34:25.931Z","title":"gas2"}
+{"level":"error","message":"Error:","timestamp":"2025-11-25T23:53:31.245Z"}

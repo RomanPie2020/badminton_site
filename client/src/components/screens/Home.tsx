@@ -38,14 +38,6 @@ function Home() {
 		)
 	}
 
-	// if (isLoading) {
-	// 	return <div className='mt-28'>Loading...</div>
-	// }
-
-	// if (error) {
-	// 	return <div className='mt-28'>Error: {error.message}</div>
-	// }
-
 	return (
 		<>
 			<div className='w-full min-h-screen bg-gradient-to-t from-slate-200 to-indigo-400 py-40'>

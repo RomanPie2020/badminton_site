@@ -1,7 +1,6 @@
 // src/components/pages/MyEvents.tsx
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react'
 import { useEffect, useState } from 'react'
-import spinner from '../../assets/spinner.svg'
 import {
 	useDeleteEventMutation,
 	useGetUserEventsQuery,
@@ -14,6 +13,7 @@ import ConfirmModal from '../ui/ConfirmModal'
 import DetailModal from '../ui/DetailModal'
 import EventCard from '../ui/EventCard'
 import EventFormModal from '../ui/EventFormModal'
+import Loader from '../ui/Loader'
 
 const MyEvents = () => {
 	const currentUserId = Number(localStorage.getItem('user_id'))
@@ -125,15 +125,7 @@ const MyEvents = () => {
 				<TabPanels>
 					{/* Вкладка 1: “Створені” */}
 					<TabPanel className='pt-4'>
-						{isFetchingCreated && (
-							<div className='py-10 flex justify-center'>
-								<img
-									src={spinner}
-									alt='Loading...'
-									className='w-8 h-8 animate-spin'
-								/>
-							</div>
-						)}
+						{isFetchingCreated && <Loader />}
 
 						{isErrorCreated && (
 							<p className='text-center py-10 text-red-600'>
@@ -170,15 +162,7 @@ const MyEvents = () => {
 					</TabPanel>
 					{/* Вкладка 2: “В яких я беру участь” */}
 					<TabPanel className='pt-4'>
-						{isFetchingAttending && (
-							<div className='py-10 flex justify-center'>
-								<img
-									src={spinner}
-									alt='Loading...'
-									className='w-8 h-8 animate-spin'
-								/>
-							</div>
-						)}
+						{isFetchingAttending && <Loader />}
 
 						{isErrorAttending && (
 							<p className='text-center py-10 text-red-600'>

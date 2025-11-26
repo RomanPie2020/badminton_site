@@ -1,5 +1,6 @@
 import { useMyProfileForm } from '../../hooks/useMyProfileForm'
 import ProfileForm from '../ui/forms/ProfileForm'
+import Loader from '../ui/Loader'
 
 const MyProfile = () => {
 	const {
@@ -18,8 +19,13 @@ const MyProfile = () => {
 		handleCancelClick,
 	} = useMyProfileForm()
 
-	if (isLoading)
-		return <p className='text-center py-10'>Завантаження профілю...</p>
+	if (isLoading) {
+		return (
+			<div className='mt-64'>
+				<Loader />
+			</div>
+		)
+	}
 
 	if (isError) {
 		if (error && 'status' in error && error.status === 401) {

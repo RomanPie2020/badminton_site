@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react'
-import spinner from '../../assets/spinner.svg'
-import { useActions } from '../../hooks/useActions'
+import { useCallback, useRef, useState } from 'react'
+import { useDebounce } from '../../hooks/useDebounce'
 import { useEvents } from '../../hooks/useEvents'
 import { Filters } from '../../shared/interfaces/models'
 import { EventInput } from '../../shared/validations/event.schema'
@@ -10,11 +9,17 @@ import ConfirmModal from '../ui/ConfirmModal'
 import DetailModal from '../ui/DetailModal'
 import EventCard from '../ui/EventCard'
 import EventFormModal from '../ui/EventFormModal'
+import EventControls from '../ui/events/EventControls'
 import FilterModal from '../ui/FilterModal'
+import Loader from '../ui/Loader'
 // #TODO add suspense loadin
 const EventList = () => {
 	const filters = useAppSelector(selectFilters)
+	const currentUserId = Number(localStorage.getItem('user_id'))
+
 	const [searchText, setSearchText] = useState('')
+	const debouncedSearchText = useDebounce(searchText, 500)
+
 	const [searchField, setSearchField] = useState<
 		'title' | 'location' | 'creator'
 	>('title')
@@ -23,34 +28,38 @@ const EventList = () => {
 	)
 	const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc')
 
-	const {
-		items,
-		isFetching,
-		isError,
-		hasMore,
-		isLoadingMore,
-		isInitialLoad,
-		currentOffset,
-		total,
-		loadEvents,
-		resetAndLoad,
-		loadNextPage,
-		bottomRef,
-		handleCreate,
-		handleJoin,
-		handleLeave,
-		handleEdit,
-		handleDelete,
-	} = useEvents(filters, searchText, searchField, sortBy, sortOrder)
-
-	const currentUserId = Number(localStorage.getItem('user_id'))
-	const { openFiltersModal } = useActions()
-
+	// Modals State
 	const [showDetails, setShowDetails] = useState<number | null>(null)
 	const [createEventForm, setCreateEventForm] = useState<Boolean>(false)
 	const [editEventId, setEditEventId] = useState<number | null>(null)
 	const [deleteEventId, setDeleteEventId] = useState<number | null>(null)
 
+	const bottomRef = useRef<HTMLDivElement | null>(null)
+
+	const {
+		items,
+		total,
+		hasMore,
+		isLoadingMore,
+		isMounting,
+		isSearching,
+		isError,
+		resetAndLoad,
+		handleCreate,
+		handleJoin,
+		handleLeave,
+		handleEdit,
+		handleDelete,
+	} = useEvents(
+		filters,
+		debouncedSearchText,
+		searchField,
+		sortBy,
+		sortOrder,
+		bottomRef
+	)
+
+	// Callbacks for modals
 	const onConfirmCreate = async (data: EventInput) => {
 		try {
 			await handleCreate(data)
@@ -59,7 +68,6 @@ const EventList = () => {
 			console.error('Error creating event:', error)
 		}
 	}
-	// #TODO  many refetching and observer works bad
 	const onConfirmEdit = async (eventId: number, data: EventInput) => {
 		try {
 			await handleEdit(eventId, data)
@@ -78,22 +86,14 @@ const EventList = () => {
 		}
 	}
 
-	useEffect(() => {
-		if (createEventForm) {
-			document.body.classList.add('overflow-hidden')
-		} else {
-			document.body.classList.remove('overflow-hidden')
-		}
+	// Memoized handlers for Controls to prevent re-renders
+	const handleSetCreateOpen = useCallback(() => setCreateEventForm(true), [])
 
-		return () => {
-			document.body.classList.remove('overflow-hidden')
-		}
-	}, [createEventForm])
-
-	if (isFetching) {
+	// Initial Load Spinner
+	if (isMounting) {
 		return (
-			<div className='mt-48 py-10 flex justify-center'>
-				<img src={spinner} alt='Loading...' className='w-8 h-8 animate-spin' />
+			<div className='mt-64'>
+				<Loader />
 			</div>
 		)
 	}
@@ -117,130 +117,51 @@ const EventList = () => {
 
 	return (
 		<div className='p-6 xs:!px-4'>
-			<div
-				className='flex items-center justify-between mb-6 mt-32 px-4 flex-wrap gap-4
-                sm:!flex-col sm:!items-stretch sm:!gap-3'
-			>
-				<button
-					onClick={() => setCreateEventForm(true)}
-					className='flex items-center space-x-2 px-4 py-2 bg-green-600 hover:bg-green-700 rounded-md text-white transition
-               sm:!w-full sm:!justify-center'
-				>
-					Створити подію
-				</button>
-				{createEventForm && (
-					<EventFormModal
-						onClose={() => setCreateEventForm(false)}
-						onSubmit={onConfirmCreate}
-					/>
-				)}
+			<EventControls
+				searchText={searchText} // Передаємо миттєве значення для input value
+				setSearchText={setSearchText}
+				searchField={searchField}
+				setSearchField={setSearchField}
+				sortBy={sortBy}
+				setSortBy={setSortBy}
+				sortOrder={sortOrder}
+				setSortOrder={setSortOrder}
+				onCreateClick={handleSetCreateOpen}
+			/>
 
-				<button
-					onClick={() => openFiltersModal()}
-					className='flex items-center space-x-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-md text-sm font-medium
-               sm:!w-full sm:!justify-center'
-				>
-					<svg
-						xmlns='http://www.w3.org/2000/svg'
-						className='h-5 w-5 text-gray-600'
-						fill='none'
-						viewBox='0 0 24 24'
-						stroke='currentColor'
-					>
-						<path
-							strokeLinecap='round'
-							strokeLinejoin='round'
-							strokeWidth={2}
-							d='M3 4a1 1 0 011-1h16a1 1 0 011 1v2a1 1 0 01-.293.707L15 13.414V19a1 1 0 01-.553.894l-4 2A1 1 0 009 21v-7.586L3.293 6.707A1 1 0 013 6V4z'
+			{isSearching ? (
+				// Якщо йде пошук - показуємо спінер ЗАМІСТЬ карток, але НИЖЧЕ інпутів
+				<div className='flex justify-center py-20'>
+					<div className='animate-spin h-10 w-10 border-4 border-blue-500 border-t-transparent rounded-full'></div>
+				</div>
+			) : (
+				<div className='max-w-7xl mx-auto py-8 xs:!px-0 px-4 grid gap-6 grid-cols-[repeat(auto-fit,_minmax(280px,_1fr))]'>
+					{items.map(evt => (
+						<EventCard
+							key={evt.id}
+							event={evt}
+							currentUserId={currentUserId}
+							onJoin={handleJoin}
+							onLeave={handleLeave}
+							// onUpdate={onConfirmEdit}
+							// onDelete={onConfirmDelete}
+							setShowDetails={() => setShowDetails(evt.id)}
+							setEdit={() => setEditEventId(evt.id)}
+							setDelete={() => setDeleteEventId(evt.id)}
 						/>
-					</svg>
-					<span>Фільтри</span>
-				</button>
-
-				<div
-					className='flex items-center space-x-2 flex-wrap
-                  sm:!flex-col sm:!items-stretch sm:!space-x-0 sm:!gap-2 sm:!w-full'
-				>
-					<select
-						value={searchField}
-						onChange={e =>
-							setSearchField(e.target.value as 'title' | 'location' | 'creator')
-						}
-						className='border border-gray-300 rounded-md p-2 text-sm sm:!w-full'
-					>
-						<option value='title'>По назві</option>
-						<option value='location'>По локації</option>
-						<option value='creator'>По організатору</option>
-					</select>
-					<input
-						type='text'
-						value={searchText}
-						onChange={e => setSearchText(e.target.value)}
-						placeholder='Введіть текст для пошуку...'
-						className='border border-gray-300 rounded-md p-2 text-sm min-w-[200px] sm:!w-full'
-					/>
+					))}
 				</div>
+			)}
 
-				<div
-					className='flex items-center space-x-2 flex-wrap
-                  sm:!flex-col sm:!items-stretch sm:!space-x-0 sm:!gap-2 sm:!w-full'
-				>
-					<label className='text-sm font-medium whitespace-nowrap sm:!w-full sm:!text-center'>
-						Сортувати:
-					</label>
-					<select
-						value={sortBy}
-						onChange={e =>
-							setSortBy(e.target.value as 'eventDate' | 'title' | 'location')
-						}
-						className='border border-gray-300 rounded-md p-2 text-sm sm:!w-full'
-					>
-						<option value='eventDate'>По даті</option>
-						<option value='title'>По назві</option>
-						<option value='location'>По локації</option>
-					</select>
-
-					<select
-						value={sortOrder}
-						onChange={e => setSortOrder(e.target.value as 'asc' | 'desc')}
-						className='border border-gray-300 rounded-md p-2 text-sm sm:!w-full'
-					>
-						<option value='asc'>↑ Зростанням</option>
-						<option value='desc'>↓ Спаданням</option>
-					</select>
-				</div>
-			</div>
-
-			<div className='max-w-7xl mx-auto py-8 xs:!px-0 px-4 grid gap-6 grid-cols-[repeat(auto-fit,_minmax(280px,_1fr))]'>
-				{items.map(evt => (
-					<EventCard
-						key={evt.id}
-						event={evt}
-						currentUserId={currentUserId}
-						onJoin={handleJoin}
-						onLeave={handleLeave}
-						// onUpdate={onConfirmEdit}
-						// onDelete={onConfirmDelete}
-						setShowDetails={() => setShowDetails(evt.id)}
-						setEdit={() => setEditEventId(evt.id)}
-						setDelete={() => setDeleteEventId(evt.id)}
-					/>
-				))}
-			</div>
-
-			{/* {isInitialLoad && (
-				<div className='flex justify-center py-8'>
-					<div className='animate-spin h-8 w-8 border-4 border-blue-500 border-t-transparent rounded-full'></div>
-				</div>
-			)} */}
-
-			{isLoadingMore && !isInitialLoad && (
+			{/* Load More Spinner */}
+			{isLoadingMore && (
 				<div className='flex justify-center py-4'>
 					<div className='animate-spin h-6 w-6 border-4 border-blue-500 border-t-transparent rounded-full'></div>
 				</div>
 			)}
 
-			{!isInitialLoad && !isLoadingMore && items.length === 0 && (
+			{/* Empty State */}
+			{!isLoadingMore && items.length === 0 && (
 				<div className='max-w-2xl mx-auto py-16 text-center'>
 					<p className='text-lg font-medium text-gray-700 mb-2'>
 						Жодних подій не знайдено
@@ -265,19 +186,25 @@ const EventList = () => {
 				</div>
 			)}
 
-			{!isInitialLoad && items.length > 0 && (
+			{/* {!isInitialLoad && items.length > 0 && (
 				<div className='text-center py-4 text-sm text-gray-500'>
 					Показано {items.length} з {total} подій
 					{!hasMore && items.length === total && (
 						<span className='block mt-1'>Всі події завантажено</span>
 					)}
 				</div>
-			)}
+			)} */}
 
-			{hasMore && !isInitialLoad && (
-				<div ref={bottomRef} className='h-4 w-full' />
-			)}
+			{/* Observer Element */}
+			<div ref={bottomRef} className='h-2 w-full ' />
 
+			{/* Modals */}
+			{createEventForm && (
+				<EventFormModal
+					onClose={() => setCreateEventForm(false)}
+					onSubmit={onConfirmCreate}
+				/>
+			)}
 			{showDetails && (
 				<DetailModal
 					event={items.find(e => e.id === showDetails)!}
@@ -287,7 +214,6 @@ const EventList = () => {
 					onLeave={() => handleLeave(showDetails)}
 				/>
 			)}
-
 			{editEventId && (
 				<EventFormModal
 					event={items.find(e => e.id === editEventId)!}
@@ -298,7 +224,6 @@ const EventList = () => {
 					onSubmit={data => onConfirmEdit(editEventId, data)}
 				/>
 			)}
-
 			{deleteEventId && (
 				<ConfirmModal
 					event={items.find(e => e.id === deleteEventId)!}
@@ -306,7 +231,6 @@ const EventList = () => {
 					onConfirm={id => onConfirmDelete(id)}
 				/>
 			)}
-
 			<FilterModal />
 		</div>
 	)

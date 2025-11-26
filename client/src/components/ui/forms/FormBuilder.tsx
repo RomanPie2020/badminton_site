@@ -6,7 +6,7 @@ import {
 } from 'react-hook-form'
 import googleIcon from '../../../assets/images/google_icon.svg'
 import { IBaseButton, IFormInput } from '../../../shared/interfaces/models'
-import BaseButton from '../BaseButton/BaseButton'
+import BaseButton from '../buttons/BaseButton'
 import TextInput from '../Inputs/FormInput'
 
 interface IFormBuilderProps<T extends FieldValues> {

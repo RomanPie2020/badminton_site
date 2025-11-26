@@ -9,6 +9,9 @@
 	box-sizing: border-box;
 }
 
+html {
+	scrollbar-gutter: stable;
+}
 /* @layer components {
   .log-button {
     @apply inline-block w-20 h-10 text-white bg-[#282828] border-white border-2;

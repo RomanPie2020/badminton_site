@@ -4,6 +4,7 @@ import { formStyles } from '../../configs/styles.config'
 import { useForgotPasswordMutation } from '../../services/AuthService'
 import { IEnterEmailData } from '../../shared/interfaces/models'
 import EnterEmailForm from '../ui/forms/EnterEmailForm'
+import Loader from '../ui/Loader'
 
 const EnterEmail = () => {
 	const [forgotPassword, { isLoading }] = useForgotPasswordMutation()
@@ -37,9 +38,7 @@ const EnterEmail = () => {
 				</h1>
 
 				{isLoading ? (
-					<div className='flex 	justify-center items-center'>
-						<div className='w-12 h-12 border-4 border-blue-500 border-dashed rounded-full animate-spin'></div>
-					</div>
+					<Loader />
 				) : isSuccess ? (
 					<p className='text-green-600 text-xl'>
 						✔️ Перевірте пошту — ми надіслали інструкції для відновлення паролю.

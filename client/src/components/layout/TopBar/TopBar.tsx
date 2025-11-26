@@ -2,7 +2,7 @@ import { Menu, X } from 'lucide-react'
 import { Link, Outlet } from 'react-router-dom'
 import { useTopBar } from '../../../hooks/useTopBar'
 import { IBaseButton } from '../../../shared/interfaces/models'
-import BaseButton from '../../ui/BaseButton/BaseButton'
+import BaseButton from '../../ui/buttons/BaseButton'
 
 const logButtonProps: IBaseButton = {
 	title: 'Увійти',

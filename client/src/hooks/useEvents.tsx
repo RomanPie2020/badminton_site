@@ -1,14 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import {
-	useCreateEventMutation,
-	useDeleteEventMutation,
-	useJoinEventMutation,
-	useLazyGetEventByIdQuery,
-	useLazyGetFilteredEventsQuery,
-	useLeaveEventMutation,
-	useUpdateEventMutation,
-} from '../services/EventService'
+import { useLazyGetFilteredEventsQuery } from '../services/EventService'
 import { EventInput } from '../shared/validations/event.schema'
+import { useEventMutations } from './useEventMutations'
 
 const PAGE_SIZE = 10
 
@@ -17,36 +10,53 @@ export const useEvents = (
 	searchText: string,
 	searchField: 'title' | 'location' | 'creator',
 	sortBy: 'eventDate' | 'title' | 'location',
-	sortOrder: 'asc' | 'desc'
-	// observerRef: React.MutableRefObject<IntersectionObserver | null>
+	sortOrder: 'asc' | 'desc',
+	bottomRef: React.MutableRefObject<HTMLDivElement | null>
 ) => {
 	const [items, setItems] = useState<EventInput[]>([])
-	const [currentOffset, setCurrentOffset] = useState(0)
 	const [total, setTotal] = useState(0)
 	const [hasMore, setHasMore] = useState(true)
 	const [isLoadingMore, setIsLoadingMore] = useState(false)
-	const [isInitialLoad, setIsInitialLoad] = useState(true)
+	const [isMounting, setIsMounting] = useState(true)
+	const [isSearching, setIsSearching] = useState(false)
+	const [currentOffset, setCurrentOffset] = useState(0)
+
+	const { handleCreate, handleDelete, handleEdit, handleJoin, handleLeave } =
+		useEventMutations(setItems, setTotal)
 
 	const [trigger, { isFetching, isError }] = useLazyGetFilteredEventsQuery()
-	const [getEventById] = useLazyGetEventByIdQuery()
-	const [joinEvent] = useJoinEventMutation()
-	const [leaveEvent] = useLeaveEventMutation()
-	const [createEvent] = useCreateEventMutation()
-	const [updateEvent] = useUpdateEventMutation()
-	const [deleteEvent] = useDeleteEventMutation()
 
 	const observerRef = useRef<IntersectionObserver | null>(null)
-	const bottomRef = useRef<HTMLDivElement | null>(null)
-	const currentUserId = Number(localStorage.getItem('user_id'))
+	const isFirstRender = useRef(true)
 
+	// Ref to access up-to-date status inside event listeners/timeouts
+	const stateRef = useRef({
+		isLoadingMore,
+		isFetching,
+		hasMore,
+		currentOffset,
+		total,
+		isSearching,
+	})
+
+	useEffect(() => {
+		stateRef.current = {
+			isLoadingMore,
+			isFetching,
+			hasMore,
+			currentOffset,
+			total,
+			isSearching,
+		}
+	}, [isLoadingMore, isFetching, hasMore, currentOffset, total, isSearching])
+
+	// --- MAIN LOAD FUNCTION ---
 	const loadEvents = useCallback(
-		async (offset: number, isNewSearch: boolean = false) => {
+		async (offset: number, type: 'mount' | 'search' | 'pagination') => {
 			try {
-				if (isNewSearch) {
-					setIsInitialLoad(true)
-				} else {
-					setIsLoadingMore(true)
-				}
+				if (type === 'mount') setIsMounting(true)
+				if (type === 'search') setIsSearching(true)
+				if (type === 'pagination') setIsLoadingMore(true)
 
 				const result = await trigger({
 					filters,
@@ -60,7 +70,7 @@ export const useEvents = (
 
 				const { events: newEvents, total: newTotal } = result
 
-				if (isNewSearch) {
+				if (type === 'mount' || type === 'search') {
 					setItems(newEvents || [])
 					setCurrentOffset(newEvents?.length || 0)
 				} else {
@@ -82,43 +92,65 @@ export const useEvents = (
 			} catch (error) {
 				console.error('Помилка завантаження подій:', error)
 			} finally {
-				setIsInitialLoad(false)
+				setIsMounting(false)
+				setIsSearching(false)
 				setIsLoadingMore(false)
 			}
 		},
-		[trigger, filters, searchText, searchField, sortBy, sortOrder]
+
+		[
+			trigger,
+			JSON.stringify(filters),
+			searchText,
+			searchField,
+			sortBy,
+			sortOrder,
+		]
 	)
 
+	// --- RESET & LOAD (Called when changing filters) ---
 	const resetAndLoad = useCallback(() => {
 		setItems([])
 		setCurrentOffset(0)
 		setTotal(0)
 		setHasMore(true)
-		loadEvents(0, true)
+		loadEvents(0, 'search')
 	}, [loadEvents])
 
 	const loadNextPage = useCallback(() => {
-		if (!isLoadingMore && !isFetching && hasMore && currentOffset < total) {
-			loadEvents(currentOffset, false)
+		const state = stateRef.current
+		if (
+			!state.isLoadingMore &&
+			!state.isFetching &&
+			!state.isSearching &&
+			state.hasMore &&
+			state.currentOffset < state.total
+		) {
+			loadEvents(state.currentOffset, 'pagination')
 		}
-	}, [loadEvents, isLoadingMore, isFetching, hasMore, currentOffset, total])
+	}, [loadEvents])
 
+	// Initial Load (Mount only)
 	useEffect(() => {
-		if (observerRef.current) {
-			observerRef.current.disconnect()
+		if (isFirstRender.current) {
+			isFirstRender.current = false
+			loadEvents(0, 'mount')
 		}
+	}, [loadEvents])
 
-		resetAndLoad()
-	}, [filters, searchText, searchField, sortBy, sortOrder])
-
+	// Watch filters changes
 	useEffect(() => {
-		if (!hasMore || isLoadingMore || isFetching || isInitialLoad) {
+		if (!isFirstRender.current) {
+			resetAndLoad()
+		}
+	}, [JSON.stringify(filters), searchText, searchField, sortBy, sortOrder])
+
+	// Observer Logic
+	useEffect(() => {
+		if (!hasMore || isLoadingMore || isFetching || isMounting || isSearching)
 			return
-		}
 
-		if (observerRef.current) {
-			observerRef.current.disconnect()
-		}
+		if (observerRef.current) observerRef.current.disconnect()
 
 		observerRef.current = new IntersectionObserver(
 			entries => {
@@ -126,9 +158,7 @@ export const useEvents = (
 					loadNextPage()
 				}
 			},
-			{
-				rootMargin: '100px',
-			}
+			{ rootMargin: '100px' }
 		)
 
 		if (bottomRef.current) {
@@ -138,79 +168,25 @@ export const useEvents = (
 		return () => {
 			observerRef.current?.disconnect()
 		}
-	}, [loadNextPage, hasMore, isLoadingMore, isFetching, isInitialLoad])
-
-	const handleCreate = async (data: EventInput) => {
-		try {
-			const newEvent = await createEvent(data).unwrap()
-			setItems(prev => [newEvent, ...prev])
-		} catch (error) {
-			console.error('Error creating event:', error)
-		}
-	}
-
-	const handleJoin = async (eventId: number) => {
-		try {
-			await joinEvent({ eventId }).unwrap()
-
-			const updatedEvent = await getEventById(eventId).unwrap()
-			setItems(prev =>
-				prev.map(event => (event.id === eventId ? updatedEvent : event))
-			)
-		} catch (error) {
-			console.error('Error joining to the event:', error)
-		}
-	}
-
-	const handleLeave = async (eventId: number) => {
-		try {
-			await leaveEvent(eventId).unwrap()
-			setItems(prev =>
-				prev.map(event =>
-					event.id === eventId
-						? {
-								...event,
-								participants: (event.participants || []).filter(
-									p => p.id !== currentUserId
-								),
-						  }
-						: event
-				)
-			)
-		} catch (error) {
-			console.error('Error during leaving the event:', error)
-		}
-	}
-	const handleEdit = async (eventId: number, updatedData: EventInput) => {
-		console.log('Submitting updated data:', updatedData)
-		console.log('Event ID:', { eventId, data: { ...updatedData } })
-
-		await updateEvent({ eventId, data: { ...updatedData } }).unwrap()
-		const updatedEvent = await getEventById(eventId).unwrap()
-		setItems(prev => prev.map(evt => (evt.id === eventId ? updatedEvent : evt)))
-	}
-	const handleDelete = async (eventId: number) => {
-		try {
-			await deleteEvent(eventId).unwrap()
-			setItems(prev => prev.filter(evt => evt.id !== eventId))
-		} catch (error) {
-			console.error('Error during deleting the event:', error)
-		}
-	}
+	}, [
+		loadNextPage,
+		hasMore,
+		isLoadingMore,
+		isFetching,
+		isMounting,
+		isSearching,
+		bottomRef,
+	])
 
 	return {
 		items,
-		isFetching,
-		isError,
+		total,
 		hasMore,
 		isLoadingMore,
-		isInitialLoad,
-		currentOffset,
-		total,
-		loadEvents,
+		isMounting,
+		isSearching,
+		isError,
 		resetAndLoad,
-		loadNextPage,
-		bottomRef,
 		handleCreate,
 		handleJoin,
 		handleLeave,

@@ -1,6 +1,6 @@
 import { isRouteErrorResponse, useRouteError } from 'react-router-dom'
 import { IBaseButton } from '../../shared/interfaces/models'
-import BaseButton from '../ui/BaseButton/BaseButton'
+import BaseButton from '../ui/buttons/BaseButton'
 
 const buttonProps: IBaseButton = {
 	title: 'Home',

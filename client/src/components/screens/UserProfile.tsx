@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from 'react-router-dom'
 import { useGetUserProfileByIdQuery } from '../../services/AuthService'
 import ProfileForm from '../ui/forms/ProfileForm'
+import Loader from '../ui/Loader'
 
 const UserProfile: React.FC = () => {
 	const { id } = useParams<{ id: string }>()
@@ -13,7 +14,7 @@ const UserProfile: React.FC = () => {
 		error,
 	} = useGetUserProfileByIdQuery(userId)
 
-	if (isLoading) return <p>Loading…</p>
+	if (isLoading) return <Loader />
 	if (isError || !profile) {
 		return (
 			<div className='text-center py-10 text-red-600 mt-40'>

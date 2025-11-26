@@ -9,6 +9,7 @@ import {
 	ISignUpData,
 } from '../../shared/interfaces/models'
 import SignUpForm from '../ui/forms/SignUpForm'
+import Loader from '../ui/Loader'
 
 const SignUp = () => {
 	const { addUserId } = useActions()
@@ -56,9 +57,7 @@ const SignUp = () => {
 				<h1 className='text-7xl sm:text-4xl mb-10'>Реєстрація</h1>
 
 				{isLoading ? (
-					<div className='flex justify-center items-center'>
-						<div className='w-12 h-12 border-4 border-blue-500 border-dashed rounded-full animate-spin'></div>
-					</div>
+					<Loader />
 				) : isSuccess ? (
 					<p className='text-green-600 text-xl'>
 						✔️ Реєстрація успішна. Перевірте пошту для підтвердження.

@@ -2,7 +2,8 @@ import { useLocation } from 'react-router-dom'
 import { formStyles } from '../../configs/styles.config'
 import { useConfirmRegistrationQuery } from '../../services/AuthService'
 import { IBaseButton } from '../../shared/interfaces/models'
-import BaseButton from '../ui/BaseButton/BaseButton'
+import BaseButton from '../ui/buttons/BaseButton'
+import Loader from '../ui/Loader'
 
 const buttonProps: IBaseButton = {
 	title: 'Log In',
@@ -20,7 +21,7 @@ export const RegisterConfirm = () => {
 	return (
 		<div className={`${formStyles}`}>
 			<div className='text-center flex flex-col items-center'>
-				{isLoading && <h1 className='text-4xl mb-10'>Loading...</h1>}
+				{isLoading && <Loader />}
 				{error && (
 					<h1 className='text-4xl text-red-500 mb-10'>Confirmation failed!</h1>
 				)}
