@@ -1,4 +1,3 @@
-// import React from 'react'
 import {
 	IBaseButton,
 	IFormInput,
@@ -29,7 +28,7 @@ const ResetPasswordForm = ({ onSubmit }: IResetPasswordFormProps) => {
 			type: 'password',
 			placeholder: 'Підтвердіть пароль',
 			rules: { required: "Обов'язкове поле" },
-			validateWith: 'newPassword', // ключ з IResetPasswordData
+			validateWith: 'newPassword',
 		},
 	]
 

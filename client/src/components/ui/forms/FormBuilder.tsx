@@ -7,12 +7,12 @@ import {
 import googleIcon from '../../../assets/images/google_icon.svg'
 import { IBaseButton, IFormInput } from '../../../shared/interfaces/models'
 import BaseButton from '../buttons/BaseButton'
-import TextInput from '../Inputs/FormInput'
+import TextInput from '../inputs/FormInput'
 
 interface IFormBuilderProps<T extends FieldValues> {
 	inputs: IFormInput<T>[]
 	submitButton: IBaseButton
-	extraButtons?: IBaseButton[] // <-- тепер масив
+	extraButtons?: IBaseButton[]
 	defaultValues: T
 	errorMessage?: string | null
 	onSubmit: (data: T, helpers?: { setError: UseFormSetError<T> }) => void
@@ -23,7 +23,7 @@ interface IFormBuilderProps<T extends FieldValues> {
 function FormBuilder<T extends FieldValues>({
 	inputs,
 	submitButton,
-	extraButtons = [], // за замовчуванням пустий масив
+	extraButtons = [],
 	defaultValues,
 	errorMessage,
 	onSubmit,
@@ -74,10 +74,8 @@ function FormBuilder<T extends FieldValues>({
 					/>
 				))}
 
-				{/* Основна кнопка відправки */}
 				<BaseButton button={submitButton} />
 
-				{/* Google button, якщо потрібен */}
 				{showGoogleButton && (
 					<button
 						onClick={googleLogin}
@@ -90,7 +88,6 @@ function FormBuilder<T extends FieldValues>({
 				)}
 			</form>
 
-			{/* Рендеримо всі додаткові кнопки під формою */}
 			<div className='flex flex-col items-center gap-2'>
 				{extraButtons.map((btn, idx) => (
 					<BaseButton key={idx} button={btn} />

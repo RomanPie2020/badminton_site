@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import { IAuthState } from '../shared/interfaces/models'
 
 const initialState: IAuthState = {
-	isAuthenticated: !!localStorage.getItem('access_token'), // Перевірка токена під час першого завантаження
+	isAuthenticated: !!localStorage.getItem('access_token'),
 }
 
 const authStatusSlice = createSlice({

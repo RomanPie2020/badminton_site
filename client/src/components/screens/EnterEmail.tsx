@@ -12,7 +12,7 @@ const EnterEmail = () => {
 	const [errorMessage, setErrorMessage] = useState('')
 
 	const onSubmit: SubmitHandler<IEnterEmailData> = async req => {
-		setErrorMessage('') // reset before trying again
+		setErrorMessage('')
 		try {
 			const data = await forgotPassword(req).unwrap()
 			if (data) {
@@ -21,7 +21,6 @@ const EnterEmail = () => {
 		} catch (error: any) {
 			console.log(error, 'Enter email was failed')
 
-			// If there is a message in error, we display it
 			const message =
 				error?.data?.message ||
 				error?.error ||

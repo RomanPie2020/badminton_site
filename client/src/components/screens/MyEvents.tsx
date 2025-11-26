@@ -13,7 +13,7 @@ import ConfirmModal from '../ui/ConfirmModal'
 import DetailModal from '../ui/DetailModal'
 import EventCard from '../ui/EventCard'
 import EventFormModal from '../ui/EventFormModal'
-import Loader from '../ui/Loader'
+import EventSkeleton from '../ui/events/EventSkeleton'
 
 const MyEvents = () => {
 	const currentUserId = Number(localStorage.getItem('user_id'))
@@ -123,9 +123,15 @@ const MyEvents = () => {
 				</TabList>
 
 				<TabPanels>
-					{/* Вкладка 1: “Створені” */}
+					{/* Tab 1: “Created” */}
 					<TabPanel className='pt-4'>
-						{isFetchingCreated && <Loader />}
+						{isFetchingCreated && (
+							<>
+								<EventSkeleton />
+								<EventSkeleton />
+								<EventSkeleton />
+							</>
+						)}
 
 						{isErrorCreated && (
 							<p className='text-center py-10 text-red-600'>
@@ -160,9 +166,15 @@ const MyEvents = () => {
 								</div>
 							)}
 					</TabPanel>
-					{/* Вкладка 2: “В яких я беру участь” */}
+					{/* Tab 1: Attending */}
 					<TabPanel className='pt-4'>
-						{isFetchingAttending && <Loader />}
+						{isFetchingAttending && (
+							<>
+								<EventSkeleton />
+								<EventSkeleton />
+								<EventSkeleton />
+							</>
+						)}
 
 						{isErrorAttending && (
 							<p className='text-center py-10 text-red-600'>

@@ -60,7 +60,6 @@ const DetailModal = ({
 					{event.description || '— немає опису —'}
 				</p>
 
-				{/* s */}
 				<div className='flex justify-end gap-3'>
 					{!joined && !isFull && (
 						<button

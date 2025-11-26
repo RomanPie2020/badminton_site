@@ -10,13 +10,12 @@ import { IRefreshTokenResponse } from '../shared/interfaces/models'
 import { authStatusSliceActions } from '../store/authStatus.slice'
 
 export const baseQueryWithReauth: BaseQueryFn<
-	string | FetchArgs, // Аргументи (URL або об'єкт запиту)
-	unknown, // Тип даних, які повертаються
-	FetchBaseQueryError, // Тип помилки
-	{}, // Опціональні додаткові опції
-	FetchBaseQueryMeta // Метадані
+	string | FetchArgs,
+	unknown,
+	FetchBaseQueryError,
+	{},
+	FetchBaseQueryMeta
 > = async (args: any, api: any, extraOptions: any) => {
-	// Базовий запит
 	const baseQuery = fetchBaseQuery({
 		baseUrl: apiUrl,
 		prepareHeaders: headers => {
@@ -30,7 +29,7 @@ export const baseQueryWithReauth: BaseQueryFn<
 
 	let result = await baseQuery(args, api, extraOptions)
 
-	// Якщо токен протермінувався (401 Unauthorized)
+	// If the token has expired (401 Unauthorized)
 	if (result.error?.status === 401) {
 		const refreshToken = localStorage.getItem('refresh_token')
 		if (refreshToken) {
@@ -51,15 +50,12 @@ export const baseQueryWithReauth: BaseQueryFn<
 				const { accessToken: newAccessToken } =
 					refreshResult.data as IRefreshTokenResponse
 
-				// Збереження нового токена
 				localStorage.setItem('access_token', newAccessToken)
 
 				api.dispatch(authStatusSliceActions.logIn())
 
-				// Повторний запит із новим токеном
 				result = await baseQuery(args, api, extraOptions)
 			} else {
-				// Якщо оновлення не вдалося, очищуємо локальні токени
 				localStorage.removeItem('access_token')
 				localStorage.removeItem('refresh_token')
 				localStorage.setItem('is_Auth', 'false')
@@ -67,7 +63,6 @@ export const baseQueryWithReauth: BaseQueryFn<
 				api.dispatch(authStatusSliceActions.logOut())
 			}
 		} else {
-			// Якщо немає refresh токена, робимо логаут
 			localStorage.removeItem('access_token')
 			localStorage.removeItem('refresh_token')
 			localStorage.setItem('is_Auth', 'false')

@@ -7,18 +7,7 @@ import {
 	ISignUpFormProps,
 } from '../../../shared/interfaces/models'
 import FormBuilder from './FormBuilder'
-// #todo підключити reduxtoolkit
 
-// type FormData = {
-//   value: string
-//   touched?: boolean
-// }
-
-// const submitButtonProps: IBaseButton = {
-// 	title: 'SignUp',
-// 	styles: 'log-button mt-5',
-// 	to: '/',
-// }
 const SubmitButtonProps: IBaseButton = {
 	title: 'Зареєструватися',
 	styles: 'signup-button',

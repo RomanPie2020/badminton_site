@@ -1,3 +1,4 @@
+import { lazy, Suspense } from 'react'
 import ReactDOM from 'react-dom/client'
 import { Provider } from 'react-redux'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
@@ -8,16 +9,29 @@ import EventList from './components/screens/EventList'
 import GoogleSuccess from './components/screens/GoogleSuccess'
 import Home from './components/screens/Home'
 import LogIn from './components/screens/LogIn'
-import MyEvents from './components/screens/MyEvents'
-import MyProfile from './components/screens/MyProfile'
 import { RegisterConfirm } from './components/screens/RegisterConfirm'
 import ResetPassword from './components/screens/ResetPassword'
 import SignUp from './components/screens/SignUp'
-import UserProfile from './components/screens/UserProfile'
+import Loader from './components/ui/Loader'
 import './index.css'
 import { store } from './store/store'
 
-// #todo додати quizet ,для утримання одного елементу на усіх ендпоінтах
+const MyProfile = lazy(() => import('./components/screens/MyProfile'))
+const MyEvents = lazy(() => import('./components/screens/MyEvents'))
+const UserProfile = lazy(() => import('./components/screens/UserProfile'))
+
+// 🔹 Обгортка Suspense для всіх lazy‑сторінок
+const withSuspense = (element: JSX.Element) => (
+	<Suspense
+		fallback={
+			<div className='mt-48'>
+				<Loader />
+			</div>
+		}
+	>
+		{element}
+	</Suspense>
+)
 const router = createBrowserRouter([
 	{
 		path: '/',
@@ -40,14 +54,6 @@ const router = createBrowserRouter([
 				path: '/auth/confirm',
 				element: <RegisterConfirm />,
 			},
-			// {
-			// 	path: '/codeverification',
-			// 	element: <CodeVerificationPage />,
-			// },
-			// {
-			// 	path: '/paste/:url',
-			// 	element: <Paste />,
-			// },
 			{
 				path: '/google/success',
 				element: <GoogleSuccess />,
@@ -61,32 +67,16 @@ const router = createBrowserRouter([
 				element: <ResetPassword />,
 			},
 			{
-				path: '/profile',
-				element: <MyProfile />,
-			},
-			{
 				path: '/events',
 				element: <EventList />,
 			},
-			{
-				path: '/myevents',
-				element: <MyEvents />,
-			},
-			{
-				path: '/users/:id/profile',
-				element: <UserProfile />,
-			},
+
+			{ path: '/profile', element: withSuspense(<MyProfile />) },
+			{ path: '/myevents', element: withSuspense(<MyEvents />) },
+			{ path: '/users/:id/profile', element: withSuspense(<UserProfile />) },
 		],
 	},
 ])
-
-// const root = ReactDOM.createRoot(
-//   document.getElementById('root') as HTMLElement
-// )
-//
-// root.render(
-//   <RouterProvider router={router}/>
-// )
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
 	<Provider store={store}>

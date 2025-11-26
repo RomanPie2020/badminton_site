@@ -10,9 +10,9 @@ import DetailModal from '../ui/DetailModal'
 import EventCard from '../ui/EventCard'
 import EventFormModal from '../ui/EventFormModal'
 import EventControls from '../ui/events/EventControls'
+import EventSkeleton from '../ui/events/EventSkeleton'
 import FilterModal from '../ui/FilterModal'
-import Loader from '../ui/Loader'
-// #TODO add suspense loadin
+
 const EventList = () => {
 	const filters = useAppSelector(selectFilters)
 	const currentUserId = Number(localStorage.getItem('user_id'))
@@ -40,9 +40,10 @@ const EventList = () => {
 		items,
 		total,
 		hasMore,
-		isLoadingMore,
+		isFetching,
 		isMounting,
 		isSearching,
+		isLoadingMore,
 		isError,
 		resetAndLoad,
 		handleCreate,
@@ -86,17 +87,13 @@ const EventList = () => {
 		}
 	}
 
-	// Memoized handlers for Controls to prevent re-renders
+	// Memoized handlers for controls to prevent re-renders
 	const handleSetCreateOpen = useCallback(() => setCreateEventForm(true), [])
 
 	// Initial Load Spinner
-	if (isMounting) {
-		return (
-			<div className='mt-64'>
-				<Loader />
-			</div>
-		)
-	}
+	// if (isFetching) {
+	// 	return <Loader />
+	// }
 	if (isError) {
 		return (
 			<div className='p-6'>
@@ -118,7 +115,7 @@ const EventList = () => {
 	return (
 		<div className='p-6 xs:!px-4'>
 			<EventControls
-				searchText={searchText} // Передаємо миттєве значення для input value
+				searchText={searchText}
 				setSearchText={setSearchText}
 				searchField={searchField}
 				setSearchField={setSearchField}
@@ -129,10 +126,10 @@ const EventList = () => {
 				onCreateClick={handleSetCreateOpen}
 			/>
 
+			{isMounting && <EventSkeleton />}
 			{isSearching ? (
-				// Якщо йде пошук - показуємо спінер ЗАМІСТЬ карток, але НИЖЧЕ інпутів
-				<div className='flex justify-center py-20'>
-					<div className='animate-spin h-10 w-10 border-4 border-blue-500 border-t-transparent rounded-full'></div>
+				<div className=''>
+					<EventSkeleton />
 				</div>
 			) : (
 				<div className='max-w-7xl mx-auto py-8 xs:!px-0 px-4 grid gap-6 grid-cols-[repeat(auto-fit,_minmax(280px,_1fr))]'>
@@ -152,11 +149,9 @@ const EventList = () => {
 					))}
 				</div>
 			)}
-
-			{/* Load More Spinner */}
 			{isLoadingMore && (
-				<div className='flex justify-center py-4'>
-					<div className='animate-spin h-6 w-6 border-4 border-blue-500 border-t-transparent rounded-full'></div>
+				<div className=''>
+					<EventSkeleton />
 				</div>
 			)}
 
@@ -186,14 +181,14 @@ const EventList = () => {
 				</div>
 			)}
 
-			{/* {!isInitialLoad && items.length > 0 && (
+			{!isMounting && items.length > 0 && (
 				<div className='text-center py-4 text-sm text-gray-500'>
 					Показано {items.length} з {total} подій
 					{!hasMore && items.length === total && (
 						<span className='block mt-1'>Всі події завантажено</span>
 					)}
 				</div>
-			)} */}
+			)}
 
 			{/* Observer Element */}
 			<div ref={bottomRef} className='h-2 w-full ' />

@@ -18,11 +18,11 @@ const GoogleSuccess = () => {
 			localStorage.setItem('refresh_token', refreshToken)
 			localStorage.setItem('user_id', userId)
 			localStorage.setItem('is_Auth', 'true')
-			logIn() // оновлення Redux стану
-			navigate('/') // редірект на головну
+			logIn()
+			navigate('/')
 		} else {
 			console.error('Token not found in URL')
-			navigate('/login') // або інша fallback сторінка
+			navigate('/login')
 		}
 	}, [searchParams, logIn, navigate])
 

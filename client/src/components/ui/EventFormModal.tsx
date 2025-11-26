@@ -69,7 +69,6 @@ const EventFormModal: React.FC<EventFormModalProps> = ({
 				</h2>
 
 				<form noValidate onSubmit={handleSubmit(submit)} className='space-y-4'>
-					{/* Заголовок */}
 					<div>
 						<label className='block text-sm font-medium text-gray-700'>
 							Заголовок *
@@ -83,7 +82,6 @@ const EventFormModal: React.FC<EventFormModalProps> = ({
 						)}
 					</div>
 
-					{/* Локація */}
 					<div>
 						<label className='block text-sm font-medium text-gray-700'>
 							Локація *
@@ -97,7 +95,6 @@ const EventFormModal: React.FC<EventFormModalProps> = ({
 						)}
 					</div>
 
-					{/* Дата та час */}
 					<div>
 						<label className='block text-sm font-medium text-gray-700'>
 							Дата та час *
@@ -107,13 +104,12 @@ const EventFormModal: React.FC<EventFormModalProps> = ({
 							{...register('eventDate', { required: 'Обовʼязково' })}
 							className='mt-1 block w-full border-gray-300 rounded-md p-2'
 						/>
-						{/* TODO узгоджена локальна дата і час адаптив треба */}
+						{/* TODO узгоджена локальна дата */}
 						{errors.eventDate && (
 							<p className='text-red-600 text-sm'>{errors.eventDate.message}</p>
 						)}
 					</div>
 
-					{/* Тип події */}
 					<div>
 						<label className='block text-sm font-medium text-gray-700'>
 							Тип події *
@@ -134,7 +130,6 @@ const EventFormModal: React.FC<EventFormModalProps> = ({
 						)}
 					</div>
 
-					{/* Тип гри */}
 					<div>
 						<label className='block text-sm font-medium text-gray-700'>
 							Тип гри *
@@ -155,7 +150,6 @@ const EventFormModal: React.FC<EventFormModalProps> = ({
 						)}
 					</div>
 
-					{/* Рівень гравців */}
 					<div>
 						<label className='block text-sm font-medium text-gray-700'>
 							Рівень гравців *
@@ -178,7 +172,6 @@ const EventFormModal: React.FC<EventFormModalProps> = ({
 						)}
 					</div>
 
-					{/* Опис */}
 					<div>
 						<label className='block text-sm font-medium text-gray-700'>
 							Опис
@@ -190,7 +183,6 @@ const EventFormModal: React.FC<EventFormModalProps> = ({
 						/>
 					</div>
 
-					{/* Макс. учасників */}
 					<div>
 						<label className='block text-sm font-medium text-gray-700'>
 							Макс. учасників

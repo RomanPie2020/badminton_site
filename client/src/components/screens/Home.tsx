@@ -41,7 +41,6 @@ function Home() {
 	return (
 		<>
 			<div className='w-full min-h-screen bg-gradient-to-t from-slate-200 to-indigo-400 py-40'>
-				{/* <div className='absolute inset-0'></div> */}
 				<div className='flex flex-col items-center justify-center mt-10'>
 					<h1 className='text-6xl sm:text-3xl text-center font-bold mb-4 max-w-5xl px-8 sm:px-6'>
 						Приєднуйся до подій BadmickTogether та грай бадмінтон релаксуючи!!!

@@ -5478,3 +5478,14 @@
 {"creatorId":11,"description":"gasdg","eventDate":"2025-11-30T23:33","eventType":"Турнір","gameType":"Одиночна","level":"info","levelOfPlayers":"Новачок","location":"dafs","maxParticipants":3,"message":"Створення івенту:","timestamp":"2025-11-24T23:33:59.702Z","title":"gas"}
 {"creatorId":11,"description":"fafd","eventDate":"2025-11-30T23:34","eventType":"Турнір","gameType":"Одиночна","level":"info","levelOfPlayers":"Новачок","location":"fadsfasd","maxParticipants":2,"message":"Створення івенту:","timestamp":"2025-11-24T23:34:25.931Z","title":"gas2"}
 {"level":"error","message":"Error:","timestamp":"2025-11-25T23:53:31.245Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-11-26T20:29:14.031Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-11-26T20:29:14.044Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-11-26T20:29:14.219Z"}
+{"creatorId":11,"description":"fadsf","eventDate":"2025-11-30T22:21","eventType":"Турнір","gameType":"Одиночна","level":"info","levelOfPlayers":"Новачок","location":"kk","maxParticipants":3,"message":"Створення івенту:","timestamp":"2025-11-26T22:21:53.436Z","title":"gas2"}
+{"creatorId":11,"description":"adfssdf","eventDate":"2025-11-29T22:22","eventType":"Турнір","gameType":"Одиночна","level":"info","levelOfPlayers":"Новачок","location":"afsdf","maxParticipants":3,"message":"Створення івенту:","timestamp":"2025-11-26T22:22:46.677Z","title":"gas3"}
+{"level":"info","message":"User logged out","timestamp":"2025-11-26T22:25:13.150Z"}
+{"level":"info","message":"Refresh token saved for user 11","timestamp":"2025-11-26T22:25:16.304Z"}
+{"level":"info","message":"Користувач romanstone2004@gmail.com успішно увійшов","timestamp":"2025-11-26T22:25:16.305Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-11-26T23:27:30.067Z"}
+{"level":"info","message":"Refresh token saved for user 11","timestamp":"2025-11-26T23:27:30.958Z"}
+{"level":"info","message":"Користувач romanstone2004@gmail.com успішно увійшов","timestamp":"2025-11-26T23:27:30.959Z"}

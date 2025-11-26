@@ -3,6 +3,7 @@ import { Link, Outlet } from 'react-router-dom'
 import { useTopBar } from '../../../hooks/useTopBar'
 import { IBaseButton } from '../../../shared/interfaces/models'
 import BaseButton from '../../ui/buttons/BaseButton'
+import { default as PageLoader } from '../../ui/PageLoader'
 
 const logButtonProps: IBaseButton = {
 	title: 'Увійти',
@@ -70,6 +71,7 @@ function TopBar() {
 
 	return (
 		<>
+			<PageLoader />
 			<header className='fixed top-0 w-full bg-gradient-to-t from-gray-700 to-indigo-500 z-50'>
 				<div className='flex items-center justify-between px-5 h-20'>
 					{/* Logo */}

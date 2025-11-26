@@ -22,7 +22,7 @@ const LogIn = () => {
 				localStorage.setItem('refresh_token', data.refreshToken)
 				localStorage.setItem('user_id', data.user.id)
 				localStorage.setItem('is_Auth', 'true')
-				logIn() // Оновлюємо стан авторизації
+				logIn()
 				navigate('/')
 			}
 		} catch (error) {

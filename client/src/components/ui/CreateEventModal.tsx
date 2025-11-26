@@ -1,4 +1,3 @@
-// components/CreateEventModal.tsx
 import React, { useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useCreateEventMutation } from '../../services/EventService'
@@ -36,7 +35,6 @@ const CreateEventModal: React.FC<CreateEventModalProps> = ({ onCreated }) => {
 			onCreated()
 		} catch (e) {
 			console.error(e)
-			// можна показати toast або повідомлення про помилку
 		}
 	}
 
@@ -108,7 +106,7 @@ const CreateEventModal: React.FC<CreateEventModalProps> = ({ onCreated }) => {
 									</p>
 								)}
 							</div>
-							{/* Нові поля: Тип події */}
+
 							<div>
 								<label className='block text-sm font-medium text-gray-700'>
 									Тип події *
@@ -136,7 +134,6 @@ const CreateEventModal: React.FC<CreateEventModalProps> = ({ onCreated }) => {
 								)}
 							</div>
 
-							{/* Нові поля: Формат гри */}
 							<div>
 								<label className='block text-sm font-medium text-gray-700'>
 									Формат гри *
@@ -164,7 +161,6 @@ const CreateEventModal: React.FC<CreateEventModalProps> = ({ onCreated }) => {
 								)}
 							</div>
 
-							{/* Нові поля: Рівень гравців */}
 							<div>
 								<label className='block text-sm font-medium text-gray-700'>
 									Рівень гравців *
