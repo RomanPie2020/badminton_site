@@ -24,7 +24,7 @@ const forgotPasswordButtonProps: IBaseButton = {
 	to: '/enter-email',
 }
 
-const LogInForm = ({ onSubmit, errorMessage }: ILogInFormProps) => {
+const LogInForm = ({ onSubmit }: ILogInFormProps) => {
 	return (
 		<FormBuilder<ILogInData>
 			inputs={[
@@ -49,7 +49,7 @@ const LogInForm = ({ onSubmit, errorMessage }: ILogInFormProps) => {
 				email: '',
 				password: '',
 			}}
-			errorMessage={errorMessage}
+			// errorMessage={errorMessage}
 			onSubmit={onSubmit}
 			showGoogleButton={true}
 		/>

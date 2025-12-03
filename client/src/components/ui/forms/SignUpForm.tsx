@@ -15,13 +15,8 @@ const SubmitButtonProps: IBaseButton = {
 	type: 'button',
 }
 
-const LogInButtonProps: IBaseButton = {
-	title: 'Маєш аккаунт? Увійди зараз',
-	styles: '',
-	to: '/login',
-}
-const formInputStyles =
-	'px-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent'
+// const formInputStyles =
+// 	'px-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent'
 
 const SignUpForm = ({ onSubmit }: ISignUpFormProps) => {
 	const inputs: IFormInput<ISignUpData>[] = [

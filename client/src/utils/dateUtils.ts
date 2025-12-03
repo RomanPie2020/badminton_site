@@ -45,6 +45,6 @@ export const getNextMonth = () => {
 }
 
 export type DateRange = {
-	from: string
-	to: string
+	from: string | null
+	to: string | null
 }

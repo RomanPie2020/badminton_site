@@ -1,16 +1,20 @@
 import { memo } from 'react'
 import { useActions } from '../../../hooks/useActions'
-// Імпортуйте ваші типи та іконки
+import {
+	TSearchField,
+	TSortBy,
+	TSortOrder,
+} from '../../../shared/interfaces/models'
 
 interface EventControlsProps {
 	searchText: string
 	setSearchText: (val: string) => void
-	searchField: 'title' | 'location' | 'creator'
-	setSearchField: (val: 'title' | 'location' | 'creator') => void
-	sortBy: 'eventDate' | 'title' | 'location'
-	setSortBy: (val: 'eventDate' | 'title' | 'location') => void
-	sortOrder: 'asc' | 'desc'
-	setSortOrder: (val: 'asc' | 'desc') => void
+	searchField: TSearchField
+	setSearchField: (val: string) => void
+	sortBy: TSortBy
+	setSortBy: (val: string) => void
+	sortOrder: TSortOrder
+	setSortOrder: (val: string) => void
 	onCreateClick: () => void
 }
 
@@ -41,7 +45,6 @@ const EventControls = memo(
 					onClick={() => openFiltersModal()}
 					className='flex items-center space-x-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-md text-sm font-medium sm:!w-full sm:!justify-center'
 				>
-					{/* SVG Icon */}
 					<svg
 						xmlns='http://www.w3.org/2000/svg'
 						className='h-5 w-5 text-gray-600'
@@ -63,7 +66,7 @@ const EventControls = memo(
 				<div className='flex items-center space-x-2 flex-wrap sm:!flex-col sm:!items-stretch sm:!space-x-0 sm:!gap-2 sm:!w-full'>
 					<select
 						value={searchField}
-						onChange={e => setSearchField(e.target.value as any)}
+						onChange={e => setSearchField(e.target.value)}
 						className='border border-gray-300 rounded-md p-2 text-sm sm:!w-full'
 					>
 						<option value='title'>По назві</option>

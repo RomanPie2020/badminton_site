@@ -1,3 +1,4 @@
+import { FiltersState } from '../../../store/filtersSlice'
 import {
 	DateRange,
 	getNext7Days,
@@ -10,7 +11,10 @@ import { DatePresetButton } from './DatePresetButton'
 
 interface DateFilterProps {
 	values: DateRange
-	onFilterChange: (filter: { category: string; value: DateRange }) => void
+	onFilterChange: (filter: {
+		category: keyof FiltersState['values']
+		value: string
+	}) => void
 }
 
 export function DateFilter({ values, onFilterChange }: DateFilterProps) {

@@ -25,7 +25,7 @@ export interface IFormInput<T extends FieldValues> {
 }
 
 // FormBuilder
-export type FormBuilderSubmitHandler<T extends FieldValues> = (
+export type TFormBuilderSubmitHandler<T extends FieldValues> = (
 	data: T,
 	helpers?: { setError: UseFormSetError<T> }
 ) => void | Promise<void>
@@ -37,7 +37,7 @@ export interface ILogInData {
 }
 export interface ILogInFormProps {
 	onSubmit: (userData: ILogInData) => void
-	errorMessage?: string | null
+	// errorMessage?: string | null
 }
 
 // SignUpForm
@@ -48,7 +48,7 @@ export interface ISignUpData {
 	passwordConfirmation: string
 }
 export interface ISignUpFormProps {
-	onSubmit: FormBuilderSubmitHandler<ISignUpData>
+	onSubmit: TFormBuilderSubmitHandler<ISignUpData>
 	errorMessage?: string
 }
 
@@ -91,7 +91,7 @@ export interface IResponseLogIn {
 }
 
 export interface IRefreshTokenResponse {
-	accessToken: string // Новий access-токен
+	accessToken: string
 }
 
 // Auth state
@@ -102,19 +102,6 @@ export interface IAuthState {
 // Profile
 export interface IRequestChangeUsername {
 	username: string
-}
-
-// Paste service
-// create paste
-export interface IRequestCreatePaste {
-	title: string
-	syntax?: string
-	text: string
-	password?: string
-	is_public: Boolean
-}
-export interface IRequestDeletePasteById {
-	id: string
 }
 
 // Enter email
@@ -145,29 +132,28 @@ export interface IResetPasswordRequest {
 }
 
 // Events
-export interface EventWithRelations {
-	id: number
-	title: string
-	location: string
-	eventDate: string
-	creator: { id: number; username: string; profile?: { nickname: string } }
-	maxParticipants?: number
-	participants: { id: number }[]
-}
+// export interface EventWithRelations {
+// 	id: number
+// 	title: string
+// 	location: string
+// 	eventDate: string
+// 	creator: { id: number; username: string; profile?: { nickname: string } }
+// 	maxParticipants?: number
+// 	participants: { id: number }[]
+// }
 
-export interface EventCardProps {
-	event: EventWithRelations
-	currentUserId: number
-	onJoin: (id: number) => void
-	onLeave: (id: number) => void
-}
+// EventList
+export type TSearchField = 'title' | 'location' | 'creator'
+export type TSortBy = 'eventDate' | 'title' | 'location'
+export type TSortOrder = 'asc' | 'desc'
+export type TModalState = number | null
 
 // user profile
 export interface UserProfile {
 	id: number
 	userId: number
-	username: string // з таблиці users
-	email?: string // якщо ви віддаєте email
+	username: string
+	email?: string
 	nickname: string
 	avatarUrl?: string | null
 	city?: string | null
@@ -188,8 +174,8 @@ export interface UserProfile {
 	rating: number
 	reviewsCount: number
 
-	createdAt: string // ISO-рядок
-	updatedAt: string // ISO-рядок
+	createdAt: string
+	updatedAt: string
 }
 
 // Filters

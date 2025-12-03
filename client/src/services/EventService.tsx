@@ -1,6 +1,6 @@
 // app/services/eventService.ts
 import { createApi } from '@reduxjs/toolkit/query/react'
-import { EventWithRelations, Filters } from '../shared/interfaces/models'
+import { Filters } from '../shared/interfaces/models'
 import { EventInput } from '../shared/validations/event.schema'
 import { baseQueryWithReauth } from './baseQueryWithReauth'
 
@@ -106,7 +106,7 @@ export const eventService = createApi({
 
 		getFilteredEvents: build.query<
 			{
-				events: EventWithRelations[]
+				events: EventInput[]
 				total: number
 				limit: number
 				offset: number
@@ -181,7 +181,7 @@ export const eventService = createApi({
 
 // 		getFilteredEvents: build.query<
 // 			{
-// 				events: EventWithRelations[]
+// 				events: EventInput[]
 // 				total: number
 // 				limit: number
 // 				offset: number

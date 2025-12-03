@@ -1,15 +1,15 @@
 import { useState } from 'react'
-import { Path } from 'react-hook-form'
 import { Link } from 'react-router-dom'
 import { formStyles } from '../../configs/styles.config'
 import { useActions } from '../../hooks/useActions'
 import { useRegisterMutation } from '../../services/AuthService'
 import {
-	FormBuilderSubmitHandler,
 	ISignUpData,
+	TFormBuilderSubmitHandler,
 } from '../../shared/interfaces/models'
+import { getErrorMessage } from '../../utils/parseApiErrors'
 import SignUpForm from '../ui/forms/SignUpForm'
-import Loader from '../ui/Loader'
+import Loader from '../ui/loaders/Loader'
 
 const SignUp = () => {
 	const { addUserId } = useActions()
@@ -17,40 +17,19 @@ const SignUp = () => {
 	const [isSuccess, setIsSuccess] = useState(false)
 	const [errorMessage, setErrorMessage] = useState('')
 
-	const onSubmit: FormBuilderSubmitHandler<ISignUpData> = async (
-		formData,
-		helpers
-	) => {
+	const onSubmit: TFormBuilderSubmitHandler<ISignUpData> = async formData => {
 		setErrorMessage('')
 		try {
 			const response = await signUp(formData).unwrap()
 			await addUserId(response.id)
 			setIsSuccess(true)
-		} catch (error: any) {
+		} catch (error: unknown) {
 			console.error('Signup error', error)
-
-			if (error?.data?.errors) {
-				const fieldErrors = error.data.errors
-				Object.entries(fieldErrors).forEach(([field, messages]) => {
-					if (Array.isArray(messages)) {
-						helpers?.setError(field as Path<ISignUpData>, {
-							type: 'server',
-							message: messages[0],
-						})
-					}
-				})
-				return
-			}
-
-			const message =
-				error?.data?.message ||
-				error?.error ||
-				'Не вдалося зареєструватися. Спробуйте ще раз.'
+			const message = getErrorMessage(error, 'Failed to register. Try again.')
 			setErrorMessage(message)
 		}
 	}
 
-	// console.log(errors)
 	return (
 		<div>
 			<div className={`${formStyles}`}>
@@ -66,7 +45,7 @@ const SignUp = () => {
 					<div>
 						<SignUpForm onSubmit={onSubmit} />
 						{errorMessage && (
-							<p className='text-red-600 mt-4 text-lg'>{errorMessage}</p>
+							<p className='text-red-500 text-lg'>{errorMessage}</p>
 						)}
 						<Link className={''} to={'/login'}>
 							Маєш аккаунт? Увійди зараз

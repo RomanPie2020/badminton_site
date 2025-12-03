@@ -1,9 +1,9 @@
 import { format } from 'date-fns'
 import { useNavigate } from 'react-router-dom'
-import { EventWithRelations } from '../../shared/interfaces/models'
+import { EventInput } from '../../shared/validations/event.schema'
 
-interface EventCardProps {
-	event: EventWithRelations
+interface IEventCardProps {
+	event: EventInput
 	currentUserId: number
 	onJoin: (id: number) => void
 	onLeave: (id: number) => void
@@ -22,7 +22,7 @@ const EventCard = ({
 	setShowDetails,
 	setEdit,
 	setDelete,
-}: EventCardProps) => {
+}: IEventCardProps) => {
 	const joined = event.participants.some(u => u.id === currentUserId)
 	const isCreator = event.creator.id === currentUserId
 	const isFull =
@@ -120,59 +120,3 @@ const EventCard = ({
 }
 
 export default EventCard
-
-/* {showModal && (
-				<div className='fixed inset-0 bg-black/40 flex items-center justify-center z-50 text-justify hyphens-auto'>
-					<div className='bg-white rounded-xl shadow-xl w-full max-w-lg p-6 relative'>
-						<button
-							onClick={() => setShowModal(false)}
-							className='absolute top-4 right-4 text-gray-500 hover:text-gray-700'
-						>
-							✕
-						</button>
-						<h2 className='text-2xl font-semibold mb-4 pt-5'>{event.title}</h2>
-						<p className='text-gray-700 mb-4'>
-							{event.description || '— немає опису —'}
-						</p>
-
-						<h3 className='text-xl font-medium mb-2'>
-							Учасники ({event.participants.length}
-							{event.maxParticipants != null && <> / {event.maxParticipants}</>}
-							)
-						</h3>
-						{event.participants.length === 0 ? (
-							<p className='text-gray-500'>Ще ніхто не приєднався.</p>
-						) : (
-							<ul className='list-disc list-inside space-y-1 max-h-64 overflow-auto'>
-								{event.participants.map(user => (
-									<li
-										key={user.id}
-										className='flex items-center gap-3 p-2 rounded-lg hover:bg-gray-100 transition'
-									>
-										{user.avatarUrl ? (
-											<img
-												src={user.avatarUrl}
-												alt={user.nickname || user.username}
-												className='w-8 h-8 rounded-full object-cover'
-											/>
-										) : (
-											<div className='w-8 h-8 rounded-full bg-gray-300 flex items-center justify-center text-xs text-gray-600'>
-												{(user.nickname || user.username)[0]?.toUpperCase()}
-											</div>
-										)}
-										<button
-											onClick={() => {
-												setShowModal(false)
-												navigate(`/users/${user.id}/profile`)
-											}}
-											className='text-blue-600 hover:underline font-medium'
-										>
-											{user.nickname || user.username}
-										</button>
-									</li>
-								))}
-							</ul>
-						)}
-					</div>
-				</div>
-			)}  */

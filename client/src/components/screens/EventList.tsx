@@ -1,17 +1,23 @@
 import { useCallback, useRef, useState } from 'react'
 import { useDebounce } from '../../hooks/useDebounce'
 import { useEvents } from '../../hooks/useEvents'
-import { Filters } from '../../shared/interfaces/models'
+import {
+	Filters,
+	TModalState,
+	TSearchField,
+	TSortBy,
+	TSortOrder,
+} from '../../shared/interfaces/models'
 import { EventInput } from '../../shared/validations/event.schema'
 import { selectFilters } from '../../store/filtersSlice'
 import { useAppSelector } from '../../store/store'
-import ConfirmModal from '../ui/ConfirmModal'
-import DetailModal from '../ui/DetailModal'
 import EventCard from '../ui/EventCard'
-import EventFormModal from '../ui/EventFormModal'
 import EventControls from '../ui/events/EventControls'
 import EventSkeleton from '../ui/events/EventSkeleton'
-import FilterModal from '../ui/FilterModal'
+import ConfirmModal from '../ui/FilterModals/ConfirmModal'
+import DetailModal from '../ui/FilterModals/DetailModal'
+import EventFormModal from '../ui/FilterModals/EventFormModal'
+import FilterModal from '../ui/FilterModals/FilterModal'
 
 const EventList = () => {
 	const filters = useAppSelector(selectFilters)
@@ -20,19 +26,15 @@ const EventList = () => {
 	const [searchText, setSearchText] = useState('')
 	const debouncedSearchText = useDebounce(searchText, 500)
 
-	const [searchField, setSearchField] = useState<
-		'title' | 'location' | 'creator'
-	>('title')
-	const [sortBy, setSortBy] = useState<'eventDate' | 'title' | 'location'>(
-		'eventDate'
-	)
-	const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc')
+	const [searchField, setSearchField] = useState<TSearchField>('title')
+	const [sortBy, setSortBy] = useState<TSortBy>('eventDate')
+	const [sortOrder, setSortOrder] = useState<TSortOrder>('asc')
 
 	// Modals State
-	const [showDetails, setShowDetails] = useState<number | null>(null)
+	const [showDetails, setShowDetails] = useState<TModalState>(null)
 	const [createEventForm, setCreateEventForm] = useState<Boolean>(false)
-	const [editEventId, setEditEventId] = useState<number | null>(null)
-	const [deleteEventId, setDeleteEventId] = useState<number | null>(null)
+	const [editEventId, setEditEventId] = useState<TModalState>(null)
+	const [deleteEventId, setDeleteEventId] = useState<TModalState>(null)
 
 	const bottomRef = useRef<HTMLDivElement | null>(null)
 
@@ -40,7 +42,6 @@ const EventList = () => {
 		items,
 		total,
 		hasMore,
-		isFetching,
 		isMounting,
 		isSearching,
 		isLoadingMore,
@@ -62,38 +63,22 @@ const EventList = () => {
 
 	// Callbacks for modals
 	const onConfirmCreate = async (data: EventInput) => {
-		try {
-			await handleCreate(data)
-			setCreateEventForm(false)
-		} catch (error) {
-			console.error('Error creating event:', error)
-		}
+		await handleCreate(data)
+		setCreateEventForm(false)
 	}
 	const onConfirmEdit = async (eventId: number, data: EventInput) => {
-		try {
-			await handleEdit(eventId, data)
-			setEditEventId(null)
-		} catch (error) {
-			console.error('Error editing event:', error)
-		}
+		await handleEdit(eventId, data)
+		setEditEventId(null)
 	}
 
 	const onConfirmDelete = async (eventId: number) => {
-		try {
-			await handleDelete(eventId)
-			setDeleteEventId(null)
-		} catch (error) {
-			console.error('Error deleting event:', error)
-		}
+		await handleDelete(eventId)
+		setDeleteEventId(null)
 	}
 
 	// Memoized handlers for controls to prevent re-renders
 	const handleSetCreateOpen = useCallback(() => setCreateEventForm(true), [])
 
-	// Initial Load Spinner
-	// if (isFetching) {
-	// 	return <Loader />
-	// }
 	if (isError) {
 		return (
 			<div className='p-6'>

@@ -3,7 +3,7 @@ import { formStyles } from '../../configs/styles.config'
 import { useConfirmRegistrationQuery } from '../../services/AuthService'
 import { IBaseButton } from '../../shared/interfaces/models'
 import BaseButton from '../ui/buttons/BaseButton'
-import Loader from '../ui/Loader'
+import Loader from '../ui/loaders/Loader'
 
 const buttonProps: IBaseButton = {
 	title: 'Log In',

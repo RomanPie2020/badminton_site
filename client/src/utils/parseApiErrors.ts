@@ -1,39 +1,44 @@
-import { FetchBaseQueryError } from '@reduxjs/toolkit/query'
-import { FieldValues, Path, UseFormSetError } from 'react-hook-form'
-
-interface ApiErrorResponse {
-	errors?: Record<string, string[]>
-	message?: string
+interface IFetchBaseQueryError {
+	status: number | string
+	data?: { message?: string } | string
+	error?: string
 }
 
-export function parseApiError<T extends FieldValues>(
+export const getErrorMessage = (
 	error: unknown,
-	setError?: UseFormSetError<T>,
-	setErrorMessage?: (msg: string) => void
-) {
-	// RTK Query помилка
-	if (typeof error === 'object' && error !== null && 'status' in error) {
-		const apiError = (error as FetchBaseQueryError).data as ApiErrorResponse
-
-		if (apiError?.errors) {
-			Object.entries(apiError.errors).forEach(([field, messages]) => {
-				if (Array.isArray(messages) && messages.length > 0) {
-					setError?.(field as Path<T>, {
-						type: 'server',
-						message: messages[0],
-					})
-				}
-			})
-
-			return
-		}
-
-		if (apiError?.message) {
-			setErrorMessage?.(apiError.message)
-			return
-		}
+	defaultMessage: string = 'An unknown error occurred. Try again.',
+	status?: Boolean
+): string => {
+	if (!error) {
+		return defaultMessage
 	}
 
-	// Фолбек для будь-яких інших помилок
-	setErrorMessage?.('Сталася невідома помилка. Спробуйте ще раз.')
+	const apiError = error as IFetchBaseQueryError
+	const messageContent = (() => {
+		if (
+			apiError.data &&
+			typeof apiError.data === 'object' &&
+			'message' in apiError.data
+		) {
+			return apiError.data.message || defaultMessage
+		}
+
+		if (apiError.data && typeof apiError.data === 'string') {
+			return apiError.data
+		}
+
+		if (apiError.error) {
+			return apiError.error
+		}
+
+		if (error instanceof Error) {
+			return error.message
+		}
+	})()
+
+	if (status && apiError.status && apiError.status !== 'FETCH_ERROR') {
+		return `[Error ${apiError.status}] ${messageContent}`
+	}
+
+	return messageContent || defaultMessage
 }

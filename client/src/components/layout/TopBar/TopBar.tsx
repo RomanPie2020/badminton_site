@@ -3,7 +3,7 @@ import { Link, Outlet } from 'react-router-dom'
 import { useTopBar } from '../../../hooks/useTopBar'
 import { IBaseButton } from '../../../shared/interfaces/models'
 import BaseButton from '../../ui/buttons/BaseButton'
-import { default as PageLoader } from '../../ui/PageLoader'
+import { default as PageLoader } from '../../ui/loaders/PageLoader'
 
 const logButtonProps: IBaseButton = {
 	title: 'Увійти',

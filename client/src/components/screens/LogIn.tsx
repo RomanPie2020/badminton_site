@@ -35,7 +35,10 @@ const LogIn = () => {
 		<div>
 			<div className={`${formStyles}`}>
 				<h1 className='text-7xl mb-10 sm:text-4xl'>Увійти</h1>
-				<LogInForm onSubmit={onSubmit} errorMessage={loginError} />
+				<LogInForm onSubmit={onSubmit} />
+				{loginError && (
+					<p className='text-red-600 mb-2 text-lg'>{loginError}</p>
+				)}
 				<Link className={'block mb-4'} to={'/signup'}>
 					Зареєструватися зараз
 				</Link>

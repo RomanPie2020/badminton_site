@@ -1,9 +1,13 @@
 import { EVENT_OPTIONS } from '../../../configs/filterOptions'
+import { FiltersState } from '../../../store/filtersSlice'
 import { CheckboxFilter } from './CheckboxFilter'
 
 interface EventsFilterProps {
 	values: string[]
-	onFilterChange: (filter: { category: string; value: string }) => void
+	onFilterChange: (filter: {
+		category: keyof FiltersState['values']
+		value: string
+	}) => void
 }
 
 export function EventsFilter({ values, onFilterChange }: EventsFilterProps) {

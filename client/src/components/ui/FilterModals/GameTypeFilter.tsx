@@ -1,9 +1,13 @@
 import { GAME_TYPE_OPTIONS } from '../../../configs/filterOptions'
+import { FiltersState } from '../../../store/filtersSlice'
 import { CheckboxFilter } from './CheckboxFilter'
 
 interface GameTypeFilterProps {
 	values: string[]
-	onFilterChange: (filter: { category: string; value: string }) => void
+	onFilterChange: (filter: {
+		category: keyof FiltersState['values']
+		value: string
+	}) => void
 }
 
 export function GameTypeFilter({

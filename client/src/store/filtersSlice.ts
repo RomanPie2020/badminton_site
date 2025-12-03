@@ -41,7 +41,7 @@ const filtersSlice = createSlice({
 			state,
 			action: PayloadAction<{
 				category: keyof FiltersState['values']
-				value: any
+				value: string
 			}>
 		) {
 			const { category, value } = action.payload

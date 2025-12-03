@@ -4,6 +4,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom'
 import { formStyles } from '../../configs/styles.config'
 import { useResetPasswordMutation } from '../../services/AuthService'
 import { IResetPasswordData } from '../../shared/interfaces/models'
+import { getErrorMessage } from '../../utils/parseApiErrors'
 import ResetPasswordForm from '../ui/forms/ResetPasswordForm'
 
 const ResetPassword = () => {
@@ -18,7 +19,7 @@ const ResetPassword = () => {
 		setErrorMessage('')
 		setSuccessMessage('')
 
-		// Перевірка на співпадіння паролів
+		//Check for matching passwords
 		if (req.newPassword !== req.confirmPassword) {
 			setErrorMessage('Паролі не співпадають')
 			return
@@ -33,12 +34,12 @@ const ResetPassword = () => {
 				setSuccessMessage('Пароль успішно змінено!')
 				setTimeout(() => navigate('/'), 2000)
 			}
-		} catch (error: any) {
+		} catch (error: unknown) {
+			const message = getErrorMessage(
+				error,
+				'Failed to update password. Try again later.'
+			)
 			console.log(error, 'Reset password was failed')
-			const message =
-				error?.data?.message ||
-				error?.error ||
-				'Не вдалося оновити пароль. Спробуйте ще раз пізніше.'
 			setErrorMessage(message)
 		}
 	}

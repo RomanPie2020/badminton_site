@@ -4,7 +4,7 @@ import { formStyles } from '../../configs/styles.config'
 import { useForgotPasswordMutation } from '../../services/AuthService'
 import { IEnterEmailData } from '../../shared/interfaces/models'
 import EnterEmailForm from '../ui/forms/EnterEmailForm'
-import Loader from '../ui/Loader'
+import Loader from '../ui/loaders/Loader'
 
 const EnterEmail = () => {
 	const [forgotPassword, { isLoading }] = useForgotPasswordMutation()

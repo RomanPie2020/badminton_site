@@ -12,7 +12,7 @@ import LogIn from './components/screens/LogIn'
 import { RegisterConfirm } from './components/screens/RegisterConfirm'
 import ResetPassword from './components/screens/ResetPassword'
 import SignUp from './components/screens/SignUp'
-import Loader from './components/ui/Loader'
+import Loader from './components/ui/loaders/Loader'
 import './index.css'
 import { store } from './store/store'
 

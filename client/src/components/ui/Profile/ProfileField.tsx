@@ -1,4 +1,5 @@
 import { UseFormRegister } from 'react-hook-form'
+import { cn } from '../../../utils/clsx'
 
 interface ProfileFieldProps {
 	label: string
@@ -25,7 +26,7 @@ const ProfileField = ({
 
 	return (
 		<div>
-			<label className={LABEL_CLASS}>{label}</label>
+			<label className={cn(`${LABEL_CLASS}`)}>{label}</label>
 
 			{isEditing ? (
 				<input
@@ -41,12 +42,10 @@ const ProfileField = ({
 						: {})}
 					defaultValue={value ?? ''}
 					disabled={!isEditing}
-					className='mt-1 block w-full border border-gray-300 rounded-lg px-3 py-2 
-                     focus:outline-none focus:ring focus:ring-blue-200 
-                     disabled:bg-gray-100'
+					className='mt-1 block w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring focus:ring-blue-200 disabled:bg-gray-100'
 				/>
 			) : (
-				<p className='mt-1 block w-full px-3 py-2 rounded-lg bg-gray-50 text-gray-800'>
+				<p className='mt-1 block w-full px-3 py-2 rounded-lg bg-gray-50 text-gray-800 min-h-10'>
 					{value ?? '—'}
 				</p>
 			)}
