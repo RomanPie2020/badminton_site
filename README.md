@@ -64,30 +64,30 @@ cd BadmickTogether
 ```
 
 ### Run locally without Docker
-# Client
+### Client
 ```bash
 cd client
 npm install
 npm run dev
 ```
 
-# Server
+### Server
 ```bash
 cd ../server
 npm install
 ```
 
-# Run database migrations
+### Run database migrations
 ```bash
 npx sequelize-cli db:migrate
 ```
 
-# (Optional) Seed initial data
+### (Optional) Seed initial data
 ```bash
 npx sequelize-cli db:seed:all
 ```
 
-# Start server
+### Start server
 ```bash
 npm run dev
 ```
