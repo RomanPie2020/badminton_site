@@ -44,11 +44,14 @@ A web application for managing events with a clear client‑server separation. B
 ### SignUp Page
 ![SignUp Page](docs/screenshots/screenshot-02-signup.png)
 
-### Create event form
-![Create event form with validation]
+### Events Page
+![Events Page](docs/screenshots/screenshot-03-events.png)
 
-### Event details
-![Event details and actions]
+### MyEvents Page
+![MyEvents Page](docs/screenshots/screenshot-04-myevents.png)
+
+### Profile Page
+![Profile Page](docs/screenshots/screenshot-05-profile.png)
 
 ---
 
