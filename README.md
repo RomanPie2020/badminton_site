@@ -38,6 +38,15 @@ A web application for managing events with a clear client‑server separation. B
 
 ## UI
 
+### Home / Events list
+![Home view showing filters](docs/screenshots/screenshot-01-home.png)
+
+### Create event form
+![Create event form with validation]
+
+### Event details
+![Event details and actions]
+
 ---
 
 ## Quick Start
