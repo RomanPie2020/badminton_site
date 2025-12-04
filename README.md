@@ -23,9 +23,9 @@ A web application for managing events with a clear client‑server separation. B
 
 ## Technology Stack
 
-- **Frontend:** React, Vite  
+- **Frontend:** React, RTKQuery, Vite
 - **Languages:** JavaScript, TypeScript  
-- **Styling:** Tailwind CSS, PostCSS  
+- **Styling:** Tailwind CSS 
 - **Tooling:** ESLint, Vite dev server, tsconfig  
 - **Containerization:** Docker, docker‑compose
 
@@ -63,7 +63,7 @@ docker-compose up --build
 
 ## Repository Structure
 
-- **client** — React + Vite frontend: UI components, routes, forms, Tailwind styles.  
+- **client** — React + RTKQuery + Vite frontend: UI components, routes, forms, Tailwind styles.  
 - **server** — Backend API: authentication logic and data handling.  
 - **docker-compose.yml** — Compose configuration to run services in containers.  
 - Configuration files: `tailwind.config.js`, `tsconfig.json`, `.eslintrc`, etc.
@@ -75,7 +75,6 @@ docker-compose up --build
 - Add a detailed `.env.example` and documentation for required environment variables.  
 - Implement unit and integration tests for critical components and API endpoints.  
 - Configure CI to run linting and tests on pull requests.  
-- Provide API examples (curl or Postman collection) for easier integration and testing.
 
 ---
 
@@ -84,12 +83,6 @@ docker-compose up --build
 - Open an issue to discuss new features or bugs.  
 - Submit pull requests with a clear description of changes and tests where applicable.  
 - Follow existing code style and linting rules.
-
----
-
-## License
-
-Add a `LICENSE` file in the repository root and specify the desired license.
 
 ---
 
