@@ -63,7 +63,7 @@ git clone https://github.com/RomanPie2020/BadmickTogether.git
 cd BadmickTogether
 ```
 
-### Run locally without Docker
+## Run locally without Docker
 ### Client
 ```bash
 cd client
@@ -92,7 +92,7 @@ npx sequelize-cli db:seed:all
 npm run dev
 ```
 
-### Run with Docker
+## Run with Docker
 ```bash
 docker-compose up --build
 ```
