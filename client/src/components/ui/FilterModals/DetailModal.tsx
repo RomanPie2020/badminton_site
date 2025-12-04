@@ -1,13 +1,14 @@
 import { format } from 'date-fns'
 import { useNavigate } from 'react-router-dom'
-import { EventInput } from '../../../shared/validations/event.schema'
+import { IParticipant } from '../../../shared/interfaces/models'
+import { TEventInput } from '../../../shared/validations/event.schema'
 
-interface DetailModalProps {
-	event: EventInput
+interface IDetailModalProps {
+	event: TEventInput
 	currentUserId: number
 	onClose: () => void
-	onJoin: (eventId: number) => void
-	onLeave: (eventId: number) => void
+	onJoin: () => void
+	onLeave: () => void
 }
 
 const DetailModal = ({
@@ -16,9 +17,11 @@ const DetailModal = ({
 	onClose,
 	onJoin,
 	onLeave,
-}: DetailModalProps) => {
+}: IDetailModalProps) => {
 	const navigate = useNavigate()
-	const joined = event.participants.some(u => u.id === currentUserId)
+	const joined = event.participants.some(
+		(u: IParticipant) => u.id === currentUserId
+	)
 	const isFull =
 		typeof event.maxParticipants === 'number' &&
 		event.participants.length >= event.maxParticipants
@@ -39,11 +42,6 @@ const DetailModal = ({
 				<div className='mb-4 text-xl text-gray-600'>
 					<p>📅 {format(new Date(event.eventDate), 'dd.MM.yyyy HH:mm')}</p>
 					<p>📍 {event.location}</p>
-					{/* {event.maxParticipants != null && (
-						<p>
-							Учасників: {event.participants.length} / {event.maxParticipants}
-						</p>
-					)} */}
 				</div>
 				<p className='text-gray-600 mb-2'>
 					🏷️ <span className='font-medium'>Тип події:</span> {event.eventType}
@@ -92,7 +90,7 @@ const DetailModal = ({
 					<p className='text-gray-500'>Ще ніхто не приєднався.</p>
 				) : (
 					<ul className='list-disc list-inside space-y-1 max-h-64 overflow-auto'>
-						{event.participants.map(user => (
+						{event.participants.map((user: IParticipant) => (
 							<li
 								key={user.id}
 								className='flex items-center gap-3 p-2 rounded-lg hover:bg-gray-100 transition'

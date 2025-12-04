@@ -6,7 +6,7 @@ import {
 	TSortOrder,
 } from '../../../shared/interfaces/models'
 
-interface EventControlsProps {
+interface IEventControlsProps {
 	searchText: string
 	setSearchText: (val: string) => void
 	searchField: TSearchField
@@ -29,7 +29,7 @@ const EventControls = memo(
 		sortOrder,
 		setSortOrder,
 		onCreateClick,
-	}: EventControlsProps) => {
+	}: IEventControlsProps) => {
 		const { openFiltersModal } = useActions()
 
 		return (
@@ -89,7 +89,7 @@ const EventControls = memo(
 					</label>
 					<select
 						value={sortBy}
-						onChange={e => setSortBy(e.target.value as any)}
+						onChange={e => setSortBy(e.target.value)}
 						className='border border-gray-300 rounded-md p-2 text-sm sm:!w-full'
 					>
 						<option value='eventDate'>По даті</option>
@@ -99,7 +99,7 @@ const EventControls = memo(
 
 					<select
 						value={sortOrder}
-						onChange={e => setSortOrder(e.target.value as any)}
+						onChange={e => setSortOrder(e.target.value)}
 						className='border border-gray-300 rounded-md p-2 text-sm sm:!w-full'
 					>
 						<option value='asc'>↑ Зростанням</option>

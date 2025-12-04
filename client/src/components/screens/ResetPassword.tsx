@@ -35,11 +35,12 @@ const ResetPassword = () => {
 				setTimeout(() => navigate('/'), 2000)
 			}
 		} catch (error: unknown) {
+			console.log(error, 'Reset password was failed')
+
 			const message = getErrorMessage(
 				error,
 				'Failed to update password. Try again later.'
 			)
-			console.log(error, 'Reset password was failed')
 			setErrorMessage(message)
 		}
 	}

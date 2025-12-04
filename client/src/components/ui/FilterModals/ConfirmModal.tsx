@@ -1,6 +1,6 @@
 import { EventInput } from '../../../shared/validations/event.schema'
 
-interface ConfirmModalProps {
+interface IConfirmModalProps {
 	title?: string
 	message?: string
 	confirmText?: string
@@ -20,7 +20,7 @@ const ConfirmModal = ({
 	event,
 	onConfirm,
 	onClose,
-}: ConfirmModalProps) => (
+}: IConfirmModalProps) => (
 	<div className='fixed inset-0 bg-black/40 flex items-center justify-center z-50'>
 		<div className='bg-white rounded-xl shadow-xl w-full max-w-sm p-6'>
 			<h2 className='text-xl font-semibold mb-4'>{title}</h2>

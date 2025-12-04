@@ -16,7 +16,7 @@ const UserProfile = () => {
 	} = useGetUserProfileByIdQuery(userId)
 
 	const errorMessage = isError
-		? getErrorMessage(error, 'Не вдалося завантажити профіль.')
+		? getErrorMessage(error, 'Failed to load profile')
 		: null
 
 	if (isLoading) return <ProfileSkeleton />

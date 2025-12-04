@@ -5508,3 +5508,30 @@
 {"level":"info","message":{"data":{"age":21,"bio":"21","city":"Lviv","commonPlaces":["нулп","село"],"contact":"","dominantHand":"left","experienceMonths":21,"gender":"male","nickname":"stone12","playFrequency":"2 рази в тиждень","playTime":"авафівфіавфіа","preferredFormat":"singles"},"service":"updateUserProfile"},"timestamp":"2025-12-02T22:03:14.509Z"}
 {"level":"info","message":"profile service2  {\n  \"id\": 8,\n  \"userId\": 11,\n  \"nickname\": \"stone12\",\n  \"avatarUrl\": null,\n  \"city\": \"Lviv\",\n  \"age\": 21,\n  \"gender\": \"male\",\n  \"level\": null,\n  \"experienceMonths\": 21,\n  \"dominantHand\": \"left\",\n  \"preferredFormat\": \"singles\",\n  \"playFrequency\": \"2 рази в тиждень\",\n  \"commonPlaces\": [\n    \"нулп\",\n    \"село\"\n  ],\n  \"playTime\": \"авафівфіавфіа\",\n  \"bio\": \"21\",\n  \"contact\": \"121221\",\n  \"rating\": \"0.00\",\n  \"reviewsCount\": 0,\n  \"createdAt\": \"2025-10-29T15:42:33.667Z\",\n  \"updatedAt\": \"2025-11-10T15:48:25.120Z\"\n}","timestamp":"2025-12-02T22:03:14.509Z"}
 {"level":"info","message":"data service3: {\n  \"nickname\": \"stone12\",\n  \"city\": \"Lviv\",\n  \"age\": 21,\n  \"gender\": \"male\",\n  \"experienceMonths\": 21,\n  \"dominantHand\": \"left\",\n  \"preferredFormat\": \"singles\",\n  \"playFrequency\": \"2 рази в тиждень\",\n  \"commonPlaces\": [\n    \"нулп\",\n    \"село\"\n  ],\n  \"playTime\": \"авафівфіавфіа\",\n  \"bio\": \"21\",\n  \"contact\": \"\"\n}","timestamp":"2025-12-02T22:03:14.510Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-12-03T16:57:48.485Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-12-03T16:57:48.494Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-12-03T16:57:48.662Z"}
+{"level":"error","message":"Error:","timestamp":"2025-12-03T22:16:44.644Z"}
+{"level":"error","message":"Error:","timestamp":"2025-12-03T22:16:44.734Z"}
+{"creatorId":11,"description":"anna","eventDate":"2025-12-13T23:50","eventType":"Тренування","gameType":"Одиночна","level":"info","levelOfPlayers":"Новачок","location":"nan","maxParticipants":4,"message":"Створення івенту:","timestamp":"2025-12-03T23:51:03.964Z","title":"nana"}
+{"creatorId":11,"description":"ah","eventDate":"2025-12-20T23:57","eventType":"Турнір","gameType":"Одиночна","level":"info","levelOfPlayers":"Новачок","location":"ahh","maxParticipants":3,"message":"Створення івенту:","timestamp":"2025-12-03T23:57:55.138Z","title":"hah"}
+{"creatorId":11,"description":"gag","eventDate":"2025-12-09T23:58","eventType":"Турнір","gameType":"Одиночна","level":"info","levelOfPlayers":"Профі","location":"ggf","maxParticipants":4,"message":"Створення івенту:","timestamp":"2025-12-03T23:58:53.044Z","title":"kaka"}
+{"creatorId":11,"description":"vfd","eventDate":"2025-12-07T23:59","eventType":"Турнір","gameType":"Одиночна","level":"info","levelOfPlayers":"Профі","location":"342","maxParticipants":3,"message":"Створення івенту:","timestamp":"2025-12-03T23:59:53.756Z","title":"lalall"}
+{"level":"info","message":"database password is: string","timestamp":"2025-12-04T00:19:12.197Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-12-04T00:19:12.214Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-12-04T00:19:12.332Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-12-04T00:30:03.675Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-12-04T00:30:03.681Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-12-04T00:30:03.760Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-12-04T00:30:14.431Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-12-04T00:30:14.437Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-12-04T00:30:14.506Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-12-04T00:30:50.168Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-12-04T00:30:50.173Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-12-04T00:30:50.236Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-12-04T00:31:38.170Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-12-04T00:31:38.176Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-12-04T00:31:38.234Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-12-04T00:32:02.872Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-12-04T00:32:02.877Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-12-04T00:32:02.955Z"}

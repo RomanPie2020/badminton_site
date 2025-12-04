@@ -5,6 +5,7 @@ import { formStyles } from '../../configs/styles.config'
 import { useActions } from '../../hooks/useActions'
 import { useLoginUserMutation } from '../../services/AuthService'
 import { ILogInData } from '../../shared/interfaces/models'
+import { getErrorMessage } from '../../utils/parseApiErrors'
 import LogInForm from '../ui/forms/LogInForm'
 
 const LogIn = () => {
@@ -27,7 +28,8 @@ const LogIn = () => {
 			}
 		} catch (error) {
 			console.log(error, 'login was failed')
-			setLoginError('Incorrect email or password')
+			const message = getErrorMessage(error, 'Incorrect email or password')
+			setLoginError(message)
 		}
 	}
 

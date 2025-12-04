@@ -1,11 +1,11 @@
-import { EventInput } from '../../../shared/validations/event.schema'
+import { TEventInput } from '../../../shared/validations/event.schema'
 import EventCard from '../EventCard'
 import EventSkeleton from './EventSkeleton'
 
 interface IEventTabContentProps {
 	isLoading: boolean
 	isError: boolean
-	events: EventInput[] | undefined
+	events: TEventInput[] | undefined
 	currentUserId: number
 
 	// Custom messages

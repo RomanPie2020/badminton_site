@@ -1,22 +1,18 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
+import {
+	EVENT_OPTIONS,
+	GAME_TYPE_OPTIONS,
+	LEVEL_OPTIONS,
+} from '../../../configs/eventValues'
 import { useCreateEventMutation } from '../../../services/EventService'
+import { EventInput } from '../../../shared/validations/event.schema'
 
-interface CreateEventModalProps {
+interface ICreateEventModalProps {
 	onCreated: () => void
 }
 
-const EVENT_OPTIONS = [
-	'Турнір',
-	'Тренування',
-	'Дружня гра',
-	'Приватна гра',
-	'Клубний захід',
-]
-const GAME_TYPE_OPTIONS = ['Одиночна', 'Парна', 'Змішана парна', 'Командна']
-const LEVEL_OPTIONS = ['Новачок', 'Середній', 'Просунутий', 'Профі']
-
-const CreateEventModal: React.FC<CreateEventModalProps> = ({ onCreated }) => {
+const CreateEventModal = ({ onCreated }: ICreateEventModalProps) => {
 	const [isOpen, setIsOpen] = useState(false)
 	const [createEvent, { isLoading }] = useCreateEventMutation()
 
@@ -25,9 +21,9 @@ const CreateEventModal: React.FC<CreateEventModalProps> = ({ onCreated }) => {
 		handleSubmit,
 		reset,
 		formState: { errors },
-	} = useForm<any>()
+	} = useForm<EventInput>()
 
-	const onSubmit: SubmitHandler<any> = async data => {
+	const onSubmit: SubmitHandler<EventInput> = async data => {
 		try {
 			await createEvent(data).unwrap()
 			reset()

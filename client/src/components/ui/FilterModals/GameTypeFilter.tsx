@@ -1,19 +1,20 @@
 import { GAME_TYPE_OPTIONS } from '../../../configs/filterOptions'
-import { FiltersState } from '../../../store/filtersSlice'
+import {
+	IFilterActionPayload,
+	IFiltersState,
+} from '../../../shared/interfaces/models'
 import { CheckboxFilter } from './CheckboxFilter'
 
-interface GameTypeFilterProps {
+interface IGameTypeFilterProps {
 	values: string[]
-	onFilterChange: (filter: {
-		category: keyof FiltersState['values']
-		value: string
-	}) => void
+	category: keyof IFiltersState['values']
+	onFilterChange: (payload: IFilterActionPayload) => void
 }
 
 export function GameTypeFilter({
 	values,
 	onFilterChange,
-}: GameTypeFilterProps) {
+}: IGameTypeFilterProps) {
 	const handleToggle = (value: string) => {
 		onFilterChange({ category: 'typeOfGame', value })
 	}

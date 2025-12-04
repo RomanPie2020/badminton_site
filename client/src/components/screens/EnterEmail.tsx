@@ -3,6 +3,7 @@ import { SubmitHandler } from 'react-hook-form'
 import { formStyles } from '../../configs/styles.config'
 import { useForgotPasswordMutation } from '../../services/AuthService'
 import { IEnterEmailData } from '../../shared/interfaces/models'
+import { getErrorMessage } from '../../utils/parseApiErrors'
 import EnterEmailForm from '../ui/forms/EnterEmailForm'
 import Loader from '../ui/loaders/Loader'
 
@@ -18,13 +19,13 @@ const EnterEmail = () => {
 			if (data) {
 				setIsSuccess(true)
 			}
-		} catch (error: any) {
+		} catch (error: unknown) {
 			console.log(error, 'Enter email was failed')
 
-			const message =
-				error?.data?.message ||
-				error?.error ||
-				'Сталася помилка під час надсилання листа. Спробуйте пізніше.'
+			const message = getErrorMessage(
+				error,
+				'An error occurred while sending the letter. Try later.'
+			)
 			setErrorMessage(message)
 		}
 	}
@@ -47,7 +48,7 @@ const EnterEmail = () => {
 						<EnterEmailForm onSubmit={onSubmit} />
 
 						{errorMessage && (
-							<p className='text-red-600 mt-4 text-lg'>{errorMessage}</p>
+							<p className='text-red-600 mt-2 text-lg'>{errorMessage}</p>
 						)}
 					</>
 				)}

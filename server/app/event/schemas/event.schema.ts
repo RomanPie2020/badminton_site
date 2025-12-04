@@ -22,4 +22,4 @@ export const eventSchema = z.object({
 	levelOfPlayers: LevelOfPlayersField,
 })
 
-export type EventInput = z.infer<typeof eventSchema>
+export type TEventInput = z.infer<typeof eventSchema>

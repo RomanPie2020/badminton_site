@@ -141,12 +141,25 @@ export interface IResetPasswordRequest {
 // 	maxParticipants?: number
 // 	participants: { id: number }[]
 // }
+export interface IParticipant {
+	id: number
+	profile: { nickname: string }
+	nickname: string
+	username: string
+	avatarUrl?: string | null
+}
 
 // EventList
 export type TSearchField = 'title' | 'location' | 'creator'
 export type TSortBy = 'eventDate' | 'title' | 'location'
 export type TSortOrder = 'asc' | 'desc'
 export type TModalState = number | null
+
+// Date
+export type TDateRange = {
+	from: string | null
+	to: string | null
+}
 
 // user profile
 export interface UserProfile {
@@ -178,10 +191,24 @@ export interface UserProfile {
 	updatedAt: string
 }
 
-// Filters
-export interface Filters {
+// IFilters
+export interface IFilters {
 	events?: string[]
-	date?: { from: string | null; to: string | null }
+	date?: TDateRange
 	typeOfGame?: string[]
 	levelOfPlayers?: string[]
+}
+
+export interface IFiltersState {
+	modalOpen: boolean
+	values: {
+		events: string[]
+		date: TDateRange
+		typeOfGame: string[]
+		levelOfPlayers: string[]
+	}
+}
+export interface IFilterActionPayload {
+	category: keyof IFiltersState['values']
+	value: string | TDateRange
 }

@@ -10,7 +10,7 @@ export const getTomorrow = (): string => {
 
 export const getThisWeek = () => {
 	const now = new Date()
-	const day = now.getDay() || 7 // 1 (пон) ... 7 (нд)
+	const day = now.getDay() || 7
 	const monday = new Date(now)
 	monday.setDate(now.getDate() - (day - 1))
 	const sunday = new Date(monday)
@@ -42,9 +42,4 @@ export const getNextMonth = () => {
 		from: startOfNextMonth.toISOString().slice(0, 10),
 		to: endOfNextMonth.toISOString().slice(0, 10),
 	}
-}
-
-export type DateRange = {
-	from: string | null
-	to: string | null
 }

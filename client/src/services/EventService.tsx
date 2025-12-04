@@ -1,7 +1,7 @@
 // app/services/eventService.ts
 import { createApi } from '@reduxjs/toolkit/query/react'
-import { Filters } from '../shared/interfaces/models'
-import { EventInput } from '../shared/validations/event.schema'
+import { IFilters } from '../shared/interfaces/models'
+import { TEventInput } from '../shared/validations/event.schema'
 import { baseQueryWithReauth } from './baseQueryWithReauth'
 
 export const eventService = createApi({
@@ -10,7 +10,7 @@ export const eventService = createApi({
 	tagTypes: ['Event', 'UserEvents'],
 	endpoints: build => ({
 		// 1) Список всіх івентів
-		getEvents: build.query<EventInput[], void>({
+		getEvents: build.query<TEventInput[], void>({
 			query: () => ({ url: '/api/events', method: 'GET' }),
 			providesTags: result =>
 				result
@@ -21,12 +21,12 @@ export const eventService = createApi({
 					: [{ type: 'Event', id: 'LIST' }],
 		}),
 
-		getEventById: build.query<EventInput, number>({
+		getEventById: build.query<TEventInput, number>({
 			query: id => ({ url: `/api/events/${id}`, method: 'GET' }),
 			providesTags: (result, error, id) => [{ type: 'Event', id }],
 		}),
 
-		createEvent: build.mutation<any, EventInput>({
+		createEvent: build.mutation<any, TEventInput>({
 			query: body => ({ url: '/api/events', method: 'POST', body }),
 			invalidatesTags: (result, error, body) => [
 				// { type: 'Event', id: 'LIST' },
@@ -35,8 +35,8 @@ export const eventService = createApi({
 		}),
 
 		updateEvent: build.mutation<
-			EventInput,
-			{ eventId: number; data: EventInput }
+			TEventInput,
+			{ eventId: number; data: TEventInput }
 		>({
 			query: ({ eventId, data }) => ({
 				url: `/api/events/${eventId}`,
@@ -106,13 +106,13 @@ export const eventService = createApi({
 
 		getFilteredEvents: build.query<
 			{
-				events: EventInput[]
+				events: TEventInput[]
 				total: number
 				limit: number
 				offset: number
 			},
 			{
-				filters: Filters
+				filters: IFilters
 				search?: string
 				searchField?: 'title' | 'location' | 'creator'
 				sortBy?: 'eventDate' | 'title' | 'location'
@@ -181,13 +181,13 @@ export const eventService = createApi({
 
 // 		getFilteredEvents: build.query<
 // 			{
-// 				events: EventInput[]
+// 				events: TEventInput[]
 // 				total: number
 // 				limit: number
 // 				offset: number
 // 			},
 // 			{
-// 				filters: Filters
+// 				filters: IFilters
 // 				search?: string
 // 				searchField?: 'title' | 'location' | 'creator'
 // 				sortBy?: 'eventDate' | 'title' | 'location'

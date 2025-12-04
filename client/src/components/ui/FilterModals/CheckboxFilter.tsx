@@ -1,4 +1,4 @@
-interface CheckboxFilterProps {
+interface ICheckboxFilterProps {
 	options: readonly string[]
 	selectedValues: string[]
 	onToggle: (value: string) => void
@@ -8,7 +8,7 @@ export function CheckboxFilter({
 	options,
 	selectedValues,
 	onToggle,
-}: CheckboxFilterProps) {
+}: ICheckboxFilterProps) {
 	return (
 		<div className='grid grid-cols-2 gap-3'>
 			{options.map(option => (

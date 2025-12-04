@@ -7,8 +7,8 @@ import {
 	useLeaveEventMutation,
 	useUpdateEventMutation,
 } from '../services/EventService'
-import { EventInput } from '../shared/validations/event.schema'
-type SetItemsType = React.Dispatch<React.SetStateAction<EventInput[]>>
+import { TEventInput } from '../shared/validations/event.schema'
+type SetItemsType = React.Dispatch<React.SetStateAction<TEventInput[]>>
 type SetTotalType = React.Dispatch<React.SetStateAction<number>>
 
 export const useEventMutations = (
@@ -25,7 +25,7 @@ export const useEventMutations = (
 	const currentUserId = Number(localStorage.getItem('user_id'))
 
 	const handleCreate = useCallback(
-		async (data: EventInput) => {
+		async (data: TEventInput) => {
 			try {
 				const newEvent = await createEvent(data).unwrap()
 				setItems(prev => [newEvent, ...prev])
@@ -79,7 +79,7 @@ export const useEventMutations = (
 	)
 
 	const handleEdit = useCallback(
-		async (eventId: number, updatedData: EventInput) => {
+		async (eventId: number, updatedData: TEventInput) => {
 			try {
 				await updateEvent({ eventId, data: { ...updatedData } }).unwrap()
 				const updatedEvent = await getEventById(eventId).unwrap()

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useLazyGetFilteredEventsQuery } from '../services/EventService'
-import { EventInput } from '../shared/validations/event.schema'
+import { TEventInput } from '../shared/validations/event.schema'
 import { useEventMutations } from './useEventMutations'
 
 const PAGE_SIZE = 10
@@ -13,7 +13,7 @@ export const useEvents = (
 	sortOrder: 'asc' | 'desc',
 	bottomRef: React.MutableRefObject<HTMLDivElement | null>
 ) => {
-	const [items, setItems] = useState<EventInput[]>([])
+	const [items, setItems] = useState<TEventInput[]>([])
 	const [total, setTotal] = useState(0)
 	const [hasMore, setHasMore] = useState(true)
 	const [isLoadingMore, setIsLoadingMore] = useState(false)

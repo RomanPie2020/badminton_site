@@ -1,4 +1,4 @@
-interface DatePresetButtonProps {
+interface IDatePresetButtonProps {
 	label: string
 	isActive: boolean
 	onClick: () => void
@@ -8,7 +8,7 @@ export function DatePresetButton({
 	label,
 	isActive,
 	onClick,
-}: DatePresetButtonProps) {
+}: IDatePresetButtonProps) {
 	return (
 		<button
 			type='button'

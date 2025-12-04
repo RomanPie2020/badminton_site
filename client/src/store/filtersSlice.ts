@@ -1,23 +1,13 @@
 // src/store/filtersSlice.ts
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import {
+	IFilterActionPayload,
+	IFiltersState,
+	TDateRange,
+} from '../shared/interfaces/models'
 import { RootState } from './store'
 
-interface DateRange {
-	from: string | null
-	to: string | null
-}
-
-export interface FiltersState {
-	modalOpen: boolean
-	values: {
-		events: string[]
-		date: DateRange
-		typeOfGame: string[]
-		levelOfPlayers: string[]
-	}
-}
-
-const initialState: FiltersState = {
+const initialState: IFiltersState = {
 	modalOpen: false,
 	values: {
 		events: [],
@@ -37,13 +27,7 @@ const filtersSlice = createSlice({
 		closeFiltersModal(state) {
 			state.modalOpen = false
 		},
-		setFilter(
-			state,
-			action: PayloadAction<{
-				category: keyof FiltersState['values']
-				value: string
-			}>
-		) {
+		setFilter(state, action: PayloadAction<IFilterActionPayload>) {
 			const { category, value } = action.payload
 
 			if (
@@ -57,7 +41,7 @@ const filtersSlice = createSlice({
 					? arr.filter(x => x !== val)
 					: [...arr, val]
 			} else if (category === 'date') {
-				state.values.date = value as DateRange
+				state.values.date = value as TDateRange
 			}
 		},
 		clearFilters(state) {

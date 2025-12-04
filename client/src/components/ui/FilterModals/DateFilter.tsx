@@ -1,6 +1,6 @@
-import { FiltersState } from '../../../store/filtersSlice'
+import { IFiltersState, TDateRange } from '../../../shared/interfaces/models'
+
 import {
-	DateRange,
 	getNext7Days,
 	getNextMonth,
 	getThisWeek,
@@ -9,15 +9,15 @@ import {
 } from '../../../utils/dateUtils'
 import { DatePresetButton } from './DatePresetButton'
 
-interface DateFilterProps {
-	values: DateRange
+interface IDateFilterProps {
+	values: TDateRange
 	onFilterChange: (filter: {
-		category: keyof FiltersState['values']
-		value: string
+		category: keyof IFiltersState['values']
+		value: { from: string | null; to: string | null }
 	}) => void
 }
 
-export function DateFilter({ values, onFilterChange }: DateFilterProps) {
+export function DateFilter({ values, onFilterChange }: IDateFilterProps) {
 	const datePresets = [
 		{
 			label: 'Сьогодні',
@@ -50,7 +50,7 @@ export function DateFilter({ values, onFilterChange }: DateFilterProps) {
 
 	return (
 		<div className='space-y-4'>
-			{/* Пресети */}
+			{/* Presets */}
 			<div className='flex space-x-2 flex-wrap gap-y-2'>
 				{datePresets.map(preset => (
 					<DatePresetButton
@@ -62,7 +62,7 @@ export function DateFilter({ values, onFilterChange }: DateFilterProps) {
 				))}
 			</div>
 
-			{/* Кастомний вибір дат */}
+			{/* Custom date selection */}
 			<div className='flex space-x-4 mt-2'>
 				<div className='flex flex-col'>
 					<label className='text-sm text-gray-600'>Від:</label>

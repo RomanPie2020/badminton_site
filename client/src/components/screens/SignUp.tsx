@@ -25,6 +25,7 @@ const SignUp = () => {
 			setIsSuccess(true)
 		} catch (error: unknown) {
 			console.error('Signup error', error)
+
 			const message = getErrorMessage(error, 'Failed to register. Try again.')
 			setErrorMessage(message)
 		}

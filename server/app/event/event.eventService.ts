@@ -3,7 +3,7 @@ import ApiError from '@/exceptions/apiError'
 import UserProfile from '@/profile/models/userProfile'
 import { logger } from '@/utils/logger/log'
 import { Op, OrderItem, WhereOptions } from 'sequelize'
-import { Filters } from './event.types'
+import { IFilters } from '../../shared/interfaces/models'
 import {
 	default as Event,
 	EventAttributes,
@@ -23,7 +23,7 @@ class EventService {
 		limit,
 		offset,
 	}: {
-		filters: Partial<Filters>
+		filters: Partial<IFilters>
 		search?: string
 		searchField?: 'title' | 'location' | 'creator'
 		sortBy: SortByOption

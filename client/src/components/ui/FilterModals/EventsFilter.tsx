@@ -1,16 +1,16 @@
 import { EVENT_OPTIONS } from '../../../configs/filterOptions'
-import { FiltersState } from '../../../store/filtersSlice'
+import { IFiltersState } from '../../../shared/interfaces/models'
 import { CheckboxFilter } from './CheckboxFilter'
 
-interface EventsFilterProps {
+interface IEventsFilterProps {
 	values: string[]
 	onFilterChange: (filter: {
-		category: keyof FiltersState['values']
+		category: keyof IFiltersState['values']
 		value: string
 	}) => void
 }
 
-export function EventsFilter({ values, onFilterChange }: EventsFilterProps) {
+export function EventsFilter({ values, onFilterChange }: IEventsFilterProps) {
 	const handleToggle = (value: string) => {
 		onFilterChange({ category: 'events', value })
 	}

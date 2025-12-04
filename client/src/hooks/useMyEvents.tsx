@@ -7,7 +7,7 @@ import {
 	useUpdateEventMutation,
 } from '../services/EventService'
 import { TModalState } from '../shared/interfaces/models'
-import { EventInput } from '../shared/validations/event.schema'
+import { TEventInput } from '../shared/validations/event.schema'
 
 export const useMyEvents = (currentUserId: number) => {
 	const [editEventId, setEditEventId] = useState<TModalState>(null)
@@ -67,7 +67,7 @@ export const useMyEvents = (currentUserId: number) => {
 		}
 	}
 
-	const handleEdit = async (eventId: number, data: EventInput) => {
+	const handleEdit = async (eventId: number, data: TEventInput) => {
 		try {
 			await updateEvent({ eventId, data }).unwrap()
 			await Promise.all([refetchCreated(), refetchAttending()])

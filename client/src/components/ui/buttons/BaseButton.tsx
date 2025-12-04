@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { IBaseButton, ICodeSendAgain } from '../../../shared/interfaces/models'
 import { cn } from '../../../utils/clsx'
 
-interface ButtonProps {
+interface IBaseButtonProps {
 	button: IBaseButton
 	onButtonClick?: (codeData: ICodeSendAgain | any) => void
 }
@@ -18,7 +18,7 @@ const styleVariants: Record<string, string> = {
 		'text-black bg-red-400 border-black w-44 m-auto mt-14 mb-8',
 }
 
-const BaseButton = ({ button, onButtonClick }: ButtonProps) => {
+const BaseButton = ({ button, onButtonClick }: IBaseButtonProps) => {
 	const baseClasses = 'block p-3 border-2 rounded-md text-center'
 	const buttonClass = cn(baseClasses, styleVariants[button.styles ?? ''])
 

@@ -1,38 +1,33 @@
 import { useEffect } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { EventInput } from '../../../shared/validations/event.schema'
+import {
+	EVENT_OPTIONS,
+	GAME_TYPE_OPTIONS,
+	LEVEL_OPTIONS,
+} from '../../../configs/eventValues'
+import { TEventInput } from '../../../shared/validations/event.schema'
 
-interface EventFormModalProps {
-	event?: EventInput
-	// initialData?: EventInput
+interface IEventFormModalProps {
+	event?: TEventInput
+	// initialData?: TEventInput
 	currentParticipants?: number
 	onClose: () => void
-	onSubmit: (data: EventInput) => void
+	onSubmit: (data: TEventInput) => void
 }
 
-const EVENT_TYPE_OPTIONS = [
-	'Турнір',
-	'Тренування',
-	'Дружня гра',
-	'Приватна гра',
-	'Клубний захід',
-]
-const GAME_TYPE_OPTIONS = ['Одиночна', 'Парна', 'Змішана парна', 'Командна']
-const LEVEL_OPTIONS = ['Новачок', 'Середній', 'Просунутий', 'Профі']
-
-const EventFormModal: React.FC<EventFormModalProps> = ({
+const EventFormModal = ({
 	event,
 	// initialData,
 	currentParticipants = 0,
 	onClose,
 	onSubmit,
-}) => {
+}: IEventFormModalProps) => {
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
 		reset,
-	} = useForm<EventInput>()
+	} = useForm<TEventInput>()
 
 	useEffect(() => {
 		if (event) {
@@ -51,7 +46,7 @@ const EventFormModal: React.FC<EventFormModalProps> = ({
 		}
 	}, [event, reset])
 
-	const submit: SubmitHandler<EventInput> = data => {
+	const submit: SubmitHandler<TEventInput> = data => {
 		onSubmit(data)
 	}
 
@@ -119,7 +114,7 @@ const EventFormModal: React.FC<EventFormModalProps> = ({
 							className='mt-1 block w-full border-gray-300 rounded-md p-2'
 						>
 							<option value=''>--- Виберіть тип події ---</option>
-							{EVENT_TYPE_OPTIONS.map(opt => (
+							{EVENT_OPTIONS.map(opt => (
 								<option key={opt} value={opt}>
 									{opt}
 								</option>

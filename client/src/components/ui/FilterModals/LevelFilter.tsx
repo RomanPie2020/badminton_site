@@ -1,16 +1,16 @@
 import { LEVEL_OPTIONS } from '../../../configs/filterOptions'
-import { FiltersState } from '../../../store/filtersSlice'
+import { IFiltersState } from '../../../shared/interfaces/models'
 import { CheckboxFilter } from './CheckboxFilter'
 
-interface LevelFilterProps {
+interface ILevelFilterProps {
 	values: string[]
 	onFilterChange: (filter: {
-		category: keyof FiltersState['values']
+		category: keyof IFiltersState['values']
 		value: string
 	}) => void
 }
 
-export function LevelFilter({ values, onFilterChange }: LevelFilterProps) {
+export function LevelFilter({ values, onFilterChange }: ILevelFilterProps) {
 	const handleToggle = (value: string) => {
 		onFilterChange({ category: 'levelOfPlayers', value })
 	}

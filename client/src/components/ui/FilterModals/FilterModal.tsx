@@ -35,7 +35,6 @@ export default function FilterModal() {
 					<EventsFilter values={values.events} onFilterChange={setFilter} />
 				)
 			case 'date':
-				// onFilterChange type fix
 				return <DateFilter values={values.date} onFilterChange={setFilter} />
 			case 'typeOfGame':
 				return (

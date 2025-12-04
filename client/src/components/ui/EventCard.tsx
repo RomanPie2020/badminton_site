@@ -1,9 +1,9 @@
 import { format } from 'date-fns'
 import { useNavigate } from 'react-router-dom'
-import { EventInput } from '../../shared/validations/event.schema'
+import { TEventInput } from '../../shared/validations/event.schema'
 
 interface IEventCardProps {
-	event: EventInput
+	event: TEventInput
 	currentUserId: number
 	onJoin: (id: number) => void
 	onLeave: (id: number) => void

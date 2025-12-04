@@ -2,13 +2,13 @@ import { useCallback, useRef, useState } from 'react'
 import { useDebounce } from '../../hooks/useDebounce'
 import { useEvents } from '../../hooks/useEvents'
 import {
-	Filters,
+	IFilters,
 	TModalState,
 	TSearchField,
 	TSortBy,
 	TSortOrder,
 } from '../../shared/interfaces/models'
-import { EventInput } from '../../shared/validations/event.schema'
+import { TEventInput } from '../../shared/validations/event.schema'
 import { selectFilters } from '../../store/filtersSlice'
 import { useAppSelector } from '../../store/store'
 import EventCard from '../ui/EventCard'
@@ -62,11 +62,11 @@ const EventList = () => {
 	)
 
 	// Callbacks for modals
-	const onConfirmCreate = async (data: EventInput) => {
+	const onConfirmCreate = async (data: TEventInput) => {
 		await handleCreate(data)
 		setCreateEventForm(false)
 	}
-	const onConfirmEdit = async (eventId: number, data: EventInput) => {
+	const onConfirmEdit = async (eventId: number, data: TEventInput) => {
 		await handleEdit(eventId, data)
 		setEditEventId(null)
 	}
@@ -151,7 +151,7 @@ const EventList = () => {
 					</p>
 
 					{(searchText ||
-						(Object.keys(filters) as Array<keyof Filters>).some(key =>
+						(Object.keys(filters) as Array<keyof IFilters>).some(key =>
 							Boolean(filters[key])
 						)) && (
 						<button
