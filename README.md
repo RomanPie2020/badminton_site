@@ -31,6 +31,15 @@ A web application for managing events with a clear client‑server separation. B
 
 ---
 
+## API collection
+- https://documenter.getpostman.com/view/10560412/2sB3dPR9gW
+  
+---
+
+## UI
+
+---
+
 ## Quick Start
 
 ### Clone the repository
