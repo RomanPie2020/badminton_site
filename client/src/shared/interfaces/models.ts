@@ -104,6 +104,25 @@ export interface IRequestChangeUsername {
 	username: string
 }
 
+export interface IProfileFormData {
+	nickname?: string
+	avatarUrl?: string
+	city?: string
+	age?: number
+	gender?: string
+	level?: string
+	experienceMonths?: number
+	dominantHand?: string
+	preferredFormat?: string
+	playFrequency?: string
+	commonPlaces?: string[]
+	playTime?: string
+	bio?: string
+	contact?: string
+}
+
+export type TProfileFieldType = 'text' | 'number' | 'email' | 'tel' | 'password'
+
 // Enter email
 export interface IEnterEmailData {
 	email: string

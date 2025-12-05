@@ -4,38 +4,22 @@ import {
 	useGetProfileQuery,
 	useUpdateProfileMutation,
 } from '../services/AuthService'
-
-export interface ProfileFormData {
-	nickname?: string
-	avatarUrl?: string
-	city?: string
-	age?: number
-	gender?: string
-	level?: string
-	experienceMonths?: number
-	dominantHand?: string
-	preferredFormat?: string
-	playFrequency?: string
-	commonPlaces?: string[]
-	playTime?: string
-	bio?: string
-	contact?: string
-}
+import { IProfileFormData } from '../shared/interfaces/models'
 
 export const useMyProfileForm = () => {
 	const { data: profile, isLoading, isError, error } = useGetProfileQuery()
 	const [updateProfile, { isLoading: isUpdating }] = useUpdateProfileMutation()
 
-	const [isEditing, setIsEditing] = useState(false)
-	const [successMessage, setSuccessMessage] = useState('')
-	const [errorMessage, setErrorMessage] = useState('')
+	const [isEditing, setIsEditing] = useState<boolean>(false)
+	const [successMessage, setSuccessMessage] = useState<string>('')
+	const [errorMessage, setErrorMessage] = useState<string>('')
 
 	const {
 		register,
 		handleSubmit,
 		reset,
 		formState: { errors },
-	} = useForm<ProfileFormData>()
+	} = useForm<IProfileFormData>()
 
 	useEffect(() => {
 		if (profile) {
@@ -43,7 +27,7 @@ export const useMyProfileForm = () => {
 		}
 	}, [profile, reset])
 
-	const onSubmit = async (data: ProfileFormData) => {
+	const onSubmit = async (data: IProfileFormData) => {
 		try {
 			setSuccessMessage('')
 			setErrorMessage('')

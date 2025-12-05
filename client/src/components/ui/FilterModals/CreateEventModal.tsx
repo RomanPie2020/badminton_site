@@ -6,7 +6,7 @@ import {
 	LEVEL_OPTIONS,
 } from '../../../configs/eventValues'
 import { useCreateEventMutation } from '../../../services/EventService'
-import { EventInput } from '../../../shared/validations/event.schema'
+import { TEventInput } from '../../../shared/validations/event.schema'
 
 interface ICreateEventModalProps {
 	onCreated: () => void
@@ -21,9 +21,9 @@ const CreateEventModal = ({ onCreated }: ICreateEventModalProps) => {
 		handleSubmit,
 		reset,
 		formState: { errors },
-	} = useForm<EventInput>()
+	} = useForm<TEventInput>()
 
-	const onSubmit: SubmitHandler<EventInput> = async data => {
+	const onSubmit: SubmitHandler<TEventInput> = async data => {
 		try {
 			await createEvent(data).unwrap()
 			reset()

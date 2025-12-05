@@ -6,6 +6,7 @@ import {
 	FetchBaseQueryMeta,
 } from '@reduxjs/toolkit/query/react'
 import { apiUrl } from '../configs/url.config'
+
 import { IRefreshTokenResponse } from '../shared/interfaces/models'
 import { authStatusSliceActions } from '../store/authStatus.slice'
 
@@ -16,6 +17,7 @@ export const baseQueryWithReauth: BaseQueryFn<
 	{},
 	FetchBaseQueryMeta
 > = async (args: any, api: any, extraOptions: any) => {
+	// Базовий запит
 	const baseQuery = fetchBaseQuery({
 		baseUrl: apiUrl,
 		prepareHeaders: headers => {
@@ -26,7 +28,6 @@ export const baseQueryWithReauth: BaseQueryFn<
 			return headers
 		},
 	})
-
 	let result = await baseQuery(args, api, extraOptions)
 
 	// If the token has expired (401 Unauthorized)

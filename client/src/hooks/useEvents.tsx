@@ -14,12 +14,12 @@ export const useEvents = (
 	bottomRef: React.MutableRefObject<HTMLDivElement | null>
 ) => {
 	const [items, setItems] = useState<TEventInput[]>([])
-	const [total, setTotal] = useState(0)
-	const [hasMore, setHasMore] = useState(true)
-	const [isLoadingMore, setIsLoadingMore] = useState(false)
-	const [isMounting, setIsMounting] = useState(true)
-	const [isSearching, setIsSearching] = useState(false)
-	const [currentOffset, setCurrentOffset] = useState(0)
+	const [total, setTotal] = useState<number>(0)
+	const [hasMore, setHasMore] = useState<Boolean>(true)
+	const [isLoadingMore, setIsLoadingMore] = useState<Boolean>(false)
+	const [isMounting, setIsMounting] = useState<Boolean>(true)
+	const [isSearching, setIsSearching] = useState<Boolean>(false)
+	const [currentOffset, setCurrentOffset] = useState<number>(0)
 
 	const { handleCreate, handleDelete, handleEdit, handleJoin, handleLeave } =
 		useEventMutations(setItems, setTotal)
@@ -67,6 +67,8 @@ export const useEvents = (
 					limit: PAGE_SIZE,
 					offset,
 				}).unwrap()
+				// console.log(JSON.stringify(result, null, 2))
+				console.log(result)
 
 				const { events: newEvents, total: newTotal } = result
 

@@ -19,9 +19,6 @@ export const authService = createApi({
 				method: 'POST',
 				body,
 			}),
-			// transformResponse: res => {
-			// 	return res
-			// },
 		}),
 		confirmRegistration: build.query<any, string>({
 			query: (token: string) => ({

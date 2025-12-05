@@ -3,15 +3,13 @@ import ApiError from '@/exceptions/apiError'
 import UserProfile from '@/profile/models/userProfile'
 import { logger } from '@/utils/logger/log'
 import { Op, OrderItem, WhereOptions } from 'sequelize'
-import { IFilters } from '../../shared/interfaces/models'
+import { IFilters, SortByOption, SortOrder } from './event.types'
 import {
 	default as Event,
 	EventAttributes,
 	default as EventModel,
 } from './models/event'
 
-type SortByOption = 'eventDate' | 'title' | 'location'
-type SortOrder = 'asc' | 'desc'
 class EventService {
 	// 1) Отримати всі івенти разом із кількістю учасників
 	public async getFilteredPaged({
@@ -132,10 +130,7 @@ class EventService {
 		// Додаємо додаткове сортування для стабільності
 		order.push(['id', 'ASC'])
 
-		// 9) Виконуємо запит з виправленням проблеми пагінації
 		try {
-			// ВИПРАВЛЕННЯ: Використовуємо окремі запити для уникнення проблем з пагінацією при JOIN
-
 			// Спочатку отримуємо ID подій без participants (щоб уникнути дублювання)
 			const eventIds = await Event.findAll({
 				attributes: ['id'],
@@ -165,6 +160,7 @@ class EventService {
 						[Op.in]: eventIds.map((event: any) => event.id),
 					},
 				},
+
 				include: [
 					{
 						association: Event.associations.creator,
@@ -197,8 +193,6 @@ class EventService {
 				order, // Зберігаємо той самий порядок
 			})
 
-			console.log(`Found ${events.length} events out of ${totalCount} total`)
-
 			return {
 				rows: events,
 				count: totalCount,
@@ -208,7 +202,6 @@ class EventService {
 			throw new Error('Не вдалося отримати події. Спробуйте пізніше.')
 		}
 	}
-	// TODO Вроді добре працює все в купі(сортування, фільтри, пошук, пагінація)
 
 	// 2) Отримати один івент з деталями
 	async getById(id: number) {

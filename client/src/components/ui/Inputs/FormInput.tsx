@@ -8,7 +8,7 @@ import {
 	UseFormRegister,
 } from 'react-hook-form'
 
-interface TextInputProps<T extends FieldValues> {
+interface ITextInputProps<T extends FieldValues> {
 	label?: string
 	name: Path<T>
 	register: UseFormRegister<T>
@@ -19,7 +19,6 @@ interface TextInputProps<T extends FieldValues> {
 	type?: React.HTMLInputTypeAttribute
 	placeholder?: string
 	disabled?: boolean
-	// [x: string]: any
 }
 
 const TextInput = <T extends FieldValues>({
@@ -33,7 +32,7 @@ const TextInput = <T extends FieldValues>({
 	type = 'text',
 	placeholder,
 	disabled = false,
-}: TextInputProps<T>) => {
+}: ITextInputProps<T>) => {
 	return (
 		<div className={`flex flex-col mb-3 ${className} `}>
 			{label && (

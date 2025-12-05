@@ -1,5 +1,6 @@
 import { format } from 'date-fns'
 import { useNavigate } from 'react-router-dom'
+import { IParticipant } from '../../shared/interfaces/models'
 import { TEventInput } from '../../shared/validations/event.schema'
 
 interface IEventCardProps {
@@ -23,7 +24,9 @@ const EventCard = ({
 	setEdit,
 	setDelete,
 }: IEventCardProps) => {
-	const joined = event.participants.some(u => u.id === currentUserId)
+	const joined = event.participants.some(
+		(u: IParticipant) => u.id === currentUserId
+	)
 	const isCreator = event.creator.id === currentUserId
 	const isFull =
 		typeof event.maxParticipants === 'number' &&

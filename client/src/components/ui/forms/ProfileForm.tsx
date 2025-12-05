@@ -7,7 +7,7 @@ import TextArea from '../profile/ProfileTextArea'
 // TODO take out this
 const LABEL_CLASS = 'block text-lg font-medium text-black-800 mb-1'
 
-interface ProfileFormProps {
+interface IProfileFormProps {
 	profile: any
 	isEditing?: boolean
 	isUpdating?: boolean
@@ -35,7 +35,7 @@ const ProfileForm = ({
 	onSubmit,
 	handleEditClick,
 	handleCancelClick,
-}: ProfileFormProps) => {
+}: IProfileFormProps) => {
 	const containerClass = whiteBackground
 		? 'bg-white'
 		: 'bg-white/80 backdrop-blur-md'

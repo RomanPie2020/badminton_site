@@ -1,4 +1,3 @@
-// src/shared/validations/event.schema.ts
 import { z } from 'zod'
 import {
 	DescriptionField,

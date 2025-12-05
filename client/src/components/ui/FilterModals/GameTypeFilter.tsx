@@ -1,13 +1,9 @@
 import { GAME_TYPE_OPTIONS } from '../../../configs/filterOptions'
-import {
-	IFilterActionPayload,
-	IFiltersState,
-} from '../../../shared/interfaces/models'
+import { IFilterActionPayload } from '../../../shared/interfaces/models'
 import { CheckboxFilter } from './CheckboxFilter'
 
 interface IGameTypeFilterProps {
 	values: string[]
-	category: keyof IFiltersState['values']
 	onFilterChange: (payload: IFilterActionPayload) => void
 }
 

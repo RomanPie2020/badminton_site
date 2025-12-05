@@ -10,11 +10,11 @@ interface IEventControlsProps {
 	searchText: string
 	setSearchText: (val: string) => void
 	searchField: TSearchField
-	setSearchField: (val: string) => void
+	setSearchField: (val: TSearchField) => void
 	sortBy: TSortBy
-	setSortBy: (val: string) => void
+	setSortBy: (val: TSortBy) => void
 	sortOrder: TSortOrder
-	setSortOrder: (val: string) => void
+	setSortOrder: (val: TSortOrder) => void
 	onCreateClick: () => void
 }
 
@@ -66,7 +66,7 @@ const EventControls = memo(
 				<div className='flex items-center space-x-2 flex-wrap sm:!flex-col sm:!items-stretch sm:!space-x-0 sm:!gap-2 sm:!w-full'>
 					<select
 						value={searchField}
-						onChange={e => setSearchField(e.target.value)}
+						onChange={e => setSearchField(e.target.value as TSearchField)}
 						className='border border-gray-300 rounded-md p-2 text-sm sm:!w-full'
 					>
 						<option value='title'>По назві</option>
@@ -89,7 +89,7 @@ const EventControls = memo(
 					</label>
 					<select
 						value={sortBy}
-						onChange={e => setSortBy(e.target.value)}
+						onChange={e => setSortBy(e.target.value as TSortBy)}
 						className='border border-gray-300 rounded-md p-2 text-sm sm:!w-full'
 					>
 						<option value='eventDate'>По даті</option>
@@ -99,7 +99,7 @@ const EventControls = memo(
 
 					<select
 						value={sortOrder}
-						onChange={e => setSortOrder(e.target.value)}
+						onChange={e => setSortOrder(e.target.value as TSortOrder)}
 						className='border border-gray-300 rounded-md p-2 text-sm sm:!w-full'
 					>
 						<option value='asc'>↑ Зростанням</option>

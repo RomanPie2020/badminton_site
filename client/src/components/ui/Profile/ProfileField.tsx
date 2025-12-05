@@ -1,10 +1,11 @@
 import { UseFormRegister } from 'react-hook-form'
+import { TProfileFieldType } from '../../../shared/interfaces/models'
 import { cn } from '../../../utils/clsx'
 
-interface ProfileFieldProps {
+interface IProfileFieldProps {
 	label: string
 	name: string
-	type?: 'text' | 'number' | 'email' | 'tel' | 'password'
+	type?: TProfileFieldType
 	required?: boolean
 	value?: string | number | null
 	isEditing: boolean
@@ -21,7 +22,7 @@ const ProfileField = ({
 	isEditing,
 	register,
 	LABEL_CLASS,
-}: ProfileFieldProps) => {
+}: IProfileFieldProps) => {
 	const isNumber = type === 'number'
 
 	return (

@@ -9,7 +9,6 @@ export const eventService = createApi({
 	baseQuery: baseQueryWithReauth,
 	tagTypes: ['Event', 'UserEvents'],
 	endpoints: build => ({
-		// 1) Список всіх івентів
 		getEvents: build.query<TEventInput[], void>({
 			query: () => ({ url: '/api/events', method: 'GET' }),
 			providesTags: result =>

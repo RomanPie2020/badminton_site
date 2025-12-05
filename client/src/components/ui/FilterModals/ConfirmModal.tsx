@@ -1,4 +1,4 @@
-import { EventInput } from '../../../shared/validations/event.schema'
+import { TEventInput } from '../../../shared/validations/event.schema'
 
 interface IConfirmModalProps {
 	title?: string
@@ -6,7 +6,7 @@ interface IConfirmModalProps {
 	confirmText?: string
 	cancelText?: string
 	isLoading?: boolean
-	event: EventInput
+	event: TEventInput
 	onConfirm: (eventId: number) => void
 	onClose: (eventId: number) => void
 }

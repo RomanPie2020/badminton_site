@@ -1,5 +1,6 @@
 import { z } from 'zod'
 
+// export const createdAt = z.string()
 export const TitleField = z.string().min(1, 'Заголовок обовʼязковий')
 export const DescriptionField = z.string().optional()
 export const LocationField = z.string().min(1, 'Локація обовʼязкова')
