@@ -5693,3 +5693,39 @@
 {"level":"info","message":"database password is: string","timestamp":"2025-12-04T23:48:16.655Z"}
 {"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-12-04T23:48:16.660Z"}
 {"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-12-04T23:48:16.724Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-12-05T13:57:33.697Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-12-05T13:57:33.704Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-12-05T13:57:33.880Z"}
+{"level":"error","message":"Error:","timestamp":"2025-12-05T15:23:08.538Z"}
+{"level":"error","message":"Error:","timestamp":"2025-12-05T16:14:57.444Z"}
+{"level":"error","message":"Error:","timestamp":"2025-12-05T17:26:31.947Z"}
+{"level":"error","message":"Error:","timestamp":"2025-12-05T17:38:27.155Z"}
+{"level":"info","message":"User ID: 11","timestamp":"2025-12-05T18:43:40.859Z"}
+{"level":"info","message":{"service":"user body"},"timestamp":"2025-12-05T18:43:40.868Z"}
+{"level":"info","message":"User IDservice: 11","timestamp":"2025-12-05T18:43:40.871Z"}
+{"level":"info","message":{"service":"updateUserProfile"},"timestamp":"2025-12-05T18:43:40.877Z"}
+{"level":"info","message":"profile service2  {\n  \"id\": 8,\n  \"userId\": 11,\n  \"nickname\": \"stone12\",\n  \"avatarUrl\": null,\n  \"city\": \"Lviv\",\n  \"age\": 21,\n  \"gender\": \"male\",\n  \"level\": null,\n  \"experienceMonths\": 21,\n  \"dominantHand\": \"left\",\n  \"preferredFormat\": \"singles\",\n  \"playFrequency\": \"2 рази в тиждень\",\n  \"commonPlaces\": [\n    \"нулп\",\n    \"село\"\n  ],\n  \"playTime\": \"авафівфіавфіа\",\n  \"bio\": \"21\",\n  \"contact\": \"\",\n  \"rating\": \"0.00\",\n  \"reviewsCount\": 0,\n  \"createdAt\": \"2025-10-29T15:42:33.667Z\",\n  \"updatedAt\": \"2025-12-02T22:03:14.517Z\"\n}","timestamp":"2025-12-05T18:43:40.878Z"}
+{"level":"info","message":"data service3: undefined","timestamp":"2025-12-05T18:43:40.879Z"}
+{"level":"error","message":"Error:","timestamp":"2025-12-05T18:43:40.896Z"}
+{"level":"info","message":"User ID: 11","timestamp":"2025-12-05T18:44:11.078Z"}
+{"level":"info","message":{"service":"user body"},"timestamp":"2025-12-05T18:44:11.079Z"}
+{"level":"info","message":"User IDservice: 11","timestamp":"2025-12-05T18:44:11.079Z"}
+{"level":"info","message":{"service":"updateUserProfile"},"timestamp":"2025-12-05T18:44:11.085Z"}
+{"level":"info","message":"profile service2  {\n  \"id\": 8,\n  \"userId\": 11,\n  \"nickname\": \"stone12\",\n  \"avatarUrl\": null,\n  \"city\": \"Lviv\",\n  \"age\": 21,\n  \"gender\": \"male\",\n  \"level\": null,\n  \"experienceMonths\": 21,\n  \"dominantHand\": \"left\",\n  \"preferredFormat\": \"singles\",\n  \"playFrequency\": \"2 рази в тиждень\",\n  \"commonPlaces\": [\n    \"нулп\",\n    \"село\"\n  ],\n  \"playTime\": \"авафівфіавфіа\",\n  \"bio\": \"21\",\n  \"contact\": \"\",\n  \"rating\": \"0.00\",\n  \"reviewsCount\": 0,\n  \"createdAt\": \"2025-10-29T15:42:33.667Z\",\n  \"updatedAt\": \"2025-12-02T22:03:14.517Z\"\n}","timestamp":"2025-12-05T18:44:11.086Z"}
+{"level":"info","message":"data service3: undefined","timestamp":"2025-12-05T18:44:11.086Z"}
+{"level":"error","message":"Error:","timestamp":"2025-12-05T18:44:11.088Z"}
+{"level":"info","message":"User ID: 11","timestamp":"2025-12-05T18:44:30.976Z"}
+{"level":"info","message":{"body":{"age":21,"bio":"21","city":"Lviv","commonPlaces":["нулп","село"],"contact":"","dominantHand":"left","experienceMonths":21,"gender":"male","level":"","nickname":"stone12","playFrequency":"2 рази в тиждень","playTime":"авафівфіавфіа","preferredFormat":"singles"},"service":"user body"},"timestamp":"2025-12-05T18:44:30.976Z"}
+{"level":"info","message":"User IDservice: 11","timestamp":"2025-12-05T18:44:30.976Z"}
+{"level":"info","message":{"data":{"age":21,"bio":"21","city":"Lviv","commonPlaces":["нулп","село"],"contact":"","dominantHand":"left","experienceMonths":21,"gender":"male","level":"","nickname":"stone12","playFrequency":"2 рази в тиждень","playTime":"авафівфіавфіа","preferredFormat":"singles"},"service":"updateUserProfile"},"timestamp":"2025-12-05T18:44:30.978Z"}
+{"level":"info","message":"profile service2  {\n  \"id\": 8,\n  \"userId\": 11,\n  \"nickname\": \"stone12\",\n  \"avatarUrl\": null,\n  \"city\": \"Lviv\",\n  \"age\": 21,\n  \"gender\": \"male\",\n  \"level\": null,\n  \"experienceMonths\": 21,\n  \"dominantHand\": \"left\",\n  \"preferredFormat\": \"singles\",\n  \"playFrequency\": \"2 рази в тиждень\",\n  \"commonPlaces\": [\n    \"нулп\",\n    \"село\"\n  ],\n  \"playTime\": \"авафівфіавфіа\",\n  \"bio\": \"21\",\n  \"contact\": \"\",\n  \"rating\": \"0.00\",\n  \"reviewsCount\": 0,\n  \"createdAt\": \"2025-10-29T15:42:33.667Z\",\n  \"updatedAt\": \"2025-12-02T22:03:14.517Z\"\n}","timestamp":"2025-12-05T18:44:30.979Z"}
+{"level":"info","message":"data service3: {\n  \"nickname\": \"stone12\",\n  \"city\": \"Lviv\",\n  \"age\": 21,\n  \"gender\": \"male\",\n  \"level\": \"\",\n  \"experienceMonths\": 21,\n  \"dominantHand\": \"left\",\n  \"preferredFormat\": \"singles\",\n  \"playFrequency\": \"2 рази в тиждень\",\n  \"commonPlaces\": [\n    \"нулп\",\n    \"село\"\n  ],\n  \"playTime\": \"авафівфіавфіа\",\n  \"bio\": \"21\",\n  \"contact\": \"\"\n}","timestamp":"2025-12-05T18:44:30.979Z"}
+{"level":"error","message":"Error:","timestamp":"2025-12-05T18:46:15.953Z"}
+{"level":"error","message":"Error:","timestamp":"2025-12-05T18:46:20.011Z"}
+{"level":"error","message":"Error:","timestamp":"2025-12-05T18:46:25.521Z"}
+{"level":"info","message":"User ID: 11","timestamp":"2025-12-05T18:53:41.266Z"}
+{"level":"info","message":{"body":{"age":21,"bio":"21","city":"Lviv","commonPlaces":["нулп","село"],"contact":"@smashtg","dominantHand":"left","experienceMonths":21,"gender":"male","level":"","nickname":"stone12","playFrequency":"2 рази в тиждень","playTime":"авафівфіавфіа","preferredFormat":"singles"},"service":"user body"},"timestamp":"2025-12-05T18:53:41.268Z"}
+{"level":"info","message":"User IDservice: 11","timestamp":"2025-12-05T18:53:41.268Z"}
+{"level":"info","message":{"data":{"age":21,"bio":"21","city":"Lviv","commonPlaces":["нулп","село"],"contact":"@smashtg","dominantHand":"left","experienceMonths":21,"gender":"male","level":"","nickname":"stone12","playFrequency":"2 рази в тиждень","playTime":"авафівфіавфіа","preferredFormat":"singles"},"service":"updateUserProfile"},"timestamp":"2025-12-05T18:53:41.270Z"}
+{"level":"info","message":"profile service2  {\n  \"id\": 8,\n  \"userId\": 11,\n  \"nickname\": \"stone12\",\n  \"avatarUrl\": null,\n  \"city\": \"Lviv\",\n  \"age\": 21,\n  \"gender\": \"male\",\n  \"level\": \"\",\n  \"experienceMonths\": 21,\n  \"dominantHand\": \"left\",\n  \"preferredFormat\": \"singles\",\n  \"playFrequency\": \"2 рази в тиждень\",\n  \"commonPlaces\": [\n    \"нулп\",\n    \"село\"\n  ],\n  \"playTime\": \"авафівфіавфіа\",\n  \"bio\": \"21\",\n  \"contact\": \"\",\n  \"rating\": \"0.00\",\n  \"reviewsCount\": 0,\n  \"createdAt\": \"2025-10-29T15:42:33.667Z\",\n  \"updatedAt\": \"2025-12-05T18:44:30.985Z\"\n}","timestamp":"2025-12-05T18:53:41.270Z"}
+{"level":"info","message":"data service3: {\n  \"nickname\": \"stone12\",\n  \"city\": \"Lviv\",\n  \"age\": 21,\n  \"gender\": \"male\",\n  \"level\": \"\",\n  \"experienceMonths\": 21,\n  \"dominantHand\": \"left\",\n  \"preferredFormat\": \"singles\",\n  \"playFrequency\": \"2 рази в тиждень\",\n  \"commonPlaces\": [\n    \"нулп\",\n    \"село\"\n  ],\n  \"playTime\": \"авафівфіавфіа\",\n  \"bio\": \"21\",\n  \"contact\": \"@smashtg\"\n}","timestamp":"2025-12-05T18:53:41.270Z"}

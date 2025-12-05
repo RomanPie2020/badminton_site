@@ -1,10 +1,13 @@
 import { Link } from 'react-router-dom'
-import { IBaseButton, ICodeSendAgain } from '../../../shared/interfaces/models'
+import {
+	IBaseButton,
+	TBaseButtonClickHandler,
+} from '../../../shared/interfaces/models'
 import { cn } from '../../../utils/clsx'
 
 interface IBaseButtonProps {
 	button: IBaseButton
-	onButtonClick?: (codeData: ICodeSendAgain | any) => void
+	onButtonClick?: TBaseButtonClickHandler
 }
 
 const styleVariants: Record<string, string> = {

@@ -1,10 +1,21 @@
 import { createApi } from '@reduxjs/toolkit/query/react'
 import {
+	IRequestForgotPassword,
+	IRequestLogIn,
+	IRequestLogOut,
+	IRequestRefreshToken,
 	IRequestSignUp,
+	IRequestUpdateProfile,
 	IResetPasswordRequest,
+	IResponseGetProfile,
+	IResponseGetUsers,
 	IResponseLogIn,
+	IResponseLogOut,
+	IResponseRefreshToken,
 	IResponseSignUp,
-	UserProfile,
+	TResponseConfirmRegistration,
+	TResponseForgotPassword,
+	TResponseResetPassword,
 } from '../shared/interfaces/models'
 import { baseQueryWithReauth } from './baseQueryWithReauth'
 
@@ -20,15 +31,13 @@ export const authService = createApi({
 				body,
 			}),
 		}),
-		confirmRegistration: build.query<any, string>({
+		confirmRegistration: build.query<TResponseConfirmRegistration, string>({
 			query: (token: string) => ({
 				url: `/api/auth/confirm?token=${token}`,
 				method: 'GET',
 			}),
-			transformResponse: res => res,
 		}),
-
-		loginUser: build.mutation<any, any>({
+		loginUser: build.mutation<IResponseLogIn, IRequestLogIn>({
 			query: body => ({
 				url: '/api/auth/login',
 				method: 'POST',
@@ -41,21 +50,21 @@ export const authService = createApi({
 				return res
 			},
 		}),
-		refresh: build.mutation<any, any>({
+		refresh: build.mutation<IResponseRefreshToken, IRequestRefreshToken>({
 			query: body => ({
 				url: '/api/auth/refresh',
 				method: 'POST',
 				body,
 			}),
 		}),
-		logOut: build.mutation<any, any>({
+		logOut: build.mutation<IResponseLogOut, IRequestLogOut>({
 			query: body => ({
 				url: '/api/auth/logout',
 				method: 'DELETE',
 				body,
 			}),
 		}),
-		getUsers: build.query<any, any>({
+		getUsers: build.query<IResponseGetUsers, void>({
 			query: () => ({
 				url: '/api/auth/users',
 			}),
@@ -84,14 +93,20 @@ export const authService = createApi({
 		// 		body,
 		// 	}),
 		// }),
-		forgotPassword: build.mutation<any, any>({
+		forgotPassword: build.mutation<
+			TResponseForgotPassword,
+			IRequestForgotPassword
+		>({
 			query: body => ({
 				url: '/api/auth/forgot-password',
 				method: 'POST',
 				body,
 			}),
 		}),
-		resetPassword: build.mutation<any, IResetPasswordRequest>({
+		resetPassword: build.mutation<
+			TResponseResetPassword,
+			IResetPasswordRequest
+		>({
 			query: ({ token, body }) => ({
 				url: `/api/auth/reset-password?token=${token}`,
 				method: 'PATCH',
@@ -100,19 +115,14 @@ export const authService = createApi({
 		}),
 
 		// Profile
-		getProfile: build.query<any, void>({
+		getProfile: build.query<IResponseGetProfile, void>({
 			query: () => ({
 				url: '/api/profile',
 				method: 'GET',
 			}),
 			providesTags: ['UserProfile'],
 		}),
-
-		updateProfile: build.mutation<
-			any,
-			// Partial<UpdateProfileInput>
-			any
-		>({
+		updateProfile: build.mutation<IResponseGetProfile, IRequestUpdateProfile>({
 			query: body => ({
 				url: '/api/profile',
 				method: 'PUT',
@@ -120,15 +130,12 @@ export const authService = createApi({
 			}),
 			invalidatesTags: ['UserProfile'],
 		}),
-		getUserProfileById: build.query<UserProfile, number>({
+		getUserProfileById: build.query<IResponseGetProfile, number>({
 			query: id => ({
 				url: `/api/users/${id}/profile`,
 				method: 'GET',
 			}),
 			providesTags: (result, error, id) => [{ type: 'UserProfile', id }],
-			transformResponse: (res: UserProfile) => {
-				return res
-			},
 		}),
 	}),
 })

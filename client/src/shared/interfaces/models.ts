@@ -1,3 +1,4 @@
+import { MouseEventHandler } from 'react'
 import {
 	FieldValues,
 	Path,
@@ -10,9 +11,14 @@ export interface IBaseButton {
 	title: string
 	styles: any
 	to: string
-	type?: 'a' | 'button'
-	onButtonClick?: (codeData: ICodeSendAgain | any) => void
+	type?: TBaseButtonType
 }
+
+export type TBaseButtonClickHandler = MouseEventHandler<
+	HTMLButtonElement | HTMLAnchorElement
+>
+
+export type TBaseButtonType = 'a' | 'button'
 
 // FormInput
 export interface IFormInput<T extends FieldValues> {
@@ -53,21 +59,15 @@ export interface ISignUpFormProps {
 }
 
 // Code verification
-export interface ICodeVerifyData {
-	user_id: string | number
-	code: string
-}
-
 export interface ICodeSendAgain {
 	user_id: string | number
 }
 
-export interface ICodeVerifyFormProps {
-	onSubmit: (codeData: ICodeVerifyData) => void
-	onSendCodeAgain: (codeData: ICodeSendAgain | null) => void
-}
-
 // Auth service
+export interface IApiResponse {
+	success: boolean
+	message: string
+}
 // SignUp
 export interface IResponseSignUp {
 	id: number
@@ -84,14 +84,34 @@ export interface IRequestSignUp {
 	password: string
 }
 
+// confirmRegistration
+export type TResponseConfirmRegistration = IApiResponse
+
 // LogIn
 export interface IResponseLogIn {
 	access: string
 	refresh: string
 }
 
-export interface IRefreshTokenResponse {
+export interface IRequestLogIn {
+	email: string
+	password: string
+}
+
+// Refresh Token
+export interface IResponseRefreshToken {
 	accessToken: string
+}
+
+export interface IRequestRefreshToken {
+	refreshToken: string
+}
+
+// LogOut
+export type IResponseLogOut = IApiResponse
+
+export interface IRequestLogOut {
+	refreshToken: string
 }
 
 // Auth state
@@ -99,30 +119,41 @@ export interface IAuthState {
 	isAuthenticated: boolean
 }
 
-// Profile
-export interface IRequestChangeUsername {
+// getUsers
+export interface IUserGetUsers {
+	id: number
 	username: string
+	email: string
+	isActive: boolean
 }
 
-export interface IProfileFormData {
-	nickname?: string
-	avatarUrl?: string
-	city?: string
-	age?: number
-	gender?: string
-	level?: string
-	experienceMonths?: number
-	dominantHand?: string
-	preferredFormat?: string
-	playFrequency?: string
-	commonPlaces?: string[]
-	playTime?: string
-	bio?: string
-	contact?: string
+export interface IResponseGetUsers {
+	success: boolean
+	users: IUserGetUsers[]
 }
 
-export type TProfileFieldType = 'text' | 'number' | 'email' | 'tel' | 'password'
+// ForgotPassword
+export interface IRequestForgotPassword {
+	email: string
+}
+export type TResponseForgotPassword = IApiResponse
 
+// ResetPassword
+export interface IResetPasswordRequest {
+	token: string
+	body: {
+		newPassword: string
+		confirmPassword: string
+	}
+}
+export type TResponseResetPassword = IApiResponse
+
+// Profile
+export type IResponseGetProfile = IUserProfile
+
+export type IRequestUpdateProfile = TProfileFormData
+
+// ---- Components ----
 // Enter email
 export interface IEnterEmailData {
 	email: string
@@ -140,14 +171,6 @@ export interface IResetPasswordData {
 
 export interface IResetPasswordFormProps {
 	onSubmit: (userData: IResetPasswordData) => void
-}
-
-export interface IResetPasswordRequest {
-	token: string
-	body: {
-		newPassword: string
-		confirmPassword: string
-	}
 }
 
 // Events
@@ -180,28 +203,32 @@ export type TDateRange = {
 	to: string | null
 }
 
-// user profile
-export interface UserProfile {
+// User profile
+export type TGender = 'male' | 'female' | 'other' | null
+export type TDominantHand = 'left' | 'right' | null
+export type TPreferredFormat = 'singles' | 'doubles' | 'mixed' | null
+export interface IUserProfile {
 	id: number
-	userId: number
-	username: string
+	username?: string
 	email?: string
+	userId: number
+
 	nickname: string
 	avatarUrl?: string | null
-	city?: string | null
-	age?: number | null
-	gender?: 'male' | 'female' | 'other' | null
+	city: string | null
+	age: number | null
+	gender: TGender
 
-	level?: string | null
-	experienceMonths?: number | null
-	dominantHand?: 'left' | 'right' | null
-	preferredFormat?: 'singles' | 'doubles' | 'mixed' | null
-	playFrequency?: string | null
-	commonPlaces?: string[] | null
-	playTime?: string | null
+	level: string | null
+	experienceMonths: number | null
+	dominantHand: TDominantHand
+	preferredFormat: TPreferredFormat
+	playFrequency: string | null
+	commonPlaces: string[] | null
+	playTime: string | null
 
-	bio?: string | null
-	contact?: string | null
+	bio: string | null
+	contact: string | null
 
 	rating: number
 	reviewsCount: number
@@ -210,7 +237,29 @@ export interface UserProfile {
 	updatedAt: string
 }
 
-// IFilters
+export type TProfileFormData = Partial<
+	Pick<
+		IUserProfile,
+		| 'nickname'
+		| 'avatarUrl'
+		| 'city'
+		| 'age'
+		| 'gender'
+		| 'level'
+		| 'experienceMonths'
+		| 'dominantHand'
+		| 'preferredFormat'
+		| 'playFrequency'
+		| 'commonPlaces'
+		| 'playTime'
+		| 'bio'
+		| 'contact'
+	>
+>
+
+export type TProfileFieldType = 'text' | 'number' | 'email' | 'tel' | 'password'
+
+// Filters
 export interface IFilters {
 	events?: string[]
 	date?: TDateRange
