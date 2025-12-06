@@ -1,6 +1,11 @@
-// app/services/eventService.ts
 import { createApi } from '@reduxjs/toolkit/query/react'
-import { IFilters } from '../shared/interfaces/models'
+import {
+	IRequestGetFilteredEvents,
+	IRequestGetUserEvents,
+	IRequestUpdateEvent,
+	IResponseGetFilteredEvents,
+	IResponseJoinLeaveEvent,
+} from '../shared/interfaces/models'
 import { TEventInput } from '../shared/validations/event.schema'
 import { baseQueryWithReauth } from './baseQueryWithReauth'
 
@@ -11,114 +16,52 @@ export const eventService = createApi({
 	endpoints: build => ({
 		getEvents: build.query<TEventInput[], void>({
 			query: () => ({ url: '/api/events', method: 'GET' }),
-			providesTags: result =>
-				result
-					? [
-							...result.map(({ id }) => ({ type: 'Event' as const, id })),
-							{ type: 'Event', id: 'LIST' },
-					  ]
-					: [{ type: 'Event', id: 'LIST' }],
 		}),
 
 		getEventById: build.query<TEventInput, number>({
 			query: id => ({ url: `/api/events/${id}`, method: 'GET' }),
-			providesTags: (result, error, id) => [{ type: 'Event', id }],
 		}),
 
-		createEvent: build.mutation<any, TEventInput>({
+		createEvent: build.mutation<TEventInput, TEventInput>({
 			query: body => ({ url: '/api/events', method: 'POST', body }),
-			invalidatesTags: (result, error, body) => [
-				// { type: 'Event', id: 'LIST' },
-				// { type: 'UserEvents', id: 'LIST' }, // refresh all user event lists
-			],
 		}),
 
-		updateEvent: build.mutation<
-			TEventInput,
-			{ eventId: number; data: TEventInput }
-		>({
+		updateEvent: build.mutation<TEventInput, IRequestUpdateEvent>({
 			query: ({ eventId, data }) => ({
 				url: `/api/events/${eventId}`,
 				method: 'PUT',
 				body: data,
 			}),
-			invalidatesTags: (result, error, { eventId }) => [
-				// { type: 'Event', id: eventId },
-				// { type: 'Event', id: 'LIST' },
-				// { type: 'UserEvents', id: 'LIST' },
-			],
 		}),
 
 		deleteEvent: build.mutation<void, number>({
 			query: id => ({ url: `/api/events/${id}`, method: 'DELETE' }),
-			invalidatesTags: (result, error, id) => [
-				// { type: 'Event', id },
-				// { type: 'Event', id: 'LIST' },
-				// { type: 'UserEvents', id: 'LIST' },
-			],
 		}),
 
-		joinEvent: build.mutation<void, any>({
-			query: ({ eventId }) => ({
+		joinEvent: build.mutation<IResponseJoinLeaveEvent, number>({
+			query: eventId => ({
 				url: `/api/events/${eventId}/join`,
 				method: 'POST',
 			}),
-			// invalidatesTags: (result, error, { eventId, userId }) => [
-			// 	{ type: 'Event', eventId },
-			// 	{ type: 'Event', id: 'LIST' },
-			// 	{ type: 'UserEvents', id: `${userId}_attending` },
-			// 	{ type: 'UserEvents', id: `${userId}_all` },
-			// ],
 		}),
 
-		leaveEvent: build.mutation<void, number>({
-			query: id => ({ url: `/api/events/${id}/leave`, method: 'POST' }),
-			invalidatesTags: (result, error, id) => [
-				// { type: 'Event', id },
-				// { type: 'Event', id: 'LIST' },
-				// { type: 'UserEvents', id: 'LIST' },
-			],
+		leaveEvent: build.mutation<IResponseJoinLeaveEvent, number>({
+			query: eventId => ({
+				url: `/api/events/${eventId}/leave`,
+				method: 'POST',
+			}),
 		}),
 
-		getUserEvents: build.query<
-			any[],
-			{ userId: number; type?: 'created' | 'attending' | 'all' }
-		>({
+		getUserEvents: build.query<TEventInput[], IRequestGetUserEvents>({
 			query: ({ userId, type = 'created' }) => ({
 				url: `/api/events/user/${userId}?type=${type}`,
 				method: 'GET',
 			}),
-			providesTags: (result, error, { userId, type }) => [
-				{ type: 'UserEvents', id: `${userId}_${type}` },
-			],
 		}),
-		// getUserEvents: build.query<
-		// 	any[],
-		// 	{ userId: number; type?: 'created' | 'attending' | 'all' }
-		// >({
-		// 	query: ({ userId, type = 'created' }) => ({
-		// 		url: `/api/events/user/${userId}?type=${type}`,
-		// 		method: 'GET',
-		// 	}),
-		// 	providesTags: ['UserEvents'],
-		// }),
 
 		getFilteredEvents: build.query<
-			{
-				events: TEventInput[]
-				total: number
-				limit: number
-				offset: number
-			},
-			{
-				filters: IFilters
-				search?: string
-				searchField?: 'title' | 'location' | 'creator'
-				sortBy?: 'eventDate' | 'title' | 'location'
-				sortOrder?: 'asc' | 'desc'
-				limit?: number
-				offset?: number
-			}
+			IResponseGetFilteredEvents,
+			IRequestGetFilteredEvents
 		>({
 			query: ({
 				filters,
@@ -134,7 +77,7 @@ export const eventService = createApi({
 				if (filters.events?.length) {
 					params.set('events', filters.events.join(','))
 				}
-				if (filters.date) {
+				if (filters.date.from && filters.date.to) {
 					params.set('dateFrom', filters.date.from)
 					params.set('dateTo', filters.date.to)
 				}
@@ -164,142 +107,9 @@ export const eventService = createApi({
 				const queryString = params.toString()
 				return queryString ? `/api/events?${queryString}` : '/api/events'
 			},
-			providesTags: result =>
-				result
-					? [
-							...result.events.map(({ id }) => ({
-								type: 'Event' as const,
-								id,
-							})),
-							{ type: 'Event', id: 'LIST' },
-					  ]
-					: [{ type: 'Event', id: 'LIST' }],
 		}),
 	}),
 })
-
-// 		getFilteredEvents: build.query<
-// 			{
-// 				events: TEventInput[]
-// 				total: number
-// 				limit: number
-// 				offset: number
-// 			},
-// 			{
-// 				filters: IFilters
-// 				search?: string
-// 				searchField?: 'title' | 'location' | 'creator'
-// 				sortBy?: 'eventDate' | 'title' | 'location'
-// 				sortOrder?: 'asc' | 'desc'
-// 				limit?: number
-// 				offset?: number
-// 			}
-// 		>({
-// 			query: ({
-// 				filters,
-// 				search,
-// 				searchField,
-// 				sortBy,
-// 				sortOrder,
-// 				limit,
-// 				offset,
-// 			}) => {
-// 				const params = new URLSearchParams()
-
-// 				if (filters.events && filters.events.length > 0) {
-// 					// «events=Турнір,Тренування»
-// 					params.set('events', filters.events.join(','))
-// 				}
-
-// 				if (filters.date) {
-// 					// «dateFrom=2025-06-01&dateTo=2025-06-07»
-// 					params.set('dateFrom', filters.date.from)
-// 					params.set('dateTo', filters.date.to)
-// 				}
-
-// 				if (filters.typeOfGame && filters.typeOfGame.length > 0) {
-// 					// «typeOfGame=Одиночна,Парна»
-// 					params.set('typeOfGame', filters.typeOfGame.join(','))
-// 				}
-
-// 				if (filters.levelOfPlayers && filters.levelOfPlayers.length > 0) {
-// 					// «levelOfPlayers=Новачок,Просунутий»
-// 					params.set('levelOfPlayers', filters.levelOfPlayers.join(','))
-// 				}
-
-// 				// --- Додаємо пошук (якщо є) ---
-// 				if (search && search.trim() !== '') {
-// 					params.set('search', search.trim())
-// 				}
-
-// 				// --- Додаємо поле для таргетованого пошуку (якщо є) ---
-// 				if (searchField) {
-// 					params.set('searchField', searchField)
-// 				}
-
-// 				// --- Додаємо поле для таргетованого пошуку (якщо є) ---
-// 				if (searchField) {
-// 					params.set('searchField', searchField)
-// 				}
-
-// 				// --- Додаємо сортування (якщо є) ---
-// 				if (sortBy) {
-// 					params.set('sortBy', sortBy)
-// 					params.set('sortOrder', sortOrder || 'asc')
-// 				}
-
-// 				if (typeof limit === 'number') {
-// 					params.set('limit', String(limit))
-// 				}
-// 				if (typeof offset === 'number') {
-// 					params.set('offset', String(offset))
-// 				}
-
-// 				const queryString = params.toString()
-// 				// Якщо не задано жодного фільтра, просто повернете '/events'
-// 				return queryString ? `/api/events?${queryString}` : '/api/events'
-// 			},
-// 			providesTags: (
-// 				result,
-// 				error,
-// 				{ filters, search, searchField, sortBy, sortOrder, limit, offset }
-// 			) =>
-// 				result
-// 					? [
-// 							...result.events.map(({ id }) => ({
-// 								type: 'Event' as const,
-// 								id,
-// 							})),
-// 							{
-// 								type: 'Event',
-// 								id: `FILTERED_${JSON.stringify({
-// 									filters,
-// 									search,
-// 									searchField,
-// 									sortBy,
-// 									sortOrder,
-// 									limit,
-// 									offset,
-// 								})}`,
-// 							},
-// 					  ]
-// 					: [
-// 							{
-// 								type: 'Event',
-// 								id: `FILTERED_${JSON.stringify({
-// 									filters,
-// 									search,
-// 									searchField,
-// 									sortBy,
-// 									sortOrder,
-// 									limit,
-// 									offset,
-// 								})}`,
-// 							},
-// 					  ],
-// 		}),
-// 	}),
-// })
 
 export const {
 	useGetEventsQuery,

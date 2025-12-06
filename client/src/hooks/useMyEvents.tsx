@@ -44,7 +44,7 @@ export const useMyEvents = (currentUserId: number) => {
 	const handleJoin = async (eventId: number) => {
 		try {
 			if (!eventId) return
-			await joinEvent({ eventId }).unwrap()
+			await joinEvent(eventId).unwrap()
 			await Promise.all([refetchAttending(), refetchCreated()])
 		} catch (error) {
 			console.error('Error joining event:', error)

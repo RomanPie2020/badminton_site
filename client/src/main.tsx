@@ -20,7 +20,6 @@ const MyProfile = lazy(() => import('./components/screens/MyProfile'))
 const MyEvents = lazy(() => import('./components/screens/MyEvents'))
 const UserProfile = lazy(() => import('./components/screens/UserProfile'))
 
-// 🔹 Обгортка Suspense для всіх lazy‑сторінок
 const withSuspense = (element: JSX.Element) => (
 	<Suspense
 		fallback={

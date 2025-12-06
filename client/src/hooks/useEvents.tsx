@@ -1,5 +1,11 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useLazyGetFilteredEventsQuery } from '../services/EventService'
+import {
+	TSearchField,
+	TSortBy,
+	TSortOrder,
+	TTypeOfLoadingEvents,
+} from '../shared/interfaces/models'
 import { TEventInput } from '../shared/validations/event.schema'
 import { useEventMutations } from './useEventMutations'
 
@@ -8,17 +14,17 @@ const PAGE_SIZE = 10
 export const useEvents = (
 	filters: any,
 	searchText: string,
-	searchField: 'title' | 'location' | 'creator',
-	sortBy: 'eventDate' | 'title' | 'location',
-	sortOrder: 'asc' | 'desc',
+	searchField: TSearchField,
+	sortBy: TSortBy,
+	sortOrder: TSortOrder,
 	bottomRef: React.MutableRefObject<HTMLDivElement | null>
 ) => {
 	const [items, setItems] = useState<TEventInput[]>([])
 	const [total, setTotal] = useState<number>(0)
-	const [hasMore, setHasMore] = useState<Boolean>(true)
-	const [isLoadingMore, setIsLoadingMore] = useState<Boolean>(false)
-	const [isMounting, setIsMounting] = useState<Boolean>(true)
-	const [isSearching, setIsSearching] = useState<Boolean>(false)
+	const [hasMore, setHasMore] = useState<boolean>(true)
+	const [isLoadingMore, setIsLoadingMore] = useState<boolean>(false)
+	const [isMounting, setIsMounting] = useState<boolean>(true)
+	const [isSearching, setIsSearching] = useState<boolean>(false)
 	const [currentOffset, setCurrentOffset] = useState<number>(0)
 
 	const { handleCreate, handleDelete, handleEdit, handleJoin, handleLeave } =
@@ -27,12 +33,13 @@ export const useEvents = (
 	const [trigger, { isFetching, isError }] = useLazyGetFilteredEventsQuery()
 
 	const observerRef = useRef<IntersectionObserver | null>(null)
-	const isFirstRender = useRef(true)
+	const isFirstRender = useRef<boolean>(true)
 
 	// Ref to access up-to-date status inside event listeners/timeouts
 	const stateRef = useRef({
 		isLoadingMore,
 		isFetching,
+		isMounting,
 		hasMore,
 		currentOffset,
 		total,
@@ -43,16 +50,25 @@ export const useEvents = (
 		stateRef.current = {
 			isLoadingMore,
 			isFetching,
+			isMounting,
 			hasMore,
 			currentOffset,
 			total,
 			isSearching,
 		}
-	}, [isLoadingMore, isFetching, hasMore, currentOffset, total, isSearching])
+	}, [
+		isLoadingMore,
+		isFetching,
+		isMounting,
+		hasMore,
+		currentOffset,
+		total,
+		isSearching,
+	])
 
 	// --- MAIN LOAD FUNCTION ---
 	const loadEvents = useCallback(
-		async (offset: number, type: 'mount' | 'search' | 'pagination') => {
+		async (offset: number, type: TTypeOfLoadingEvents) => {
 			try {
 				if (type === 'mount') setIsMounting(true)
 				if (type === 'search') setIsSearching(true)
@@ -92,7 +108,7 @@ export const useEvents = (
 						offset + (newEvents?.length || 0) < (newTotal || 0)
 				)
 			} catch (error) {
-				console.error('Помилка завантаження подій:', error)
+				console.error('Event loading error:', error)
 			} finally {
 				setIsMounting(false)
 				setIsSearching(false)
@@ -102,6 +118,7 @@ export const useEvents = (
 
 		[
 			trigger,
+
 			JSON.stringify(filters),
 			searchText,
 			searchField,
@@ -110,7 +127,6 @@ export const useEvents = (
 		]
 	)
 
-	// --- RESET & LOAD (Called when changing filters) ---
 	const resetAndLoad = useCallback(() => {
 		setItems([])
 		setCurrentOffset(0)
@@ -125,6 +141,7 @@ export const useEvents = (
 			!state.isLoadingMore &&
 			!state.isFetching &&
 			!state.isSearching &&
+			!state.isMounting &&
 			state.hasMore &&
 			state.currentOffset < state.total
 		) {
@@ -132,20 +149,22 @@ export const useEvents = (
 		}
 	}, [loadEvents])
 
-	// Initial Load (Mount only)
 	useEffect(() => {
 		if (isFirstRender.current) {
 			isFirstRender.current = false
 			loadEvents(0, 'mount')
-		}
-	}, [loadEvents])
-
-	// Watch filters changes
-	useEffect(() => {
-		if (!isFirstRender.current) {
+		} else {
 			resetAndLoad()
 		}
-	}, [JSON.stringify(filters), searchText, searchField, sortBy, sortOrder])
+	}, [
+		JSON.stringify(filters),
+		searchText,
+		searchField,
+		sortBy,
+		sortOrder,
+		loadEvents,
+		resetAndLoad,
+	])
 
 	// Observer Logic
 	useEffect(() => {

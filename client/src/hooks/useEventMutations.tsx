@@ -7,6 +7,7 @@ import {
 	useLeaveEventMutation,
 	useUpdateEventMutation,
 } from '../services/EventService'
+import { IParticipant } from '../shared/interfaces/models'
 import { TEventInput } from '../shared/validations/event.schema'
 type SetItemsType = React.Dispatch<React.SetStateAction<TEventInput[]>>
 type SetTotalType = React.Dispatch<React.SetStateAction<number>>
@@ -41,7 +42,7 @@ export const useEventMutations = (
 	const handleJoin = useCallback(
 		async (eventId: number) => {
 			try {
-				await joinEvent({ eventId }).unwrap()
+				await joinEvent(eventId).unwrap()
 				const updatedEvent = await getEventById(eventId).unwrap()
 				setItems(prev =>
 					prev.map(event => (event.id === eventId ? updatedEvent : event))
@@ -64,7 +65,7 @@ export const useEventMutations = (
 							? {
 									...event,
 									participants: (event.participants || []).filter(
-										p => p.id !== currentUserId
+										(p: IParticipant) => p.id !== currentUserId
 									),
 							  }
 							: event

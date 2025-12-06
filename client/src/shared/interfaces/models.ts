@@ -5,6 +5,7 @@ import {
 	RegisterOptions,
 	UseFormSetError,
 } from 'react-hook-form'
+import { TEventInput } from '../validations/event.schema'
 
 // topBar
 export interface IBaseButton {
@@ -63,7 +64,12 @@ export interface ICodeSendAgain {
 	user_id: string | number
 }
 
-// Auth service
+// Auth state
+export interface IAuthState {
+	isAuthenticated: boolean
+}
+
+// ---- Auth service ----
 export interface IApiResponse {
 	success: boolean
 	message: string
@@ -114,11 +120,6 @@ export interface IRequestLogOut {
 	refreshToken: string
 }
 
-// Auth state
-export interface IAuthState {
-	isAuthenticated: boolean
-}
-
 // getUsers
 export interface IUserGetUsers {
 	id: number
@@ -150,8 +151,44 @@ export type TResponseResetPassword = IApiResponse
 
 // Profile
 export type IResponseGetProfile = IUserProfile
-
 export type IRequestUpdateProfile = TProfileFormData
+
+// ---- Event Service ----
+export interface IRequestUpdateEvent {
+	eventId: number
+	data: TEventInput
+}
+
+export interface IResponseJoinLeaveEvent {
+	success: boolean
+}
+
+export interface IRequestJoinLeaveEvent {
+	eventId: number
+}
+
+export type TTypeOfUserEvents = 'created' | 'attending' | 'all'
+export interface IRequestGetUserEvents {
+	userId: number
+	type: TTypeOfUserEvents
+}
+
+export interface IResponseGetFilteredEvents {
+	events: TEventInput[]
+	total: number
+	limit: number
+	offset: number
+}
+
+export interface IRequestGetFilteredEvents {
+	filters: IFilters
+	search?: string
+	searchField: TSearchField
+	sortBy: TSortBy
+	sortOrder: TSortOrder
+	limit: number
+	offset: number
+}
 
 // ---- Components ----
 // Enter email
@@ -196,6 +233,7 @@ export type TSearchField = 'title' | 'location' | 'creator'
 export type TSortBy = 'eventDate' | 'title' | 'location'
 export type TSortOrder = 'asc' | 'desc'
 export type TModalState = number | null
+export type TTypeOfLoadingEvents = 'mount' | 'search' | 'pagination'
 
 // Date
 export type TDateRange = {
@@ -260,11 +298,20 @@ export type TProfileFormData = Partial<
 export type TProfileFieldType = 'text' | 'number' | 'email' | 'tel' | 'password'
 
 // Filters
+export type TTypeOfEvent =
+	| 'Турнір'
+	| 'Тренування'
+	| 'Дружня гра'
+	| 'Приватна гра'
+	| 'Клубний захід'
+
+export type TTypeOfGame = 'Одиночна' | 'Парна' | 'Змішана' | 'Командна'
+export type TLevelOfPlayers = 'Новачок' | 'Середній' | 'Просунутий' | 'Профі'
 export interface IFilters {
-	events?: string[]
-	date?: TDateRange
-	typeOfGame?: string[]
-	levelOfPlayers?: string[]
+	events?: TTypeOfEvent[]
+	date: TDateRange
+	typeOfGame?: TTypeOfGame[]
+	levelOfPlayers?: TLevelOfPlayers[]
 }
 
 export interface IFiltersState {
