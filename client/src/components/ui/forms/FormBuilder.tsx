@@ -7,7 +7,7 @@ import {
 import googleIcon from '../../../assets/images/google_icon.svg'
 import { IBaseButton, IFormInput } from '../../../shared/interfaces/models'
 import BaseButton from '../buttons/BaseButton'
-import TextInput from '../inputs/FormInput'
+import TextInput from '../inputs/TextInput'
 
 interface IFormBuilderProps<T extends FieldValues> {
 	inputs: IFormInput<T>[]
