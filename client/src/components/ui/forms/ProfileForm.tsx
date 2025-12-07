@@ -1,8 +1,8 @@
 import { UseFormReturn } from 'react-hook-form'
 import { formStyles } from '../../../configs/styles.config'
-import Field from '../profile/ProfileField'
-import Select from '../profile/ProfileSelect'
-import TextArea from '../profile/ProfileTextArea'
+import ProfileField from '../profile/ProfileField'
+import ProfileSelect from '../profile/ProfileSelect'
+import ProfileTextArea from '../profile/ProfileTextArea'
 
 // TODO take out this
 const LABEL_CLASS = 'block text-lg font-medium text-black-800 mb-1'
@@ -68,7 +68,7 @@ const ProfileForm = ({
 							</div>
 						)}
 					</div>
-					<Field
+					<ProfileField
 						label='Нікнейм'
 						name='nickname'
 						type='text'
@@ -79,7 +79,7 @@ const ProfileForm = ({
 						LABEL_CLASS={LABEL_CLASS}
 					/>
 
-					<Field
+					<ProfileField
 						label='Місто'
 						name='city'
 						type='text'
@@ -89,7 +89,7 @@ const ProfileForm = ({
 						LABEL_CLASS={LABEL_CLASS}
 					/>
 
-					<Field
+					<ProfileField
 						label='Вік'
 						name='age'
 						type='number'
@@ -99,7 +99,7 @@ const ProfileForm = ({
 						LABEL_CLASS={LABEL_CLASS}
 					/>
 
-					<Select
+					<ProfileSelect
 						label='Стать'
 						name='gender'
 						value={profile?.gender}
@@ -114,7 +114,7 @@ const ProfileForm = ({
 						]}
 					/>
 
-					<Field
+					<ProfileField
 						label='Рівень гри'
 						name='level'
 						type='text'
@@ -124,7 +124,7 @@ const ProfileForm = ({
 						LABEL_CLASS={LABEL_CLASS}
 					/>
 
-					<Field
+					<ProfileField
 						label='Досвід (місяців)'
 						name='experienceMonths'
 						type='number'
@@ -134,7 +134,7 @@ const ProfileForm = ({
 						LABEL_CLASS={LABEL_CLASS}
 					/>
 
-					<Select
+					<ProfileSelect
 						label='Основна рука'
 						name='dominantHand'
 						value={profile?.dominantHand}
@@ -148,7 +148,7 @@ const ProfileForm = ({
 						]}
 					/>
 
-					<Select
+					<ProfileSelect
 						label='Формат гри'
 						name='preferredFormat'
 						value={profile?.preferredFormat}
@@ -163,7 +163,7 @@ const ProfileForm = ({
 						]}
 					/>
 
-					<Field
+					<ProfileField
 						label='Інтенсивність гри'
 						name='playFrequency'
 						type='text'
@@ -173,7 +173,7 @@ const ProfileForm = ({
 						LABEL_CLASS={LABEL_CLASS}
 					/>
 
-					<Field
+					<ProfileField
 						label='Місця гри (через кому)'
 						name='commonPlaces'
 						type='text'
@@ -183,7 +183,7 @@ const ProfileForm = ({
 						LABEL_CLASS={LABEL_CLASS}
 					/>
 
-					<Field
+					<ProfileField
 						label='Час гри'
 						name='playTime'
 						type='text'
@@ -193,7 +193,7 @@ const ProfileForm = ({
 						LABEL_CLASS={LABEL_CLASS}
 					/>
 
-					<TextArea
+					<ProfileTextArea
 						label='Про себе'
 						name='bio'
 						value={profile?.bio}
@@ -202,7 +202,7 @@ const ProfileForm = ({
 						LABEL_CLASS={LABEL_CLASS}
 					/>
 
-					<Field
+					<ProfileField
 						label='Контакт'
 						name='contact'
 						type='text'

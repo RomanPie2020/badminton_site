@@ -10,7 +10,7 @@ interface ProfileSelectProps {
 	LABEL_CLASS: string
 }
 
-const Select = ({
+const ProfileSelect = ({
 	label,
 	name,
 	options,
@@ -46,4 +46,4 @@ const Select = ({
 	)
 }
 
-export default Select
+export default ProfileSelect
