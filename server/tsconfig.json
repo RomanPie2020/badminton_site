@@ -12,11 +12,11 @@
 		"outDir": "./dist",
 		"rootDir": "./app",
 		"baseUrl": "./",
-		// "typeRoots": ["./node_modules/@types"],
+		"typeRoots": ["./node_modules/@types", "./types"],
 		"paths": {
 			"@/*": ["app/*"]
 		}
 	},
-	"include": ["app/**/*", "app/types", "index.ts"],
+	"include": ["app/**/*", "index.ts", "types/**/*"],
 	"exclude": ["node_modules", "build"]
 }

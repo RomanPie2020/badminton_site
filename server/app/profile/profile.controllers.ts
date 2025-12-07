@@ -1,9 +1,21 @@
 import ApiError from '@/exceptions/apiError'
-import { RequestHandler } from 'express'
+import { NextFunction, RequestHandler } from 'express'
 import { profileService } from './profile.profileService'
 
+type TAsyncRequestHandler = (
+	req: Request,
+	res: Response,
+	next: NextFunction
+) => Promise<void>
+// const test = (req: Request) => {
+// 	req.user?.id
+// }
 class ProfileController {
-	getProfile: RequestHandler = async (req, res, next) => {
+	getProfile: RequestHandler<any, any, any, any, Record<string, any>> = async (
+		req,
+		res,
+		next
+	) => {
 		try {
 			if (req.user && req.user.id) {
 				const profile = await profileService.getUserProfile(req.user.id)

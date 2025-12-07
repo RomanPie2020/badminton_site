@@ -11,3 +11,9 @@ export interface IProfilePayload {
 export interface IProfileRequest extends Request {
 	user: IProfilePayload
 }
+
+// export type TAsyncRequestHandler = (
+// 	req: Request,
+// 	res: Response,
+// 	next: NextFunction
+// ) => Promise<void>
