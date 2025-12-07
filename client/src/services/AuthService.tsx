@@ -43,12 +43,12 @@ export const authService = createApi({
 				method: 'POST',
 				body,
 			}),
-			transformResponse: (res: IResponseLogIn) => {
-				localStorage.setItem('access_token', res.access)
-				localStorage.setItem('refresh_token', res.refresh)
-				localStorage.setItem('is_Auth', 'true')
-				return res
-			},
+			// transformResponse: (res: IResponseLogIn) => {
+			// 	localStorage.setItem('access_token', res.access)
+			// 	localStorage.setItem('refresh_token', res.refresh)
+			// 	localStorage.setItem('is_Auth', 'true')
+			// 	return res
+			// },
 		}),
 		refresh: build.mutation<IResponseRefreshToken, IRequestRefreshToken>({
 			query: body => ({
@@ -69,30 +69,6 @@ export const authService = createApi({
 				url: '/api/auth/users',
 			}),
 		}),
-		// sendCodeAgain: build.mutation<any, any>({
-		// 	query: body => ({
-		// 		url: 'api/user/send_code_again',
-		// 		method: 'POST',
-		// 		body,
-		// 	}),
-		// 	transformResponse: res => {
-		// 		return res
-		// 	},
-		// }),
-		// updateUser: build.mutation<any, any>({
-		// 	query: body => ({
-		// 		url: 'api/user/update',
-		// 		method: 'PATCH',
-		// 		body,
-		// 	}),
-		// }),
-		// deleteUser: build.mutation<any, any>({
-		// 	query: body => ({
-		// 		url: 'api/user/delete',
-		// 		method: 'DELETE',
-		// 		body,
-		// 	}),
-		// }),
 		forgotPassword: build.mutation<
 			TResponseForgotPassword,
 			IRequestForgotPassword
@@ -135,7 +111,6 @@ export const authService = createApi({
 				url: `/api/users/${id}/profile`,
 				method: 'GET',
 			}),
-			providesTags: (result, error, id) => [{ type: 'UserProfile', id }],
 		}),
 	}),
 })

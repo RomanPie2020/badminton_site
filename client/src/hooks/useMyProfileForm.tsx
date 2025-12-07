@@ -4,7 +4,7 @@ import {
 	useGetProfileQuery,
 	useUpdateProfileMutation,
 } from '../services/AuthService'
-import { IProfileFormData } from '../shared/interfaces/models'
+import { TProfileFormData } from '../shared/interfaces/models'
 
 export const useMyProfileForm = () => {
 	const { data: profile, isLoading, isError, error } = useGetProfileQuery()
@@ -19,7 +19,7 @@ export const useMyProfileForm = () => {
 		handleSubmit,
 		reset,
 		formState: { errors },
-	} = useForm<IProfileFormData>()
+	} = useForm<TProfileFormData>()
 
 	useEffect(() => {
 		if (profile) {
@@ -27,7 +27,7 @@ export const useMyProfileForm = () => {
 		}
 	}, [profile, reset])
 
-	const onSubmit = async (data: IProfileFormData) => {
+	const onSubmit = async (data: TProfileFormData) => {
 		try {
 			setSuccessMessage('')
 			setErrorMessage('')

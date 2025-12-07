@@ -12,17 +12,17 @@ const logInButtonProps: IBaseButton = {
 	type: 'button',
 }
 
-const signUpButtonProps: IBaseButton = {
-	title: 'Зареєструватися зараз',
-	styles: '',
-	to: '/signup',
-}
+// const signUpButtonProps: IBaseButton = {
+// 	title: 'Зареєструватися зараз',
+// 	styles: '',
+// 	to: '/signup',
+// }
 
-const forgotPasswordButtonProps: IBaseButton = {
-	title: 'Забули пароль?',
-	styles: '',
-	to: '/enter-email',
-}
+// const forgotPasswordButtonProps: IBaseButton = {
+// 	title: 'Забули пароль?',
+// 	styles: '',
+// 	to: '/enter-email',
+// }
 
 const LogInForm = ({ onSubmit }: ILogInFormProps) => {
 	return (

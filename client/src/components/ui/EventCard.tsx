@@ -8,7 +8,7 @@ interface IEventCardProps {
 	currentUserId: number
 	onJoin: (id: number) => void
 	onLeave: (id: number) => void
-	onRefetch?: () => any
+	onRefetch?: () => void
 	setShowDetails: (id: number) => void
 	setEdit: (id: number) => void
 	setDelete: (id: number) => void
@@ -19,7 +19,6 @@ const EventCard = ({
 	currentUserId,
 	onJoin,
 	onLeave,
-	onRefetch,
 	setShowDetails,
 	setEdit,
 	setDelete,
@@ -56,7 +55,7 @@ const EventCard = ({
 					Створив:{' '}
 					<button
 						onClick={() => {
-							navigate(`/users/${event.creatorId}/profile`)
+							navigate(`/users/${event.creator.id}/profile`)
 						}}
 						className='hover:underline font-medium'
 					>

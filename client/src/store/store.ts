@@ -4,10 +4,8 @@ import { authService } from '../services/AuthService'
 import { eventService } from '../services/EventService'
 import { authStatusSliceReducer } from './authStatus.slice'
 import { filtersSliceReducer } from './filtersSlice'
-import { userIdReducer } from './userId.slice'
 
 const reducers = combineReducers({
-	code: userIdReducer,
 	authStatus: authStatusSliceReducer,
 	filters: filtersSliceReducer,
 	[authService.reducerPath]: authService.reducer,

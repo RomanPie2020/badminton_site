@@ -95,8 +95,14 @@ export type TResponseConfirmRegistration = IApiResponse
 
 // LogIn
 export interface IResponseLogIn {
-	access: string
-	refresh: string
+	accessToken: string
+	refreshToken: string
+	success: boolean
+	user: {
+		email: string
+		id: number
+		username: string
+	}
 }
 
 export interface IRequestLogIn {
@@ -222,9 +228,9 @@ export interface IResetPasswordFormProps {
 // }
 export interface IParticipant {
 	id: number
-	profile: { nickname: string }
-	nickname: string
 	username: string
+	profile: { nickname: string }
+	nickname?: string
 	avatarUrl?: string | null
 }
 

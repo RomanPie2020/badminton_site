@@ -32,7 +32,7 @@ const MyEvents = () => {
 		refetchCreated,
 		refetchAttending,
 		// Helpers
-		getEventById,
+		// getEventById,
 	} = useMyEvents(currentUserId)
 
 	return (

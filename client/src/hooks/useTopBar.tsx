@@ -17,7 +17,10 @@ export function useTopBar() {
 	const handleLogout = useCallback(async () => {
 		try {
 			const refreshToken = localStorage.getItem('refresh_token')
-			await logOutUser({ refreshToken }).unwrap()
+			if (refreshToken) {
+				await logOutUser({ refreshToken }).unwrap()
+			}
+
 			localStorage.removeItem('access_token')
 			localStorage.removeItem('refresh_token')
 			localStorage.setItem('is_Auth', 'false')

@@ -7,7 +7,7 @@ import {
 } from '@reduxjs/toolkit/query/react'
 import { apiUrl } from '../configs/url.config'
 
-import { IRefreshTokenResponse } from '../shared/interfaces/models'
+import { IResponseRefreshToken } from '../shared/interfaces/models'
 import { authStatusSliceActions } from '../store/authStatus.slice'
 
 export const baseQueryWithReauth: BaseQueryFn<
@@ -17,7 +17,7 @@ export const baseQueryWithReauth: BaseQueryFn<
 	{},
 	FetchBaseQueryMeta
 > = async (args: any, api: any, extraOptions: any) => {
-	// Базовий запит
+	// Basic request
 	const baseQuery = fetchBaseQuery({
 		baseUrl: apiUrl,
 		prepareHeaders: headers => {
@@ -34,7 +34,7 @@ export const baseQueryWithReauth: BaseQueryFn<
 	if (result.error?.status === 401) {
 		const refreshToken = localStorage.getItem('refresh_token')
 		if (refreshToken) {
-			// Оновлення токена
+			//Token Update
 			const refreshResult = await baseQuery(
 				{
 					url: '/api/auth/refresh',
@@ -49,7 +49,7 @@ export const baseQueryWithReauth: BaseQueryFn<
 				console.log(refreshResult.data)
 
 				const { accessToken: newAccessToken } =
-					refreshResult.data as IRefreshTokenResponse
+					refreshResult.data as IResponseRefreshToken
 
 				localStorage.setItem('access_token', newAccessToken)
 

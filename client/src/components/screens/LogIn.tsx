@@ -21,7 +21,7 @@ const LogIn = () => {
 			if (data) {
 				localStorage.setItem('access_token', data.accessToken)
 				localStorage.setItem('refresh_token', data.refreshToken)
-				localStorage.setItem('user_id', data.user.id)
+				localStorage.setItem('user_id', data.user.id.toString())
 				localStorage.setItem('is_Auth', 'true')
 				logIn()
 				navigate('/')

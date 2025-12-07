@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { formStyles } from '../../configs/styles.config'
-import { useActions } from '../../hooks/useActions'
 import { useRegisterMutation } from '../../services/AuthService'
 import {
 	ISignUpData,
@@ -12,7 +11,6 @@ import SignUpForm from '../ui/forms/SignUpForm'
 import Loader from '../ui/loaders/Loader'
 
 const SignUp = () => {
-	const { addUserId } = useActions()
 	const [signUp, { isLoading }] = useRegisterMutation()
 	const [isSuccess, setIsSuccess] = useState(false)
 	const [errorMessage, setErrorMessage] = useState('')
@@ -21,7 +19,7 @@ const SignUp = () => {
 		setErrorMessage('')
 		try {
 			const response = await signUp(formData).unwrap()
-			await addUserId(response.id)
+			localStorage.setItem('userId', response.id.toString())
 			setIsSuccess(true)
 		} catch (error: unknown) {
 			console.error('Signup error', error)

@@ -5736,3 +5736,18 @@
 {"creatorId":11,"description":"af","eventDate":"2025-12-09T22:45","eventType":"Дружня гра","gameType":"Одиночна","level":"info","levelOfPlayers":"Новачок","location":"kk","maxParticipants":4,"message":"Створення івенту:","timestamp":"2025-12-05T22:45:17.476Z","title":"babababab"}
 {"level":"error","message":"Error:","timestamp":"2025-12-05T23:00:32.641Z"}
 {"level":"error","message":"Error:","timestamp":"2025-12-05T23:00:49.975Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-12-06T14:45:26.721Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-12-06T14:45:26.734Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-12-06T14:45:26.966Z"}
+{"level":"error","message":"Error:","timestamp":"2025-12-06T19:29:06.938Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-12-06T23:32:36.748Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-12-06T23:32:36.765Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-12-06T23:32:37.064Z"}
+{"level":"info","message":"Refresh token saved for user 11","timestamp":"2025-12-06T23:32:41.401Z"}
+{"level":"info","message":"Користувач romanstone2004@gmail.com успішно увійшов","timestamp":"2025-12-06T23:32:41.402Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-12-06T23:32:42.759Z"}
+{"level":"info","message":"database password is: string","timestamp":"2025-12-07T00:15:27.478Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-12-07T00:15:27.488Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-12-07T00:15:27.816Z"}
+{"level":"info","message":"Refresh token saved for user 11","timestamp":"2025-12-07T00:16:46.724Z"}
+{"level":"info","message":"Користувач romanstone2004@gmail.com успішно увійшов","timestamp":"2025-12-07T00:16:46.725Z"}

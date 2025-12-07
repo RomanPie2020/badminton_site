@@ -9,7 +9,7 @@ import ResetPasswordForm from '../ui/forms/ResetPasswordForm'
 
 const ResetPassword = () => {
 	const navigate = useNavigate()
-	const [resetPassword, { isLoading }] = useResetPasswordMutation()
+	const [resetPassword] = useResetPasswordMutation()
 	const [errorMessage, setErrorMessage] = useState('')
 	const [successMessage, setSuccessMessage] = useState('')
 	const [searchParams] = useSearchParams()
