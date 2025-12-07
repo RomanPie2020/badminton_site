@@ -17,7 +17,7 @@ router.put(
 
 router.get(
 	'/api/users/:id/profile',
-	isAuthorized, // якщо хочете, щоб лише авторизовані бачили чужі профілі
+	isAuthorized,
 	profileController.getProfileById
 )
 

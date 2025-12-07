@@ -1,9 +1,9 @@
 // middleware/validate.ts
-import { NextFunction, Request, Response } from 'express'
+import { RequestHandler } from 'express'
 import { ZodSchema } from 'zod'
 
-export const validateBody = (schema: ZodSchema) => {
-	return (req: Request, res: Response, next: NextFunction) => {
+export const validateBody = (schema: ZodSchema): RequestHandler => {
+	return (req, res, next) => {
 		const result = schema.safeParse(req.body)
 		if (!result.success) {
 			const formatted = result.error.flatten().fieldErrors
@@ -12,7 +12,7 @@ export const validateBody = (schema: ZodSchema) => {
 				errors: formatted,
 			})
 		}
-		req.body = result.data // нормалізовані значення
+		req.body = result.data // normalized values
 		next()
 	}
 }

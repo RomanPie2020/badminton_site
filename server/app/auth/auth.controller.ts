@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from 'express'
 import ApiError from '../exceptions/apiError'
 
+import { FRONT_URL } from '@/config/url'
 import { logger } from '@/utils/logger/log'
 import { IConfirmRegisterRequest } from './auth.types'
 import { authService } from './services/auth.authService'
@@ -138,21 +139,17 @@ export class AuthController {
 			// 	res.status(401).json({ message: 'Автентифікація не вдалася' })
 			// }
 			logger.info('Отримані дані:', req.body)
-			const accessToken = tokenService.generateAccessToken(req.user.id)
-			const refreshToken = tokenService.generateRefreshToken()
-			await tokenService.saveRefreshToken(req.user.id, refreshToken)
+			if (req.user) {
+				const accessToken = tokenService.generateAccessToken(req.user.id)
+				const refreshToken = tokenService.generateRefreshToken()
+				await tokenService.saveRefreshToken(req.user.id, refreshToken)
 
-			// res.status(200).json({
-			// 	message: 'Успішно увійшли через Google!',
-			// 	user: req.user,
-			// 	accessToken,
-			// 	refreshToken,
-			// })
-			res.redirect(
-				`http://localhost:5173/google/success?access_token=${accessToken}&refresh_token=${refreshToken}&user=${JSON.stringify(
-					req.user.id
-				)}`
-			)
+				res.redirect(
+					`${FRONT_URL}/google/success?access_token=${accessToken}&refresh_token=${refreshToken}&user=${JSON.stringify(
+						req.user.id
+					)}`
+				)
+			}
 		} catch (e) {
 			next(e)
 		}

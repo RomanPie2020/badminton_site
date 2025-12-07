@@ -1,14 +1,9 @@
-// app/middleware/authMiddleware.ts
 import User from '@/auth/models/user'
 import { tokenService } from '@/auth/services/auth.tokenService'
 import ApiError from '@/exceptions/apiError'
-import { NextFunction, Request, Response } from 'express'
+import { RequestHandler } from 'express'
 
-export const isAuthorized = async (
-	req: Request,
-	res: Response,
-	next: NextFunction
-) => {
+export const isAuthorized: RequestHandler = async (req, res, next) => {
 	try {
 		const authHeader = req.headers.authorization
 		if (!authHeader || !authHeader.startsWith('Bearer ')) {

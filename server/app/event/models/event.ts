@@ -13,15 +13,15 @@ import sequelize from '../../config/database'
 // Атрибути події
 export interface EventAttributes {
 	id: number
-	title: string
+	title: string | null
 	description?: string | null
-	location: string // назва або адреса
+	location: string | null // назва або адреса
 	eventDate: Date | null // коли найчастіше
 	maxParticipants?: number // скільки максимум
 	creatorId: number // хто створив
-	eventType: string
-	gameType: string
-	levelOfPlayers: string
+	eventType: string | null
+	gameType: string | null
+	levelOfPlayers: string | null
 	createdAt?: Date
 	updatedAt?: Date
 }
@@ -35,15 +35,15 @@ class EventModel
 	implements EventAttributes
 {
 	declare id: number
-	declare title: string
+	declare title: string | null
 	declare description: string | null
-	declare location: string
+	declare location: string | null
 	declare eventDate: Date | null
 	declare maxParticipants: number
 	declare creatorId: number
-	declare eventType: string
-	declare gameType: string
-	declare levelOfPlayers: string
+	declare eventType: string | null
+	declare gameType: string | null
+	declare levelOfPlayers: string | null
 	declare readonly createdAt: Date
 	declare readonly updatedAt: Date
 
@@ -68,7 +68,7 @@ EventModel.init(
 		},
 		title: {
 			type: DataTypes.STRING,
-			allowNull: false,
+			allowNull: true,
 		},
 		description: {
 			type: DataTypes.TEXT,
@@ -76,7 +76,7 @@ EventModel.init(
 		},
 		location: {
 			type: DataTypes.STRING,
-			allowNull: false,
+			allowNull: true,
 		},
 		eventDate: {
 			type: DataTypes.DATE,
@@ -97,15 +97,15 @@ EventModel.init(
 		},
 		eventType: {
 			type: DataTypes.STRING,
-			allowNull: false,
+			allowNull: true,
 		},
 		gameType: {
 			type: DataTypes.STRING,
-			allowNull: false,
+			allowNull: true,
 		},
 		levelOfPlayers: {
 			type: DataTypes.STRING,
-			allowNull: false,
+			allowNull: true,
 		},
 	},
 	{

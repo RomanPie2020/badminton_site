@@ -54,8 +54,8 @@ class AuthService {
 			await t.commit()
 
 			return newUser
-		} catch (error) {
-			logger.error('Помилка при реєстрації користувача: ' + error.message)
+		} catch (error: unknown) {
+			logger.error('Помилка при реєстрації користувача: ')
 			throw ApiError.BadRequest('Не вдалося завершити реєстрацію')
 		}
 	}

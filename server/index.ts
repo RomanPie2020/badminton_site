@@ -7,6 +7,7 @@ import { oAuthService } from '@/auth/services/auth.oAuthService'
 import sequelizeConnect from '@/config/database'
 import { errorHandler } from '@/middleware/auth.errorMiddleware'
 
+import { FRONT_URL } from '@/config/url'
 import { eventRouter } from '@/event/event.routes'
 import { profileRouter } from '@/profile/profile.routes'
 import compression from 'compression'
@@ -18,7 +19,7 @@ const app = express()
 // Middleware
 app.use(
 	cors({
-		origin: 'http://localhost:5173',
+		origin: FRONT_URL,
 		credentials: true,
 	})
 )

@@ -1,11 +1,11 @@
 import ApiError from '@/exceptions/apiError'
-import { NextFunction, Request, Response } from 'express'
+import { NextFunction, Request, RequestHandler, Response } from 'express'
 import { eventService } from './event.eventService'
 import { EventAttributes } from './models/event'
 
 class EventController {
 	// 1) Повертає масив подій
-	async getFilteredEvents(req: Request, res: Response, next: NextFunction) {
+	getFilteredEvents: RequestHandler = async (req, res, next) => {
 		try {
 			// Розбираємо query-параметри
 			const {
@@ -149,7 +149,7 @@ class EventController {
 					offset,
 				})
 
-			return res.json({
+			res.json({
 				events,
 				total,
 				limit,

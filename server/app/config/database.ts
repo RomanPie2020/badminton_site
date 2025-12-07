@@ -7,9 +7,8 @@ const sequelizeConnect = new Sequelize({
 	username: process.env.DB_USER,
 	password: process.env.DB_PASSWORD,
 	database: process.env.DB_NAME,
-	logging: false, // в продакшені краще вимкнути
+	logging: false,
 
-	// ← Ось тут додаємо глобальні define-опції
 	// define: {
 	// 	underscored: true, // автоматично ставитиме snake_case для всіх полів
 	// 	timestamps: true, // автоматично додаватиме created_at / updated_at
