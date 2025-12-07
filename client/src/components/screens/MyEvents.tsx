@@ -2,9 +2,9 @@ import { TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react'
 import { useMyEvents } from '../../hooks/useMyEvents'
 import EventTabContent from '../ui/events/EventTabContent'
 import StyledTab from '../ui/events/StyledTab'
-import ConfirmModal from '../ui/FilterModals/ConfirmModal'
-import DetailModal from '../ui/FilterModals/DetailModal'
-import EventFormModal from '../ui/FilterModals/EventFormModal'
+import ConfirmModal from '../ui/filterModals/ConfirmModal'
+import DetailModal from '../ui/filterModals/DetailModal'
+import EventFormModal from '../ui/filterModals/EventFormModal'
 
 const MyEvents = () => {
 	const currentUserId = Number(localStorage.getItem('user_id'))

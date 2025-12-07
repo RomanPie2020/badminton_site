@@ -14,10 +14,10 @@ import { useAppSelector } from '../../store/store'
 import EventCard from '../ui/EventCard'
 import EventControls from '../ui/events/EventControls'
 import EventSkeleton from '../ui/events/EventSkeleton'
-import ConfirmModal from '../ui/FilterModals/ConfirmModal'
-import DetailModal from '../ui/FilterModals/DetailModal'
-import EventFormModal from '../ui/FilterModals/EventFormModal'
-import FilterModal from '../ui/FilterModals/FilterModal'
+import ConfirmModal from '../ui/filterModals/ConfirmModal'
+import DetailModal from '../ui/filterModals/DetailModal'
+import EventFormModal from '../ui/filterModals/EventFormModal'
+import FilterModal from '../ui/filterModals/FilterModal'
 
 const EventList = () => {
 	const filters = useAppSelector(selectFilters)
