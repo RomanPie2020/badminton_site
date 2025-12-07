@@ -5,6 +5,7 @@ import {
 	UseFormSetError,
 } from 'react-hook-form'
 import googleIcon from '../../../assets/images/google_icon.svg'
+import { apiUrl } from '../../../configs/url.config'
 import { IBaseButton, IFormInput } from '../../../shared/interfaces/models'
 import BaseButton from '../buttons/BaseButton'
 import TextInput from '../inputs/TextInput'
@@ -40,7 +41,7 @@ function FormBuilder<T extends FieldValues>({
 	})
 
 	const googleLogin = () => {
-		window.location.href = 'http://localhost:3000/auth/google'
+		window.location.href = `${apiUrl}/auth/google`
 	}
 
 	return (

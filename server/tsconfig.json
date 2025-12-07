@@ -9,8 +9,8 @@
 		"skipLibCheck": true,
 		"forceConsistentCasingInFileNames": true,
 		"resolveJsonModule": true,
-		"outDir": "./build",
-		"rootDir": "./",
+		"outDir": "./dist",
+		"rootDir": "./app",
 		"baseUrl": "./",
 		// "typeRoots": ["./node_modules/@types"],
 		"paths": {
