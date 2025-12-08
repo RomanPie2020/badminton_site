@@ -1,4 +1,13 @@
-export default {
+require('dotenv').config()
+
+const sslOptions = {
+	ssl: {
+		require: true,
+		rejectUnauthorized: false,
+	},
+}
+
+module.exports = {
 	development: {
 		username: process.env.DB_USER,
 		password: process.env.DB_PASSWORD,
@@ -6,7 +15,11 @@ export default {
 		host: process.env.DB_HOST,
 		port: process.env.DB_PORT,
 		dialect: 'postgres',
-		logging: false, // вимкнути логування в розробці, за потреби
+		logging: false,
+		dialectOptions:
+			process.env.DB_HOST && process.env.DB_HOST !== 'localhost'
+				? sslOptions
+				: {},
 	},
 	test: {
 		username: process.env.DB_USER,
@@ -15,7 +28,7 @@ export default {
 		host: process.env.DB_HOST,
 		port: process.env.DB_PORT,
 		dialect: 'postgres',
-		logging: false, // вимкнути логування для тестування
+		logging: false,
 	},
 	production: {
 		username: process.env.DB_USER,
@@ -24,6 +37,7 @@ export default {
 		host: process.env.DB_HOST,
 		port: process.env.DB_PORT,
 		dialect: 'postgres',
-		logging: false, // вимкнути логування в продакшені
+		logging: false,
+		dialectOptions: sslOptions,
 	},
 }

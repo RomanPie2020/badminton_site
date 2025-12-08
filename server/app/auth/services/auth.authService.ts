@@ -55,7 +55,8 @@ class AuthService {
 
 			return newUser
 		} catch (error: unknown) {
-			logger.error('Помилка при реєстрації користувача: ')
+			await t.rollback()
+			logger.error('Помилка при реєстрації користувача: ', error)
 			throw ApiError.BadRequest('Не вдалося завершити реєстрацію')
 		}
 	}
@@ -73,6 +74,9 @@ class AuthService {
 			port: 465,
 			secure: true,
 			logger: true,
+			connectionTimeout: 10000, // 10 seconds
+			greetingTimeout: 10000, // 10 seconds
+			socketTimeout: 10000, // 10 seconds
 		})
 		logger.info(to)
 		const mailOptions = {
