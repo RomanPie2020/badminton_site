@@ -8,15 +8,15 @@ const sequelizeConnect = new Sequelize({
 	password: process.env.DB_PASSWORD,
 	database: process.env.DB_NAME,
 	logging: false,
-	dialectOptions:
-		process.env.DB_HOST && process.env.DB_HOST !== 'localhost'
-			? {
-					ssl: {
-						require: true,
-						rejectUnauthorized: false,
-					},
-			  }
-			: {},
+	// dialectOptions:
+	// 	process.env.DB_HOST && process.env.DB_HOST !== 'localhost'
+	// 		? {
+	// 				ssl: {
+	// 					require: true,
+	// 					rejectUnauthorized: false,
+	// 				},
+	// 		  }
+	// 		: {},
 
 	// define: {
 	// 	underscored: true, // автоматично ставитиме snake_case для всіх полів

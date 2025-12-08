@@ -1,4 +1,4 @@
-require('dotenv').config()
+// require('dotenv').config()
 
 const sslOptions = {
 	ssl: {
@@ -7,7 +7,7 @@ const sslOptions = {
 	},
 }
 
-module.exports = {
+export default {
 	development: {
 		username: process.env.DB_USER,
 		password: process.env.DB_PASSWORD,
@@ -16,10 +16,10 @@ module.exports = {
 		port: process.env.DB_PORT,
 		dialect: 'postgres',
 		logging: false,
-		dialectOptions:
-			process.env.DB_HOST && process.env.DB_HOST !== 'localhost'
-				? sslOptions
-				: {},
+		// dialectOptions:
+		// 	process.env.DB_HOST && process.env.DB_HOST !== 'localhost'
+		// 		? sslOptions
+		// 		: {},
 	},
 	test: {
 		username: process.env.DB_USER,

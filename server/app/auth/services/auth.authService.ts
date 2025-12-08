@@ -31,7 +31,7 @@ class AuthService {
 
 			// Формування лінка для підтвердження
 			const confirmationLink = `${FRONT_URL}/auth/confirm?token=${token}`
-
+			logger.info(`Confirmation link for ${email}: ${confirmationLink}`)
 			// Спроба надіслати лист
 			await this.sendEmail({
 				to: email,
