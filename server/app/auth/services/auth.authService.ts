@@ -33,12 +33,12 @@ class AuthService {
 			const confirmationLink = `${FRONT_URL}/auth/confirm?token=${token}`
 
 			// Спроба надіслати лист
-			// await this.sendEmail({
-			// 	to: email,
-			// 	subject: 'Підтвердження реєстрації',
-			// 	text: `Будь ласка, підтвердіть вашу реєстрацію, натиснувши на це посилання: ${confirmationLink}`,
-			// })
-			// logger.info(`Лист надіслано до ${email}`)
+			await this.sendEmail({
+				to: email,
+				subject: 'Підтвердження реєстрації',
+				text: `Будь ласка, підтвердіть вашу реєстрацію, натиснувши на це посилання: ${confirmationLink}`,
+			})
+			logger.info(`Лист надіслано до ${email}`)
 
 			// Якщо все ок — створюємо користувача
 			const newUser = await User.create(

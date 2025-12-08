@@ -42,7 +42,7 @@ services:
     environment:
       - NODE_ENV=development
       - PORT=3000
-      - DB_HOST=postgres
+      - DB_HOST=dpg-d4r1dse3jp1c739pkk8g-a
       - DB_PORT=5432
       - DB_NAME=${DB_NAME}
       - DB_USER=${DB_USER}
