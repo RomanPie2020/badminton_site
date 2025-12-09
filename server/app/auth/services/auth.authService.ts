@@ -3,19 +3,18 @@ import UserProfile from '@/profile/models/userProfile'
 import { logger } from '@/utils/logger/log'
 import bcrypt from 'bcrypt'
 import crypto from 'crypto'
-import nodemailer from 'nodemailer'
 import { Op } from 'sequelize'
 import ApiError from '../../exceptions/apiError'
 import {
 	IConfirmRegisterServiceData,
 	IForgotPasswordServiceData,
 	IResetPasswordServiceData,
-	ISendEmailParams,
 } from '../auth.types'
 import User from '../models/user'
 import { tokenService } from './auth.tokenService'
 
 import sequelize from '../../config/database'
+import { sendMailGmailAPI } from './googleAPIMailer'
 class AuthService {
 	async registerUser(email: string, username: string, password: string) {
 		const t = await sequelize.transaction()
@@ -33,19 +32,25 @@ class AuthService {
 			const confirmationLink = `${FRONT_URL}/auth/confirm?token=${token}`
 			logger.info(`Confirmation link for ${email}: ${confirmationLink}`)
 
+			await sendMailGmailAPI(
+				email,
+				'Підтвердження реєстрації',
+				`Будь ласка, підтвердіть вашу реєстрацію, натиснувши на це посилання: ${confirmationLink}`
+			)
+			// Старий код з використанням MailService
 			// const mailService = new MailService()
-			// await mailService.sendEmail({
-			// 	to: email,
+			// await mailService			.sendEmail({
+			// 	to: email,{}
 			// 	subject: 'Registration confirmation',
 			// 	text: `Your code: ${confirmationLink}`,
 			// })
 
 			// Спроба надіслати лист nodemailer
-			await this.sendEmail({
-				to: email,
-				subject: 'Підтвердження реєстрації',
-				text: `Будь ласка, підтвердіть вашу реєстрацію, натиснувши на це посилання: ${confirmationLink}`,
-			})
+			// await this.sendEmail({
+			// 	to: email,
+			// 	subject: 'Підтвердження реєстрації',
+			// 	text: `Будь ласка, підтвердіть вашу реєстрацію, натиснувши на це посилання: ${confirmationLink}`,
+			// })
 			logger.info(`Лист надіслано до ${email}`)
 
 			// Якщо все ок — створюємо користувача
@@ -69,33 +74,33 @@ class AuthService {
 		}
 	}
 
-	async sendEmail({ to, subject, text }: ISendEmailParams) {
-		if (!to || typeof to !== 'string') {
-			throw ApiError.BadRequest('Recipient email is not defined or invalid')
-		}
-		const transporter = nodemailer.createTransport({
-			service: 'gmail',
-			auth: {
-				user: process.env.MAILER_USER,
-				pass: process.env.MAILER_PASSWORD,
-			},
-			port: 587,
-			secure: false,
-			logger: true,
-			connectionTimeout: 10000, // 10 seconds
-			greetingTimeout: 10000, // 10 seconds
-			socketTimeout: 10000, // 10 seconds
-		})
-		logger.info(to)
-		const mailOptions = {
-			from: process.env.MAILER_USER,
-			to,
-			subject,
-			text,
-		}
+	// async sendEmail({ to, subject, text }: ISendEmailParams) {
+	// 	if (!to || typeof to !== 'string') {
+	// 		throw ApiError.BadRequest('Recipient email is not defined or invalid')
+	// 	}
+	// 	const transporter = nodemailer.createTransport({
+	// 		service: 'gmail',
+	// 		auth: {
+	// 			user: process.env.MAILER_USER,
+	// 			pass: process.env.MAILER_PASSWORD,
+	// 		},
+	// 		port: 587,
+	// 		secure: false,
+	// 		logger: true,
+	// 		connectionTimeout: 10000, // 10 seconds
+	// 		greetingTimeout: 10000, // 10 seconds
+	// 		socketTimeout: 10000, // 10 seconds
+	// 	})
+	// 	logger.info(to)
+	// 	const mailOptions = {
+	// 		from: process.env.MAILER_USER,
+	// 		to,
+	// 		subject,
+	// 		text,
+	// 	}
 
-		await transporter.sendMail(mailOptions)
-	}
+	// 	await transporter.sendMail(mailOptions)
+	// }
 
 	async confirmRegister({ token }: IConfirmRegisterServiceData) {
 		try {
