@@ -167,3 +167,7 @@
 {"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-12-09T21:53:04.740Z"}
 {"level":"info","message":"Confirmation link for romanpie2016@gmail.com: http://localhost:5173/auth/confirm?token=44fd7a76c2d43f710752f0864992eaa498d8a0a2","timestamp":"2025-12-09T21:53:24.784Z"}
 {"level":"info","message":"Лист надіслано до romanpie2016@gmail.com","timestamp":"2025-12-09T21:53:25.788Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-12-09T21:54:29.673Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-12-09T21:54:29.739Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-12-09T22:04:48.119Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-12-09T22:04:48.183Z"}

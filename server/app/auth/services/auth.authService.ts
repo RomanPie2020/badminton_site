@@ -186,12 +186,13 @@ class AuthService {
 			})
 
 			const resetLink = `${FRONT_URL}/auth/reset-password?token=${resetToken}`
-			await this.sendEmail({
-				to: email,
-				subject: 'Скидання пароля',
-				text: resetLink,
-			})
+			// await this.sendEmail({
+			// 	to: email,
+			// 	subject: 'Скидання пароля',
+			// 	text: resetLink,
+			// })
 
+			await sendMailGmailAPI(email, 'Скидання пароля', `${resetLink}`)
 			logger.info(`Лист для скидання пароля надіслано до ${email}`)
 			return { success: true, message: 'Reset link sent to email' }
 		} catch (error) {
