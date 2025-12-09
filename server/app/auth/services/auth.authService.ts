@@ -32,7 +32,15 @@ class AuthService {
 			// Формування лінка для підтвердження
 			const confirmationLink = `${FRONT_URL}/auth/confirm?token=${token}`
 			logger.info(`Confirmation link for ${email}: ${confirmationLink}`)
-			// Спроба надіслати лист
+
+			// const mailService = new MailService()
+			// await mailService.sendEmail({
+			// 	to: email,
+			// 	subject: 'Registration confirmation',
+			// 	text: `Your code: ${confirmationLink}`,
+			// })
+
+			// Спроба надіслати лист nodemailer
 			await this.sendEmail({
 				to: email,
 				subject: 'Підтвердження реєстрації',
@@ -71,8 +79,8 @@ class AuthService {
 				user: process.env.MAILER_USER,
 				pass: process.env.MAILER_PASSWORD,
 			},
-			port: 465,
-			secure: true,
+			port: 587,
+			secure: false,
 			logger: true,
 			connectionTimeout: 10000, // 10 seconds
 			greetingTimeout: 10000, // 10 seconds

@@ -93,3 +93,48 @@
 {"level":"info","message":"Отримані дані:","timestamp":"2025-12-08T23:53:43.662Z"}
 {"level":"info","message":"Refresh token saved for user 13","timestamp":"2025-12-08T23:53:43.685Z"}
 {"level":"info","message":"User logged out","timestamp":"2025-12-08T23:53:47.767Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-12-09T00:32:07.094Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-12-09T00:32:07.289Z"}
+{"level":"info","message":"Refresh token saved for user 11","timestamp":"2025-12-09T00:33:38.319Z"}
+{"level":"info","message":"Користувач romanstone2004@gmail.com успішно увійшов","timestamp":"2025-12-09T00:33:38.320Z"}
+{"level":"info","message":"User logged out","timestamp":"2025-12-09T00:33:39.600Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-12-09T00:36:53.629Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-12-09T00:36:53.734Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-12-09T00:49:19.466Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-12-09T00:49:19.564Z"}
+{"level":"info","message":"Confirmation link for romanpie2016@gmail.com: http://localhost:5173/auth/confirm?token=41f7e1428317ab6ba0aab3c8f4f4cc1317598f3c","timestamp":"2025-12-09T00:49:49.765Z"}
+{"level":"error","message":"Помилка при реєстрації користувача:  Missing API key. Pass it to the constructor `new Resend(\"re_123\")`","stack":"Error: Missing API key. Pass it to the constructor `new Resend(\"re_123\")`\n    at new Resend (/app/node_modules/resend/dist/index.cjs:783:25)\n    at new MailService (/app/app/auth/services/mailservice.ts:10:17)\n    at AuthService.registerUser (/app/app/auth/services/auth.authService.ts:35:24)\n    at register (/app/app/auth/auth.controller.ts:15:20)","timestamp":"2025-12-09T00:49:49.783Z"}
+{"level":"error","message":"Error:","timestamp":"2025-12-09T00:49:49.785Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-12-09T00:55:01.095Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-12-09T00:55:01.326Z"}
+{"level":"info","message":"Confirmation link for romanpie2016@gmail.com: http://localhost:5173/auth/confirm?token=80343e0118f1dd0c678a6a69855ea7aca8fffc03","timestamp":"2025-12-09T00:57:37.399Z"}
+{"level":"info","message":"Sending email to: romanpie2016@gmail.com","timestamp":"2025-12-09T00:57:37.481Z"}
+{"level":"error","message":"Resend error: You can only send testing emails to your own email address (emailerpost2024@gmail.com). To send emails to other recipients, please verify a domain at resend.com/domains, and change the `from` address to an email using this domain.","timestamp":"2025-12-09T00:57:37.968Z"}
+{"errors":[],"level":"error","message":"Помилка при реєстрації користувача:  Email sending error: You can only send testing emails to your own email address (emailerpost2024@gmail.com). To send emails to other recipients, please verify a domain at resend.com/domains, and change the `from` address to an email using this domain.","stack":"Error: Email sending error: You can only send testing emails to your own email address (emailerpost2024@gmail.com). To send emails to other recipients, please verify a domain at resend.com/domains, and change the `from` address to an email using this domain.\n    at Function.BadRequest (/app/app/exceptions/apiError.ts:13:10)\n    at MailService.sendEmail (/app/app/auth/services/mailservice.ts:29:19)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at AuthService.registerUser (/app/app/auth/services/auth.authService.ts:36:4)\n    at register (/app/app/auth/auth.controller.ts:15:20)","status":400,"timestamp":"2025-12-09T00:57:37.999Z"}
+{"level":"error","message":"Error:","timestamp":"2025-12-09T00:57:38.001Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-12-09T01:00:58.937Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-12-09T01:00:59.352Z"}
+{"level":"info","message":"Confirmation link for romanpie2016@gmail.com: http://localhost:5173/auth/confirm?token=98f31c8c78fc97b49c86d929c10887532339167f","timestamp":"2025-12-09T01:05:00.037Z"}
+{"level":"info","message":"Sending email to: romanpie2016@gmail.com","timestamp":"2025-12-09T01:05:00.152Z"}
+{"level":"error","message":"Resend error: You can only send testing emails to your own email address (emailerpost2024@gmail.com). To send emails to other recipients, please verify a domain at resend.com/domains, and change the `from` address to an email using this domain.","timestamp":"2025-12-09T01:05:01.069Z"}
+{"errors":[],"level":"error","message":"Помилка при реєстрації користувача:  Email sending error: You can only send testing emails to your own email address (emailerpost2024@gmail.com). To send emails to other recipients, please verify a domain at resend.com/domains, and change the `from` address to an email using this domain.","stack":"Error: Email sending error: You can only send testing emails to your own email address (emailerpost2024@gmail.com). To send emails to other recipients, please verify a domain at resend.com/domains, and change the `from` address to an email using this domain.\n    at Function.BadRequest (/app/app/exceptions/apiError.ts:13:10)\n    at MailService.sendEmail (/app/app/auth/services/mailservice.ts:29:19)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at AuthService.registerUser (/app/app/auth/services/auth.authService.ts:36:4)\n    at register (/app/app/auth/auth.controller.ts:15:20)","status":400,"timestamp":"2025-12-09T01:05:01.115Z"}
+{"level":"error","message":"Error:","timestamp":"2025-12-09T01:05:01.116Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-12-09T01:07:53.537Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-12-09T01:07:53.665Z"}
+{"level":"info","message":"Confirmation link for romanpie2016@gmail.com: http://localhost:5173/auth/confirm?token=f494a8d0a050d38088a21ff01afa96714dc6b86e","timestamp":"2025-12-09T01:08:34.149Z"}
+{"level":"info","message":"Sending email to: romanpie2016@gmail.com","timestamp":"2025-12-09T01:08:34.183Z"}
+{"level":"error","message":"Resend error: You can only send testing emails to your own email address (emailerpost2024@gmail.com). To send emails to other recipients, please verify a domain at resend.com/domains, and change the `from` address to an email using this domain.","timestamp":"2025-12-09T01:08:34.877Z"}
+{"errors":[],"level":"error","message":"Помилка при реєстрації користувача:  Email sending error: You can only send testing emails to your own email address (emailerpost2024@gmail.com). To send emails to other recipients, please verify a domain at resend.com/domains, and change the `from` address to an email using this domain.","stack":"Error: Email sending error: You can only send testing emails to your own email address (emailerpost2024@gmail.com). To send emails to other recipients, please verify a domain at resend.com/domains, and change the `from` address to an email using this domain.\n    at Function.BadRequest (/app/app/exceptions/apiError.ts:13:10)\n    at MailService.sendEmail (/app/app/auth/services/mailservice.ts:29:19)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at AuthService.registerUser (/app/app/auth/services/auth.authService.ts:36:4)\n    at register (/app/app/auth/auth.controller.ts:15:20)","status":400,"timestamp":"2025-12-09T01:08:34.903Z"}
+{"level":"error","message":"Error:","timestamp":"2025-12-09T01:08:34.904Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-12-09T14:15:48.651Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-12-09T14:15:48.868Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-12-09T16:51:39.797Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-12-09T16:51:39.902Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-12-09T16:51:48.422Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-12-09T16:51:48.492Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-12-09T16:51:56.813Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-12-09T16:51:56.882Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-12-09T16:52:07.442Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-12-09T16:52:07.519Z"}
+{"level":"info","message":"Server is running on1 port 3000","timestamp":"2025-12-09T16:52:56.888Z"}
+{"level":"info","message":"Database connection has been established successfully12.","timestamp":"2025-12-09T16:52:56.984Z"}

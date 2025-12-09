@@ -58,7 +58,7 @@ app.all('*', (req, res) => {
 
 const PORT = process.env.PORT || 3000
 
-logger.info(`database password is: ${typeof process.env.DB_PASSWORD}`)
+// logger.info(`database password is: ${typeof process.env.DB_PASSWORD}`)
 app.listen(PORT, async () => {
 	logger.info(`Server is running on1 port ${PORT}`)
 	await testDbConnection()
