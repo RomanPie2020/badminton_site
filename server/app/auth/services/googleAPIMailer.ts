@@ -17,9 +17,13 @@ export async function sendMailGmailAPI(
 
 	const gmail = google.gmail({ version: 'v1', auth: oAuth2Client })
 
+	const encodedSubject = `=?UTF-8?B?${Buffer.from(subject).toString(
+		'base64'
+	)}?=`
+
 	const emailMessage =
 		`To: ${to}\r\n` +
-		`Subject: ${subject}\r\n` +
+		`Subject: ${encodedSubject}\r\n` +
 		`Content-Type: text/html; charset=UTF-8\r\n\r\n` +
 		`${message}`
 
