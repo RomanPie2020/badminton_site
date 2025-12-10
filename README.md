@@ -1,22 +1,12 @@
 # BadmickTogether
 
-A web application for managing events with a clear client‑server separation. Built as a single‑page application (SPA) with a modern frontend, containerized development environment, and tooling configured for a smooth developer workflow.
+Full-stack web application for badminton players to find partners and manage events. Built with React and Node.js, featuring a client-server architecture, Dockerized development environment, and modern frontend tooling.
 
 ---
 
 ## Project Overview
 
-**BadmickTogether** enables users to create, edit, filter, and browse events. The repository contains a React frontend and a backend API responsible for authentication and data handling. The project includes Docker configuration for local deployment and development tooling such as ESLint and TypeScript configuration files.
-
----
-
-## Key Features
-
-- **User authentication** via OAuth and handling of authorization responses.  
-- **Event CRUD** — create, read, update, delete events.  
-- **Event filtering and search** by multiple criteria.   
-- **Client‑server architecture** with REST API endpoints.  
-- **Docker and docker‑compose** for easy local environment setup.
+**BadmickTogether** helps badminton enthusiasts quickly find partners, join or organize games, and track their participation. The app makes it easy to see who’s attending events, manage personal schedules, and stay connected with the badminton community — saving time and simplifying game organization.
 
 ---
 
@@ -27,6 +17,19 @@ A web application for managing events with a clear client‑server separation. B
 - **Languages:** JavaScript, TypeScript  
 - **Tooling:** ESLint, tsconfig
 - **Containerization:** Docker, docker‑compose
+
+---
+
+## Features
+
+* **User authentication & authorization** via **OAuth** or **email/password**, with **JWT-based** session handling.
+* **Event management (CRUD)** — create, view, update, and delete events.
+* **Event filtering & search** — find events by multiple criteria.
+* **User profile page** — view and manage personal information and settings.
+* **Participant list** — see all users who joined an event along with their details.
+* **My Events page** — track events you joined or are participating in.
+* **Client‑server architecture** — REST API endpoints connecting frontend and backend.
+* **Dockerized development environment** — setup and run the full application locally with Docker and Docker Compose.
 
 ---
 
