@@ -14,8 +14,7 @@ A web application for managing events with a clear client‑server separation. B
 
 - **User authentication** via OAuth and handling of authorization responses.  
 - **Event CRUD** — create, read, update, delete events.  
-- **Event filtering and search** by multiple criteria.  
-- **Reusable form builder** for rapid form creation in the UI.  
+- **Event filtering and search** by multiple criteria.   
 - **Client‑server architecture** with REST API endpoints.  
 - **Docker and docker‑compose** for easy local environment setup.
 
@@ -23,10 +22,10 @@ A web application for managing events with a clear client‑server separation. B
 
 ## Technology Stack
 
-- **Frontend:** React, RTKQuery, Vite
+- **Frontend:** React, RTKQuery, Vite, TailwindCSS
+- **Frontend:** Express.js, PostgreSQL, Sequelize ORM
 - **Languages:** JavaScript, TypeScript  
-- **Styling:** Tailwind CSS 
-- **Tooling:** ESLint, Vite dev server, tsconfig  
+- **Tooling:** ESLint, tsconfig
 - **Containerization:** Docker, docker‑compose
 
 ---
